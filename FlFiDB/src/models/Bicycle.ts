@@ -14,4 +14,5 @@ module.exports = sequelize.define('Bicycle', {
   fkOwnerId: { type: Sequelize.STRING(36), allowNull: false },
   fkHolderId: { type: Sequelize.STRING(36), allowNull: false },
   fleetNr: { type: Sequelize.STRING(20), allowNull: true },
-});
+})
+

@@ -1,12 +1,15 @@
-// const customerResolvers = require('./customers');
+const {
+  queryResolvers: customerQueryResolvers,
+  resolvers: customerResolvers,
+} = require('./customers');
+const { queryResolvers: bicycleQueryResolvers } = require('./bicycles');
 
-
-module.exports = {
+export const resolvers = {
   Query: {
-    // ...customerResolvers.Query,
-
+    ...customerQueryResolvers,
+    ...bicycleQueryResolvers,
   },
-  Mutation: {
-  },
-  Subscription: {}
+  Customer: customerResolvers,
+  // Mutation: {},
+  // Subscription: {},
 };

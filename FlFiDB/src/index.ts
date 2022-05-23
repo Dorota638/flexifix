@@ -2,13 +2,13 @@ const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const { typeDefs } = require('./graphql/TypeDefs');
 const { resolvers } = require('./graphql/resolvers');
-const  sequelize  = require('./database/connection');
+const sequelize = require('./database/connection');
 const app = express();
 
 const PORT = process.env.port || 3000;
 const main = async () => {
   require('./database/connection');
-  require('./bootstrap')();
+  // require('./bootstrap')();
   sequelize
     .authenticate()
     .then(() => {

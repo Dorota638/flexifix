@@ -1,9 +1,6 @@
-import { Customer } from './../Entities/Customer';
-import { GET_ALL_USERS } from './../Schema/Queries/Customer';
-import { GraphQLString, GraphQLObjectType, GraphQLID } from 'graphql';
 import { gql } from 'apollo-server-express';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   # Types
   type Customer {
     id: ID!
@@ -19,19 +16,32 @@ const typeDefs = gql`
     idInfo: String
     createdAt: String!
     updatedAt: String!
+    bicycles: [Bicycle!]!   # array vzdy [_!]!
+  }
+  type Bicycle {
+    id: ID!
+    type: String
+    name: String
+    frameNumber: String
+    fkOwnerId: String
+    fkHolderId: String
+    createdAt: String!
+    updatedAt: String!
   }
 
   # Queries
 
   type Query {
-    getAllCustomers: [Customer!]!
+    customers: [Customer!]!
+    customerByName(name:String!): [Customer!]!
+    bicycles: [Bicycle!]!
   }
 
   # Mutations
 `;
 
 
-module.exports = {typeDefs}
+
 
 // export const CustomerType = new GraphQLObjectType({
 //   name: 'customer',
