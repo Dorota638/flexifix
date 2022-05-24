@@ -2,7 +2,10 @@ const {
   queryResolvers: customerQueryResolvers,
   resolvers: customerResolvers,
 } = require('./customers');
-const { queryResolvers: bicycleQueryResolvers } = require('./bicycles');
+const {
+  queryResolvers: bicycleQueryResolvers,
+  resolvers: bicycleResolvers,
+} = require('./bicycles');
 // const { queryResolvers: colorQueryResolvers } = require('./colors');
 
 export const resolvers = {
@@ -11,7 +14,7 @@ export const resolvers = {
     ...bicycleQueryResolvers,
     // ...colorQueryResolvers,
   },
-
+  Bicycle: bicycleResolvers,
   Customer: customerResolvers,
 
   // Mutation: {},

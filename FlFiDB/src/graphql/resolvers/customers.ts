@@ -1,11 +1,8 @@
+import { errHandler } from '../../helper';
 const Customer = require('../../models/Customer');
 const Bicycle = require('../../models/Bicycle');
 
 Customer.hasMany(Bicycle, { as: 'Bicycles', foreignKey: 'fkOwnerId' });
-
-const errHandler = (err) => {
-  console.error('Error: ', err);
-};
 
 export const queryResolvers = {
   async customerByName(parent: any, args: { name: string }, context: any) {

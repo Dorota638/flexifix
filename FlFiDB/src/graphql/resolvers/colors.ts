@@ -1,8 +1,5 @@
+import { errHandler } from "../../helper";
 const BicycleColor = require('../../models/BicycleColor');
-
-const errHandler = (err) => {
-  console.error('Error: ', err);
-};
 
 export const queryResolvers = {
   async color(parent: any, args: { id: string }) {

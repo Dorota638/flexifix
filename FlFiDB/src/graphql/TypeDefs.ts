@@ -7,7 +7,7 @@ export const typeDefs = gql`
     customers: [Customer!]!
     customerByName(name: String!): [Customer!]!
     bicycles: [Bicycle!]!
-    bocycleColor(id: Int!): BicycleColors!
+    bicycleColor(id: Int!): BicycleColor!
   }
 
   # Types
@@ -32,7 +32,7 @@ export const typeDefs = gql`
     id: ID!
     type: String
     name: String
-    color: BicycleColors!
+    color: BicycleColor!
     brand: BicycleBrands!
     gearsystem: BicycleGearsystem!
     status: BicycleStatus!
@@ -44,9 +44,9 @@ export const typeDefs = gql`
     updatedAt: String!
   }
 
-  type BicycleColors {
+  type BicycleColor {
     id: Int!
-    color: String!
+    colorName: String!
   }
 
   type BicycleBrands {

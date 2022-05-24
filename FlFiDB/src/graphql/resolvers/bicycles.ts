@@ -1,14 +1,11 @@
+import { errHandler } from '../../helper';
 const Customer = require('../../models/Customer');
 const Bicycle = require('../../models/Bicycle');
 const BicycleColor = require('../../models/BicycleColor');
 
 Bicycle.belongsTo(Customer, { as: 'owner', foreignKey: 'fkOwnerId' });
 Bicycle.belongsTo(Customer, { as: 'holder', foreignKey: 'fkHolderId' });
-Bicycle.hasOne(BicycleColor, { as: 'bicycleColor', foreignKey: 'color' });
-
-const errHandler = (err) => {
-  console.error('Error: ', err);
-};
+BicycleColor.hasMany(Bicycle, { foreignKey: 'colorId' });
 
 export const queryResolvers = {
   async bicycles() {
@@ -17,7 +14,7 @@ export const queryResolvers = {
         include: [
           { model: Customer, as: 'owner' },
           { model: Customer, as: 'holder' },
-          { model: BicycleColor, as: 'bicycleColor' },
+          { model: BicycleColor },
         ],
       }).catch(errHandler);
       return bicycles;
@@ -25,12 +22,18 @@ export const queryResolvers = {
       throw new Error(err);
     }
   },
-  
-  // async color(parent: any, args: { id: string }){
-  //   try {
-  //     const color = await
-  //   } catch (err) {
-  //     throw new Error(err);
-  //   }
-  // },
+};
+
+export const resolvers = {
+  async color(parent: any) {
+    try {
+      const color = await BicycleColor.findAll({
+        where: { id: parent.colorId },
+      }).catch(console.error);
+      console.log('color', color[0]);
+      return color[0];
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 };

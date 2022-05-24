@@ -8,5 +8,5 @@ module.exports = sequelize.define('BicycleColor', {
     autoIncrement: true,
     primaryKey: true,
   },
-  color: { type: Sequelize.STRING(15), allowNull: false },
+  colorName: { type: Sequelize.STRING(15), allowNull: false },
 });
