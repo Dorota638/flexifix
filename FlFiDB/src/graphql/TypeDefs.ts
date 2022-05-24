@@ -1,6 +1,15 @@
 import { gql } from 'apollo-server-express';
 
 export const typeDefs = gql`
+  # Queries
+
+  type Query {
+    customers: [Customer!]!
+    customerByName(name: String!): [Customer!]!
+    bicycles: [Bicycle!]!
+    bocycleColor(id: Int!): BicycleColors!
+  }
+
   # Types
   type Customer {
     id: ID!
@@ -16,12 +25,18 @@ export const typeDefs = gql`
     idInfo: String
     createdAt: String!
     updatedAt: String!
-    bicycles: [Bicycle!]!   # array vzdy [_!]!
+    bicycles: [Bicycle!]! # array vzdy [_!]!
   }
+
   type Bicycle {
     id: ID!
     type: String
     name: String
+    color: BicycleColors!
+    brand: BicycleBrands!
+    gearsystem: BicycleGearsystem!
+    status: BicycleStatus!
+    tires: BicycleTires!
     frameNumber: String
     fkOwnerId: String
     fkHolderId: String
@@ -29,36 +44,30 @@ export const typeDefs = gql`
     updatedAt: String!
   }
 
-  # Queries
+  type BicycleColors {
+    id: Int!
+    color: String!
+  }
 
-  type Query {
-    customers: [Customer!]!
-    customerByName(name:String!): [Customer!]!
-    bicycles: [Bicycle!]!
+  type BicycleBrands {
+    id: Int!
+    name: String!
+  }
+
+  type BicycleGearsystem {
+    id: Int!
+    type: String!
+  }
+
+  type BicycleStatus {
+    id: Int!
+    status: String!
+  }
+
+  type BicycleTires {
+    id: Int!
+    size: String!
   }
 
   # Mutations
 `;
-
-
-
-
-// export const CustomerType = new GraphQLObjectType({
-//   name: 'customer',
-//   description: 'customer',
-//   fields: () => ({
-//     id: { type: GraphQLString },
-//     // id: { type: GraphQLID },
-//     firstName: { type: GraphQLString },
-//     lastName: { type: GraphQLString },
-//     company: { type: GraphQLString },
-//     cvr: { type: GraphQLString },
-//     phone: { type: GraphQLString },
-//     address: { type: GraphQLString },
-//     zipCode: { type: GraphQLString },
-//     city: { type: GraphQLString },
-//     email: { type: GraphQLString },
-//     idInfo: { type: GraphQLString },
-//     created: { type: GraphQLString },
-//   }),
-// });

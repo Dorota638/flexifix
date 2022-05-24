@@ -8,7 +8,7 @@ const errHandler = (err) => {
 };
 
 export const queryResolvers = {
-  async customerByName(_: any, args: { name: string }) {
+  async customerByName(parent: any, args: { name: string }, context: any) {
     try {
       const customers = await Customer.findAll({
         include: [{ model: Bicycle, as: 'Bicycles' }],
@@ -33,16 +33,14 @@ export const queryResolvers = {
 };
 
 export const resolvers = {
-  bicycles: async (parent:any) => {
+  bicycles: async (parent: any, args: any, context: any) => {
     try {
       const bicycles = await Bicycle.findAll({
         where: { fkOwnerId: parent.id },
       }).catch(errHandler);
-      console.log("bicycles", bicycles);
       return bicycles;
     } catch (err) {
       throw new Error(err);
     }
   },
 };
-

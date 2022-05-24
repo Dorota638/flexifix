@@ -9,6 +9,5 @@ module.exports = sequelize.define('Account', {
     primaryKey: true,
   },
   name: { type: Sequelize.STRING(10), allowNull: false },
-  total: { type: Sequelize.INTEGER()
-    , allowNull: false },
+  total: { type: Sequelize.INTEGER(), allowNull: false },
 });
