@@ -2,42 +2,41 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('BicycleGearsystem', [
+    return queryInterface.bulkInsert('ProductCategories', [
       {
         id: 1,
-        type: 'Single speed',
+        name: 'Tire',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 2,
-        type: 'Nexus 3',
+        name: 'Chain',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 3,
-        type: 'Nexus 4',
+        name: 'Sprocket',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 4,
-        type: 'Nexus 7',
+        name: 'Bottom Bracket',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 5,
-        type: 'Nexus 8',
+        name: 'Cassette',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-
     ]);
   },
 
   async down(queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('BicycleGearsystem', null, {});
+    return queryInterface.bulkDelete('ProductCategories', null, {});
   },
 };

@@ -1,24 +1,97 @@
 'use strict';
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+  async up(queryInterface, Sequelize) {
+    return queryInterface.bulkInsert('Products', [
+      {
+        id: 1,
+        name: '12 speed',
+        fkSupplier: 1,
+        fkBrand: 2,
+        fkCategory: 3,
+        fkGroup: 1,
+        description: 'No tak toto uz ano',
+        ean: 'PK045786',
+        stock: 10,
+        minStock: 1,
+        buyPrice: 10,
+        sellPrice: 20,
+        expectedDurability: 20,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 2,
+        name: '10-51T',
+        fkSupplier: 4,
+        fkBrand: 3,
+        fkCategory: 2,
+        fkGroup: 1,
+        description: 'No tak toto uz ano',
+        ean: 'PK045786',
+        stock: 2,
+        minStock: 1,
+        buyPrice: 10,
+        sellPrice: 20,
+        expectedDurability: 20,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 3,
+        name: '6-8 speed',
+        fkSupplier: 1,
+        fkBrand: 2,
+        fkCategory: 3,
+        fkGroup: 1,
+        description: 'No tak toto uz ano',
+        ean: 'PK045786',
+        stock: 10,
+        minStock: 1,
+        buyPrice: 10,
+        sellPrice: 20,
+        expectedDurability: 20,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 4,
+        name: 'PowerStop',
+        fkSupplier: 3,
+        fkBrand: 3,
+        fkCategory: 2,
+        fkGroup: 2,
+        description: 'No tak toto uz ano',
+        ean: 'PK045786',
+        stock: 10,
+        minStock: 1,
+        buyPrice: 10,
+        sellPrice: 20,
+        expectedDurability: 20,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        id: 5,
+        name: 'Stylo, center',
+        fkSupplier: 5,
+        fkBrand: 4,
+        fkCategory: 1,
+        fkGroup: 1,
+        description: 'No tak toto uz ano',
+        ean: 'PK045786',
+        stock: 10,
+        minStock: 1,
+        buyPrice: 10,
+        sellPrice: 20,
+        expectedDurability: 20,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
   },
 
-  async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-  }
+  async down(queryInterface, Sequelize) {
+    return queryInterface.bulkDelete('Products', null, {});
+  },
 };
