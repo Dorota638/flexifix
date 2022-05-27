@@ -1,12 +1,11 @@
 import React from "react";
+import { Btn } from "../Btn";
 
 export default function ToDo() {
     return (
         <div>
             <div>
-                <button className="border rounded-lg border-slate-700 p-2 m-4 hover:bg-primary ">
-                    <a href="#" className="hover:color-white">New repair</a>
-                </button>
+                <Btn text="New Repair" />
             </div>
             <div className="flex flex-wrap justify-evenly
                           bg-slate-200 border-solid border
