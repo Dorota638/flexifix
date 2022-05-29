@@ -7,7 +7,7 @@ export const typeDefs = gql`
     customers: [Customer!]!
     customerByName(name: String!): [Customer!]!
     bicycles: [Bicycle!]!
-    bicycleColor(id: Int!): BicycleColor!
+    repairs: [Repair!]!
   }
 
   # Types
@@ -45,28 +45,62 @@ export const typeDefs = gql`
   }
 
   type BicycleColor {
-    id: Int!
+    id: ID!
     colorName: String!
   }
 
   type BicycleBrands {
-    id: Int!
+    id: ID!
     name: String!
   }
 
   type BicycleGearsystem {
-    id: Int!
+    id: ID!
     type: String!
   }
 
   type BicycleStatus {
-    id: Int!
+    id: ID!
     status: String!
   }
 
   type BicycleTires {
-    id: Int!
+    id: ID!
     size: String!
+  }
+
+  type Repair {
+    id: ID!
+    number: String!
+    fkPaymentMethod: PaymentMethod
+    fkAccount: Account
+    fkBicycleId: Bicycle!
+    fkCustomerId: Customer!
+    status: Int!
+    fkTakenBy: Employee!
+    fkTechnicianId: Employee
+    dateStarted: String
+    dateFinished: String
+    dateReturned: String
+    fkSpareBicycleId: Bicycle
+    comment: String
+    createdAt: String!
+    updatedAt: String!
+  }
+
+  type PaymentMethod {
+    id: ID!
+    method: String!
+  }
+  type Account {
+    id: ID!
+    name: String!
+    total: Int!
+  }
+  type Employee {
+    id: ID!
+    name: String!
+    role: Int
   }
 
   # Mutations

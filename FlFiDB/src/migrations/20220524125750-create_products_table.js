@@ -12,7 +12,7 @@ module.exports = {
       fkSupplier: { type: Sequelize.SMALLINT() },
       fkBrand: { type: Sequelize.SMALLINT(), allowNull: false },
       fkCategory: { type: Sequelize.SMALLINT(), allowNull: false },
-      Group: { type: Sequelize.SMALLINT(), allowNull: false },
+      fkGroup: { type: Sequelize.SMALLINT(), allowNull: false },
       description: { type: Sequelize.STRING(36) },
       ean: { type: Sequelize.STRING(20) },
       stock: { type: Sequelize.SMALLINT() },

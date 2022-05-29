@@ -82,13 +82,13 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: 13,
+        id: 14,
         type: '3x10',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 13,
+        id: 15,
         type: '1x11',
         createdAt: new Date(),
         updatedAt: new Date(),

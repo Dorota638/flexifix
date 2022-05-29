@@ -8,7 +8,7 @@ module.exports = sequelize.define('RentalInvoiceLine', {
     autoIncrement: false,
     primaryKey: true,
   },
-  fkRentalInvoiceId: { type: Sequelize.STRING(36), allowNull: false },
+  fkRentalId: { type: Sequelize.STRING(36), allowNull: false },
   fkBicycleId: { type: Sequelize.STRING(36), allowNull: false },
 });
 

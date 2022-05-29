@@ -9,7 +9,7 @@ module.exports = {
         autoIncrement: false,
         primaryKey: true,
       },
-      fkRentalInvoiceId: { type: Sequelize.STRING(36), allowNull: false },
+      fkRentalId: { type: Sequelize.STRING(36), allowNull: false },
       fkBicycleId: { type: Sequelize.STRING(36), allowNull: false },
       createdAt: { type: Sequelize.DATE() },
       updatedAt: { type: Sequelize.DATE() },

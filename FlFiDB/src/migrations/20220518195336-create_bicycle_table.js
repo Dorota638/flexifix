@@ -11,7 +11,7 @@ module.exports = {
       },
       type: { type: Sequelize.STRING(20), allowNull: true },
       name: { type: Sequelize.STRING(20), allowNull: true },
-      colorId: { type: Sequelize.SMALLINT(), allowNull: false },
+      color: { type: Sequelize.SMALLINT(), allowNull: false },
       brand: { type: Sequelize.SMALLINT(), allowNull: false },
       gearsystem: { type: Sequelize.SMALLINT(), allowNull: false },
       status: { type: Sequelize.SMALLINT(), allowNull: false },

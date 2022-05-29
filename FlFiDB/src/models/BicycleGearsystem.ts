@@ -10,7 +10,10 @@ module.exports = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    type: { type: Sequelize.STRING(20), allowNull: false },
+    type: {
+      type: Sequelize.STRING(20),
+      allowNull: false,
+    },
   },
   { freezeTableName: true }
 );

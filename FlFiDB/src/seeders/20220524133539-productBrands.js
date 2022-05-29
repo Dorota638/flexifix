@@ -2,34 +2,34 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('BicycleGearsystem', [
+    return queryInterface.bulkInsert('ProductBrands', [
       {
         id: 1,
-        type: 'Single speed',
+        name: 'Single speed',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 2,
-        type: 'Nexus 3',
+        name: 'Nexus 3',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 3,
-        type: 'Nexus 4',
+        name: 'Nexus 4',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 4,
-        type: 'Nexus 7',
+        name: 'Nexus 7',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 5,
-        type: 'Nexus 8',
+        name: 'Nexus 8',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -38,6 +38,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    return queryInterface.bulkDelete('BicycleGearsystem', null, {});
+    return queryInterface.bulkDelete('ProductBrands', null, {});
   },
 };
