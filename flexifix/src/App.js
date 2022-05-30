@@ -1,12 +1,14 @@
 import './App.css';
-import Header from './components/Header';
-import ToDo from './components/todolist/ToDo';
+import Header from './layouts/Header/Header';
+import Main from './layouts/Main/Main';
+import Footer from './layouts/Footer/Footer';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <ToDo />
+      <Main />
+      <Footer />
     </div>
   );
 }
