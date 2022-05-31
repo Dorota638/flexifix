@@ -7,17 +7,11 @@ const BicycleGearsystem = require('../../models/BicycleGearsystem');
 const BicycleStatus = require('../../models/BicycleStatus');
 const BicycleTires = require('../../models/BicycleTires');
 
-Bicycle.belongsTo(Customer, { as: 'owner', foreignKey: 'fkOwnerId' });
-Bicycle.belongsTo(Customer, { as: 'holder', foreignKey: 'fkHolderId' });
-
 export const queryResolvers = {
   async bicycles() {
     try {
       const bicycles = await Bicycle.findAll({
-        include: [
-          { model: Customer, as: 'owner' },
-          { model: Customer, as: 'holder' },
-        ],
+
       }).catch(errHandler);
       return bicycles;
     } catch (err) {
@@ -27,6 +21,26 @@ export const queryResolvers = {
 };
 
 export const resolvers = {
+
+  owner: async (parent: any, args: any, context: any) => {
+    try {
+      const owner = await Customer.findByPk(parent.fkOwnerId)
+      .catch(errHandler);
+      return owner;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+  holder: async (parent: any, args: any, context: any) => {
+    try {
+      const holder = await Customer.findByPk(parent.fkHolderId)
+      .catch(errHandler);
+      return holder;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
   async color(parent: any) {
     try {
       const color = await BicycleColor.findByPk(parent.color)
@@ -58,7 +72,6 @@ export const resolvers = {
     try {
       const status = await BicycleStatus.findByPk(parent.status)
       .catch(console.error);
-      console.log('parent.status', parent.status);
       return status;
     } catch (err) {
       throw new Error(err);

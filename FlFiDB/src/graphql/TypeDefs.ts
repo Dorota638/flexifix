@@ -8,6 +8,7 @@ export const typeDefs = gql`
     customerByName(name: String!): [Customer!]!
     bicycles: [Bicycle!]!
     repairs: [Repair!]!
+    tasks: [Task!]!
   }
 
   # Types
@@ -38,8 +39,8 @@ export const typeDefs = gql`
     status: BicycleStatus!
     tires: BicycleTires!
     frameNumber: String
-    fkOwnerId: String
-    fkHolderId: String
+    owner: Customer!
+    holder: Customer!
     createdAt: String!
     updatedAt: String!
   }
@@ -72,17 +73,18 @@ export const typeDefs = gql`
   type Repair {
     id: ID!
     number: String!
-    fkPaymentMethod: PaymentMethod
-    fkAccount: Account
-    fkBicycleId: Bicycle!
-    fkCustomerId: Customer!
+    paymentMethod: PaymentMethod
+    account: Account
+    bicycle: Bicycle!
+    customer: Customer!
     status: Int!
-    fkTakenBy: Employee!
-    fkTechnicianId: Employee
+    takenBy: Employee!
+    technician: Employee
+    tasks: [Task!]!
     dateStarted: String
     dateFinished: String
     dateReturned: String
-    fkSpareBicycleId: Bicycle
+    spareBicycle: Bicycle
     comment: String
     createdAt: String!
     updatedAt: String!
@@ -92,6 +94,7 @@ export const typeDefs = gql`
     id: ID!
     method: String!
   }
+
   type Account {
     id: ID!
     name: String!
@@ -101,6 +104,27 @@ export const typeDefs = gql`
     id: ID!
     name: String!
     role: Int
+  }
+
+  type Task {
+    id: ID!
+    name: String!
+    taskCategory: TaskCategory!
+    duration: Int!
+  }
+
+  type TaskCategory {
+    id: ID!
+    name: String!
+  }
+
+  type TaskInvoiceLine {
+    id: ID!
+    fkTask: Int!
+    fkRepairId: Int!
+    amount: Int!
+    time: Int!
+    price: Int!
   }
 
   # Mutations

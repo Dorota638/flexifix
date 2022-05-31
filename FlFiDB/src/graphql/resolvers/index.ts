@@ -12,15 +12,22 @@ const {
   resolvers: repairResolvers,
 } = require('./repairs');
 
+const {
+  queryResolvers: taskQueryResolvers,
+  resolvers: taskResolvers,
+} = require('./task');
+
 export const resolvers = {
   Query: {
     ...customerQueryResolvers,
     ...bicycleQueryResolvers,
     ...repairQueryResolvers,
+    ...taskQueryResolvers,
   },
   Bicycle: bicycleResolvers,
   Customer: customerResolvers,
-  Repair: repairResolvers
+  Repair: repairResolvers,
+  Task: taskResolvers,
 
   // Mutation: {},
   // Subscription: {},
