@@ -2,23 +2,26 @@ import { errHandler } from '../../helper';
 const Customer = require('../../models/Customer');
 const Bicycle = require('../../models/Bicycle');
 
-// Customer.hasMany(Bicycle, { as: 'Bicycles', foreignKey: 'fkOwnerId' });
+Customer.hasMany(Bicycle, { as: 'Bicycles', foreignKey: 'fkOwnerId' });
 
 export const queryResolvers = {
-  async customerByName(parent: any, args: { name: string }, context: any) {
+  async customerByName(_:any, args: { name: string }) {
     try {
       const customers = await Customer.findAll({
+        include: [{ model: Bicycle, as: 'Bicycles' }],
         where: { firstName: args.name },
       }).catch(errHandler);
+      console.log('customers', customers);
+
       return customers;
     } catch (err) {
       throw new Error(err);
     }
   },
-
   async customers() {
     try {
       const customers = await Customer.findAll({
+        // include: [{ model: Bicycle, as: 'Bicycles' }],
       }).catch(errHandler);
       return customers;
     } catch (err) {
@@ -26,9 +29,8 @@ export const queryResolvers = {
     }
   },
 };
-
 export const resolvers = {
-  bicycles: async (parent: any, args: any, context: any) => {
+  bicycles: async (parent: any) => {
     try {
       const bicycles = await Bicycle.findAll({
         where: { fkOwnerId: parent.id },

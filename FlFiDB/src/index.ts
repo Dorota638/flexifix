@@ -1,24 +1,24 @@
 const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const { typeDefs } = require('./graphql/TypeDefs');
-const { resolvers } = require('./graphql/resolvers');
+const { resolvers } = require('./graphql');
 const sequelize = require('./database/connection');
 const app = express();
 
 const PORT = process.env.port || 3000;
 const main = async () => {
   require('./database/connection');
-  // require('./bootstrap')();
   sequelize
     .authenticate()
     .then(() => {
       console.log('connection successful');
     })
-    .catch((err) => {
+    .catch((err: any) => {
       console.error(err);
     });
 
   const server = new ApolloServer({ typeDefs, resolvers });
+  
   await server.start();
   server.applyMiddleware({ app });
 
@@ -27,9 +27,12 @@ const main = async () => {
   });
 };
 
+// export const server2 =  new ApolloServer({ typeDefs, resolvers });
+
 main().catch((err) => {
   console.log(err);
 });
+
 
 // const main = async () => {
 //   await AppDataSource.initialize()

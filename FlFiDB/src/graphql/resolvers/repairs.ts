@@ -7,8 +7,6 @@ const Customer = require('../../models/Customer');
 const Employee = require('../../models/Employee');
 const TaskInvoiceLine = require('../../models/TaskInvoiceLine');
 
-// Repair.hasMany(TaskInvoiceLine, {as: 'Tasks', foreignKey: 'fkRepairId'})
-
 export const queryResolvers = {
   async repairs() {
     try {
@@ -18,10 +16,31 @@ export const queryResolvers = {
       throw new Error(err);
     }
   },
-};
 
+  repairsByCustomer: async (_: any, args: { customerId: string }) => {
+    try {
+      const repairs = await Repair.findAll({
+        where: { fkCustomerId: args.customerId },
+      }).catch(errHandler);
+      return repairs;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+};
 export const resolvers = {
-  paymentMethod: async (parent: any, args: any, context: any) => {
+  async taskInvoiceLines(parent: any) {
+    try {
+      const taskInvoiceLines = await TaskInvoiceLine.findAll({
+        where: { fkRepairId: parent.id },
+      }).catch(errHandler);
+      return taskInvoiceLines;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
+  paymentMethod: async (parent: any) => {
     try {
       const method = await PaymentMethod.findByPk(parent.fkPaymentMethod).catch(
         errHandler
@@ -32,7 +51,7 @@ export const resolvers = {
     }
   },
 
-  account: async (parent: any, args: any, context: any) => {
+  account: async (parent: any) => {
     try {
       const account = await Account.findByPk(parent.fkAccount).catch(
         errHandler
@@ -42,7 +61,7 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-  bicycle: async (parent: any, args: any, context: any) => {
+  bicycle: async (parent: any) => {
     try {
       const bicycle = await Bicycle.findByPk(parent.fkBicycleId).catch(
         errHandler
@@ -52,7 +71,7 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-  customer: async (parent: any, args: any, context: any) => {
+  customer: async (parent: any) => {
     try {
       const customer = await Customer.findByPk(parent.fkCustomerId).catch(
         errHandler
@@ -62,7 +81,7 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-  takenBy: async (parent: any, args: any, context: any) => {
+  takenBy: async (parent: any) => {
     try {
       const takenBy = await Employee.findByPk(parent.fkTakenBy).catch(
         errHandler
@@ -72,7 +91,7 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-  technician: async (parent: any, args: any, context: any) => {
+  technician: async (parent: any) => {
     try {
       const technician = await Employee.findByPk(parent.fkTechnicianId).catch(
         errHandler
@@ -82,7 +101,7 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-  spareBicycle: async (parent: any, args: any, context: any) => {
+  spareBicycle: async (parent: any) => {
     try {
       const spareBicycle = await Bicycle.findByPk(parent.fkSpareBicycle).catch(
         errHandler

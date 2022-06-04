@@ -1,12 +1,14 @@
 import Sequelize from 'sequelize';
 const sequelize = require('../database/connection');
 
-module.exports = sequelize.define('BicycleColor', {
-  id: {
+module.exports = sequelize.define('EmployeePassword', {
+  employeeId: {
     type: Sequelize.SMALLINT(),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  color: { type: Sequelize.STRING(15), allowNull: false },
+  password: {
+    type: Sequelize.STRING(64),
+  },
 });

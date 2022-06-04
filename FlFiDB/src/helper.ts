@@ -1,3 +1,3 @@
-export const errHandler = (err) => {
+export const errHandler = (err:any) => {
   console.error('Error: ', err);
 };
