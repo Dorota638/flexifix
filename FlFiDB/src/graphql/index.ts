@@ -1,33 +1,57 @@
 const {
   queryResolvers: customerQueryResolvers,
   resolvers: customerResolvers,
-} = require('./resolvers/customers');
+} = require('./query/customers');
 const {
   queryResolvers: bicycleQueryResolvers,
   resolvers: bicycleResolvers,
-} = require('./resolvers/bicycles');
+} = require('./query/bicycles');
 const {
   queryResolvers: repairQueryResolvers,
   resolvers: repairResolvers,
-} = require('./resolvers/repairs');
+} = require('./query/repairs');
 const {
   queryResolvers: taskQueryResolvers,
   resolvers: taskResolvers,
-} = require('./resolvers/tasks');
+} = require('./query/tasks');
 const {
   queryResolvers: taskInvoiceLineQueryResolvers,
   resolvers: taskInvoiceLineResolvers,
-} = require('./resolvers/taskInvoiceLines');
+} = require('./query/taskInvoiceLines');
 const {
   queryResolvers: productQueryResolvers,
   resolvers: productResolvers,
-} = require('./resolvers/products');
+} = require('./query/products');
+const { queryResolvers: accountQueryResolvers } = require('./query/accounts');
+const { queryResolvers: passwordQueryResolvers } = require('./query/passwords');
 const {
-  queryResolvers: accountQueryResolvers,
-} = require('./resolvers/accounts');
+  queryResolvers: bicyclePropsQueryResolvers,
+} = require('./query/bicycleProps');
 const {
-  queryResolvers: passwordQueryResolvers,
-} = require('./resolvers/passwords');
+  queryResolvers: productPropsQueryResolvers,
+} = require('./query/productProps');
+const {
+  queryResolvers: bicycleInvoiceLineQueryResolvers,
+  resolvers: bicycleInvoiceLineResolvers,
+} = require('./query/bicycleInvoiceLine');
+const {
+  queryResolvers: productInvoiceLineQueryResolvers,
+  resolvers: productInvoiceLineResolvers,
+} = require('./query/productInvoiceLine');
+const {
+  queryResolvers: saleQueryResolvers,
+  resolvers: saleResolvers,
+} = require('./query/sale');
+const {
+  queryResolvers: rentalQueryResolvers,
+  resolvers: rentalResolvers,
+} = require('./query/rentals');
+const {
+  queryResolvers: rentalInvoiceLineQueryResolvers,
+  resolvers: rentalInvoiceLineResolvers,
+} = require('./query/rentalInvoiceLines');
+
+// -------------------------------------------------------
 
 const {
   queryMutations: customerMutationsResolvers,
@@ -52,6 +76,36 @@ const {
 } = require('./mutations/password');
 
 export const resolvers = {
+  Query: {
+    ...customerQueryResolvers,
+    ...bicycleQueryResolvers,
+    ...repairQueryResolvers,
+    ...taskQueryResolvers,
+    ...taskInvoiceLineQueryResolvers,
+    ...bicycleInvoiceLineQueryResolvers,
+    ...productInvoiceLineQueryResolvers,
+    ...productQueryResolvers,
+    ...accountQueryResolvers,
+    ...passwordQueryResolvers,
+    ...bicyclePropsQueryResolvers,
+    ...productPropsQueryResolvers,
+    ...saleQueryResolvers,
+    ...rentalQueryResolvers,
+    ...rentalInvoiceLineQueryResolvers,
+  },
+
+  Customer: customerResolvers,
+  Bicycle: bicycleResolvers,
+  BicycleInvoiceLine: bicycleInvoiceLineResolvers,
+  Repair: repairResolvers,
+  Task: taskResolvers,
+  TaskInvoiceLine: taskInvoiceLineResolvers,
+  Product: productResolvers,
+  ProductInvoiceLine: productInvoiceLineResolvers,
+  Sale: saleResolvers,
+  Rental: rentalResolvers,
+  RentalInvoiceLine: rentalInvoiceLineResolvers,
+
   Mutation: {
     ...customerMutationsResolvers,
     ...repairMutationsResolvers,
@@ -59,24 +113,8 @@ export const resolvers = {
     ...taskInvoiceLineMutationsResolvers,
     ...productMutationsResolvers,
     ...accountMutationsResolvers,
-    ...employeePasswordMutationsResolvers
+    ...employeePasswordMutationsResolvers,
   },
-  Query: {
-    ...customerQueryResolvers,
-    ...bicycleQueryResolvers,
-    ...repairQueryResolvers,
-    ...taskQueryResolvers,
-    ...taskInvoiceLineQueryResolvers,
-    ...productQueryResolvers,
-    ...accountQueryResolvers,
-    ...passwordQueryResolvers
-  },
-  Bicycle: bicycleResolvers,
-  Customer: customerResolvers,
-  Repair: repairResolvers,
-  TaskInvoiceLine: taskInvoiceLineResolvers,
-  Task: taskResolvers,
-  Product: productResolvers,
 
   // Subscription: {},
 };

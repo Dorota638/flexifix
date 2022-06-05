@@ -1,5 +1,4 @@
 import { gql } from 'apollo-server-express';
-import { server2 } from '../index';
 
 it('Runs a health check of schema', async () => {
   let result = await server2.executeOperation({

@@ -13,7 +13,4 @@ module.exports = sequelize.define('Sale', {
   fkAccount: { type: Sequelize.SMALLINT(), allowNull: false },
   fkCustomerId: { type: Sequelize.STRING(36), allowNull: true },
   fkSalespersonId: { type: Sequelize.SMALLINT(), allowNull: false },
-  priceTotal: { type: Sequelize.DOUBLE(), allowNull: false },
-  priceVAT: { type: Sequelize.DOUBLE(), allowNull: false },
-  priceNetto: { type: Sequelize.DOUBLE(), allowNull: false },
 });

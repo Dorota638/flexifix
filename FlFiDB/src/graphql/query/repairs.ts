@@ -5,24 +5,21 @@ const Account = require('../../models/Account');
 const Bicycle = require('../../models/Bicycle');
 const Customer = require('../../models/Customer');
 const Employee = require('../../models/Employee');
+const RepairStatus = require('../../models/RepairStatus');
 const TaskInvoiceLine = require('../../models/TaskInvoiceLine');
 
 export const queryResolvers = {
-  async repairs() {
+  repairs: async (_: any, { customerId }) => {
     try {
-      const repairs = await Repair.findAll().catch(errHandler);
-      return repairs;
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
-
-  repairsByCustomer: async (_: any, args: { customerId: string }) => {
-    try {
-      const repairs = await Repair.findAll({
-        where: { fkCustomerId: args.customerId },
-      }).catch(errHandler);
-      return repairs;
+      if (customerId) {
+        const repairs = await Repair.findAll({
+          where: { fkCustomerId: customerId },
+        }).catch(errHandler);
+        return repairs;
+      } else {
+        const repairs = await Repair.findAll().catch(errHandler);
+        return repairs;
+      }
     } catch (err) {
       throw new Error(err);
     }
@@ -77,6 +74,18 @@ export const resolvers = {
         errHandler
       );
       return customer;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+  status: async (parent: any) => {
+    try {
+      const status = await RepairStatus.findByPk(parent.status).catch(
+        errHandler
+      );
+      console.log('parent.status',parent.status);
+      
+      return status;
     } catch (err) {
       throw new Error(err);
     }
