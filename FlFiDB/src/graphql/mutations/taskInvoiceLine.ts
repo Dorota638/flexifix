@@ -5,7 +5,6 @@ const TaskInvoiceLine = require('../../models/TaskInvoiceLine');
 export const queryMutations = {
   createTaskInvoiceLine: async (_: any, { input }: any) => {
     try {
-      console.log('args', input);
       const taskInvoiceLine = await TaskInvoiceLine.create({ id: UUIDV4(), ...input }).catch(
         errHandler
       );

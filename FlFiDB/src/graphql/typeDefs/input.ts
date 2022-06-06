@@ -70,4 +70,50 @@ export const input = `
     employeeId: Int!
     password: String!
   }
+  input bicycleInvoiceLineInput {
+    fkSaleId: String!
+    fkBicycleId: String!
+    price: Float!
+  }
+    input saleInput {
+    number: String!
+    fkPaymentMethod: Int!
+    fkAccount: Int!
+    fkCustomerId: String
+    fkSalespersonId: Int!
+  }
+  input productInvoiceLineInput{
+    fkSaleId: String
+    fkRepairId: String
+    fkProductId: Int!
+    amount: Int!
+    price: Float!
+  }
+  input rentalInput{
+    number: String!
+    fkSalesPersonId: Int!
+    fkCustomerId: String!
+    periodStart: String!
+    periodEnd: String!
+    fkAccount: Int!
+    fkPaymentMethod: Int!
+    deposit: Int!
+    wireLock: Boolean!
+    depositId: Boolean
+    returned: String
+    workHours: Float
+    active: Boolean!
+  }
+  input rentalInvoiceLineInput{
+    fkRentalId: String!
+    fkBicycleId: String!
+  }
+  input taskInput{
+    name: String!
+    fkTaskCategory: Int!
+    duration: Int!
+  }
+  input taskCategoryInput{
+    name: String!
+  }
 `;

@@ -5,7 +5,6 @@ const Bicycle = require('../../models/Bicycle');
 export const queryMutations = {
   createBicycle: async (_: any, { input }: any) => {
     try {
-      console.log('args', input);
       const bicycle = await Bicycle.create({ id: UUIDV4(), ...input }).catch(
         errHandler
       );

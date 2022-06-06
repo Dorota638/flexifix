@@ -10,8 +10,6 @@ export const queryMutations = {
         password: hashedPassword,
         employeeId: input.employeeId,
       }).catch(errHandler);
-      console.log('input', input);
-
       return true;
     } catch (err) {
       throw new Error(err);

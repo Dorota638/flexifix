@@ -5,7 +5,6 @@ const Repair = require('../../models/Repair');
 export const queryMutations = {
   createRepair: async (_: any, { input }: any) => {
     try {
-      console.log('args', input);
       const repair = await Repair.create({ id: UUIDV4(), ...input }).catch(
         errHandler
       );

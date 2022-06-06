@@ -74,6 +74,23 @@ const {
 const {
   queryMutations: employeePasswordMutationsResolvers,
 } = require('./mutations/password');
+const {
+  queryMutations: bicycleInvoiceLineMutationsResolvers,
+} = require('./mutations/bicycleInvoiceLine');
+const {
+  queryMutations: productInvoiceLineMutationsResolvers,
+} = require('./mutations/productInvoiceLine');
+const { queryMutations: saleMutationsResolvers } = require('./mutations/sale');
+const {
+  queryMutations: rentalMutationsResolvers,
+} = require('./mutations/rental');
+const {
+  queryMutations: rentalInvoiceLineMutationsResolvers,
+} = require('./mutations/rentalInvoiceLine');
+const { queryMutations: taskMutationsResolvers } = require('./mutations/task');
+const {
+  queryMutations: taskCategoryMutationsResolvers,
+} = require('./mutations/taskCategory');
 
 export const resolvers = {
   Query: {
@@ -114,6 +131,13 @@ export const resolvers = {
     ...productMutationsResolvers,
     ...accountMutationsResolvers,
     ...employeePasswordMutationsResolvers,
+    ...bicycleInvoiceLineMutationsResolvers,
+    ...productInvoiceLineMutationsResolvers,
+    ...saleMutationsResolvers,
+    ...rentalMutationsResolvers,
+    ...rentalInvoiceLineMutationsResolvers,
+    ...taskMutationsResolvers,
+    ...taskCategoryMutationsResolvers,
   },
 
   // Subscription: {},

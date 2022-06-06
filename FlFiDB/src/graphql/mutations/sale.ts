@@ -1,15 +1,14 @@
 import { v4 as UUIDV4 } from 'uuid';
 import { errHandler } from '../../helper';
-const Customer = require('../../models/Customer');
+const Sale = require('../../models/Sale');
 
 export const queryMutations = {
-  createCustomer: async (_: any, { input }: any) => {
+  createSale: async (_: any, { input }: any) => {
     try {
-      const customer = await Customer.create({ id: UUIDV4(), ...input }).catch(
+      const sale = await Sale.create({ id: UUIDV4(), ...input }).catch(
         errHandler
       );
-
-      return customer;
+      return sale;
     } catch (err) {
       throw new Error(err);
     }

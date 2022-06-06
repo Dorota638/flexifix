@@ -145,9 +145,7 @@ export const types = `
     id: Int!
     name: String!
     taskCategory: TaskCategory!
-    product: Int!
-    amount: Int!
-    price: Float!
+    duration: Float!
   }
 
   type TaskCategory {
@@ -208,7 +206,6 @@ export const types = `
     salesperson: Employee!
     bicycleInvoiceLines: [BicycleInvoiceLine!]!
     productInvoiceLines: [ProductInvoiceLine!]!
-    price: Float!
   }
 
   type RepairInvoice {
