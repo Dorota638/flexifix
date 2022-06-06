@@ -1,3 +1,5 @@
+import { IResolvers } from '@graphql-tools/utils';
+
 const {
   queryResolvers: customerQueryResolvers,
   resolvers: customerResolvers,
@@ -92,7 +94,7 @@ const {
   queryMutations: taskCategoryMutationsResolvers,
 } = require('./mutations/taskCategory');
 
-export const resolvers = {
+export const resolvers: IResolvers = {
   Query: {
     ...customerQueryResolvers,
     ...bicycleQueryResolvers,
