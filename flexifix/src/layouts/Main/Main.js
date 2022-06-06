@@ -1,5 +1,5 @@
 import React from 'react'
-import Todo from "../../components/ToDoList/ToDo"
+import Todo from "../../components/todolist/ToDo"
 import NewRepairForm from '../../components/forms/NewRepairForm'
 
 export default function Main() {

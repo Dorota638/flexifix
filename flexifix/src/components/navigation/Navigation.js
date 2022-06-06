@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NavBtn } from "./NavBtn";
 
 
@@ -39,14 +40,10 @@ export default function Navigation() {
                         <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
                             <NavBtn text="Profile" />
                             <NavBtn text="Repairs" />
-                            <NavBtn text="Rental" />
                             <NavBtn text="Customers" />
                             <NavBtn text="Bicycles" />
-                            <NavBtn text="Invoices" />
                             <NavBtn text="Inventory" />
                             <NavBtn text="Analytics" />
-                            <NavBtn text="Messages" />
-                            <NavBtn text="Settings" />
                         </ul>
                     </div>
                 </section>
