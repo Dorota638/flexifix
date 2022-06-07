@@ -7,7 +7,7 @@ export default function Header() {
             <a href="/" className="text-white pl-5 text-xl ">
                 FlexiFix
             </a>
-            {/* <Navigation /> */}
+            <Navigation />
         </div>
     );
 }
