@@ -5,7 +5,6 @@ import NewRepairForm from '../../components/forms/NewRepairForm'
 export default function Main() {
     return (
         <div>
-            <NewRepairForm />
             <Todo />
         </div>
     )

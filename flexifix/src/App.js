@@ -1,14 +1,50 @@
-import './App.css';
-import Header from './layouts/Header/Header';
-import Main from './layouts/Main/Main';
-import Footer from './layouts/Footer/Footer';
+import './css/styles.min.css';
+import Shell from './layouts/Main/AppShell';
+import { MantineProvider, Paper } from '@mantine/core';
+import {
+  ApolloClient,
+  ApolloProvider,
+  gql,
+  InMemoryCache,
+} from '@apollo/client';
+
+const theme = {
+  colorScheme: 'dark',
+  primaryColor: 'orange',
+  defaultRadius: 0,
+  fontFamily: 'sans-serif',
+  fontSizes: { xl: 15 },
+};
+
+const client = new ApolloClient({
+  uri: 'http://localhost:3000/graphql',
+  cache: new InMemoryCache(),
+});
+
+// client
+//   .query({
+//     query: gql`
+//       query Query {
+//         customers {
+//           fullName
+//         }
+//       }
+//     `,
+//   })
+//   .then((result) => console.log(result));
+
+
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Main />
-      <Footer />
+    <div className="App min-h-screen">
+      <MantineProvider theme={theme}>
+        <Paper>
+          <ApolloProvider client={client}>
+            <Shell />
+          </ApolloProvider>
+        </Paper>
+      </MantineProvider>
     </div>
   );
 }

@@ -3,11 +3,15 @@ const express = require('express');
 const { typeDefs } = require('./graphql/typeDefs');
 const { resolvers } = require('./graphql');
 const sequelize = require('./database/connection');
+var cors = require('cors')
 const app = express();
 
 const PORT = process.env.port || 3000;
 const main = async () => {
   require('./database/connection');
+
+  app.use(cors())
+
   sequelize
     .authenticate()
     .then(() => {
