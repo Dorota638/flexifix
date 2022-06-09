@@ -2,7 +2,7 @@ import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize('flexidb', 'root', 'root', {
   host: 'localhost',
-  port: 3306,
+  port: 3307,
   dialect: 'mysql',
 });
 

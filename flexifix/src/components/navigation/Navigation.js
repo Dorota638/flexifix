@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Button } from "@mantine/core";
 import { NavBtn } from "./NavBtn";
+import Analytics from "../../routes/Analytics";
 
 
 export default function Navigation() {
@@ -38,12 +40,12 @@ export default function Navigation() {
                             </svg>
                         </div>
                         <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]">
+                            <Button component={Link} to="/analytics">Analytics</Button>
                             <NavBtn text="Profile" />
                             <NavBtn text="Repairs" />
                             <NavBtn text="Customers" />
                             <NavBtn text="Bicycles" />
                             <NavBtn text="Inventory" />
-                            <NavBtn text="Analytics" />
                         </ul>
                     </div>
                 </section>

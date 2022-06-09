@@ -6,17 +6,22 @@ import {
   MediaQuery,
   Burger,
   useMantineTheme,
+  Footer,
 } from '@mantine/core';
 import OurHeader from '../Header/Header';
 import { NavbarLinks } from '../../components/NavbarLinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ToDo } from '../../components/todolist/ToDo.js';
 
 import { NewRepairForm } from '../../routes/NewRepair';
 import { NewRentalForm } from '../../routes/NewRental';
 import { NewSaleForm } from '../../routes/NewSale';
 import { NewBicycleForm } from '../../routes/NewBicycle';
 import { NewCustomerForm } from '../../routes/NewCustomer';
+import Analytics from '../../routes/Analytics';
+import Inventory from '../../routes/Inventory';
+import Home from '../../routes/Home';
+import Repairs from '../../routes/Repairs';
+import Bicycles from '../../routes/Bicycles';
 
 export default function Shell() {
   const theme = useMantineTheme();
@@ -63,15 +68,25 @@ export default function Shell() {
             <NavbarLinks />
           </Navbar>
         }
+        footer={
+          <Footer height={60} p="md">
+            Application footer
+          </Footer>
+        }
       >
         <Routes>
-          <Route path="/" element={<ToDo />} />
+          <Route path="/" element={<Home />} />
           <Route path="/newRepair" element={<NewRepairForm />} />
           <Route path="/newRental" element={<NewRentalForm />} />
           <Route path="/newSale" element={<NewSaleForm />} />
           <Route path="/newBicycle" element={<NewBicycleForm />} />
           <Route path="/newCustomer" element={<NewCustomerForm />} />
+          <Route path="/analytics" element={<Analytics />} />
+          <Route path="/repairs" element={<Repairs />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/bicycles" element={<Bicycles />} />
         </Routes>
+
       </AppShell>
     </Router>
   );

@@ -1,46 +1,34 @@
-import InputField from '../components/forms/InputField'
-import Form, { FormContext } from '../components/forms/Form';
-import { useState } from 'react'
+import { Box, Button, Group, NumberInput, TextInput, Title } from '@mantine/core';
+import { PersonIcon, EnvelopeClosedIcon } from '@modulz/radix-icons';
+import { useForm } from '@mantine/form';
 
+export const NewBicycleForm = () => {
 
-export const NewBicycleForm=()=> {
-    const [] = useState({
-        firstName: '',
-        lastName: '',
-        emailAddress: '',
-        password: ''
+    const form = useForm({
+        initialValues: {
+            termsOfService: false,
+        },
+        validate: {
+            email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+        },
     });
     return (
-        <Form>
-            <h1>New Bicycle</h1>
-            <FormContext.Consumer>
-                {({ form, handleFormChange }) => (
-                    <>
-                        <InputField
-                            label="First Name"
-                            name="firstName"
-                            value={form.firstName}
-                            onChange={handleFormChange} />
-                        <InputField
-                            label="Last Name"
-                            name="lastName"
-                            value={form.lastName}
-                            onChange={handleFormChange} />
-                        <InputField
-                            label="Email Address"
-                            type="email"
-                            name="emailAddress"
-                            value={form.emailAddress}
-                            onChange={handleFormChange} />
-                        <InputField
-                            label="Password"
-                            type="password"
-                            name="password"
-                            value={form.password}
-                            onChange={handleFormChange} />
-                    </>
-                )}
-            </FormContext.Consumer>
-        </Form>
-    )
-}
+        <>
+            <Title order={3}>Create new bicycle</Title>
+            <Box>
+                <form onSubmit={form.onSubmit((values) => console.log(values))}>
+                    <TextInput label="Name" required />
+                    <TextInput label="color" required />
+                    <TextInput label="brand" />
+                    <TextInput label="gearsystem" error="" />
+                    <NumberInput label="status" />
+                    <NumberInput label="tires" />
+                    <TextInput label="frameNumber" />
+                    <Group position="right" mt="md">
+                        <Button type="submit" >Submit</Button>
+                    </Group>
+                </form>
+            </Box>
+        </>
+    );
+};
