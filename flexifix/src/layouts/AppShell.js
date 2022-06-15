@@ -8,20 +8,19 @@ import {
   useMantineTheme,
   Footer,
 } from '@mantine/core';
-import OurHeader from '../Header/Header';
-import { NavbarLinks } from '../../components/NavbarLinks';
+import { NavbarLinks } from '../components/NavbarLinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { NewRepairForm } from '../../routes/NewRepair';
-import { NewRentalForm } from '../../routes/NewRental';
-import { NewSaleForm } from '../../routes/NewSale';
-import { NewBicycleForm } from '../../routes/NewBicycle';
-import { NewCustomerForm } from '../../routes/NewCustomer';
-import Analytics from '../../routes/Analytics';
-import Inventory from '../../routes/Inventory';
-import Home from '../../routes/Home';
-import Repairs from '../../routes/Repairs';
-import Bicycles from '../../routes/Bicycles';
+import { NewRepairForm } from '../routes/NewRepair';
+import { NewRentalForm } from '../routes/NewRental';
+import { NewSaleForm } from '../routes/NewSale';
+import { NewBicycleForm } from '../routes/NewBicycle';
+import { NewCustomerForm } from '../routes/NewCustomer';
+import Analytics from '../routes/Analytics';
+import Inventory from '../routes/Inventory';
+import Home from '../routes/Home';
+import Repairs from '../routes/Repairs';
+import Bicycles from '../routes/Bicycles';
 
 export default function Shell() {
   const theme = useMantineTheme();
@@ -52,9 +51,12 @@ export default function Shell() {
                   size="sm"
                   color={theme.colors.gray[6]}
                   mr="xl"
+                  className='ml-4'
                 />
               </MediaQuery>
-              <OurHeader />
+              <a href="/" className="text-white pl-5 text-xl ml-2 ">
+                FlexiFix
+              </a>
             </div>
           </Header>
         }

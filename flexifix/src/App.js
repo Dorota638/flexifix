@@ -1,5 +1,5 @@
 import './css/styles.min.css';
-import Shell from './layouts/Main/AppShell';
+import Shell from './layouts/AppShell';
 import { MantineProvider, Paper } from '@mantine/core';
 import {
   ApolloClient,

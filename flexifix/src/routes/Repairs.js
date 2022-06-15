@@ -1,8 +1,12 @@
 import React from 'react'
+import RepairCard from '../components/repairCard/RepairCard'
 
 function Repairs() {
     return (
-        <div>Repairs</div>
+        <div>
+            Repairs
+            <RepairCard />
+        </div>
     )
 }
 
