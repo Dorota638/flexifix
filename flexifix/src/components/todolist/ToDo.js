@@ -1,8 +1,27 @@
 import React from 'react';
 import { Grid } from '@mantine/core';
 import RepairCard from '../repairCard/RepairCard';
+import { gql, useQuery } from '@apollo/client';
+
+const GET_REPAIRS = gql`
+query Query {
+  repairs {
+     customer {
+       fullName
+     }
+     bicycle {
+       brand {
+         name
+       }
+     }
+     number
+     createdAt
+   } 
+ }`;
 
 export const ToDo = () => {
+  const { loading, error, data } = useQuery(GET_REPAIRS);
+  console.log(data);
   return (
     <div>
       <Grid className="flex flex-wrap justify-evenly bg-slate-200 border-solid border border-primary p-5 m-2">
