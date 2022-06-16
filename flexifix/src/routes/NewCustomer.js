@@ -51,11 +51,10 @@ export const NewCustomerForm = () => {
       <Box>
         <form onSubmit={e => {
           e.preventDefault();
-          // createCustomer({ variables: form.values })
+          createCustomer({ variables: form.values })
         }}>
           <TextInput value={form.values.firstName}
             onChange={(event) => form.setFieldValue('firstName', event.currentTarget.value)}
-
             icon={<PersonIcon />} label="First Name" required />
           <TextInput value={form.values.lastName}
             onChange={(event) => form.setFieldValue('lastName', event.currentTarget.value)}
