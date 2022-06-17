@@ -1,7 +1,7 @@
 import { errHandler } from '../../helper';
 
-const {TaskInvoiceLine} = require('../../models/InvoiceLines');
-const Task = require('../../models/Task');
+const { TaskInvoiceLine } = require('../../models/InvoiceLines');
+const { Task } = require('../../models/Task');
 
 export const queryResolvers = {
   async taskInvoiceLines() {

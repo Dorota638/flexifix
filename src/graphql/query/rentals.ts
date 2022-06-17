@@ -2,7 +2,7 @@ import { errHandler } from '../../helper';
 const Rental = require('../../models/Rental');
 const PaymentMethod = require('../../models/PaymentMethod');
 const Account = require('../../models/Account');
-const Customer = require('../../models/Customer');
+const {Customer} = require('../../models/Customer');
 const {Employee} = require('../../models/Employee');
 const {RentalInvoiceLine} = require('../../models/InvoiceLines');
 

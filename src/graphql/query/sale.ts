@@ -6,7 +6,7 @@ const {
 } = require('../../models/InvoiceLines');
 const PaymentMethod = require('../../models/PaymentMethod');
 const Account = require('../../models/Account');
-const Customer = require('../../models/Customer');
+const {Customer} = require('../../models/Customer');
 const {Employee} = require('../../models/Employee');
 const Sale = require('../../models/Sale');
 

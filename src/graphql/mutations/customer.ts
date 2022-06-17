@@ -1,6 +1,6 @@
 import { v4 as UUIDV4 } from 'uuid';
 import { errHandler } from '../../helper';
-const Customer = require('../../models/Customer');
+const {Customer} = require('../../models/Customer');
 
 export const queryMutations = {
   createCustomer: async (_: any, { input }: any) => {

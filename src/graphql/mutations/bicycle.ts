@@ -1,7 +1,8 @@
 import { v4 as UUIDV4 } from 'uuid';
 import { errHandler } from '../../helper';
-const {Bicycle} = require('../../models/Bicycle');
-const Customer = require('../../models/Customer');
+const { Bicycle } = require('../../models/Bicycle');
+const { Customer } = require('../../models/Customer');
+
 
 export const queryMutations = {
   createBicycle: async (_: any, { input }: any) => {
@@ -26,7 +27,7 @@ export const queryMutations = {
         ...input,
       });
       await bicycle.save();
-      return bicycle
+      return bicycle;
     } catch (err) {
       throw new Error(err);
     }

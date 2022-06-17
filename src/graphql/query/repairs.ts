@@ -3,7 +3,7 @@ const { Repair, RepairStatus } = require('../../models/Repair');
 const PaymentMethod = require('../../models/PaymentMethod');
 const Account = require('../../models/Account');
 const { Bicycle } = require('../../models/Bicycle');
-const Customer = require('../../models/Customer');
+const {Customer} = require('../../models/Customer');
 const {Employee} = require('../../models/Employee');
 const { TaskInvoiceLine } = require('../../models/InvoiceLines');
 
