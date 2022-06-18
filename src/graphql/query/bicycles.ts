@@ -1,5 +1,5 @@
 import { errHandler } from '../../helper';
-const {Customer} = require('../../models/Customer');
+const Customer = require('../../models/Customer');
 const {
   Bicycle,
   BicycleColor,
