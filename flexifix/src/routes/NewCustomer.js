@@ -1,10 +1,10 @@
-import { Box, Button, Group, NumberInput, TextInput, Title } from '@mantine/core';
+import { Box, Button, Group, TextInput, Title } from '@mantine/core';
 import { PersonIcon, EnvelopeClosedIcon } from '@modulz/radix-icons';
 import { useForm } from '@mantine/form';
 import { gql, useMutation } from '@apollo/client';
 
 const ADD_CUSTOMER = gql`
-mutation Mutation(
+mutation AddCustomer(
   $firstName: String!,
   $lastName: String!,
   $company: String,
@@ -64,7 +64,7 @@ export const NewCustomerForm = () => {
             onChange={(event) => form.setFieldValue('email', event.currentTarget.value)}
 
             icon={<EnvelopeClosedIcon />} label="Email" placeholder="your@email.com"
-            {...form.getInputProps('email')} required />
+            required />
           <TextInput value={form.values.company}
             onChange={(event) => form.setFieldValue('company', event.currentTarget.value)}
 
