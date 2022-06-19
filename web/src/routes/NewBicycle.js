@@ -2,7 +2,7 @@ import { Box, Button, Group, NumberInput, TextInput, Title } from '@mantine/core
 import { PersonIcon, EnvelopeClosedIcon } from '@modulz/radix-icons';
 import { useForm } from '@mantine/form';
 
-export const NewBicycleForm = () => {
+export const NewBicycle = () => {
 
     const form = useForm({
         initialValues: {
@@ -14,8 +14,8 @@ export const NewBicycleForm = () => {
     });
     return (
         <>
-            <Title order={3}>Create new bicycle</Title>
-            <Box>
+            <Box className='ml-20'>
+                <Title order={3}>Create new bicycle</Title>
                 <form onSubmit={form.onSubmit((values) => console.log(values))}>
                     <TextInput label="Name" required />
                     <TextInput label="color" required />

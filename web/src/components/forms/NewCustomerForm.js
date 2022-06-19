@@ -35,7 +35,7 @@ export default function NewCustomer({ setOpened }) {
     setOpened(false)
   }
   return (
-    <Box sx={{ maxWidth: 300 }} mx="auto">
+    <Box className="ml-20" sx={{ maxWidth: 300 }} mx="auto">
       <form
         onSubmit={form.onSubmit((values) =>
           createCustomer({

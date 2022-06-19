@@ -41,7 +41,7 @@ export default function Shell() {
         header={
           <Header height={65}>
             <div
-              style={{ display: 'flex', alignItems: 'center', height: '100%' }}
+              className="flex items-center bg-primary-900 h-full"
             >
               <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
                 <Burger
