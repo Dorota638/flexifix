@@ -24,6 +24,7 @@ const ListBicycles = ({ id }) => {
 
   const bicycles = data?.bicyclesByCustomerId;
   const setBicycle = useStore((state) => state.selectBicycle);
+  const selectedBicycle = useStore((state) => state.selectedBicycle);
 
   console.log(bicycles);
   return (
@@ -35,8 +36,9 @@ const ListBicycles = ({ id }) => {
             p="lg"
             sx={{ minWidth: 400 }}
             onClick={() => { setBicycle(bicycle); }}
+            className={` ${bicycle.id === selectedBicycle.id ? 'bg-primary-900' : ''}`}
           >
-            <Card.Section>
+            <Card.Section className='p-2'>
               <Title order={1}> {bicycle.brand.name} </Title>
               <Title order={5}> {bicycle.color.color} </Title>
             </Card.Section>

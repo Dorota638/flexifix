@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NewRepairForm } from '../routes/NewRepair';
 import { NewRentalForm } from '../routes/NewRental';
 import { NewSaleForm } from '../routes/NewSale';
-import { NewBicycleForm } from '../routes/NewBicycle';
+import { NewBicycle } from '../routes/NewBicycle';
 import Analytics from '../routes/Analytics';
 import Inventory from '../routes/Inventory';
 import Home from '../routes/Home';
@@ -80,7 +80,7 @@ export default function Shell() {
           <Route path="/newRepair" element={<NewRepairForm />} />
           <Route path="/newRental" element={<NewRentalForm />} />
           <Route path="/newSale" element={<NewSaleForm />} />
-          <Route path="/newBicycle" element={<NewBicycleForm />} />
+          <Route path="/newBicycle" element={<NewBicycle />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/repairs" element={<Repairs />} />
           <Route path="/inventory" element={<Inventory />} />

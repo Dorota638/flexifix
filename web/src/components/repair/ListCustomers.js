@@ -24,6 +24,8 @@ const ListCustomers = ({ name }) => {
 
   const customers = data?.customerByName;
   const setCustomer = useStore((state) => state.selectCustomer);
+  const selectedCustomer = useStore((state) => state.selectedCustomer);
+
 
   return (
     <Grid>
@@ -34,8 +36,10 @@ const ListCustomers = ({ name }) => {
             p="lg"
             sx={{ minWidth: 400 }}
             onClick={() => { setCustomer(customer); }}
+            className={` ${customer.id === selectedCustomer.id ? 'bg-primary-900' : ''}`}
+
           >
-            <Card.Section>
+            <Card.Section className='p-2'>
               <Title order={1}> {customer.fullName} </Title>
               <Title order={5}> {customer.email} </Title>
             </Card.Section>
