@@ -2,13 +2,10 @@ import { useForm } from '@mantine/form';
 import { TextInput, Button, Group, Box, Loader } from '@mantine/core';
 import { PersonIcon } from '@modulz/radix-icons';
 import { gql, useMutation } from '@apollo/client';
+import { useStore } from '../../Store';
 
 const NEW_CUSTOMER = gql`
-  mutation (
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-  ) {
+  mutation ($firstName: String!, $lastName: String!, $email: String!) {
     createCustomer(
       input: { firstName: $firstName, lastName: $lastName, email: $email }
     ) {
@@ -19,7 +16,7 @@ const NEW_CUSTOMER = gql`
   }
 `;
 
-export default function NewCustomer() {
+export default function NewCustomer({ setOpened }) {
   const form = useForm({
     initialValues: {
       email: '@',
@@ -28,9 +25,15 @@ export default function NewCustomer() {
 
   const [createCustomer, { data, loading, error }] = useMutation(NEW_CUSTOMER);
 
+  const setCustomer = useStore((state) => state.selectCustomer);
+
+
   if (loading) return <Loader />;
   if (error) console.error(error);
-  console.log('data', data);
+  if (data && loading === false) {
+    setCustomer(data.createCustomer)
+    setOpened(false)
+  }
   return (
     <Box sx={{ maxWidth: 300 }} mx="auto">
       <form

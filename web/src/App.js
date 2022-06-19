@@ -4,7 +4,6 @@ import { MantineProvider, Paper } from '@mantine/core';
 import {
   ApolloClient,
   ApolloProvider,
-  gql,
   InMemoryCache,
 } from '@apollo/client';
 
@@ -20,20 +19,6 @@ const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
   cache: new InMemoryCache(),
 });
-
-// client
-//   .query({
-//     query: gql`
-//       query Query {
-//         customers {
-//           fullName
-//         }
-//       }
-//     `,
-//   })
-//   .then((result) => console.log(result));
-
-
 
 function App() {
   return (
