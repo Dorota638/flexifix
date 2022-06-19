@@ -14,7 +14,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { NewRepairForm } from '../routes/NewRepair';
 import { NewRentalForm } from '../routes/NewRental';
 import { NewSaleForm } from '../routes/NewSale';
-import { NewBicycleForm } from '../routes/NewBicycle';
+import { NewBicycle } from '../routes/NewBicycle';
 import NewCustomer from '../routes/NewCustomer';
 import Analytics from '../routes/Analytics';
 import Inventory from '../routes/Inventory';
@@ -42,7 +42,7 @@ export default function Shell() {
         header={
           <Header height={65}>
             <div
-              style={{ display: 'flex', alignItems: 'center', height: '100%' }}
+              className="flex items-center bg-primary-900 h-full"
             >
               <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
                 <Burger
@@ -81,7 +81,7 @@ export default function Shell() {
           <Route path="/newRepair" element={<NewRepairForm />} />
           <Route path="/newRental" element={<NewRentalForm />} />
           <Route path="/newSale" element={<NewSaleForm />} />
-          <Route path="/newBicycle" element={<NewBicycleForm />} />
+          <Route path="/newBicycle" element={<NewBicycle />} />
           <Route path="/newCustomer" element={<NewCustomer />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/repairs" element={<Repairs />} />

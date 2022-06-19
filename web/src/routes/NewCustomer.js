@@ -32,7 +32,7 @@ export default function NewCustomer() {
   if (error) console.error(error);
   console.log('data', data);
   return (
-    <Box sx={{ maxWidth: 300 }} mx="auto">
+    <Box className="ml-20" sx={{ maxWidth: 300 }} mx="auto">
       <form
         onSubmit={form.onSubmit((values) =>
           createCustomer({

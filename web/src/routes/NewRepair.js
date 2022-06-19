@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Stepper, Button, Group } from '@mantine/core';
 import SelectCustomer from '../components/repair/SelectCustomer';
+import NewCustomer from './NewCustomer';
+import { SelectBicycle } from '../components/repair/SelectBicycle';
+import { NewBicycle } from './NewBicycle';
+
 
 export const NewRepairForm = () => {
   const [active, setActive] = useState(1);
@@ -11,12 +15,16 @@ export const NewRepairForm = () => {
     <div>
       <Stepper active={active} onStepClick={setActive} breakpoint="sm">
         <Stepper.Step label="First step" description="Select a customer" allowStepSelect={active > 0}>
-          <SelectCustomer/>
+          <div className="inline-flex justify-center">
+            <SelectCustomer />
+            <NewCustomer />
+          </div>
         </Stepper.Step>
         <Stepper.Step label="Second step" description="Select a bicycle" allowStepSelect={active > 1}>
-          Step 2 content: Select a bicycle
-          <Button>Create a new bicycle</Button>
-          {/* <NewBicycleForm /> */}
+          <div className="inline-flex justify-center">
+            <SelectBicycle />
+            <NewBicycle />
+          </div>
         </Stepper.Step>
         <Stepper.Step label="Third step" description="Select tasks" allowStepSelect={active > 2}>
           Step 3 content: Select tasks
