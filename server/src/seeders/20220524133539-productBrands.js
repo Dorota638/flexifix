@@ -5,31 +5,31 @@ module.exports = {
     return queryInterface.bulkInsert('ProductBrands', [
       {
         id: 1,
-        name: 'Single speed',
+        name: 'Adidas',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 2,
-        name: 'Nexus 3',
+        name: 'Nike',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 3,
-        name: 'Nexus 4',
+        name: 'Puma',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 4,
-        name: 'Nexus 7',
+        name: 'New Balance',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 5,
-        name: 'Nexus 8',
+        name: 'Bilka',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

@@ -4,7 +4,7 @@ import { PersonIcon } from '@modulz/radix-icons';
 import { gql, useQuery } from '@apollo/client';
 import { useStore } from '../../Store';
 
-const GET_BICYCLE_PROPS = gql`
+const ADD_BICYCLE_PROPS = gql`
 query bicycleProps {
     bicycleProps {
       color {
@@ -37,7 +37,7 @@ export default function NewBicycle({ setOpened }) {
         },
     });
 
-    const { data, loading, error } = useQuery(GET_BICYCLE_PROPS);
+    const [createCustomer, { data, loading, error }] = useQuery(ADD_BICYCLE_PROPS);
 
     const setCustomer = useStore((state) => state.selectCustomer);
 
@@ -45,23 +45,24 @@ export default function NewBicycle({ setOpened }) {
     if (loading) return <Loader />;
     if (error) console.error(error);
     if (data && loading === false) {
-        setCustomer(data.createBicycle)
+        setCustomer(data.createCustomer)
         setOpened(false)
     }
     return (
         <Box className="ml-20" sx={{ maxWidth: 300 }} mx="auto">
             <form
-                onSubmit={form.onSubmit((values) =>
-                    createBicycle({
-                        variables: {
-                            firstName: values.firstName,
-                            lastName: values.lastName,
-                            email: values.email,
-                        },
-                    })
-                )}
+                // onSubmit={form.onSubmit((values) =>
+                //     createCustomer({
+                //         variables: {
+                //             firstName: values.firstName,
+                //             lastName: values.lastName,
+                //             email: values.email,
+                //         },
+                //     })
+                // )}
             >
                 <TextInput
+                    icon={<PersonIcon />}
                     required
                     label="First Name"
                     placeholder="First Name"
