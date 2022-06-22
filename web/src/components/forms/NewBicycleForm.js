@@ -1,90 +1,55 @@
-import { useForm } from '@mantine/form';
-import { TextInput, Button, Group, Box, Loader } from '@mantine/core';
-import { PersonIcon } from '@modulz/radix-icons';
-import { gql, useQuery } from '@apollo/client';
-import { useStore } from '../../Store';
+import { gql, useMutation } from '@apollo/client';
+import { Button, Group, Loader } from '@mantine/core';
+import { useForm } from '@mantine/hooks';
+import { useStore } from 'zustand';
+import { InputField } from './InputField';
 
-const ADD_BICYCLE_PROPS = gql`
-query bicycleProps {
-    bicycleProps {
+const NEW_BICYCLE = gql`
+mutation CreateBicycle($input: createBicycleInput) {
+    createBicycle(input: $input) {
       color {
-        id
-        color
-      }
-      tires {
-        id
-        size
-      }
-      status {
-        id
-        status
-      }
-      gearsystem {
-        id
-        type
-      }
+            id
+            color
+        }
       brand {
-        id
-        name
-      }
+            id
+            name
+        }
+      gearsystem {
+            id
+            type
+        }
+      status {
+            id
+            status
+        }
+      tires {
+            id
+            size
+        }
     }
-  }
-`;
-
-export default function NewBicycle({ setOpened }) {
+}`;
+export default function NewBicycle() {
     const form = useForm({
         initialValues: {
+
         },
     });
 
-    const [createCustomer, { data, loading, error }] = useQuery(ADD_BICYCLE_PROPS);
+    const [createBicycle, { data, loading, error }] = useMutation(NEW_BICYCLE);
 
-    const setCustomer = useStore((state) => state.selectCustomer);
+    // const setBicycle = useStore((state) => state.selectBicycle);
 
 
     if (loading) return <Loader />;
     if (error) console.error(error);
-    if (data && loading === false) {
-        setCustomer(data.createCustomer)
-        setOpened(false)
-    }
-    return (
-        <Box className="ml-20" sx={{ maxWidth: 300 }} mx="auto">
-            <form
-                // onSubmit={form.onSubmit((values) =>
-                //     createCustomer({
-                //         variables: {
-                //             firstName: values.firstName,
-                //             lastName: values.lastName,
-                //             email: values.email,
-                //         },
-                //     })
-                // )}
-            >
-                <TextInput
-                    icon={<PersonIcon />}
-                    required
-                    label="First Name"
-                    placeholder="First Name"
-                    {...form.getInputProps('firstName')}
-                />
-                <TextInput
-                    required
-                    label="Last Name"
-                    placeholder="Last Name"
-                    {...form.getInputProps('lastName')}
-                />
-                <TextInput
-                    required
-                    label="Email"
-                    placeholder="your@email.com"
-                    {...form.getInputProps('email')}
-                />
 
-                <Group position="right" mt="md">
-                    <Button type="submit">Submit</Button>
-                </Group>
-            </form>
-        </Box>
+    return (
+        <form>
+            <InputField />
+            <Group position="right" mt="md">
+                <Button type="submit">Submit</Button>
+            </Group>
+        </form>
     );
 }

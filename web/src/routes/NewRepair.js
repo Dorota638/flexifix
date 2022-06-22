@@ -16,7 +16,7 @@ export const NewRepairForm = () => {
   return (
     <div>
       <Stepper active={active} onStepClick={setActive} breakpoint="sm">
-        
+
         <Stepper.Step label="Customer" allowStepSelect={active > 0}>
           <Box sx={{ maxWidth: 800 }} mx="auto">
             <Button onClick={() => { setOpened(true) }} className="my-10" >
@@ -41,7 +41,7 @@ export const NewRepairForm = () => {
         <Stepper.Step label="Tasks" allowStepSelect={active > 2}>
           Step 3 content: Select tasks
         </Stepper.Step>
-        
+
         <Stepper.Step label="Parts" allowStepSelect={active > 3}>
           Step 4 content: Select parts
         </Stepper.Step>
