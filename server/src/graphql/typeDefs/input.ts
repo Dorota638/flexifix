@@ -101,7 +101,7 @@ export const input = `
     password: String!
   }
   input changePasswordInput{
-    employeeId: Int!
+    name: String!
     oldPassword: String
     newPassword: String!
   }

@@ -1,19 +1,19 @@
 import { errHandler } from '../../helper';
 const bcrypt = require('bcrypt');
-const {EmployeePassword} = require('../../models/Employee');
+const { EmployeePassword, Employee } = require('../../models/Employee');
 
 export const queryResolvers = {
   comparePassword: async (_: any, args: any) => {
     try {
-      const employeePassword = await EmployeePassword.findByPk(
-        args.employeeId
-      ).catch(errHandler);
-      const result = await bcrypt.compare(
-        args.password,
-        employeePassword.dataValues.password
-      );
+      const employee = await Employee.findOne({ where: { name: args.name } });
+      const employeePassword = await EmployeePassword.findByPk(employee.id).catch(errHandler);
+      const result = await bcrypt.compare(args.password, employeePassword.dataValues.password);
 
-      return { result: result };
+      if (result) {
+        return { employee: employee };
+      } else {
+        return { error: 'Wrong name - password combination' };
+      }
     } catch (err) {
       throw new Error(err);
     }

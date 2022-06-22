@@ -55,7 +55,6 @@ export const SelectProducts = () => {
       </thead>
       <tbody>{productRows}</tbody>
     </Table>
-    
     </>
   );
 };

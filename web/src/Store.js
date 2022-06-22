@@ -5,8 +5,9 @@ const store = (set) => ({
   selectedBicycle: {},
   selectedCustomer: {},
   cart: [],
-  selectCustomer: (customer) => set((state) => ({ selectedCustomer: customer })),
-  selectBicycle: (bicycle) => set((state) => ({ selectedBicycle: bicycle })),
+  signedIn: {  },
+  selectCustomer: (customer) => set((state) => ({ ...state, selectedCustomer: customer })),
+  selectBicycle: (bicycle) => set((state) => ({ ...state, selectedBicycle: bicycle })),
   addToCart: (product) =>
     set(({ cart }) => {
       const productIndex = cart.findIndex((cartProduct) => cartProduct.product.id === product.id);
@@ -34,6 +35,7 @@ const store = (set) => ({
         }
       }
     }),
+  signIn: (employee) => set((state) => ({ ...state, signedIn: employee })),
 });
 
 export const useStore = create(devtools(store));

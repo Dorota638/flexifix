@@ -1,23 +1,23 @@
 
 export const query = `
   type Query {
+    employees: [Employees!]!
+    comparePassword(name: String!, password: String!): CheckedPassword
     customers: [Customer!]!
     customerByName(name: String!): [Customer!]!
+    getAccounts: [Account!]!
     bicycles: [Bicycle!]!
+    bicycleProps: BicycleProps!
     bicyclesByCustomerId(customerId: String!): [Bicycle!]!
+    bicycleInvoiceLines(saleId: String): [BicycleInvoiceLine!]!
     repairs(customerId: String): [Repair!]!
     tasks: [Task!]!
     taskInvoiceLines: [TaskInvoiceLine!]!
-    bicycleInvoiceLines(saleId: String): [BicycleInvoiceLine!]!
+    sales: [Sale!]!
     products: [Product!]!
+    productProps: ProductProps!
     productsByCategory(categoryId: Int!): [Product!]!
     productInvoiceLines(saleId: String): [ProductInvoiceLine!]!
-    getAccounts: [Account!]!
-    comparePassword(employeeId: Int!, password: String!): CheckedPassword
-    bicycleProps: BicycleProps!
-    productProps: ProductProps!
-    sales: [Sale!]!
-    repairInvoice: RepairInvoice!
     rentals(customerId: String): [Rental!]!
     rentalInvoiceLines: [RentalInvoiceLine!]!
   }

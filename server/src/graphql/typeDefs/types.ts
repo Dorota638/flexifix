@@ -1,4 +1,10 @@
 export const types = `
+
+  type Employees {
+    id: Int!
+    name: String!
+  } 
+
   type Customer {
     id: ID!
     firstName: String!
@@ -86,10 +92,12 @@ export const types = `
   }
 
 
+
   # ----------------------------------
 
   type CheckedPassword {
-    result: Boolean!
+    error: String
+    employee: Employee
   }
 
   type ProductSupplier {
@@ -195,6 +203,7 @@ export const types = `
     brand: [ProductBrand!]!
     category: [ProductCategory!]!
     group: [ProductGroup!]!
+    supplier: [ProductSupplier!]!
   }
 
   type Sale {

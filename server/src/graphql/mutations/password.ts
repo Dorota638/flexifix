@@ -1,13 +1,17 @@
 import { errHandler } from '../../helper';
 const bcrypt = require('bcrypt');
-const { EmployeePassword } = require('../../models/Employee');
+const { EmployeePassword, Employee } = require('../../models/Employee');
 
 export const queryMutations = {
   changePassword: async (_: any, { input }: any) => {
+
+    const employee = await Employee.findOne({ where: { name: input.name } });
+
+
     const [user, created] = await EmployeePassword.findOrCreate({
-      where: { employeeId: input.employeeId ? input.employeeId : '' },
+      where: { employeeId: employee.id ? employee.id : '' },
       defaults: {
-        employeeId: input.id,
+        employeeId: employee.id,
         password: await bcrypt.hash(input.newPassword, 10).catch(errHandler),
       },
     });

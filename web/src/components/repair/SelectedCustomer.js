@@ -3,7 +3,7 @@ import React from 'react';
 import { useStore } from '../../Store';
 
 export const SelectedCustomer = () => {
-  const customer = useStore((state) => state.selectedCustomer);
+  const customer = useStore(({selectedCustomer}) => selectedCustomer);
   return (
     <div className="max-w-xs m-auto mt-10">
       <Text className="text-xl">Selected customer:</Text>

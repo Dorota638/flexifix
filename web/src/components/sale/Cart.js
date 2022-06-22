@@ -3,11 +3,11 @@ import { Table } from '@mantine/core';
 import { useStore } from '../../Store';
 
 export const Cart = () => {
-  const cartItems = useStore(({ cart }) => cart);
   const removeFromCart = useStore((state) => state.removeFromCart);
 
+  const cart = useStore(({ cart }) => cart);
 
-  const cartRows = cartItems?.map((item) => (
+  const cartRows = cart?.map((item) => (
     <tr
       key={item.product.id}
       onClick={() => {

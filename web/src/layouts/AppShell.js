@@ -7,6 +7,7 @@ import {
   Burger,
   useMantineTheme,
   Footer,
+  Button,
 } from '@mantine/core';
 import { NavbarLinks } from '../components/NavbarLinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -20,6 +21,7 @@ import Inventory from '../routes/Inventory';
 import Home from '../routes/Home';
 import Repairs from '../routes/Repairs';
 import Bicycles from '../routes/Bicycles';
+import { SignedIn } from '../components/SignedIn';
 
 export default function Shell() {
   const theme = useMantineTheme();
@@ -29,10 +31,7 @@ export default function Shell() {
       <AppShell
         styles={{
           main: {
-            background:
-              theme.colorScheme === 'dark'
-                ? theme.colors.dark[8]
-                : theme.colors.gray[0],
+            background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
           },
         }}
         navbarOffsetBreakpoint="sm"
@@ -40,9 +39,7 @@ export default function Shell() {
         fixed
         header={
           <Header height={65}>
-            <div
-              className="flex items-center bg-primary-900 h-full"
-            >
+            <div className="flex items-center bg-primary-900 h-full justify-between">
               <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
                 <Burger
                   opened={opened}
@@ -53,19 +50,15 @@ export default function Shell() {
                   className="ml-4"
                 />
               </MediaQuery>
-              <a href="/" className="text-white pl-5 text-xl ml-2 ">
+              <a href="/" className="text-white text-xl ml-10 ">
                 FlexiFix
               </a>
+              <SignedIn />
             </div>
           </Header>
         }
         navbar={
-          <Navbar
-            p="md"
-            hiddenBreakpoint="sm"
-            hidden={!opened}
-            width={{ sm: 200, lg: 300 }}
-          >
+          <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
             <NavbarLinks />
           </Navbar>
         }

@@ -5,6 +5,8 @@ import { SelectedCustomer } from '../components/repair/SelectedCustomer';
 import CreateCustomer from '../components/repair/CreateCustomer';
 import { SelectProducts } from '../components/sale/SelectProducts';
 import { Cart } from '../components/sale/Cart';
+import { SaleSummary } from '../components/sale/SaleSummary';
+
 
 export const NewSaleForm = () => {
   const [active, setActive] = useState(0);
@@ -40,7 +42,9 @@ export const NewSaleForm = () => {
         </Stepper.Step>
 
         <Stepper.Step label="Tasks" allowStepSelect={active > 2}>
-          Step 3 content: Select tasks
+          <Box sx={{ maxWidth: 800 }}>
+            <SaleSummary/>
+          </Box>
         </Stepper.Step>
 
         <Stepper.Step label="Parts" allowStepSelect={active > 3}>

@@ -4,6 +4,7 @@ const {
   ProductBrand,
   ProductCategory,
   ProductGroup,
+  ProductSupplier
 } = require('../../models/Product');
 
 export const queryResolvers = {
@@ -12,10 +13,13 @@ export const queryResolvers = {
       const brand = await ProductBrand.findAll().catch(errHandler);
       const category = await ProductCategory.findAll().catch(errHandler);
       const group = await ProductGroup.findAll().catch(errHandler);
+      const supplier = await ProductSupplier.findAll().catch(errHandler);
+      
       const props = {
         brand,
         category,
         group,
+        supplier
       };
       return props;
     } catch (err) {
@@ -24,15 +28,4 @@ export const queryResolvers = {
   },
 };
 
-export const resolvers = {
-  // productSupplier: async (parent: any) => {
-  //   try {
-  //     const supplier = await ProductSupplier.findByPk(parent.fkSupplier).catch(
-  //       errHandler
-  //     );
-  //     return supplier;
-  //   } catch (err) {
-  //     throw new Error(err);
-  //   }
-  // },
-};
+export const resolvers = {};
