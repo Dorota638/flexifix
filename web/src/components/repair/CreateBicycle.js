@@ -2,7 +2,10 @@ import { Modal } from '@mantine/core';
 import React from 'react';
 import NewBicycle from '../forms/NewBicycleForm';
 
-const CreateBicycle = ({ opened, setOpened }) => {
+
+
+const CreateBicycle = ({ opened, setOpened, data }) => {
+
 
   return (
     <Modal
@@ -10,7 +13,7 @@ const CreateBicycle = ({ opened, setOpened }) => {
       onClose={() => setOpened(false)}
       title="Create bicycle"
     >
-      <NewBicycle setOpened={setOpened} />
+      <NewBicycle setOpened={setOpened} data={data} />
     </Modal>
   );
 };
