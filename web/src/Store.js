@@ -3,9 +3,13 @@ import { devtools } from 'zustand/middleware';
 
 const store = (set) => ({
   selectedBicycle: {},
-  selectedCustomer: {},
+  selectedCustomer: {
+    id: '618b2f20-85eb-453f-96b2-ddd413b8dc7a',
+    fullName: 'Matus Laco',
+    email: 'laco.matus@gmail.com',
+  },
   cart: [],
-  signedIn: {},
+  signedIn: { id: 2, name: 'Matus Laco', role: null },
   selectCustomer: (customer) => set((state) => ({ ...state, selectedCustomer: customer })),
   selectBicycle: (bicycle) => set((state) => ({ ...state, selectedBicycle: bicycle })),
   addToCart: (product) =>

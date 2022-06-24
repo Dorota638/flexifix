@@ -47,10 +47,10 @@ export const SelectProducts = () => {
     <Table>
       <thead>
         <tr>
-          <th>description</th>
-          <th>productBrand</th>
-          <th>productCategory</th>
-          <th>sellPrice</th>
+          <th>Description</th>
+          <th>Brand</th>
+          <th>Category</th>
+          <th>Price</th>
         </tr>
       </thead>
       <tbody>{productRows}</tbody>

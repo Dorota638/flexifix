@@ -14,8 +14,11 @@ export const SignInForm = ({ setOpen }) => {
   });
 
   const LOGIN = gql`
-    mutation Mutation($id: Int!, $password: String!) {
-      comparePassword(id: $id, password: $password) {
+    mutation ($id: Int!, $password: String!) {
+      comparePassword(
+        id: $id,
+        password: $password
+        ) {
         error
         employee {
           id

@@ -96,6 +96,9 @@ const { queryMutations: taskMutationsResolvers } = require('./mutations/task');
 const {
   queryMutations: taskCategoryMutationsResolvers,
 } = require('./mutations/taskCategory');
+const {
+  queryMutations: invoiceMutationsResolvers,
+} = require('./mutations/invoice');
 
 export const resolvers: IResolvers = {
   Query: {
@@ -144,5 +147,6 @@ export const resolvers: IResolvers = {
     ...rentalInvoiceLineMutationsResolvers,
     ...taskMutationsResolvers,
     ...taskCategoryMutationsResolvers,
+    ...invoiceMutationsResolvers
   },
 };
