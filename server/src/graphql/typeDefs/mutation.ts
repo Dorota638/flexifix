@@ -9,6 +9,7 @@ export const mutation = `
     findOrCreateProduct(input: productInput): Product!
     addToAccount(input: accountInput): Account!
     changePassword(input: changePasswordInput): String
+    comparePassword(id: Int!, password: String!): CheckedPassword
     createBicycleInvoiceLine(input: bicycleInvoiceLineInput): BicycleInvoiceLine!
     createSale(input: saleInput): Sale!
     createProductInvoiceLine(input: productInvoiceLineInput): ProductInvoiceLine!
