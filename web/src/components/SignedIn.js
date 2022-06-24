@@ -48,9 +48,12 @@ export const SignedIn = () => {
       password: '',
     },
   });
-
-  const employees = data?.employees.map((employee) => employee.name);
+  console.log("data", data);
+  // let employees = []
+  // const employees = data?.employees.map((employee) => employee.name);
+  const employees = ["peter", "ivanS"]
   // console.log('form', form);
+  console.log("employees", employees);
 
   return (
     <div className="text-white text-xl mr-10">

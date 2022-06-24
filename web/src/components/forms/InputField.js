@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { Select } from '@mantine/core';
+import { Loader, Select } from '@mantine/core';
 import React from 'react'
 
 const GET_BICYCLE_PROPS = gql`
@@ -32,23 +32,17 @@ query GetBicycleProps {
 export const InputField = () => {
 
 
-    const { data, loading, error } = useQuery(GET_BICYCLE_PROPS);
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
 
+
+    const { data, loading, error } = useQuery(GET_BICYCLE_PROPS);
+    if (loading) return <Loader />;
+    if (error) console.error(error);
     const { color, tires, status, gearsystem, brand } = data.bicycleProps;
-    // const { bicycleProps } = data;
-    // console.log("color", color, tires, status, gearsystem, brand);
-    // console.log("bicycleProps", bicycleProps);
-    // const result = Object.keys(bicycleProps).map((key) => [bicycleProps[key]]);
-    // const novyresult = result.splice(1, 5);
-    // console.log("result", novyresult);
     const colornames = color.map((color) => (color.color))
     const tiressize = tires.map((tire) => (tire.size))
     const statusstatus = status.map((status) => (status.status))
     const gearsystemtype = gearsystem.map((gearsystem) => (gearsystem.type))
     const brandname = brand.map((brand) => (brand.name))
-    // console.log("colornames", colornames);
     return (
         <div>
             <Select
@@ -57,6 +51,7 @@ export const InputField = () => {
                 searchable
                 nothingFound="No options"
                 data={colornames}
+                {...form.getInputProps('color')}
             />
             <Select
                 label="Choose tire size"
@@ -64,6 +59,7 @@ export const InputField = () => {
                 searchable
                 nothingFound="No options"
                 data={tiressize}
+                {...form.getInputProps('size')}
             />
             <Select
                 label="Choose status"
@@ -71,6 +67,7 @@ export const InputField = () => {
                 searchable
                 nothingFound="No options"
                 data={statusstatus}
+                {...form.getInputProps('status')}
             />
             <Select
                 label="Choose gear system type"
@@ -78,6 +75,7 @@ export const InputField = () => {
                 searchable
                 nothingFound="No options"
                 data={gearsystemtype}
+                {...form.getInputProps('type')}
             />
             <Select
                 label="Choose brand name"
@@ -85,6 +83,7 @@ export const InputField = () => {
                 searchable
                 nothingFound="No options"
                 data={brandname}
+                {...form.getInputProps('brandname')}
             />
 
         </div>

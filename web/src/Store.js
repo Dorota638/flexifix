@@ -5,7 +5,8 @@ const store = (set) => ({
   selectedBicycle: {},
   selectedCustomer: {},
   cart: [],
-  signedIn: {  },
+  signedIn: {},
+  bicycleProps: {},
   selectCustomer: (customer) => set((state) => ({ ...state, selectedCustomer: customer })),
   selectBicycle: (bicycle) => set((state) => ({ ...state, selectedBicycle: bicycle })),
   addToCart: (product) =>
@@ -36,6 +37,7 @@ const store = (set) => ({
       }
     }),
   signIn: (employee) => set((state) => ({ ...state, signedIn: employee })),
+  storebicycleProps: (props) => set((state) => ({ ...state, bicycleProps: props }))
 });
 
 export const useStore = create(devtools(store));
