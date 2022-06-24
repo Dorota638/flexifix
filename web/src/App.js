@@ -6,6 +6,7 @@ import {
   ApolloProvider,
   InMemoryCache,
 } from '@apollo/client';
+import { NotificationsProvider } from '@mantine/notifications';
 
 const theme = {
   colorScheme: 'dark',
@@ -25,11 +26,13 @@ function App() {
   return (
     <div className="App min-h-screen">
       <MantineProvider theme={theme}>
-        <Paper>
-          <ApolloProvider client={client}>
-            <Shell />
-          </ApolloProvider>
-        </Paper>
+        <NotificationsProvider position="top-right">
+          <Paper>
+            <ApolloProvider client={client}>
+              <Shell />
+            </ApolloProvider>
+          </Paper>
+        </NotificationsProvider>
       </MantineProvider>
     </div>
   );

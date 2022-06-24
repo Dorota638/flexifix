@@ -24,14 +24,14 @@ export const Cart = () => {
 
   return (
     <>
-      <Table>
+      <Table className='mt-10'>
         <thead>
           <tr>
-            <th>description</th>
-            <th>productBrand</th>
-            <th>productCategory</th>
-            <th>sellPrice</th>
-            <th>amount</th>
+            <th>Description</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Amount</th>
           </tr>
         </thead>
         <tbody>{cartRows}</tbody>

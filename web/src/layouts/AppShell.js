@@ -71,7 +71,7 @@ export default function Shell() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/newRepair" element={<NewRepairForm />} />
-          <Route path="/newRental" element={<NewRentalForm />} />
+          {/* <Route path="/newRental" element={<NewRentalForm />} /> */}
           <Route path="/newSale" element={<NewSaleForm />} />
           <Route path="/newBicycle" element={<NewBicycle />} />
           <Route path="/analytics" element={<Analytics />} />

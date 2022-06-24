@@ -91,6 +91,18 @@ export const types = `
     active: Boolean
   }
 
+  # type Invoice {
+  #   value:{
+  #     calculations: {
+  #       products: [String!]!
+  #       tax: [String!]!
+  #       subtotal: Int!
+  #       total: Int!
+  #     }
+  #     pdf: String!
+  #   }
+  # }
+
 
 
   # ----------------------------------
@@ -210,7 +222,6 @@ export const types = `
     id: ID!
     number: String!
     paymentMethod: PaymentMethod!
-    account: Account!
     customer: Customer
     salesperson: Employee!
     bicycleInvoiceLines: [BicycleInvoiceLine!]!

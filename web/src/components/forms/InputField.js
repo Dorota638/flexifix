@@ -42,7 +42,8 @@ export const InputField = () => {
     const tiressize = tires.map((tire) => (tire.size))
     const statusstatus = status.map((status) => (status.status))
     const gearsystemtype = gearsystem.map((gearsystem) => (gearsystem.type))
-    const brandname = brand.map((brand) => (brand.name))
+    const brandname = brand.map((brand) => ({ label: brand.name, value: brand.id }))
+    // console.log("colornames", colornames);
     return (
         <div>
             <Select

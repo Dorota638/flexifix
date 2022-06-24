@@ -111,9 +111,7 @@ export const input = `
     price: Float!
   }
     input saleInput {
-    number: String!
     fkPaymentMethod: Int!
-    fkAccount: Int!
     fkCustomerId: String
     fkSalespersonId: Int!
   }

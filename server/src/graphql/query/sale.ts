@@ -36,16 +36,16 @@ export const resolvers = {
     }
   },
 
-  account: async (parent: any) => {
-    try {
-      const account = await Account.findByPk(parent.fkAccount).catch(
-        errHandler
-      );
-      return account;
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
+  // account: async (parent: any) => {
+  //   try {
+  //     const account = await Account.findByPk(parent.fkAccount).catch(
+  //       errHandler
+  //     );
+  //     return account;
+  //   } catch (err) {
+  //     throw new Error(err);
+  //   }
+  // },
   customer: async (parent: any) => {
     try {
       const customer = await Customer.findByPk(parent.fkCustomerId).catch(

@@ -3,23 +3,36 @@ import { devtools } from 'zustand/middleware';
 
 const store = (set) => ({
   selectedBicycle: {},
-  selectedCustomer: {},
+  selectedCustomer: {
+    id: '618b2f20-85eb-453f-96b2-ddd413b8dc7a',
+    fullName: 'Matus Laco',
+    email: 'laco.matus@gmail.com',
+  },
   cart: [],
-  signedIn: {},
-  bicycleProps: {},
+  signedIn: { id: 2, name: 'Matus Laco', role: null },
   selectCustomer: (customer) => set((state) => ({ ...state, selectedCustomer: customer })),
   selectBicycle: (bicycle) => set((state) => ({ ...state, selectedBicycle: bicycle })),
   addToCart: (product) =>
     set(({ cart }) => {
       const productIndex = cart.findIndex((cartProduct) => cartProduct.product.id === product.id);
       if (productIndex !== -1) {
-        const cartProduct = cart[productIndex];
-        cartProduct.amount++;
+        return {
+          cart: cart.map((cartProduct) =>
+            cartProduct.product.id === product.id
+              ? { ...cartProduct, amount: cartProduct.amount + 1 }
+              : cartProduct
+          ),
+        };
       } else {
-        cart.push({
-          amount: 1,
-          product,
-        });
+        return {
+          cart: [
+            ...cart,
+            {
+              amount: 1,
+              product,
+            },
+          ],
+        };
       }
     }),
   removeFromCart: ({ id }) =>
@@ -30,7 +43,7 @@ const store = (set) => ({
       } else {
         const productToRemove = cart[productIndex];
         if (productToRemove.amount === 1) {
-          cart.splice(productIndex, 1);
+          return cart.filter((product) => productToRemove.id !== product.id);
         } else {
           cart[productIndex].amount--;
         }
