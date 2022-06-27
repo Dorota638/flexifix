@@ -118,7 +118,7 @@ export const input = `
   input productInvoiceLineInput{
     fkSaleId: String
     fkRepairId: String
-    fkProductId: Int!
+    fkProductId: String!
     amount: Int!
     price: Float!
   }

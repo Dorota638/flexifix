@@ -5,38 +5,8 @@ import CreateCustomer from '../components/repair/CreateCustomer';
 import { SelectedCustomer } from '../components/repair/SelectedCustomer';
 import { SelectBicycle } from '../components/repair/SelectBicycle';
 import CreateBicycle from '../components/repair/CreateBicycle';
-import { gql, useQuery } from '@apollo/client';
 
-const GET_BICYCLE_PROPS = gql`
-query GetBicycleProps {
-    bicycleProps {
-      color {
-        id
-        color
-      }
-      tires {
-        id
-        size
-      }
-      status {
-        id
-        status
-      }
-      gearsystem {
-        id
-        type
-      }
-      brand {
-        id
-        name
-      }
-    }
-  }
-`;
 export const NewRepairForm = () => {
-  const { data } = useQuery(GET_BICYCLE_PROPS);
-  console.log("data", data);
-
   const [active, setActive] = useState(0);
   const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
@@ -63,7 +33,7 @@ export const NewRepairForm = () => {
             <Button onClick={() => { setOpened(true) }} className="my-10" >
               Create Bicycle
             </Button>
-            <CreateBicycle opened={opened} setOpened={setOpened} data={data} />
+            <CreateBicycle opened={opened} setOpened={setOpened}/>
             <SelectBicycle />
           </Box>
         </Stepper.Step>

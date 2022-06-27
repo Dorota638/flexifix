@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from '@mantine/core';
-import { useStore } from '../../Store';
+import { useStore } from '../Store';
 
 export const Cart = () => {
   const removeFromCart = useStore((state) => state.removeFromCart);
@@ -14,11 +14,11 @@ export const Cart = () => {
         removeFromCart(item.product);
       }}
     >
-      <td>{item.product.description}</td>
-      <td>{item.product.productBrand.name}</td>
-      <td>{item.product.productCategory.name}</td>
-      <td>{item.product.sellPrice}</td>
-      <td>{item.amount}</td>
+      <td>{item?.product?.description}</td>
+      <td>{item?.product?.productBrand?.name}</td>
+      <td>{item?.product?.productCategory?.name}</td>
+      <td>{item?.product?.sellPrice}</td>
+      <td>{item?.amount}</td>
     </tr>
   ));
 

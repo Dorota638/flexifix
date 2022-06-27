@@ -4,7 +4,6 @@ import { TextInput, Button, Group, Box } from '@mantine/core';
 import { useStore } from '../../Store';
 import ListBicycles from './ListBicycles.js';
 
-
 export const SelectBicycle = () => {
   const form = useForm({
     initialValues: {
@@ -16,9 +15,8 @@ export const SelectBicycle = () => {
 
   return (
     <>
-      <Box className="m-auto" sx={{ maxWidth: 400 }}>
-        <h1>Select {customer.fullName}s bicycle </h1>
-      </Box>
+      <h1 className="text-xl pb-3">Select {customer.fullName}'s bicycle </h1>
       <ListBicycles id={customer.id} />
-    </>)
-}  
+    </>
+  );
+};

@@ -10,6 +10,8 @@ const store = (set) => ({
   },
   cart: [],
   signedIn: { id: 2, name: 'Matus Laco', role: null },
+  bicycleProps: {},
+  productProps: {},
   selectCustomer: (customer) => set((state) => ({ ...state, selectedCustomer: customer })),
   selectBicycle: (bicycle) => set((state) => ({ ...state, selectedBicycle: bicycle })),
   addToCart: (product) =>
@@ -43,14 +45,25 @@ const store = (set) => ({
       } else {
         const productToRemove = cart[productIndex];
         if (productToRemove.amount === 1) {
-          return cart.filter((product) => productToRemove.id !== product.id);
+          return {
+            cart: cart.filter(({ product }) => {
+              return product.id !== productToRemove.product.id;
+            }),
+          };
         } else {
-          cart[productIndex].amount--;
+          return {
+            cart: cart.map((cartProduct) =>
+              cartProduct.product.id === id
+                ? { ...cartProduct, amount: cartProduct.amount - 1 }
+                : cartProduct
+            ),
+          };
         }
       }
     }),
   signIn: (employee) => set((state) => ({ ...state, signedIn: employee })),
-  storebicycleProps: (props) => set((state) => ({ ...state, bicycleProps: props }))
+  storeBicycleProps: (props) => set((state) => ({ ...state, bicycleProps: props })),
+  storeProduceProps: (props) => set((state) => ({ ...state, productProps: props })),
 });
 
 export const useStore = create(devtools(store));

@@ -31,10 +31,26 @@ export const SaleSummary = () => {
     }
   `;
 
+  const ADD_INVOICE_LINES = gql`
+    mutation ($fkSaleId: String, $fkProductId: String!, $amount: Int!, $price: Float!) {
+      createProductInvoiceLine(
+        input: { fkSaleId: $fkSaleId, fkProductId: $fkProductId, amount: $amount, price: $price }
+      ) {
+        id
+        product {
+          id
+        }
+        amount
+        price
+      }
+    }
+  `;
+
   const salesPerson = useStore((state) => state.signedIn);
   const customer = useStore((state) => state.selectedCustomer);
 
   const [createSale] = useMutation(POST_NEW_SALE);
+  const [addInvoiceLines] = useMutation(ADD_INVOICE_LINES);
 
   const productRows = sale.cart.map((item) => (
     <tr key={item.product.id}>
@@ -45,11 +61,46 @@ export const SaleSummary = () => {
       <td>{item.amount}x</td>
     </tr>
   ));
+  
   const initVal = 0;
   const totalPrice = sale.cart.reduce(
     (prev, curr) => prev + curr.amount * curr.product.sellPrice,
     initVal
   );
+
+  const postSale = (values) => {
+    createSale({
+      variables: {
+        fkPaymentMethod: values.fkPaymentMethod,
+        fkCustomerId: customer.id,
+        fkSalespersonId: salesPerson.id,
+      },
+    })
+      .then(({ data }) => {
+        sale.cart.map(({ amount, product }) => {
+          addInvoiceLines({
+            variables: {
+              fkSaleId: data.createSale.id,
+              fkProductId: product.id,
+              price: product.sellPrice,
+              amount,
+            },
+          }).then((data) => {
+            console.log(data);
+          });
+        });
+      })
+      .catch((err) => {
+        console.log('error ', err);
+        showNotification({
+          title: 'Ooops...',
+          message: err.message,
+          autoClose: 3000,
+          color: 'red',
+        });
+      });
+  };
+
   return (
     <>
       <Box>
@@ -72,30 +123,7 @@ export const SaleSummary = () => {
         <h1 className="mt-5 text-lg">Sum: {totalPrice}DKK</h1>
       </Box>
       <Box className="mt-5">
-        <form
-          onSubmit={form.onSubmit((values) => {
-            // console.log('values', values);
-            createSale({
-              variables: {
-                fkPaymentMethod: values.fkPaymentMethod,
-                fkCustomerId: customer.id,
-                fkSalespersonId: salesPerson.id,
-              },
-            })
-              .then((data) => {
-                console.log('data', data);
-              })
-              .catch((err) => {
-                console.log('err', err);
-                showNotification({
-                  title: 'Ooops...',
-                  message: err.message,
-                  autoClose: 3000,
-                  color: 'red',
-                });
-              });
-          })}
-        >
+        <form onSubmit={form.onSubmit((values) => postSale(values))}>
           <Select
             label="Paymnet method"
             required
@@ -116,3 +144,4 @@ export const SaleSummary = () => {
     </>
   );
 };
+// window.open("data:application/pdf," + encodeURI(pdfString));

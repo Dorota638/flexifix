@@ -12,7 +12,7 @@ import { NavbarLinks } from '../components/NavbarLinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { NewRepairForm } from '../routes/NewRepair';
-import { NewRentalForm } from '../routes/NewRental';
+import { QueryData } from '../components/QueryData';
 import { NewSaleForm } from '../routes/NewSale';
 import { NewBicycle } from '../routes/NewBicycle';
 import Analytics from '../routes/Analytics';
@@ -67,6 +67,8 @@ export default function Shell() {
           </Footer>
         }
       >
+        <QueryData />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/newRepair" element={<NewRepairForm />} />

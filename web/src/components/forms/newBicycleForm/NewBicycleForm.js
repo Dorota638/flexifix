@@ -36,18 +36,12 @@ mutation CreateBicycle($color: Int!
     }
 }`;
 
-
-
-
-
-export default function NewBicycle({ setOpened, data }) {
+export default function NewBicycleForm({ setOpened }) {
     const form = useForm({
-        initialValues: {
-
-        },
+        initialValues: {},
     });
 
-    const { color, tires, status, gearsystem, brand } = data.bicycleProps;
+    const { color, tires, status, gearsystem, brand } = useStore((state)=> state.bicycleProps);
     const colornames = color.map((color) => ({ label: color.color, value: color.id }))
     const tiressize = tires.map((tire) => ({ label: tire.size, value: tire.id }))
     const statusstatus = status.map((status) => ({ label: status.status, value: status.id }))
@@ -56,13 +50,9 @@ export default function NewBicycle({ setOpened, data }) {
     const setBicycle = useStore((state) => state.storebicycleProps);
     const customer = useStore((state) => state.selectedCustomer);
 
-
     const [createBicycle, { loading }] = useMutation(NEW_BICYCLE);
 
     if (loading) return <Loader />;
-
-
-
     return (
         <form
             onSubmit={form.onSubmit((values) => {

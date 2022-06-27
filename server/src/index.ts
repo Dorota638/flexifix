@@ -1,16 +1,17 @@
+import { getRepairNumber } from './helper';
 const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const { typeDefs } = require('./graphql/typeDefs');
 const { resolvers } = require('./graphql');
 const sequelize = require('./database/connection');
-var cors = require('cors')
+var cors = require('cors');
 const app = express();
 
 const PORT = process.env.port || 3000;
 const main = async () => {
   require('./database/connection');
 
-  app.use(cors())
+  app.use(cors());
 
   sequelize
     .authenticate()
@@ -22,7 +23,7 @@ const main = async () => {
     });
 
   const server = new ApolloServer({ typeDefs, resolvers });
-  
+
   await server.start();
   server.applyMiddleware({ app });
 
