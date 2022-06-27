@@ -1,10 +1,6 @@
 import { Modal } from '@mantine/core';
 import React from 'react';
-<<<<<<< Updated upstream
-import NewBicycle from '../forms/newBicycleForm/NewBicycleForm';
-=======
-import NewBicycleForm from '../forms/NewBicycleForm';
->>>>>>> Stashed changes
+import NewBicycleForm from '../forms/newBicycleForm/NewBicycleForm';
 
 
 

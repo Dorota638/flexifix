@@ -13,13 +13,8 @@ const theme = {
 };
 
 const client = new ApolloClient({
-<<<<<<< Updated upstream
   // uri: 'http://localhost:3000/graphql',
   uri: 'https://3cba-86-52-46-61.eu.ngrok.io/graphql',
-=======
-  uri: 'http://localhost:3000/graphql',
-  // uri: 'https://0e68-86-52-46-61.eu.ngrok.io/graphql',
->>>>>>> Stashed changes
   cache: new InMemoryCache(),
 });
 
