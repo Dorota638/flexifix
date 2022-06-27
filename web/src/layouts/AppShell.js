@@ -7,7 +7,6 @@ import {
   Burger,
   useMantineTheme,
   Footer,
-  Button,
 } from '@mantine/core';
 import { NavbarLinks } from '../components/NavbarLinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';

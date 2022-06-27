@@ -1,7 +1,7 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
 import { Button, Group, Loader, Select } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
-import { useStore } from '../../Store';
+import { useStore } from '../../../Store';
 import { showNotification } from '@mantine/notifications';
 
 const NEW_BICYCLE = gql`
