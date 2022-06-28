@@ -3,6 +3,7 @@ import { Box, Button, Select, Table } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import React from 'react';
+import { useState } from 'react';
 import { useStore } from '../../Store';
 
 export const SaleSummary = () => {
@@ -59,6 +60,9 @@ export const SaleSummary = () => {
       }
     }
   `;
+
+  const [invoiceLines, setInvoiceLines] = useState([])
+
   const emptyCart = useStore((state) => state.emptyCart);
   const salesPerson = useStore((state) => state.signedIn);
   const customer = useStore((state) => state.selectedCustomer);
@@ -77,7 +81,6 @@ export const SaleSummary = () => {
     </tr>
   ));
   const bicycleRows = sale.bicycleCart.map((bicycle) => {
-    console.log('bicycle', bicycle);
     return (
       <tr key={bicycle.id}>
         <td>{bicycle.brand.name}</td>
@@ -91,15 +94,8 @@ export const SaleSummary = () => {
   const initVal = 0;
   const totalPrice = sale.productCart.reduce(
     (prev, curr) => prev + curr.amount * curr.product.sellPrice,
-    initVal
-    +
-    sale.bicycleCart.reduce(
-      (prev, curr) => prev + curr.price,
-      initVal
-    )
+    initVal + sale.bicycleCart.reduce((prev, curr) => prev + curr.price, initVal)
   );
-
-  console.log('sale.bicycleCart', sale.bicycleCart);
 
   const postSale = (values) => {
     createSale({
@@ -110,8 +106,14 @@ export const SaleSummary = () => {
       },
     })
       .then(({ data }) => {
-        console.log('sale?.productCart', sale?.productCart);
+        showNotification({
+          title: 'Success',
+          message: 'Sale Created',
+          autoClose: 3000,
+          color: 'Green',
+        });
         sale?.productCart?.map(({ amount, product }) => {
+          setInvoiceLines({...invoiceLines, item:{amount, product}})
           addProductInvoiceLines({
             variables: {
               fkSaleId: data.createSale.id,
@@ -119,23 +121,36 @@ export const SaleSummary = () => {
               price: product.sellPrice,
               amount,
             },
-          }).then((data) => {
-            console.log(data);
+          }).then(() => {
+            showNotification({
+              title: 'Success',
+              message: 'Product added to sale',
+              autoClose: 3000,
+              color: 'Green',
+            });
           });
         });
-        sale?.bicycleCart
-          ?.map((bicycle) => {
-            addBicycleInvoiceLines({
-              variables: {
-                fkSaleId: data.createSale.id,
-                fkBicycleId: bicycle.id,
-                price: bicycle.price,
-              },
+        if (sale?.bicycleCart.length) {
+          sale?.bicycleCart
+            .map((bicycle) => {
+              addBicycleInvoiceLines({
+                variables: {
+                  fkSaleId: data.createSale.id,
+                  fkBicycleId: bicycle.id,
+                  price: bicycle.price,
+                },
+              });
+            })
+            .then(() => {
+              showNotification({
+                title: 'Success',
+                message: 'Bicycle added to sale',
+                autoClose: 3000,
+                color: 'Green',
+              });
+              emptyCart();
             });
-          })
-          .then(() => {
-            emptyCart()
-          });
+        }
       })
       .catch((err) => {
         console.log('error ', err);
@@ -157,8 +172,8 @@ export const SaleSummary = () => {
       <Box className="mt-5">
         <Table>
           <thead>
-            <div className='w-full '>
-            <h1 className='ml-2'>Products</h1>
+            <div className="w-full ">
+              <h1 className="ml-2">Products</h1>
             </div>
             <tr>
               <th>Description</th>

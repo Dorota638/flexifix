@@ -79,10 +79,8 @@ const store = (set) => ({
 
   removeBicycleFromCart: ({ id }) =>
     set(({ bicycleCart }) => {
-      console.log('id', id);
       return {
         bicycleCart: bicycleCart.filter((bicycle) => {
-          console.log('bicycle', bicycle);
           return bicycle.id !== id;
         }),
       };

@@ -61,8 +61,8 @@ export const NewSaleForm = () => {
           </Box>
         </Stepper.Step>
 
-        <Stepper.Step label="Parts" allowStepSelect={active > 3}>
-          Step 4 content: Select parts
+        <Stepper.Step label="Invoice" allowStepSelect={active > 3}>
+          Invoice
         </Stepper.Step>
       </Stepper>
 
