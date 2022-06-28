@@ -151,6 +151,8 @@ export const SaleSummary = () => {
               emptyCart();
             });
         }
+      }).then(()=>{
+        
       })
       .catch((err) => {
         console.log('error ', err);
