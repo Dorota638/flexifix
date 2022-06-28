@@ -1,3 +1,4 @@
+import { Sale } from './../../models/Sale';
 import { errHandler } from '../../helper';
 
 const {
@@ -5,18 +6,16 @@ const {
   ProductInvoiceLine,
 } = require('../../models/InvoiceLines');
 const PaymentMethod = require('../../models/PaymentMethod');
-const Account = require('../../models/Account');
 const { Customer } = require('../../models/Customer');
 const { Employee } = require('../../models/Employee');
-const Sale = require('../../models/Sale');
 
 export const queryResolvers = {
   async sales(_: any) {
     try {
       const sale = await Sale.findAll().catch(errHandler);
-      const saleLines = await ProductInvoiceLine.findAll({
-        where: (sale.fkSaleId = sale.id),
-      });
+      // const saleLines = await ProductInvoiceLine.findAll({
+      //   where: (sale.fkSaleId = sale.id),
+      // });
       return sale;
     } catch (err) {
       throw new Error(err);

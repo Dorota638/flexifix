@@ -8,15 +8,14 @@ import { useStore } from '../../Store';
 export const SaleSummary = () => {
   const sale = useStore((store) => ({
     customer: store.selectedCustomer,
-    cart: store.cart,
+    productCart: store.productCart,
+    bicycleCart: store.bicycleCart,
   }));
-
   const form = useForm({
     initialValues: {
       fkPaymentMethod: 0,
     },
   });
-
   const POST_NEW_SALE = gql`
     mutation ($fkPaymentMethod: Int!, $fkCustomerId: String!, $fkSalespersonId: Int!) {
       createSale(
@@ -30,8 +29,7 @@ export const SaleSummary = () => {
       }
     }
   `;
-
-  const ADD_INVOICE_LINES = gql`
+  const ADD_PRODUCT_INVOICE_LINES = gql`
     mutation ($fkSaleId: String, $fkProductId: String!, $amount: Int!, $price: Float!) {
       createProductInvoiceLine(
         input: { fkSaleId: $fkSaleId, fkProductId: $fkProductId, amount: $amount, price: $price }
@@ -45,14 +43,31 @@ export const SaleSummary = () => {
       }
     }
   `;
-
+  const ADD_BICYCLE_INVOICE_LINES = gql`
+    mutation ($fkSaleId: String!, $fkBicycleId: String!, $price: Float!) {
+      createBicycleInvoiceLine(
+        input: { fkSaleId: $fkSaleId, fkBicycleId: $fkBicycleId, price: $price }
+      ) {
+        id
+        sale {
+          id
+        }
+        bicycle {
+          id
+        }
+        price
+      }
+    }
+  `;
+  const emptyCart = useStore((state) => state.emptyCart);
   const salesPerson = useStore((state) => state.signedIn);
   const customer = useStore((state) => state.selectedCustomer);
 
   const [createSale] = useMutation(POST_NEW_SALE);
-  const [addInvoiceLines] = useMutation(ADD_INVOICE_LINES);
+  const [addProductInvoiceLines] = useMutation(ADD_PRODUCT_INVOICE_LINES);
+  const [addBicycleInvoiceLines] = useMutation(ADD_BICYCLE_INVOICE_LINES);
 
-  const productRows = sale.cart.map((item) => (
+  const productRows = sale.productCart.map((item) => (
     <tr key={item.product.id}>
       <td>{item.product.description}</td>
       <td>{item.product.productBrand.name}</td>
@@ -61,12 +76,30 @@ export const SaleSummary = () => {
       <td>{item.amount}x</td>
     </tr>
   ));
-  
+  const bicycleRows = sale.bicycleCart.map((bicycle) => {
+    console.log('bicycle', bicycle);
+    return (
+      <tr key={bicycle.id}>
+        <td>{bicycle.brand.name}</td>
+        <td>{bicycle.type}</td>
+        <td>{bicycle.gearsystem.type}</td>
+        <td>{bicycle.frameNumber}</td>
+      </tr>
+    );
+  });
+
   const initVal = 0;
-  const totalPrice = sale.cart.reduce(
+  const totalPrice = sale.productCart.reduce(
     (prev, curr) => prev + curr.amount * curr.product.sellPrice,
     initVal
+    +
+    sale.bicycleCart.reduce(
+      (prev, curr) => prev + curr.price,
+      initVal
+    )
   );
+
+  console.log('sale.bicycleCart', sale.bicycleCart);
 
   const postSale = (values) => {
     createSale({
@@ -77,8 +110,9 @@ export const SaleSummary = () => {
       },
     })
       .then(({ data }) => {
-        sale.cart.map(({ amount, product }) => {
-          addInvoiceLines({
+        console.log('sale?.productCart', sale?.productCart);
+        sale?.productCart?.map(({ amount, product }) => {
+          addProductInvoiceLines({
             variables: {
               fkSaleId: data.createSale.id,
               fkProductId: product.id,
@@ -89,6 +123,19 @@ export const SaleSummary = () => {
             console.log(data);
           });
         });
+        sale?.bicycleCart
+          ?.map((bicycle) => {
+            addBicycleInvoiceLines({
+              variables: {
+                fkSaleId: data.createSale.id,
+                fkBicycleId: bicycle.id,
+                price: bicycle.price,
+              },
+            });
+          })
+          .then(() => {
+            emptyCart()
+          });
       })
       .catch((err) => {
         console.log('error ', err);
@@ -110,6 +157,9 @@ export const SaleSummary = () => {
       <Box className="mt-5">
         <Table>
           <thead>
+            <div className='w-full '>
+            <h1 className='ml-2'>Products</h1>
+            </div>
             <tr>
               <th>Description</th>
               <th>Brand</th>
@@ -119,6 +169,19 @@ export const SaleSummary = () => {
             </tr>
           </thead>
           <tbody>{productRows}</tbody>
+        </Table>
+      </Box>
+      <Box className="mt-5">
+        <Table>
+          <thead>
+            <tr>
+              <th>Brand</th>
+              <th>Type</th>
+              <th>Gearsystem</th>
+              <th>Frame Number</th>
+            </tr>
+          </thead>
+          <tbody>{bicycleRows}</tbody>
         </Table>
         <h1 className="mt-5 text-lg">Sum: {totalPrice}DKK</h1>
       </Box>

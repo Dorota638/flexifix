@@ -64,9 +64,7 @@ export const input = `
   }
 
   input createRepairInput {
-    number: String!
-    fkPaymentMethod: Int!
-    fkAccount: Int!
+    fkPaymentMethod: Int
     fkBicycleId: String!
     fkCustomerId: String!
     status: Int!
@@ -123,12 +121,10 @@ export const input = `
     price: Float!
   }
   input rentalInput{
-    number: String!
     fkSalesPersonId: Int!
     fkCustomerId: String!
     periodStart: String!
     periodEnd: String!
-    fkAccount: Int!
     fkPaymentMethod: Int!
     deposit: Int!
     wireLock: Boolean!

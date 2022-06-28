@@ -1,6 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
-import { Table } from '@mantine/core';
-import React from 'react';
+import { Button, Group, Modal, NumberInput, Table } from '@mantine/core';
+import React, { useState } from 'react';
+import { BicycleCart } from '../BicycleCart';
+
 import { useStore } from '../../Store';
 const GET_BICYCLES = gql`
   query ($customerId: String!) {
@@ -43,14 +45,18 @@ const GET_BICYCLES = gql`
 
 export const SelectBicycles = ({ hidden }) => {
   const { data, loading, error } = useQuery(GET_BICYCLES, {
-    variables:{customerId: "c6389cef-b019-4b77-b0f7-44f68aebf155"}
+    variables: { customerId: 'c6389cef-b019-4b77-b0f7-44f68aebf155' },
   });
-  const addToCart = useStore((state) => state.addToCart);
+  const [bicyclePrice, setBicyclePrice] = useState(0);
+  const [bicycle, setBicycle] = useState({});
+  const [opened, setOpened] = useState(false);
+  const addToCart = useStore((state) => state.addBicycleToCart);
   const bicycleRows = data?.bicyclesByCustomerId.map((bicycle) => (
     <tr
       key={bicycle.id}
       onClick={() => {
-        addToCart(bicycle);
+        setOpened(true);
+        setBicycle(bicycle);
       }}
     >
       <td>{bicycle.brand.name}</td>
@@ -61,8 +67,30 @@ export const SelectBicycles = ({ hidden }) => {
   ));
 
   return (
-    <>
-      <Table className={`${hidden ? 'hidden' : ''}`}>
+    <div className={`${hidden ? 'hidden' : ''}`}>
+      <>
+        <Modal opened={opened} onClose={() => setOpened(false)} title="What is the price?">
+          <NumberInput
+            placeholder="Enter Price!"
+            label="Bicycle price"
+            required
+            onChange={(e) => {
+              setBicyclePrice(e);
+            }}
+          />
+          <Group position="center">
+            <Button
+              onClick={() => {
+                addToCart(bicycle, bicyclePrice);
+                setOpened(false);
+              }}
+            >
+              Add bicycle to cart
+            </Button>
+          </Group>
+        </Modal>
+      </>
+      <Table>
         <thead>
           <tr>
             <th>Brand</th>
@@ -73,6 +101,7 @@ export const SelectBicycles = ({ hidden }) => {
         </thead>
         <tbody>{bicycleRows}</tbody>
       </Table>
-    </>
+      <BicycleCart />
+    </div>
   );
 };

@@ -2,8 +2,6 @@ import { Modal } from '@mantine/core';
 import React from 'react';
 import NewBicycleForm from '../forms/newBicycleForm/NewBicycleForm';
 
-
-
 const CreateBicycle = ({ opened, setOpened }) => {
   return (
     <Modal

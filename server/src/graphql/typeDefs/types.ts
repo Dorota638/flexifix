@@ -41,9 +41,8 @@ export const types = `
 
   type Repair {
     id: ID!
-    number: String!
+    number: String
     paymentMethod: PaymentMethod
-    account: Account
     bicycle: Bicycle!
     customer: Customer!
     status: RepairStatus!
@@ -76,8 +75,7 @@ export const types = `
 
   type Rental {
     id: ID!
-    number: String!
-    account: Account!
+    number: String
     paymentMethod: PaymentMethod!
     salesPerson: Employee!
     customer: Customer
@@ -232,7 +230,6 @@ export const types = `
     id: ID!
     number: String!
     paymentMethod: PaymentMethod!
-    account: Account!
     bicycle: Bicycle!
     customer: Customer!
     status: RepairStatus!

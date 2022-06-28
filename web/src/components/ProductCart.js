@@ -2,10 +2,10 @@ import React from 'react';
 import { Table } from '@mantine/core';
 import { useStore } from '../Store';
 
-export const Cart = () => {
-  const removeFromCart = useStore((state) => state.removeFromCart);
+export const ProductCart = () => {
+  const removeFromCart = useStore((state) => state.removeProductFromCart);
 
-  const cart = useStore(({ cart }) => cart);
+  const cart = useStore(({ productCart }) => productCart);
 
   const cartRows = cart?.map((item) => (
     <tr

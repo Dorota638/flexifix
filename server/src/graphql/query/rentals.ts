@@ -36,16 +36,7 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-  account: async (parent: any) => {
-    try {
-      const account = await Account.findByPk(parent.fkAccount).catch(
-        errHandler
-      );
-      return account;
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
+  
   rentalInvoiceLines: async (parent: any) => {
     try {
       const rentalInvoiceLines = await RentalInvoiceLine.findAll({
@@ -78,14 +69,4 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-
-  // : async (parent: any, args: any, context: any) => {
-  //   try {
-  //     const  = await .findByPk(parent.)
-  //     .catch(errHandler);
-  //     return ;
-  //   } catch (err) {
-  //     throw new Error(err);
-  //   }
-  // },
 };

@@ -1,7 +1,6 @@
 import { errHandler } from '../../helper';
 const { Repair, RepairStatus } = require('../../models/Repair');
 const PaymentMethod = require('../../models/PaymentMethod');
-const Account = require('../../models/Account');
 const { Bicycle } = require('../../models/Bicycle');
 const { Customer } = require('../../models/Customer');
 const { Employee } = require('../../models/Employee');
@@ -47,16 +46,6 @@ export const resolvers = {
     }
   },
 
-  account: async (parent: any) => {
-    try {
-      const account = await Account.findByPk(parent.fkAccount).catch(
-        errHandler
-      );
-      return account;
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
   bicycle: async (parent: any) => {
     try {
       const bicycle = await Bicycle.findByPk(parent.fkBicycleId).catch(
@@ -82,8 +71,6 @@ export const resolvers = {
       const status = await RepairStatus.findByPk(parent.status).catch(
         errHandler
       );
-      console.log('parent.status', parent.status);
-
       return status;
     } catch (err) {
       throw new Error(err);
@@ -119,14 +106,4 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-
-  // : async (parent: any, args: any, context: any) => {
-  //   try {
-  //     const  = await .findByPk(parent.)
-  //     .catch(errHandler);
-  //     return ;
-  //   } catch (err) {
-  //     throw new Error(err);
-  //   }
-  // },
 };
