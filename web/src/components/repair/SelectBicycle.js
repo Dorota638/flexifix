@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useForm } from '@mantine/form';
-import { TextInput, Button, Group, Box } from '@mantine/core';
 import { useStore } from '../../Store';
 import ListBicycles from './ListBicycles.js';
 

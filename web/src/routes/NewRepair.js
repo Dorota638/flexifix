@@ -5,6 +5,9 @@ import CreateCustomer from '../components/repair/CreateCustomer';
 import { SelectedCustomer } from '../components/repair/SelectedCustomer';
 import { SelectBicycle } from '../components/repair/SelectBicycle';
 import CreateBicycle from '../components/repair/CreateBicycle';
+import SelectTasks from '../components/repair/SelectTasks';
+import TaskCart from '../components/repair/TaskCart';
+import RepairSummary from '../components/repair/RepairSummary';
 
 export const NewRepairForm = () => {
   const [active, setActive] = useState(0);
@@ -33,17 +36,19 @@ export const NewRepairForm = () => {
             <Button onClick={() => { setOpened(true) }} className="my-10" >
               Create Bicycle
             </Button>
-            <CreateBicycle opened={opened} setOpened={setOpened}/>
+            <CreateBicycle opened={opened} setOpened={setOpened} />
             <SelectBicycle />
           </Box>
         </Stepper.Step>
 
         <Stepper.Step label="Tasks" allowStepSelect={active > 2}>
-          Step 3 content: Select tasks
+          <SelectTasks />
+          <TaskCart />
         </Stepper.Step>
 
-        <Stepper.Step label="Parts" allowStepSelect={active > 3}>
-          Step 4 content: Select parts
+        <Stepper.Step label="Summary" allowStepSelect={active > 3}>
+          Repair Summary
+          <RepairSummary />
         </Stepper.Step>
       </Stepper>
 
@@ -53,6 +58,7 @@ export const NewRepairForm = () => {
         </Button>
         <Button onClick={nextStep}>Next</Button>
       </Group>
+
     </div>
   );
 };

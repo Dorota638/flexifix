@@ -52,15 +52,31 @@ const GET_PRODUCT_PROPS = gql`
   }
 `;
 
+const GET_TASKS = gql`
+query{
+  tasks {
+    taskCategory {
+      name
+      id
+    }
+    id
+    name
+    duration
+  }
+}`
+
 export const QueryData = () => {
   const { data: bicycleProps } = useQuery(GET_BICYCLE_PROPS);
   const { data: productProps } = useQuery(GET_PRODUCT_PROPS);
+  const { data: tasks } = useQuery(GET_TASKS);
 
   const storeBicycleProps = useStore((state) => state.storeBicycleProps);
   const storeProduceProps = useStore((state) => state.storeProduceProps);
+  const storeTasks = useStore((state) => state.storeTasks);
 
   storeBicycleProps(bicycleProps?.bicycleProps);
   storeProduceProps(productProps?.productProps);
+  storeTasks(tasks?.tasks);
 
   return <></>;
 };

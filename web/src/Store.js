@@ -13,7 +13,9 @@ const store = (set) => ({
   signedIn: { id: 2, name: 'Matus Laco', role: null },
   bicycleProps: {},
   productProps: {},
-  emptyCart: () => set((state) => ({...state, productCart: [], bicycleCart: [] })),
+  emptyCart: () => set((state) => ({ ...state, productCart: [], bicycleCart: [] })),
+  tasks: {},
+
   selectCustomer: (customer) => set((state) => ({ ...state, selectedCustomer: customer })),
   selectBicycle: (bicycle) => set((state) => ({ ...state, selectedBicycle: bicycle })),
   addProductToCart: (product) =>
@@ -88,6 +90,7 @@ const store = (set) => ({
   signIn: (employee) => set((state) => ({ ...state, signedIn: employee })),
   storeBicycleProps: (props) => set((state) => ({ ...state, bicycleProps: props })),
   storeProduceProps: (props) => set((state) => ({ ...state, productProps: props })),
+  storeTasks: (props) => set((state) => ({ ...state, tasks: props })),
 });
 
 export const useStore = create(devtools(store));
