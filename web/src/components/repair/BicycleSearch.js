@@ -16,7 +16,6 @@ const CustomerSearch = ({ name }) => {
     variables: { name },
   });
   const customers = data?.customerByName;
-  // console.log(customers);
   return (
     <Group>
       {customers?.map((customer) => (

@@ -56,7 +56,6 @@ export default function NewBicycleForm({ setOpened }) {
     return (
         <form
             onSubmit={form.onSubmit((values) => {
-                console.log("values", values)
                 return (
                     createBicycle({
                         variables: {
@@ -78,7 +77,6 @@ export default function NewBicycleForm({ setOpened }) {
                             autoClose: 3000,
                             color: 'green',
                         });
-                        console.log("data", data);
                     }).catch((error) => { console.log(error); })
 
                 )

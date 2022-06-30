@@ -145,4 +145,8 @@ export const input = `
   input taskCategoryInput{
     name: String!
   }
+
+  input invoiceInput{
+    id: String!
+  }
 `;

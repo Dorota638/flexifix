@@ -25,8 +25,6 @@ const ListBicycles = ({ id }) => {
   const bicycles = data?.bicyclesByCustomerId;
   const setBicycle = useStore((state) => state.selectBicycle);
   const selectedBicycle = useStore((state) => state.selectedBicycle);
-
-  console.log(bicycles);
   return (
     <Grid>
       {bicycles?.map((bicycle) => (
