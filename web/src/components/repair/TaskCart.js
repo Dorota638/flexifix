@@ -3,8 +3,8 @@ import React from 'react'
 import { useStore } from '../../Store';
 
 function TaskCart() {
-  const removeFromCart = useStore((state) => state.removeFromCart);
-  const cart = useStore(({ cart }) => cart);
+  const removeFromCart = useStore((state) => state.removeProductFromCart);
+  const cart = useStore(({ productCart }) => productCart);
 
   const selectedtasks = cart?.map((item) => (
     <tr

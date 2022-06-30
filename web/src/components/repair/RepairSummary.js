@@ -34,25 +34,44 @@ mutation ($fkBicycleId: String!, $fkCustomerId: String!, $fkTakenBy: Int!, $comm
     }
   }`
 
+const ADD_TASK_INVOICE_LINES = gql`
+  mutation CreateTaskInvoiceLine($fkTask: Int!, $fkRepairId: String!, $amount: Int!, $time: Float!, $price: Float!) {
+    createTaskInvoiceLine(input: {
+        fkTask: $fkTask
+        fkRepairId: $fkRepairId
+        amount: $amount
+        time: $time
+        price: $price
+    }) {
+      id
+    }
+  }`
+
+
 
 
 function RepairSummary() {
+
+    const emptyCart = useStore((state) => state.emptyCart);
     const customer = useStore((state) => state.selectedCustomer);
     const bicycle = useStore((state) => state.selectedBicycle);
     const signedIn = useStore((state) => state.signedIn);
     const [createRepair] = useMutation(POST_NEW_REPAIR);
+    const [addTaskInvoiceLine] = useMutation(ADD_TASK_INVOICE_LINES);
 
 
     const repair = useStore((store) => ({
         customer: store.selectedCustomer,
         bicycle: store.selectedBicycle,
-        tasks: store.cart,
+        tasks: store.productCart,
     }));
     const form = useForm({
         initialValues: {
             fkPaymentMethod: 0,
             comment: "comment",
             status: 1,
+            time: 2,
+            price: 25
         },
     });
     const selectedtasks = repair.tasks?.map((item) => (
@@ -69,8 +88,21 @@ function RepairSummary() {
                 comment: values.comment,
                 status: values.status
             }
-        }).then((data) => {
-            console.log(data);
+        }).then(({ data }) => {
+            console.log('repair?.tasks', repair?.tasks);
+            repair?.tasks?.map(({ amount, product }) => {
+                addTaskInvoiceLine({
+                    variables: {
+                        fkTask: product.id,
+                        fkRepairId: data.createRepair.id,
+                        time: values.time,
+                        price: values.price,
+                        amount,
+                    },
+                }).then(() => {
+                    emptyCart()
+                });
+            });
         }).catch((err) => {
             console.log('error ', err);
             showNotification({

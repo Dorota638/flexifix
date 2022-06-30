@@ -3,7 +3,7 @@ import React from 'react'
 import { useStore } from '../../Store';
 
 function SelectTasks() {
-    const addToCart = useStore((state) => state.addToCart);
+    const addToCart = useStore((state) => state.addProductToCart);
     const tasks = useStore(({ tasks }) => tasks);
     console.log("tasks", tasks);
     const task = tasks?.map((task) => (
