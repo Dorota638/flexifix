@@ -11,10 +11,11 @@ import {
 import { NavbarLinks } from '../components/NavbarLinks';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { NewRepairForm } from '../routes/NewRepair';
+import { NewRepair } from '../routes/NewRepair';
 import { QueryData } from '../components/QueryData';
-import { NewSaleForm } from '../routes/NewSale';
+import { NewSale } from '../routes/NewSale';
 import { NewBicycle } from '../routes/NewBicycle';
+import { NewCustomer } from '../routes/NewCustomer';
 import Analytics from '../routes/Analytics';
 import Inventory from '../routes/Inventory';
 import Home from '../routes/Home';
@@ -71,14 +72,15 @@ export default function Shell() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/newRepair" element={<NewRepairForm />} />
+          <Route path="/newRepair" element={<NewRepair />} />
           {/* <Route path="/newRental" element={<NewRentalForm />} /> */}
-          <Route path="/newSale" element={<NewSaleForm />} />
+          <Route path="/newSale" element={<NewSale />} />
           <Route path="/newBicycle" element={<NewBicycle />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/repairs" element={<Repairs />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/bicycles" element={<Bicycles />} />
+          <Route path="/newCustomer" element={<NewCustomer />} />
         </Routes>
       </AppShell>
     </Router>

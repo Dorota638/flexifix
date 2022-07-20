@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Stepper, Button, Group, Box } from '@mantine/core';
-import SelectCustomer from '../components/repair/SelectCustomer';
-import CreateCustomer from '../components/repair/CreateCustomer';
-import { SelectedCustomer } from '../components/repair/SelectedCustomer';
+import SelectCustomer from '../components/common/SelectCustomer';
+import CreateCustomer from '../components/common/CreateCustomer';
+import { SelectedCustomer } from '../components/common/SelectedCustomer';
 import { SelectBicycle } from '../components/repair/SelectBicycle';
 import CreateBicycle from '../components/repair/CreateBicycle';
 import SelectTasks from '../components/repair/SelectTasks';
 import TaskCart from '../components/repair/TaskCart';
 import RepairSummary from '../components/repair/RepairSummary';
 
-export const NewRepairForm = () => {
+export const NewRepair = () => {
   const [active, setActive] = useState(0);
   const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));

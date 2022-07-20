@@ -1,6 +1,6 @@
 import { Modal } from '@mantine/core';
 import React from 'react';
-import NewCustomer from '../forms/NewCustomerForm';
+import {NewCustomerForm} from '../forms/NewCustomerForm';
 
 const CreateCustomer = ({opened, setOpened}) => {
   
@@ -10,7 +10,7 @@ const CreateCustomer = ({opened, setOpened}) => {
       onClose={() => setOpened(false)}
       title="Create customer"
     >
-      <NewCustomer setOpened={setOpened}/>
+      <NewCustomerForm setOpened={setOpened}/>
     </Modal>
   );
 };

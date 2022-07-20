@@ -31,7 +31,7 @@ const ListCustomers = ({ name }) => {
             p="lg"
             sx={{ minWidth: 400 }}
             onClick={() => { setCustomer(customer); }}
-            className={` ${customer.id === selectedCustomer.id ? 'bg-primary-900' : ''}`}
+            className={` ${customer?.id === selectedCustomer?.id ? 'bg-primary-900' : ''}`}
           >
             <Card.Section className='p-2'>
               <Title order={1}> {customer.fullName} </Title>

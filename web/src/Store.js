@@ -1,20 +1,22 @@
-import create from 'zustand';
-import { devtools } from 'zustand/middleware';
+import create from "zustand";
+import { devtools } from "zustand/middleware";
 
 const store = (set) => ({
+  signedIn: { id: 2, name: "Matus Laco" },
   selectedBicycle: {},
-  selectedCustomer: {
-  },
+  selectedCustomer: undefined,
   productCart: [],
   bicycleCart: [],
-  signedIn: {},
   bicycleProps: {},
   productProps: {},
-  emptyCart: () => set((state) => ({ ...state, productCart: [], bicycleCart: [] })),
   tasks: {},
-
-  selectCustomer: (customer) => set((state) => ({ ...state, selectedCustomer: customer })),
-  selectBicycle: (bicycle) => set((state) => ({ ...state, selectedBicycle: bicycle })),
+  
+  emptyCart: () =>
+    set((state) => ({ ...state, productCart: [], bicycleCart: [] })),
+  selectCustomer: (customer) =>
+    set((state) => ({ ...state, selectedCustomer: customer })),
+  selectBicycle: (bicycle) =>
+    set((state) => ({ ...state, selectedBicycle: bicycle })),
   addProductToCart: (product) =>
     set(({ productCart }) => {
       const productIndex = productCart.findIndex(
@@ -42,9 +44,11 @@ const store = (set) => ({
     }),
   removeProductFromCart: ({ id }) =>
     set(({ productCart }) => {
-      const productIndex = productCart.findIndex((cartItem) => cartItem.product.id === id);
+      const productIndex = productCart.findIndex(
+        (cartItem) => cartItem.product.id === id
+      );
       if (productIndex === -1) {
-        console.log(new Error('Something went wrong: index not found in cart'));
+        console.log(new Error("Something went wrong: index not found in cart"));
       } else {
         const productToRemove = productCart[productIndex];
         if (productToRemove.amount === 1) {
@@ -67,13 +71,14 @@ const store = (set) => ({
   addBicycleToCart: (bicycle, price) => {
     const bicycleItem = { ...bicycle, price };
     return set(({ bicycleCart }) => {
-      const bicycleIndex = bicycleCart.findIndex((cartBicycle) => cartBicycle.id === bicycle.id);
+      const bicycleIndex = bicycleCart.findIndex(
+        (cartBicycle) => cartBicycle.id === bicycle.id
+      );
       if (bicycleIndex === -1) {
         return { bicycleCart: [...bicycleCart, bicycleItem] };
       }
     });
   },
-
   removeBicycleFromCart: ({ id }) =>
     set(({ bicycleCart }) => {
       return {
@@ -83,8 +88,10 @@ const store = (set) => ({
       };
     }),
   signIn: (employee) => set((state) => ({ ...state, signedIn: employee })),
-  storeBicycleProps: (props) => set((state) => ({ ...state, bicycleProps: props })),
-  storeProduceProps: (props) => set((state) => ({ ...state, productProps: props })),
+  storeBicycleProps: (props) =>
+    set((state) => ({ ...state, bicycleProps: props })),
+  storeProduceProps: (props) =>
+    set((state) => ({ ...state, productProps: props })),
   storeTasks: (props) => set((state) => ({ ...state, tasks: props })),
 });
 

@@ -1,6 +1,6 @@
-import { Modal } from '@mantine/core';
-import React from 'react';
-import NewBicycleForm from '../forms/newBicycleForm/NewBicycleForm';
+import { Modal } from "@mantine/core";
+import React from "react";
+import { NewBicycleForm } from "../forms/NewBicycleForm";
 
 const CreateBicycle = ({ opened, setOpened }) => {
   return (
