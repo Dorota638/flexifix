@@ -5,7 +5,6 @@ import { Sale } from '../../models/Sale';
 
 export const queryMutations = {
   createSale: async (_: any, { input }: any) => {
-    console.log('input', input);
     try {
       const sale = await Sale.create({
         id: UUIDV4(),

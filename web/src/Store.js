@@ -4,13 +4,10 @@ import { devtools } from 'zustand/middleware';
 const store = (set) => ({
   selectedBicycle: {},
   selectedCustomer: {
-    id: '618b2f20-85eb-453f-96b2-ddd413b8dc7a',
-    fullName: 'Matus Laco',
-    email: 'laco.matus@gmail.com',
   },
   productCart: [],
   bicycleCart: [],
-  signedIn: { id: 2, name: 'Matus Laco', role: null },
+  signedIn: {},
   bicycleProps: {},
   productProps: {},
   emptyCart: () => set((state) => ({ ...state, productCart: [], bicycleCart: [] })),
