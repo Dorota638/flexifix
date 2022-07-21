@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
 import { Button, Group, Modal, NumberInput, Table } from '@mantine/core';
 import React, { useState } from 'react';
-import { BicycleCart } from '../BicycleCart';
+import { BicycleCart } from './BicycleCart';
 
 import { useStore } from '../../Store';
 const GET_BICYCLES = gql`
@@ -58,6 +58,7 @@ export const SelectBicycles = ({ hidden }) => {
         setOpened(true);
         setBicycle(bicycle);
       }}
+      className="odd:bg-gray-900"
     >
       <td>{bicycle.brand.name}</td>
       <td>{bicycle.type}</td>

@@ -3,7 +3,7 @@ import { Box, Button, Group, PasswordInput, Select } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import React from 'react';
-import { useStore } from '../Store';
+import { useStore } from '../../Store';
 
 export const SignInForm = ({ setOpen }) => {
   const form = useForm({

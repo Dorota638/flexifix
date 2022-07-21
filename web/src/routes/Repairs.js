@@ -1,13 +1,11 @@
-import React from 'react'
-import RepairCard from '../components/repairCard/RepairCard'
+import React from "react";
+import { RepairCard } from "../components/repairCard/RepairCard";
 
-function Repairs() {
-    return (
-        <div>
-            Repairs
-            <RepairCard />
-        </div>
-    )
-}
-
-export default Repairs
+export const Repairs = () => {
+  return (
+    <div>
+      Repairs
+      <RepairCard />
+    </div>
+  );
+};

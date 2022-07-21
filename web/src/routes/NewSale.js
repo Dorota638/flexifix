@@ -1,16 +1,18 @@
-import { useState } from 'react';
-import { Box, Button, Group, Stepper } from '@mantine/core';
-import SelectCustomer from '../components/common/SelectCustomer';
-import { SelectedCustomer } from '../components/common/SelectedCustomer';
-import CreateCustomer from '../components/common/CreateCustomer';
-import { SelectProducts } from '../components/sale/SelectProducts';
-import { SelectBicycles } from '../components/sale/SelectBicycles';
-import { SaleSummary } from '../components/sale/SaleSummary';
+import { useState } from "react";
+import { Box, Button, Group, Stepper } from "@mantine/core";
+import { SelectCustomer } from "../components/common/SelectCustomer";
+import { SelectedCustomer } from "../components/common/SelectedCustomer";
+import { CreateCustomer } from "../components/common/CreateCustomer";
+import { SelectProducts } from "../components/sale/SelectProducts";
+import { SelectBicycles } from "../components/sale/SelectBicycles";
+import { SaleSummary } from "../components/sale/SaleSummary";
 
 export const NewSale = () => {
   const [active, setActive] = useState(0);
-  const nextStep = () => setActive((current) => (current < 3 ? current + 1 : current));
-  const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
+  const nextStep = () =>
+    setActive((current) => (current < 3 ? current + 1 : current));
+  const prevStep = () =>
+    setActive((current) => (current > 0 ? current - 1 : current));
 
   const [bicycles, setBicycles] = useState(false);
   const [products, setProducts] = useState(true);

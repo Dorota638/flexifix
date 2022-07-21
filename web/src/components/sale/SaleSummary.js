@@ -1,10 +1,10 @@
-import { gql, useMutation } from '@apollo/client';
-import { Box, Button, Select, Table } from '@mantine/core';
-import { useForm } from '@mantine/form';
-import { showNotification } from '@mantine/notifications';
-import React from 'react';
-import { useState } from 'react';
-import { useStore } from '../../Store';
+import { gql, useMutation } from "@apollo/client";
+import { Box, Button, Select, Table } from "@mantine/core";
+import { useForm } from "@mantine/form";
+import { showNotification } from "@mantine/notifications";
+import React from "react";
+import { useState } from "react";
+import { useStore } from "../../Store";
 
 export const SaleSummary = () => {
   const sale = useStore((store) => ({
@@ -18,7 +18,11 @@ export const SaleSummary = () => {
     },
   });
   const POST_NEW_SALE = gql`
-    mutation ($fkPaymentMethod: Int!, $fkCustomerId: String!, $fkSalespersonId: Int!) {
+    mutation (
+      $fkPaymentMethod: Int!
+      $fkCustomerId: String!
+      $fkSalespersonId: Int!
+    ) {
       createSale(
         input: {
           fkPaymentMethod: $fkPaymentMethod
@@ -31,9 +35,19 @@ export const SaleSummary = () => {
     }
   `;
   const ADD_PRODUCT_INVOICE_LINES = gql`
-    mutation ($fkSaleId: String, $fkProductId: String!, $amount: Int!, $price: Float!) {
+    mutation (
+      $fkSaleId: String
+      $fkProductId: String!
+      $amount: Int!
+      $price: Float!
+    ) {
       createProductInvoiceLine(
-        input: { fkSaleId: $fkSaleId, fkProductId: $fkProductId, amount: $amount, price: $price }
+        input: {
+          fkSaleId: $fkSaleId
+          fkProductId: $fkProductId
+          amount: $amount
+          price: $price
+        }
       ) {
         id
         product {
@@ -61,7 +75,7 @@ export const SaleSummary = () => {
     }
   `;
 
-  const [invoiceLines, setInvoiceLines] = useState([])
+  const [invoiceLines, setInvoiceLines] = useState([]);
 
   const emptyCart = useStore((state) => state.emptyCart);
   const salesPerson = useStore((state) => state.signedIn);
@@ -72,7 +86,7 @@ export const SaleSummary = () => {
   const [addBicycleInvoiceLines] = useMutation(ADD_BICYCLE_INVOICE_LINES);
 
   const productRows = sale.productCart.map((item) => (
-    <tr key={item.product.id}>
+    <tr key={item.product.id} className="odd:bg-gray-900">
       <td>{item.product.description}</td>
       <td>{item.product.productBrand.name}</td>
       <td>{item.product.productCategory.name}</td>
@@ -82,7 +96,7 @@ export const SaleSummary = () => {
   ));
   const bicycleRows = sale.bicycleCart.map((bicycle) => {
     return (
-      <tr key={bicycle.id}>
+      <tr key={bicycle.id} className="odd:bg-gray-900">
         <td>{bicycle.brand.name}</td>
         <td>{bicycle.type}</td>
         <td>{bicycle.gearsystem.type}</td>
@@ -94,7 +108,8 @@ export const SaleSummary = () => {
   const initVal = 0;
   const totalPrice = sale.productCart.reduce(
     (prev, curr) => prev + curr.amount * curr.product.sellPrice,
-    initVal + sale.bicycleCart.reduce((prev, curr) => prev + curr.price, initVal)
+    initVal +
+      sale.bicycleCart.reduce((prev, curr) => prev + curr.price, initVal)
   );
 
   const postSale = (values) => {
@@ -107,13 +122,13 @@ export const SaleSummary = () => {
     })
       .then(({ data }) => {
         showNotification({
-          title: 'Success',
-          message: 'Sale Created',
+          title: "Success",
+          message: "Sale Created",
           autoClose: 3000,
-          color: 'Green',
+          color: "Green",
         });
         sale?.productCart?.map(({ amount, product }) => {
-          setInvoiceLines({...invoiceLines, item:{amount, product}})
+          setInvoiceLines({ ...invoiceLines, item: { amount, product } });
           addProductInvoiceLines({
             variables: {
               fkSaleId: data.createSale.id,
@@ -123,16 +138,16 @@ export const SaleSummary = () => {
             },
           }).then(() => {
             showNotification({
-              title: 'Success',
-              message: 'Product added to sale',
+              title: "Success",
+              message: "Product added to sale",
               autoClose: 3000,
-              color: 'Green',
+              color: "Green",
             });
           });
         });
         if (sale?.bicycleCart.length) {
           sale?.bicycleCart
-            .map((bicycle) => {
+            ?.map((bicycle) => {
               addBicycleInvoiceLines({
                 variables: {
                   fkSaleId: data.createSale.id,
@@ -143,24 +158,23 @@ export const SaleSummary = () => {
             })
             .then(() => {
               showNotification({
-                title: 'Success',
-                message: 'Bicycle added to sale',
+                title: "Success",
+                message: "Bicycle added to sale",
                 autoClose: 3000,
-                color: 'Green',
+                color: "Green",
               });
               emptyCart();
             });
         }
-      }).then(()=>{
-        
       })
+      .then(() => {})
       .catch((err) => {
-        console.log('error ', err);
+        console.log("error ", err);
         showNotification({
-          title: 'Ooops...',
+          title: "Ooops...",
           message: err.message,
           autoClose: 3000,
-          color: 'red',
+          color: "red",
         });
       });
   };
@@ -169,7 +183,7 @@ export const SaleSummary = () => {
     <>
       <Box>
         <h1>Customer:</h1>
-        <p>{sale.customer.fullName || 'No customer selected'}</p>
+        <p>{sale.customer.fullName || "No customer selected"}</p>
       </Box>
       <Box className="mt-5">
         <Table>
@@ -208,12 +222,12 @@ export const SaleSummary = () => {
             label="Paymnet method"
             required
             sx={{ maxWidth: 200 }}
-            {...form.getInputProps('fkPaymentMethod')}
+            {...form.getInputProps("fkPaymentMethod")}
             data={[
-              { value: 1, label: 'Cash' },
-              { value: 2, label: 'MobilePay' },
-              { value: 3, label: 'Card' },
-              { value: 4, label: 'Bank Transfer' },
+              { value: 1, label: "Cash" },
+              { value: 2, label: "MobilePay" },
+              { value: 3, label: "Card" },
+              { value: 4, label: "Bank Transfer" },
             ]}
           />
           <Button className="mt-5" type="submit">

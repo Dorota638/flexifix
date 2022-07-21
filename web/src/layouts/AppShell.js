@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   AppShell,
   Navbar,
@@ -7,23 +7,24 @@ import {
   Burger,
   useMantineTheme,
   Footer,
-} from '@mantine/core';
-import { NavbarLinks } from '../components/NavbarLinks';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+} from "@mantine/core";
+import { NavbarLinks } from "../components/NavbarLinks";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { NewRepair } from '../routes/NewRepair';
-import { QueryData } from '../components/QueryData';
-import { NewSale } from '../routes/NewSale';
-import { NewBicycle } from '../routes/NewBicycle';
-import { NewCustomer } from '../routes/NewCustomer';
-import Analytics from '../routes/Analytics';
-import Inventory from '../routes/Inventory';
-import Home from '../routes/Home';
-import Repairs from '../routes/Repairs';
-import Bicycles from '../routes/Bicycles';
-import { SignedIn } from '../components/SignedIn';
+import { NewRepair } from "../routes/NewRepair";
+import { QueryData } from "../components/QueryData";
+import { Customers } from "../routes/Customers";
+import { NewSale } from "../routes/NewSale";
+import { NewBicycle } from "../routes/NewBicycle";
+import { NewCustomer } from "../routes/NewCustomer";
+import { Analytics } from "../routes/Analytics";
+import { Inventory } from "../routes/Inventory";
+import { Home } from "../routes/Home";
+import { Repairs } from "../routes/Repairs";
+import { Bicycles } from "../routes/Bicycles";
+import { SignedIn } from "../components/SignedIn";
 
-export default function Shell() {
+export const Shell = () => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   return (
@@ -31,7 +32,10 @@ export default function Shell() {
       <AppShell
         styles={{
           main: {
-            background: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+            background:
+              theme.colorScheme === "dark"
+                ? theme.colors.dark[8]
+                : theme.colors.gray[0],
           },
         }}
         navbarOffsetBreakpoint="sm"
@@ -40,7 +44,7 @@ export default function Shell() {
         header={
           <Header height={65}>
             <div className="flex items-center bg-primary-900 h-full justify-between">
-              <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
+              <MediaQuery largerThan="sm" styles={{ display: "none" }}>
                 <Burger
                   opened={opened}
                   onClick={() => setOpened((o) => !o)}
@@ -58,7 +62,12 @@ export default function Shell() {
           </Header>
         }
         navbar={
-          <Navbar p="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 200, lg: 300 }}>
+          <Navbar
+            p="md"
+            hiddenBreakpoint="sm"
+            hidden={!opened}
+            width={{ sm: 200, lg: 300 }}
+          >
             <NavbarLinks />
           </Navbar>
         }
@@ -74,6 +83,7 @@ export default function Shell() {
           <Route path="/" element={<Home />} />
           <Route path="/newRepair" element={<NewRepair />} />
           {/* <Route path="/newRental" element={<NewRentalForm />} /> */}
+          <Route path="/customers" element={<Customers />} />
           <Route path="/newSale" element={<NewSale />} />
           <Route path="/newBicycle" element={<NewBicycle />} />
           <Route path="/analytics" element={<Analytics />} />
@@ -85,4 +95,4 @@ export default function Shell() {
       </AppShell>
     </Router>
   );
-}
+};

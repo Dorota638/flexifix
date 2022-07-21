@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import { useForm } from '@mantine/form';
-import { useStore } from '../../Store';
-import ListBicycles from './ListBicycles.js';
+import React, { useState } from "react";
+import { useForm } from "@mantine/form";
+import { useStore } from "../../Store";
+import { ListBicycles } from "./ListBicycles.js";
 
 export const SelectBicycle = () => {
   const form = useForm({
     initialValues: {
-      bicycle: '',
+      bicycle: "",
     },
   });
 

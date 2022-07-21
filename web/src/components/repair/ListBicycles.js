@@ -17,7 +17,7 @@ const GET_BICYCLES = gql`
   }
 `;
 
-const ListBicycles = ({ id }) => {
+export const ListBicycles = ({ id }) => {
   const { data, loading, error } = useQuery(GET_BICYCLES, {
     variables: { customerId: id },
   });
@@ -47,4 +47,3 @@ const ListBicycles = ({ id }) => {
   );
 };
 
-export default ListBicycles;

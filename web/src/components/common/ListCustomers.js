@@ -13,7 +13,7 @@ const GET_CUSTOMER = gql`
   }
 `;
 
-const ListCustomers = ({ name }) => {
+export const ListCustomers = ({ name }) => {
   const { data, loading, error } = useQuery(GET_CUSTOMER, {
     variables: { name },
   });
@@ -43,5 +43,3 @@ const ListCustomers = ({ name }) => {
     </Grid>
   );
 };
-
-export default ListCustomers;

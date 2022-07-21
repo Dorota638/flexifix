@@ -1,6 +1,6 @@
 import React from 'react';
 import { NumberInput, Table } from '@mantine/core';
-import { useStore } from '../Store';
+import { useStore } from '../../Store';
 
 export const BicycleCart = () => {
   const removeFromCart = useStore((state) => state.removeBicycleFromCart);
@@ -13,6 +13,7 @@ export const BicycleCart = () => {
       onClick={() => {
         removeFromCart(bicycle);
       }}
+      className="odd:bg-gray-900"
     >
       <td>{bicycle.brand.name}</td>
       <td>{bicycle.type}</td>

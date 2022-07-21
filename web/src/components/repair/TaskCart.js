@@ -1,8 +1,8 @@
-import { Table } from '@mantine/core';
-import React from 'react'
-import { useStore } from '../../Store';
+import { Table } from "@mantine/core";
+import React from "react";
+import { useStore } from "../../Store";
 
-function TaskCart() {
+export const TaskCart = () => {
   const removeFromCart = useStore((state) => state.removeFromCart);
   const cart = useStore(({ cart }) => cart);
 
@@ -12,12 +12,13 @@ function TaskCart() {
       onClick={() => {
         removeFromCart(item.product);
       }}
+      className="odd:bg-gray-900"
     >
       <td>{item?.product?.name}</td>
     </tr>
   ));
   return (
-    <Table className='mt-10'>
+    <Table className="mt-10">
       <thead>
         <tr>
           <th>selected tasks</th>
@@ -25,7 +26,5 @@ function TaskCart() {
       </thead>
       <tbody>{selectedtasks}</tbody>
     </Table>
-  )
-}
-
-export default TaskCart
+  );
+};

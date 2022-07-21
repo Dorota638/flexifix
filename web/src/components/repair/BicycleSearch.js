@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { gql, useQuery } from '@apollo/client';
-import { Group, Card, Title } from '@mantine/core';
+import React, { useEffect } from "react";
+import { gql, useQuery } from "@apollo/client";
+import { Group, Card, Title } from "@mantine/core";
 
 const GET_CUSTOMER = gql`
   query getCustomer($name: String!) {
@@ -11,7 +11,7 @@ const GET_CUSTOMER = gql`
   }
 `;
 
-const CustomerSearch = ({ name }) => {
+export const CustomerSearch = ({ name }) => {
   const { data, loading, error } = useQuery(GET_CUSTOMER, {
     variables: { name },
   });
@@ -29,5 +29,3 @@ const CustomerSearch = ({ name }) => {
     </Group>
   );
 };
-
-export default CustomerSearch;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from '@mantine/core';
-import { useStore } from '../Store';
+import { useStore } from '../../Store';
 
 export const ProductCart = () => {
   const removeFromCart = useStore((state) => state.removeProductFromCart);
@@ -13,6 +13,7 @@ export const ProductCart = () => {
       onClick={() => {
         removeFromCart(item.product);
       }}
+      className="odd:bg-gray-900"
     >
       <td>{item?.product?.description}</td>
       <td>{item?.product?.productBrand?.name}</td>
