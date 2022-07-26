@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { Button, Modal, Table } from "@mantine/core";
 import React, { useState } from "react";
-import { EditProduct } from "../components/common/EditProduct";
+import { EditProductForm } from "../components/forms/EditProductForm";
 
 const GET_ALL_PRODUCTS = gql`
   query {
@@ -67,7 +67,7 @@ export const Inventory = () => {
   return (
     <div>
       <Modal opened={opened} onClose={() => setOpened(false)}>
-        <EditProduct product={selectedProduct} />
+        <EditProductForm product={selectedProduct} setOpened={setOpened}/>
       </Modal>
 
       <Table>

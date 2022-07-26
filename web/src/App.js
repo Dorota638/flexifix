@@ -3,6 +3,7 @@ import { Shell } from "./layouts/AppShell";
 import { MantineProvider, Paper } from "@mantine/core";
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { NotificationsProvider } from "@mantine/notifications";
+import { QueryData } from "./components/QueryData";
 
 const theme = {
   colorScheme: "dark",
@@ -14,7 +15,7 @@ const theme = {
 
 const client = new ApolloClient({
   // uri: 'http://localhost:3000/graphql',
-  uri: "https://2c07-86-52-46-61.eu.ngrok.io/graphql",
+  uri: "https://eeed-86-52-46-61.eu.ngrok.io/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -25,6 +26,7 @@ export const App = () => {
         <NotificationsProvider position="top-right">
           <Paper>
             <ApolloProvider client={client}>
+              <QueryData />
               <Shell />
             </ApolloProvider>
           </Paper>

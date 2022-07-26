@@ -10,9 +10,7 @@ import {
 } from "@mantine/core";
 import { NavbarLinks } from "../components/NavbarLinks";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import { NewRepair } from "../routes/NewRepair";
-import { QueryData } from "../components/QueryData";
 import { Customers } from "../routes/Customers";
 import { NewSale } from "../routes/NewSale";
 import { NewBicycle } from "../routes/NewBicycle";
@@ -77,7 +75,6 @@ export const Shell = () => {
           </Footer>
         }
       >
-        <QueryData />
 
         <Routes>
           <Route path="/" element={<Home />} />

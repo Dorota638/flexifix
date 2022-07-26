@@ -7,12 +7,19 @@ const store = (set) => ({
   selectedCustomer: undefined,
   productCart: [],
   bicycleCart: [],
+  taskCart: [],
   bicycleProps: {},
   productProps: {},
   tasks: {},
-  
+  taskCategories: {},
+
   emptyCart: () =>
-    set((state) => ({ ...state, productCart: [], bicycleCart: [] })),
+    set((state) => ({
+      ...state,
+      productCart: [],
+      bicycleCart: [],
+      taskCart: [],
+    })),
   selectCustomer: (customer) =>
     set((state) => ({ ...state, selectedCustomer: customer })),
   selectBicycle: (bicycle) =>
@@ -87,12 +94,32 @@ const store = (set) => ({
         }),
       };
     }),
+  addTaskToCart: (task) => {
+    return set(({ taskCart }) => {
+      const taskIndex = taskCart.findIndex(
+        (cartTask) => cartTask.id === task.id
+      );
+      if (taskIndex === -1) {
+        return { taskCart: [...taskCart, task] };
+      }
+    });
+  },
+  removeTaskFromCart: ({ id }) =>
+    set(({ taskCart }) => {
+      return {
+        taskCart: taskCart.filter((task) => {
+          return task.id !== id;
+        }),
+      };
+    }),
   signIn: (employee) => set((state) => ({ ...state, signedIn: employee })),
   storeBicycleProps: (props) =>
     set((state) => ({ ...state, bicycleProps: props })),
   storeProduceProps: (props) =>
     set((state) => ({ ...state, productProps: props })),
   storeTasks: (props) => set((state) => ({ ...state, tasks: props })),
+  storeTaskCategories: (props) =>
+    set((state) => ({ ...state, taskCategories: props })),
 });
 
 export const useStore = create(devtools(store));
