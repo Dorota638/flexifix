@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 const sequelize = require('../database/connection');
 
-module.exports = sequelize.define('PaymentMethod', {
+export const PaymentMethod = sequelize.define('PaymentMethod', {
   id: {
     type: Sequelize.SMALLINT(),
     allowNull: false,

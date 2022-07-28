@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 const sequelize = require('../database/connection');
 
-module.exports = sequelize.define('Account', {
+export const Account = sequelize.define('Account', {
   id: {
     type: Sequelize.SMALLINT(),
     allowNull: false,

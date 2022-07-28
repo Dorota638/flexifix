@@ -1,7 +1,6 @@
 import { errHandler } from '../../helper';
-const Rental = require('../../models/Rental');
-const PaymentMethod = require('../../models/PaymentMethod');
-const Account = require('../../models/Account');
+const { Rental } = require('../../models/Rental');
+const { PaymentMethod } = require('../../models/PaymentMethod');
 const { Customer } = require('../../models/Customer');
 const { Employee } = require('../../models/Employee');
 const { RentalInvoiceLine } = require('../../models/InvoiceLines');
@@ -28,15 +27,13 @@ export const queryResolvers = {
 export const resolvers = {
   paymentMethod: async (parent: any) => {
     try {
-      const method = await PaymentMethod.findByPk(parent.fkPaymentMethod).catch(
-        errHandler
-      );
+      const method = await PaymentMethod.findByPk(parent.fkPaymentMethod).catch(errHandler);
       return method;
     } catch (err) {
       throw new Error(err);
     }
   },
-  
+
   rentalInvoiceLines: async (parent: any) => {
     try {
       const rentalInvoiceLines = await RentalInvoiceLine.findAll({
@@ -51,9 +48,7 @@ export const resolvers = {
   },
   customer: async (parent: any) => {
     try {
-      const customer = await Customer.findByPk(parent.fkCustomerId).catch(
-        errHandler
-      );
+      const customer = await Customer.findByPk(parent.fkCustomerId).catch(errHandler);
       return customer;
     } catch (err) {
       throw new Error(err);
@@ -61,9 +56,7 @@ export const resolvers = {
   },
   salesPerson: async (parent: any) => {
     try {
-      const salesPerson = await Employee.findByPk(parent.fkSalesPersonId).catch(
-        errHandler
-      );
+      const salesPerson = await Employee.findByPk(parent.fkSalesPersonId).catch(errHandler);
       return salesPerson;
     } catch (err) {
       throw new Error(err);

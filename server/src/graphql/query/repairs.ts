@@ -1,6 +1,6 @@
 import { errHandler } from '../../helper';
 const { Repair, RepairStatus } = require('../../models/Repair');
-const PaymentMethod = require('../../models/PaymentMethod');
+const { PaymentMethod } = require('../../models/PaymentMethod');
 const { Bicycle } = require('../../models/Bicycle');
 const { Customer } = require('../../models/Customer');
 const { Employee } = require('../../models/Employee');
@@ -37,9 +37,7 @@ export const resolvers = {
 
   paymentMethod: async (parent: any) => {
     try {
-      const method = await PaymentMethod.findByPk(parent.fkPaymentMethod).catch(
-        errHandler
-      );
+      const method = await PaymentMethod.findByPk(parent.fkPaymentMethod).catch(errHandler);
       return method;
     } catch (err) {
       throw new Error(err);
@@ -48,9 +46,7 @@ export const resolvers = {
 
   bicycle: async (parent: any) => {
     try {
-      const bicycle = await Bicycle.findByPk(parent.fkBicycleId).catch(
-        errHandler
-      );
+      const bicycle = await Bicycle.findByPk(parent.fkBicycleId).catch(errHandler);
       return bicycle;
     } catch (err) {
       throw new Error(err);
@@ -58,9 +54,7 @@ export const resolvers = {
   },
   customer: async (parent: any) => {
     try {
-      const customer = await Customer.findByPk(parent.fkCustomerId).catch(
-        errHandler
-      );
+      const customer = await Customer.findByPk(parent.fkCustomerId).catch(errHandler);
       return customer;
     } catch (err) {
       throw new Error(err);
@@ -68,9 +62,7 @@ export const resolvers = {
   },
   status: async (parent: any) => {
     try {
-      const status = await RepairStatus.findByPk(parent.status).catch(
-        errHandler
-      );
+      const status = await RepairStatus.findByPk(parent.status).catch(errHandler);
       return status;
     } catch (err) {
       throw new Error(err);
@@ -78,9 +70,7 @@ export const resolvers = {
   },
   takenBy: async (parent: any) => {
     try {
-      const takenBy = await Employee.findByPk(parent.fkTakenBy).catch(
-        errHandler
-      );
+      const takenBy = await Employee.findByPk(parent.fkTakenBy).catch(errHandler);
       return takenBy;
     } catch (err) {
       throw new Error(err);
@@ -88,9 +78,7 @@ export const resolvers = {
   },
   technician: async (parent: any) => {
     try {
-      const technician = await Employee.findByPk(parent.fkTechnicianId).catch(
-        errHandler
-      );
+      const technician = await Employee.findByPk(parent.fkTechnicianId).catch(errHandler);
       return technician;
     } catch (err) {
       throw new Error(err);
@@ -98,9 +86,7 @@ export const resolvers = {
   },
   spareBicycle: async (parent: any) => {
     try {
-      const spareBicycle = await Bicycle.findByPk(parent.fkSpareBicycle).catch(
-        errHandler
-      );
+      const spareBicycle = await Bicycle.findByPk(parent.fkSpareBicycle).catch(errHandler);
       return spareBicycle;
     } catch (err) {
       throw new Error(err);

@@ -90,6 +90,7 @@ export const input = `
     sellPrice: Float
     expectedDurability: Int
   }
+
   input accountInput {
     id: Int!
     amount: Int!
