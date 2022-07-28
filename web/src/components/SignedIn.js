@@ -9,7 +9,6 @@ export const SignedIn = () => {
 
   const signIn = () => {
     if (signedIn.name) {
-      console.log(signedIn.name);
     } else {
       setOpen(true);
     }

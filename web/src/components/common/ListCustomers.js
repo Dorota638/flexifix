@@ -14,7 +14,7 @@ const GET_CUSTOMER = gql`
 `;
 
 export const ListCustomers = ({ name }) => {
-  const { data, loading, error } = useQuery(GET_CUSTOMER, {
+  const { data } = useQuery(GET_CUSTOMER, {
     variables: { name },
   });
 

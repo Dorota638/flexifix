@@ -1,5 +1,5 @@
 import React from 'react';
-import { NumberInput, Table } from '@mantine/core';
+import { Table } from '@mantine/core';
 import { useStore } from '../../Store';
 
 export const BicycleCart = () => {

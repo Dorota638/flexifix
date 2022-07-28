@@ -42,16 +42,52 @@ const POST_NEW_REPAIR = gql`
   }
 `;
 
+const POST_TASKS = gql`
+  mutation (
+    $fkTask: Int!
+    $fkRepairId: String!
+    $amount: Int!
+    $time: Float!
+    $price: Float!
+  ) {
+    createTaskInvoiceLine(
+      input: {
+        fkTask: $fkTask
+        fkRepairId: $fkRepairId
+        amount: $amount
+        time: $time
+        price: $price
+      }
+    ) {
+      id
+      task {
+        id
+        name
+        taskCategory {
+          name
+          id
+        }
+        duration
+      }
+      fkRepairId
+      amount
+      price
+      time
+    }
+  }
+`;
+
 export const RepairSummary = () => {
   const customer = useStore((state) => state.selectedCustomer);
   const bicycle = useStore((state) => state.selectedBicycle);
   const signedIn = useStore((state) => state.signedIn);
   const [createRepair] = useMutation(POST_NEW_REPAIR);
+  const [createTaskInvoiceLine] = useMutation(POST_TASKS);
 
   const repair = useStore((store) => ({
     customer: store.selectedCustomer,
     bicycle: store.selectedBicycle,
-    tasks: store.cart,
+    tasks: store.taskCart,
   }));
   const form = useForm({
     initialValues: {
@@ -60,9 +96,9 @@ export const RepairSummary = () => {
       status: 1,
     },
   });
-  const selectedtasks = repair.tasks?.map((item) => (
-    <tr key={item.product.id} className="odd:bg-gray-900">
-      <td>{item?.product?.name}</td>
+  const selectedtasks = repair.tasks?.map((task) => (
+    <tr key={task.id} className="odd:bg-gray-900">
+      <td>{task?.name}</td>
     </tr>
   ));
   const postRepair = (values) => {
@@ -75,13 +111,36 @@ export const RepairSummary = () => {
         status: values.status,
       },
     })
-      .then((data) => {
-        console.log(data);
+      .then(({ data }) => {
+        showNotification({
+          title: "Success",
+          message: "Repair Created",
+          autoClose: 3000,
+          color: "Green",
+        });
+        repair.tasks?.map((task) => {
+          createTaskInvoiceLine({
+            variables: {
+              fkRepairId: data.createRepair.id,
+              fkTask: task.id,
+              amount: 1,
+              time: task.duration,
+              price: 123,
+            },
+          }).then(() => {
+            showNotification({
+              title: "Success",
+              message: "Task added to repair",
+              autoClose: 3000,
+              color: "Green",
+            });
+          });
+        });
       })
       .catch((err) => {
         console.log("error ", err);
         showNotification({
-          title: "Ooops...",
+          title: "Ooopssss...",
           message: err.message,
           autoClose: 3000,
           color: "red",

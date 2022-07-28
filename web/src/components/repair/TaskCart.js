@@ -2,9 +2,8 @@ import { Table } from "@mantine/core";
 import React from "react";
 import { useStore } from "../../Store";
 
-export const TaskCart = () => {
+export const TaskCart = ({taskCart}) => {
   const removeTaskFromCart = useStore((state) => state.removeTaskFromCart);
-  const taskCart = useStore(({ taskCart }) => taskCart);
 
   const selectedtasks = taskCart?.map((item) => (
     <tr

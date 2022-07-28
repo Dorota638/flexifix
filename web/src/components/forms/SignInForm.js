@@ -39,7 +39,7 @@ export const SignInForm = ({ setOpen }) => {
   `;
 
   const [logIn] = useMutation(LOGIN);
-  const { data, loading } = useQuery(GET_EMPLOYEES);
+  const { data } = useQuery(GET_EMPLOYEES);
   const setEmployee = useStore((state) => state.signIn);
   const employees = data?.employees ?? [];
   const employeesNames = data?.employees.map((employee) => employee.name) ?? [];

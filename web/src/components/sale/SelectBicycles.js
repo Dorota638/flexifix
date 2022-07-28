@@ -44,7 +44,7 @@ const GET_BICYCLES = gql`
 `;
 
 export const SelectBicycles = ({ hidden }) => {
-  const { data, loading, error } = useQuery(GET_BICYCLES, {
+  const { data } = useQuery(GET_BICYCLES, {
     variables: { customerId: 'c6389cef-b019-4b77-b0f7-44f68aebf155' },
   });
   const [bicyclePrice, setBicyclePrice] = useState(0);

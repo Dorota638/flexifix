@@ -3,7 +3,7 @@ import { devtools } from "zustand/middleware";
 
 const store = (set) => ({
   signedIn: { id: 2, name: "Matus Laco" },
-  selectedBicycle: {},
+  selectedBicycle: undefined,
   selectedCustomer: undefined,
   productCart: [],
   bicycleCart: [],
@@ -55,7 +55,7 @@ const store = (set) => ({
         (cartItem) => cartItem.product.id === id
       );
       if (productIndex === -1) {
-        console.log(new Error("Something went wrong: index not found in cart"));
+        console.log(new Error("Index not found in cart"));
       } else {
         const productToRemove = productCart[productIndex];
         if (productToRemove.amount === 1) {

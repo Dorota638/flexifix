@@ -6,7 +6,6 @@ export const SelectTasks = () => {
   const addTaskToCart = useStore(({ addTaskToCart }) => addTaskToCart);
   const tasksList = useStore(({ tasks }) => tasks);
   const [categoryId, setCategoryId] = useState("");
-  console.log(tasksList);
 
   const filteredTasks = (taskId) => {
     if (taskId) {

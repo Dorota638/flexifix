@@ -7,7 +7,6 @@ import {
   Group,
   useMantineTheme,
 } from "@mantine/core";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export const RepairCard = () => {

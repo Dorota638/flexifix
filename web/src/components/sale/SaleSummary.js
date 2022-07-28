@@ -82,8 +82,8 @@ export const SaleSummary = () => {
   const customer = useStore((state) => state.selectedCustomer);
 
   const [createSale] = useMutation(POST_NEW_SALE);
-  const [addProductInvoiceLines] = useMutation(ADD_PRODUCT_INVOICE_LINES);
-  const [addBicycleInvoiceLines] = useMutation(ADD_BICYCLE_INVOICE_LINES);
+  const [createProductInvoiceLines] = useMutation(ADD_PRODUCT_INVOICE_LINES);
+  const [createBicycleInvoiceLines] = useMutation(ADD_BICYCLE_INVOICE_LINES);
 
   const productRows = sale.productCart.map((item) => (
     <tr key={item.product.id} className="odd:bg-gray-900">
@@ -128,8 +128,8 @@ export const SaleSummary = () => {
           color: "Green",
         });
         sale?.productCart?.map(({ amount, product }) => {
-          setInvoiceLines({ ...invoiceLines, item: { amount, product } });
-          addProductInvoiceLines({
+          // setInvoiceLines({ ...invoiceLines, item: { amount, product } }); treba toto?????
+          createProductInvoiceLines({
             variables: {
               fkSaleId: data.createSale.id,
               fkProductId: product.id,
@@ -148,7 +148,7 @@ export const SaleSummary = () => {
         if (sale?.bicycleCart.length) {
           sale?.bicycleCart
             ?.map((bicycle) => {
-              addBicycleInvoiceLines({
+              createBicycleInvoiceLines({
                 variables: {
                   fkSaleId: data.createSale.id,
                   fkBicycleId: bicycle.id,
@@ -167,7 +167,6 @@ export const SaleSummary = () => {
             });
         }
       })
-      .then(() => {})
       .catch((err) => {
         console.log("error ", err);
         showNotification({
