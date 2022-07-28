@@ -1,7 +1,7 @@
 import { gql, useQuery } from '@apollo/client';
-import { Button, Table } from '@mantine/core';
+import {  Table } from '@mantine/core';
 import React from 'react';
-import { ProductCart } from '../ProductCart';
+import { ProductCart } from './ProductCart';
 import { useStore } from '../../Store';
 const GET_PRODUCTS = gql`
   query {
@@ -31,7 +31,7 @@ const GET_PRODUCTS = gql`
 `;
 
 export const SelectProducts = ({ hidden }) => {
-  const { data, loading, error } = useQuery(GET_PRODUCTS);
+  const { data } = useQuery(GET_PRODUCTS);
   const addToCart = useStore((state) => state.addProductToCart);
   const productRows = data?.products?.map((product) => (
     <tr
@@ -39,6 +39,7 @@ export const SelectProducts = ({ hidden }) => {
       onClick={() => {
         addToCart(product);
       }}
+      className="odd:bg-gray-900"
     >
       <td>{product.description}</td>
       <td>{product.productBrand.name}</td>

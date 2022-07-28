@@ -1,7 +1,7 @@
-import { gql, useMutation, useQuery } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { Button, Group, Loader, Select } from '@mantine/core';
 import { useForm } from '@mantine/hooks';
-import { useStore } from '../../../Store';
+import { useStore } from '../../Store';
 import { showNotification } from '@mantine/notifications';
 
 const NEW_BICYCLE = gql`
@@ -36,7 +36,7 @@ mutation CreateBicycle($color: Int!
     }
 }`;
 
-export default function NewBicycleForm({ setOpened }) {
+export const NewBicycleForm = ({ setOpened }) => {
     const form = useForm({
         initialValues: {},
     });

@@ -3,7 +3,7 @@ import { Box, Button, Group, PasswordInput, Select } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import React from 'react';
-import { useStore } from '../Store';
+import { useStore } from '../../Store';
 
 export const SignInForm = ({ setOpen }) => {
   const form = useForm({
@@ -39,7 +39,7 @@ export const SignInForm = ({ setOpen }) => {
   `;
 
   const [logIn] = useMutation(LOGIN);
-  const { data, loading } = useQuery(GET_EMPLOYEES);
+  const { data } = useQuery(GET_EMPLOYEES);
   const setEmployee = useStore((state) => state.signIn);
   const employees = data?.employees ?? [];
   const employeesNames = data?.employees.map((employee) => employee.name) ?? [];

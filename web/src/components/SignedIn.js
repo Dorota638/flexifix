@@ -1,7 +1,7 @@
 import { Button, Modal } from '@mantine/core';
 import React, { useState } from 'react';
 import { useStore } from '../Store';
-import { SignInForm } from './SignInForm';
+import { SignInForm } from './forms/SignInForm';
 
 export const SignedIn = () => {
   const signedIn = useStore(({ signedIn }) => signedIn);
@@ -9,7 +9,6 @@ export const SignedIn = () => {
 
   const signIn = () => {
     if (signedIn.name) {
-      console.log(signedIn.name);
     } else {
       setOpen(true);
     }

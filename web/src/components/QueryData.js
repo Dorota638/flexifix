@@ -1,6 +1,6 @@
-import { gql, useQuery } from '@apollo/client';
-import React from 'react';
-import { useStore } from '../Store';
+import { gql, useQuery } from "@apollo/client";
+import React from "react";
+import { useStore } from "../Store";
 
 const GET_BICYCLE_PROPS = gql`
   query {
@@ -51,19 +51,19 @@ const GET_PRODUCT_PROPS = gql`
     }
   }
 `;
-
 const GET_TASKS = gql`
-query{
-  tasks {
-    taskCategory {
-      name
+  query {
+    tasks {
+      taskCategory {
+        name
+        id
+      }
       id
+      name
+      duration
     }
-    id
-    name
-    duration
   }
-}`
+`;
 
 export const QueryData = () => {
   const { data: bicycleProps } = useQuery(GET_BICYCLE_PROPS);
