@@ -76,6 +76,19 @@ export const input = `
     fkSpareBicycleId: String
     comment: String
   }
+  input editRepairInput {
+    id: ID
+    fkPaymentMethod: Int
+    status: Int
+    fkTechnicianId: Int
+    dateStarted: Int
+    dateFinished: Int
+    dateReturned: Int
+    fkSpareBicycleId: String
+    comment: String
+  }
+
+  
   input productInput {
     id: ID
     fkSupplier: Int

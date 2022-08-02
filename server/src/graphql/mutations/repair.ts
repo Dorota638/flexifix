@@ -16,4 +16,18 @@ export const queryMutations = {
       throw new Error(err);
     }
   },
+  editRepair: async (_: any, { input }: any) => {
+    try {
+      const repair = await Repair.findByPk(input.id).catch(errHandler);
+      repair.set({
+        status: 3,
+        fkTechnicianId: input.fkTechnicianId,
+        dateStarted: new Date()
+      });
+      await repair.save();
+      return repair
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 };

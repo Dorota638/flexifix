@@ -1,6 +1,7 @@
 export const mutation = `
   type Mutation {
     createRepair(input: createRepairInput): Repair!
+    editRepair(input: editRepairInput): Repair!
     createCustomer(input: createCustomerInput): Customer!
     editCustomer(input: editCustomerInput): Customer!
     createBicycle(input: createBicycleInput): Bicycle!

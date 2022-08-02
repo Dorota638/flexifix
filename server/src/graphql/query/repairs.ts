@@ -22,6 +22,42 @@ export const queryResolvers = {
       throw new Error(err);
     }
   },
+  repairsToDo: async () => {
+    try {
+      const repairs = await Repair.findAll({
+        where: {
+          status: 1,
+        },
+      }).catch(errHandler);
+      return repairs;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+  repairsInProgress: async () => {
+    try {
+      const repairs = await Repair.findAll({
+        where: {
+          status: 3,
+        },
+      }).catch(errHandler);
+      return repairs;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+  repairsDone: async () => {
+    try {
+      const repairs = await Repair.findAll({
+        where: {
+          status: 4,
+        },
+      }).catch(errHandler);
+      return repairs;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 };
 export const resolvers = {
   async taskInvoiceLines(parent: any) {
