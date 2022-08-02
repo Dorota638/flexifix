@@ -13,7 +13,7 @@ import { useStore } from "../Store";
 export const NewRepair = () => {
   const [active, setActive] = useState(0);
   const nextStep = () =>
-    setActive((current) => (current < 3 ? current + 1 : current));
+    setActive((current) => (current < 4 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
 
@@ -81,8 +81,11 @@ export const NewRepair = () => {
 
         <Stepper.Step label="Summary" allowStepSelect={active > 3}>
           Repair Summary
-          <RepairSummary />
+          <RepairSummary nextStep={nextStep}/>
         </Stepper.Step>
+        <Stepper.Completed>
+          Repair registered          
+        </Stepper.Completed>
       </Stepper>
     </div>
   );
