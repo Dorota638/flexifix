@@ -2,7 +2,7 @@ import { errHandler } from '../../helper';
 
 const { BicycleInvoiceLine } = require('../../models/InvoiceLines');
 const { Bicycle } = require('../../models/Bicycle');
-const Sale = require('../../models/Sale');
+const { Sale } = require('../../models/Sale');
 
 export const queryResolvers = {
   async bicycleInvoiceLines(_: any, { saleId }) {
@@ -13,9 +13,7 @@ export const queryResolvers = {
         }).catch(errHandler);
         return bicycleInvoiceLine;
       } else {
-        const bicycleInvoiceLine = await BicycleInvoiceLine.findAll().catch(
-          errHandler
-        );
+        const bicycleInvoiceLine = await BicycleInvoiceLine.findAll().catch(errHandler);
         return bicycleInvoiceLine;
       }
     } catch (err) {
@@ -27,9 +25,7 @@ export const queryResolvers = {
 export const resolvers = {
   async bicycle(parent: any) {
     try {
-      const bicycle = await Bicycle.findByPk(parent.fkBicycleId).catch(
-        errHandler
-      );
+      const bicycle = await Bicycle.findByPk(parent.fkBicycleId).catch(errHandler);
       return bicycle;
     } catch (err) {
       throw new Error(err);

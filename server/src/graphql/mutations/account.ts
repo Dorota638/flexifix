@@ -1,5 +1,5 @@
 import { errHandler } from '../../helper';
-const Account = require('../../models/Account');
+const { Account } = require('../../models/Account');
 
 export const queryMutations = {
   addToAccount: async (_: any, { input }: any) => {
@@ -10,7 +10,7 @@ export const queryMutations = {
       });
       await account.save().catch(errHandler);
       console.log('account', account);
-      
+
       return account;
     } catch (err) {
       throw new Error(err);

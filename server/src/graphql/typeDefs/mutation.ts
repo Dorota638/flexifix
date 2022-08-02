@@ -1,12 +1,14 @@
 export const mutation = `
   type Mutation {
     createRepair(input: createRepairInput): Repair!
+    editRepair(input: editRepairInput): Repair!
     createCustomer(input: createCustomerInput): Customer!
     editCustomer(input: editCustomerInput): Customer!
     createBicycle(input: createBicycleInput): Bicycle!
     editBicycle(input: editBicycleInput): Bicycle!
     createTaskInvoiceLine(input: createTaskInvoiceLineInput): TaskInvoiceLine!
     findOrCreateProduct(input: productInput): Product!
+    editProduct(input: productInput): Product!
     addToAccount(input: accountInput): Account!
     changePassword(input: changePasswordInput): String
     comparePassword(id: Int!, password: String!): CheckedPassword

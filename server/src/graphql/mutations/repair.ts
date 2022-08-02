@@ -2,7 +2,6 @@ import { getRepairNumber } from './../../helper';
 import { v4 as UUIDV4 } from 'uuid';
 import { errHandler } from '../../helper';
 const { Repair } = require('../../models/Repair');
-
 export const queryMutations = {
   createRepair: async (_: any, { input }: any) => {
     try {
@@ -13,6 +12,20 @@ export const queryMutations = {
         number: getRepairNumber(),
       }).catch(errHandler);
       return repair;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+  editRepair: async (_: any, { input }: any) => {
+    try {
+      const repair = await Repair.findByPk(input.id).catch(errHandler);
+      repair.set({
+        status: 3,
+        fkTechnicianId: input.fkTechnicianId,
+        dateStarted: new Date()
+      });
+      await repair.save();
+      return repair
     } catch (err) {
       throw new Error(err);
     }

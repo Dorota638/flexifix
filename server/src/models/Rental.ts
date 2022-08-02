@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 const sequelize = require('../database/connection');
 
-module.exports = sequelize.define('Rental', {
+export const Rental = sequelize.define('Rental', {
   id: {
     type: Sequelize.UUIDV4(),
     allowNull: false,
