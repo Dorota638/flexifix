@@ -10,27 +10,25 @@ import { useState } from "react";
 import { useStore } from "../../Store";
 import { Flair } from "./Badge";
 import { TakeRepairButton } from "./TakeRepairButton";
-import { FinishRepairButton } from "./FinishRepairButton";
+import { EditRepairButton } from "./EditRepairButton";
+import { SelectTasks } from "../repair/SelectTasks";
 
 import React from "react";
 
 export const RepairCard = ({ repair }) => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
   const secondaryColor =
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
 
   const Condition = ({ status }) => {
-    console.log(status);
     if (status === 1) {
       return <TakeRepairButton repair={repair} />;
     } else {
-      return <FinishRepairButton />;
+      return <EditRepairButton setOpened={setOpened} />;
     }
   };
-
-  console.log(repair.status.id);
-  console.log("repair.status.id");
 
   return (
     <Card shadow="sm" p="lg" className="m-5 w-80">
@@ -125,6 +123,24 @@ export const RepairCard = ({ repair }) => {
       >
         Details
       </Button>
+
+      <>
+        <Modal
+          opened={openEdit}
+          onClose={() => setOpenEdit(false)}
+          title="Edit Repair"
+        >
+          <Group>
+            <Button>Tasks</Button>
+            <Button>Parts</Button>
+          </Group>
+          <SelectTasks/>
+        </Modal>
+
+        <Group position="center">
+          <Button onClick={() => setOpenEdit(true)}>Edit Repair</Button>
+        </Group>
+      </>
     </Card>
   );
 };
