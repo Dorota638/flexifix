@@ -77,7 +77,7 @@ const POST_TASKS = gql`
   }
 `;
 
-export const RepairSummary = () => {
+export const RepairSummary = ({nextStep}) => {
   const customer = useStore((state) => state.selectedCustomer);
   const bicycle = useStore((state) => state.selectedBicycle);
   const signedIn = useStore((state) => state.signedIn);
@@ -136,7 +136,7 @@ export const RepairSummary = () => {
             });
           });
         });
-      })
+      }).then(()=>nextStep())
       .catch((err) => {
         console.log("error ", err);
         showNotification({
