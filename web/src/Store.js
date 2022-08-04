@@ -49,6 +49,15 @@ const store = (set) => ({
         };
       }
     }),
+  updateTime: (taskId, time) => {
+    set(({ taskCart }) => {
+      return {
+        taskCart: taskCart.map((task) =>
+          task.id === taskId ? { ...task, duration: time } : task
+        ),
+      };
+    });
+  },
   removeProductFromCart: ({ id }) =>
     set(({ productCart }) => {
       const productIndex = productCart.findIndex(

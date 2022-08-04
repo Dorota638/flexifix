@@ -2,7 +2,7 @@ import { Select, Table } from "@mantine/core";
 import React, { useState } from "react";
 import { useStore } from "../../Store";
 
-export const SelectTasks = () => {
+export const SelectTasks = ({ taskInvoiceLines }) => {
   const addTaskToCart = useStore(({ addTaskToCart }) => addTaskToCart);
   const tasksList = useStore(({ tasks }) => tasks);
   const [categoryId, setCategoryId] = useState("");
@@ -13,23 +13,25 @@ export const SelectTasks = () => {
     }
   };
 
-  const tasks = filteredTasks(categoryId)?.map((task) => (
-    <tr
-      key={task.id}
-      onClick={() => {
-        addTaskToCart(task);
-      }}
-      className="odd:bg-gray-900"
-    >
-      <td>{task?.name}</td>
-      <td>{task?.duration}</td>
-    </tr>
-  ));
+  const tasks = filteredTasks(categoryId)?.map((task) => {
+    return (
+      <tr
+        key={task.id}
+        onClick={() => {
+          addTaskToCart(task);
+        }}
+        className="odd:bg-gray-900"
+      >
+        <td>{task?.name}</td>
+        <td>{task?.duration}</td>
+      </tr>
+    );
+  });
 
   return (
     <div className="child:mx-auto">
       <Select
-      className="max-w-md"
+        className="max-w-md"
         label="Task Category"
         placeholder="Task Categoy"
         searchable

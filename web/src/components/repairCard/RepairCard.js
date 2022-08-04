@@ -1,34 +1,37 @@
-import { gql, useMutation } from "@apollo/client";
 import {
   Modal,
   Card,
   Text,
-  Badge,
   Button,
   Group,
   useMantineTheme,
 } from "@mantine/core";
 import { useState } from "react";
 import { useStore } from "../../Store";
+import { Flair } from "./Badge";
+import { TakeRepairButton } from "./TakeRepairButton";
+import { FinishRepairButton } from "./FinishRepairButton";
+
+import React from "react";
 
 export const RepairCard = ({ repair }) => {
   const theme = useMantineTheme();
   const [opened, setOpened] = useState(false);
   const secondaryColor =
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
-  const technician = useStore((store) => store.signedIn.id);
-  const TAKE_REPAIR = gql`
-    mutation ($id: ID $fkTechnicianId: Int) {
-      editRepair(input:{id: $id fkTechnicianId: $fkTechnicianId}) {
-        id
-        technician {
-          name
-        }
-        dateStarted
-      }
+
+  const Condition = ({ status }) => {
+    console.log(status);
+    if (status === 1) {
+      return <TakeRepairButton repair={repair} />;
+    } else {
+      return <FinishRepairButton />;
     }
-  `;
-  const [takeRepair] = useMutation(TAKE_REPAIR);
+  };
+
+  console.log(repair.status.id);
+  console.log("repair.status.id");
+
   return (
     <Card shadow="sm" p="lg" className="m-5 w-80">
       <Group
@@ -36,9 +39,7 @@ export const RepairCard = ({ repair }) => {
         style={{ marginBottom: 5, marginTop: theme.spacing.sm }}
       >
         <Text weight={500}>{repair.number}</Text>
-        <Badge color="pink" variant="light">
-          high
-        </Badge>
+        <Flair text={repair.status.status} color={repair.status.id} />
       </Group>
       {repair.taskInvoiceLines.map((task) => (
         <Card shadow="xl" className="m-2" key={task.id}>
@@ -111,22 +112,7 @@ export const RepairCard = ({ repair }) => {
           ))}
         </Card>
         <div className="flex">
-          {/* finish repair button */}
-          {/* finish repair button */}
-          {/* finish repair button */}
-          <Button
-            className="mx-2 grow"
-            onClick={() => {
-              takeRepair({
-                variables: {
-                  id: repair.id,
-                  fkTechnicianId: technician,
-                },
-              });
-            }}
-          >
-            Take Repair
-          </Button>
+          <Condition status={repair.status.id} />
         </div>
       </Modal>
 
