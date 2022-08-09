@@ -2,7 +2,7 @@ import { Select, Table } from "@mantine/core";
 import React, { useState } from "react";
 import { useStore } from "../../Store";
 
-export const SelectTasks = ({ taskInvoiceLines }) => {
+export const SelectTasks = () => {
   const addTaskToCart = useStore(({ addTaskToCart }) => addTaskToCart);
   const tasksList = useStore(({ tasks }) => tasks);
   const [categoryId, setCategoryId] = useState("");

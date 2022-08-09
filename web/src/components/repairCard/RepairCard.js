@@ -7,13 +7,12 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useState } from "react";
-import { useStore } from "../../Store";
 import { Flair } from "./Badge";
 import { TakeRepairButton } from "./TakeRepairButton";
 import { EditRepairButton } from "./EditRepairButton";
-import { SelectTasks } from "../repair/SelectTasks";
 
 import React from "react";
+import { EditRepair } from "./EditRepair";
 
 export const RepairCard = ({ repair }) => {
   const theme = useMantineTheme();
@@ -130,11 +129,7 @@ export const RepairCard = ({ repair }) => {
           onClose={() => setOpenEdit(false)}
           title="Edit Repair"
         >
-          <Group>
-            <Button>Tasks</Button>
-            <Button>Parts</Button>
-          </Group>
-          <SelectTasks/>
+          <EditRepair repairId={repair.id} />
         </Modal>
 
         <Group position="center">

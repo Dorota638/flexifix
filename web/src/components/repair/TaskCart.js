@@ -2,10 +2,12 @@ import { NumberInput, Table } from "@mantine/core";
 import React from "react";
 import { useStore } from "../../Store";
 
-export const TaskCart = ({ taskCart }) => {
+export const TaskCart = ({ tasks }) => {
   const removeTaskFromCart = useStore((state) => state.removeTaskFromCart);
   const updateTime = useStore((state) => state.updateTime);
-  const selectedtasks = taskCart?.map((item) => (
+  const taskCart = useStore(({ taskCart }) => taskCart);
+
+  const selectedtasks = taskCart.map((item) => (
     <tr
       key={item.id}
       onClick={() => {
@@ -26,6 +28,13 @@ export const TaskCart = ({ taskCart }) => {
       />
     </tr>
   ));
+  const savedTasks = (tasks ?? []).map((item) => (
+    <tr key={item.id} className="odd:bg-gray-900">
+      <td>{item?.task.name}</td>
+    </tr>
+  ));
+  // console.log("taskCart", taskCart);
+  // console.log("tasks", tasks);
   return (
     <Table className="mt-10">
       <thead>
@@ -35,6 +44,7 @@ export const TaskCart = ({ taskCart }) => {
         </tr>
       </thead>
       <tbody>{selectedtasks}</tbody>
+      <tbody>{savedTasks}</tbody>
     </Table>
   );
 };
