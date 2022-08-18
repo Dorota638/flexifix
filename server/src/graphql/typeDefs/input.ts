@@ -1,21 +1,8 @@
 export const input = `
-  input createCustomerInput {
+  input createEditCustomerInput {
+    id: ID
     firstName: String!
     lastName: String!
-    company: String
-    cvr: String
-    phone: String
-    address: String
-    zipCode: String
-    city: String
-    email: String
-    idInfo: String
-  }
-
-  input editCustomerInput {
-    id: ID!
-    firstName: String
-    lastName: String
     company: String
     cvr: String
     phone: String

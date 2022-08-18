@@ -14,7 +14,7 @@ export const query = `
     repairsInProgress: [Repair!]!
     repairsDone: [Repair!]!
     tasks: [Task!]!
-    taskInvoiceLines: [TaskInvoiceLine!]!
+    taskInvoiceLines(repairId: String): [TaskInvoiceLine!]!
     sales: [Sale!]!
     products: [Product!]!
     productProps: ProductProps!

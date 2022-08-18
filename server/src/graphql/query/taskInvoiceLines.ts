@@ -4,11 +4,15 @@ const { TaskInvoiceLine } = require('../../models/InvoiceLines');
 const { Task } = require('../../models/Task');
 
 export const queryResolvers = {
-  async taskInvoiceLines() {
+  async taskInvoiceLines(_: any, { repairId }) {
     try {
-      const taskInvoiceLines = await TaskInvoiceLine.findAll().catch(errHandler);
-      console.log('taskInvoiceLines', taskInvoiceLines);
-
+      let whereStatement = {};
+      if (repairId) {
+        whereStatement = { fkRepairId: repairId };
+      }
+      const taskInvoiceLines = await TaskInvoiceLine.findAll({
+        where: whereStatement,
+      }).catch(errHandler);
       return taskInvoiceLines;
     } catch (err) {
       throw new Error(err);
