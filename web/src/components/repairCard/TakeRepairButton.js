@@ -10,6 +10,10 @@ const TAKE_REPAIR = gql`
       technician {
         name
       }
+      status {
+        id
+        status
+      }
       dateStarted
     }
   }

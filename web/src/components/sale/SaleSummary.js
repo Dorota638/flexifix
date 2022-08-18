@@ -3,7 +3,6 @@ import { Box, Button, Select, Table } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import React from "react";
-import { useState } from "react";
 import { useStore } from "../../Store";
 
 export const SaleSummary = () => {
@@ -75,9 +74,8 @@ export const SaleSummary = () => {
     }
   `;
 
-  const [invoiceLines, setInvoiceLines] = useState([]);
 
-  const emptyCart = useStore((state) => state.emptyCart);
+  const emptyStore = useStore((state) => state.emptyStore);
   const salesPerson = useStore((state) => state.signedIn);
   const customer = useStore((state) => state.selectedCustomer);
 
@@ -163,7 +161,7 @@ export const SaleSummary = () => {
                 autoClose: 3000,
                 color: "Green",
               });
-              emptyCart();
+              emptyStore();
             });
         }
       })

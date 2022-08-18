@@ -77,12 +77,13 @@ const POST_TASKS = gql`
   }
 `;
 
-export const RepairSummary = ({nextStep}) => {
+export const RepairSummary = ({ nextStep }) => {
   const customer = useStore((state) => state.selectedCustomer);
   const bicycle = useStore((state) => state.selectedBicycle);
   const signedIn = useStore((state) => state.signedIn);
   const [createRepair] = useMutation(POST_NEW_REPAIR);
   const [createTaskInvoiceLine] = useMutation(POST_TASKS);
+  const emptyStore = useStore((state) => state.emptyStore);
 
   const repair = useStore((store) => ({
     customer: store.selectedCustomer,
@@ -136,7 +137,11 @@ export const RepairSummary = ({nextStep}) => {
             });
           });
         });
-      }).then(()=>nextStep())
+      })
+      .then(() => {
+        nextStep();
+        emptyStore();
+      })
       .catch((err) => {
         console.log("error ", err);
         showNotification({

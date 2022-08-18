@@ -13,7 +13,7 @@ const store = (set) => ({
   tasks: {},
   taskCategories: {},
 
-  emptyCart: () =>
+  emptyStore: () =>
     set((state) => ({
       ...state,
       productCart: [],

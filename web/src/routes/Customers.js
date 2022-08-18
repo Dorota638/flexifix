@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { Table } from "@mantine/core";
+import { Button, Modal, Table } from "@mantine/core";
+import { CustomerForm } from "../components/forms/CustomerForm";
 
 const GET_ALL_CUSTOMERS = gql`
   query {
@@ -20,6 +21,8 @@ const GET_ALL_CUSTOMERS = gql`
 `;
 
 export const Customers = () => {
+  const [opened, setOpened] = useState(false);
+  const [customer, setCustomer] = useState({});
   const { data: customers } = useQuery(GET_ALL_CUSTOMERS);
   const customerRows = customers?.customers.map((customer) => (
     <tr key={customer.id} className="odd:bg-gray-900">
@@ -32,6 +35,16 @@ export const Customers = () => {
       <td>{customer.address}</td>
       <td>{customer.zipCode}</td>
       <td>{customer.city}</td>
+      <td>
+        <Button
+          onClick={() => {
+            setOpened(true);
+            setCustomer(customer);
+          }}
+        >
+          Edit
+        </Button>
+      </td>
     </tr>
   ));
   return (
@@ -48,11 +61,20 @@ export const Customers = () => {
             <th>Address</th>
             <th>ZipCode</th>
             <th>City</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>{customerRows}</tbody>
       </Table>
+
+      <Modal
+        size="md"
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title="Create customer"
+      >
+        <CustomerForm setOpened={setOpened} customer={customer} />
+      </Modal>
     </div>
   );
 };
-

@@ -81,11 +81,9 @@ export const NewRepair = () => {
 
         <Stepper.Step label="Summary" allowStepSelect={active > 3}>
           Repair Summary
-          <RepairSummary nextStep={nextStep}/>
+          <RepairSummary nextStep={nextStep} />
         </Stepper.Step>
-        <Stepper.Completed>
-          Repair registered          
-        </Stepper.Completed>
+        <Stepper.Completed>Repair registered</Stepper.Completed>
       </Stepper>
     </div>
   );

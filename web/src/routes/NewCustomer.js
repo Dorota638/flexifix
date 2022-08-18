@@ -1,13 +1,12 @@
 import { Box } from "@mantine/core";
 
-import { NewCustomerForm } from "../components/forms/NewCustomerForm";
+import { CustomerForm } from "../components/forms/CustomerForm";
 
 export const NewCustomer = () => {
-
   return (
     <div>
-      <Box sx={{ maxWidth: 800 }} mx="auto">
-        <NewCustomerForm />
+      <Box>
+        <CustomerForm />
       </Box>
     </div>
   );

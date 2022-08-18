@@ -24,25 +24,6 @@ const GET_ALL_REPAIRS = gql`
         status
         id
       }
-      takenBy {
-        name
-      }
-      technician {
-        name
-      }
-      taskInvoiceLines {
-        id
-        task {
-          name
-          duration
-          id
-          taskCategory {
-            name
-          }
-        }
-        price
-        time
-      }
       createdAt
     }
   }

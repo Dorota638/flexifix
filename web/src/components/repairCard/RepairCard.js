@@ -1,11 +1,4 @@
-import {
-  Modal,
-  Card,
-  Text,
-  Button,
-  Group,
-  useMantineTheme,
-} from "@mantine/core";
+import { Modal, Card, Text, Button, Group, useMantineTheme, } from "@mantine/core";
 import { useState } from "react";
 import { Flair } from "./Badge";
 import { TakeRepairButton } from "./TakeRepairButton";
@@ -37,17 +30,17 @@ export const RepairCard = ({ repair }) => {
       >
         <Text weight={500}>{repair.number}</Text>
         <Flair text={repair.status.status} color={repair.status.id} />
+        <Text>Customer: {repair.customer.fullName}</Text>
+        <Text>Taken by: {repair?.takenBy?.name}</Text>
+        <Group>
+          <Text>Bicycle</Text>
+          <Group position="apart">
+            <Text>Brand: {repair.bicycle.brand.name}</Text>
+            <Text>Type: {repair.bicycle.type}</Text>
+            <Text>Color: {repair.bicycle.color.color}</Text>
+          </Group>
+        </Group>
       </Group>
-      {repair.taskInvoiceLines.map((task) => (
-        <Card shadow="xl" className="m-2" key={task.id}>
-          <Text size="md" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-            {task.task.taskCategory.name}
-          </Text>
-          <Text size="sm" style={{ color: secondaryColor, lineHeight: 1.5 }}>
-            {task.task.name}
-          </Text>
-        </Card>
-      ))}
 
       <Modal
         overflow="inside"

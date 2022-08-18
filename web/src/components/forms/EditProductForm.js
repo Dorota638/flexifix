@@ -4,6 +4,7 @@ import { useForm } from "@mantine/form";
 import { useStore } from "../../Store";
 export const EditProductForm = ({ product, setOpened }) => {
   const productProps = useStore((store) => store.productProps);
+  const [editProduct] = useMutation(EDIT_PRODUCT);
   const form = useForm({
     initialValues: {
       productBrand: product?.productBrand?.id,
@@ -77,8 +78,6 @@ export const EditProductForm = ({ product, setOpened }) => {
       }
     }
   `;
-  const [editProduct] = useMutation(EDIT_PRODUCT);
-  console.log(form);
   return (
     <>
       <form
@@ -102,89 +101,89 @@ export const EditProductForm = ({ product, setOpened }) => {
           });
         })}
       >
-          <Select
-            label="Brand"
-            placeholder="Brand"
-            searchable
-            nothingFound="No options"
-            value={product?.productBrand?.id}
-            data={productProps?.brand.map((b) => ({
-              value: b.id,
-              label: b.name,
-            }))}
-            {...form.getInputProps("productBrand")}
-          />
-          <Select
-            label="Category"
-            placeholder="Category"
-            searchable
-            nothingFound="No options"
-            data={productProps?.category.map((c) => ({
-              value: c.id,
-              label: c.name,
-            }))}
-            {...form.getInputProps("productCategory")}
-          />
-          <TextInput
-            label="Description"
-            placeholder="Description"
-            {...form.getInputProps("description")}
-          />
-          <NumberInput
-            label="Stock"
-            placeholder="Stock"
-            {...form.getInputProps("stock")}
-          />
-          <NumberInput
-            label="MinStock"
-            placeholder="MinStock"
-            {...form.getInputProps("minStock")}
-          />
-          <NumberInput
-            label="BuyPrice"
-            placeholder="BuyPrice"
-            {...form.getInputProps("buyPrice")}
-          />
-          <NumberInput
-            label="SellPrice"
-            placeholder="SellPrice"
-            {...form.getInputProps("sellPrice")}
-          />
-          <TextInput
-            label="EAN"
-            placeholder="EAN"
-            {...form.getInputProps("ean")}
-          />
-          <Select
-            label="Supplier"
-            placeholder="Supplier"
-            searchable
-            nothingFound="No options"
-            data={productProps?.supplier.map((s) => ({
-              value: s.id,
-              label: s.name,
-            }))}
-            {...form.getInputProps("productSupplier")}
-          />
-          <Select
-            label="Group"
-            placeholder="Group"
-            searchable
-            nothingFound="No options"
-            data={productProps?.group.map((s) => ({
-              value: s.id,
-              label: s.name,
-            }))}
-            {...form.getInputProps("productGroup")}
-          />
-          <NumberInput
-            label="Durability"
-            placeholder="Durability"
-            {...form.getInputProps("expectedDurability")}
-          />
-          <Group position="right" mt="md">
-            <Button type="submit">Submit</Button>
-          </Group>
+        <Select
+          label="Brand"
+          placeholder="Brand"
+          searchable
+          nothingFound="No options"
+          value={product?.productBrand?.id}
+          data={productProps?.brand.map((b) => ({
+            value: b.id,
+            label: b.name,
+          }))}
+          {...form.getInputProps("productBrand")}
+        />
+        <Select
+          label="Category"
+          placeholder="Category"
+          searchable
+          nothingFound="No options"
+          data={productProps?.category.map((c) => ({
+            value: c.id,
+            label: c.name,
+          }))}
+          {...form.getInputProps("productCategory")}
+        />
+        <TextInput
+          label="Description"
+          placeholder="Description"
+          {...form.getInputProps("description")}
+        />
+        <NumberInput
+          label="Stock"
+          placeholder="Stock"
+          {...form.getInputProps("stock")}
+        />
+        <NumberInput
+          label="MinStock"
+          placeholder="MinStock"
+          {...form.getInputProps("minStock")}
+        />
+        <NumberInput
+          label="BuyPrice"
+          placeholder="BuyPrice"
+          {...form.getInputProps("buyPrice")}
+        />
+        <NumberInput
+          label="SellPrice"
+          placeholder="SellPrice"
+          {...form.getInputProps("sellPrice")}
+        />
+        <TextInput
+          label="EAN"
+          placeholder="EAN"
+          {...form.getInputProps("ean")}
+        />
+        <Select
+          label="Supplier"
+          placeholder="Supplier"
+          searchable
+          nothingFound="No options"
+          data={productProps?.supplier.map((s) => ({
+            value: s.id,
+            label: s.name,
+          }))}
+          {...form.getInputProps("productSupplier")}
+        />
+        <Select
+          label="Group"
+          placeholder="Group"
+          searchable
+          nothingFound="No options"
+          data={productProps?.group.map((s) => ({
+            value: s.id,
+            label: s.name,
+          }))}
+          {...form.getInputProps("productGroup")}
+        />
+        <NumberInput
+          label="Durability"
+          placeholder="Durability"
+          {...form.getInputProps("expectedDurability")}
+        />
+        <Group position="right" mt="md">
+          <Button type="submit">Submit</Button>
+        </Group>
       </form>
     </>
   );
