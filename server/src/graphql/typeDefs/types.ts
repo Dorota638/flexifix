@@ -253,4 +253,7 @@ export const types = `
     employeeId: Int!
     password: String!
   }
+  type Deleted{
+    deleted: Int!
+  }
 `;
