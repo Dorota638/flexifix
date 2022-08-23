@@ -1,18 +1,21 @@
 export const mutation = `
   type Mutation {
     createRepair(input: createRepairInput): Repair!
-    createCustomer(input: createCustomerInput): Customer!
-    editCustomer(input: editCustomerInput): Customer!
+    editRepair(input: editRepairInput): Repair!
+    createEditCustomer(input: createEditCustomerInput): Customer!
     createBicycle(input: createBicycleInput): Bicycle!
     editBicycle(input: editBicycleInput): Bicycle!
     createTaskInvoiceLine(input: createTaskInvoiceLineInput): TaskInvoiceLine!
+    deleteTaskInvoiceLine(id: String!): Deleted!
     findOrCreateProduct(input: productInput): Product!
+    editProduct(input: productInput): Product!
     addToAccount(input: accountInput): Account!
     changePassword(input: changePasswordInput): String
     comparePassword(id: Int!, password: String!): CheckedPassword
     createBicycleInvoiceLine(input: bicycleInvoiceLineInput): BicycleInvoiceLine!
     createSale(input: saleInput): Sale!
     createProductInvoiceLine(input: productInvoiceLineInput): ProductInvoiceLine!
+    deleteProductInvoiceLine(id: String!): Deleted!
     createRental(input: rentalInput): Rental!
     createRentalInvoiceLine(input: rentalInvoiceLineInput): RentalInvoiceLine!
     createTask(input: taskInput): Task!

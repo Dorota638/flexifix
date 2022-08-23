@@ -14,4 +14,16 @@ export const queryMutations = {
       throw new Error(err);
     }
   },
+  deleteProductInvoiceLine: async (_: any, { id }: any) => {
+    try {
+      const productInvoiceLine = await ProductInvoiceLine.destroy({
+        where: {
+          id: id,
+        },
+      }).catch(errHandler);
+      return { deleted: productInvoiceLine };
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 };

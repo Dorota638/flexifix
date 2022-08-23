@@ -1,5 +1,5 @@
 import { errHandler } from '../../helper';
-const Account = require('../../models/Account');
+const { Account } = require('../../models/Account');
 
 export const queryResolvers = {
   async getAccounts() {

@@ -1,23 +1,29 @@
-import create from 'zustand';
-import { devtools } from 'zustand/middleware';
+import create from "zustand";
+import { devtools } from "zustand/middleware";
 
 const store = (set) => ({
-  selectedBicycle: {},
-  selectedCustomer: {
-    id: '618b2f20-85eb-453f-96b2-ddd413b8dc7a',
-    fullName: 'Matus Laco',
-    email: 'laco.matus@gmail.com',
-  },
+  signedIn: { id: 2, name: "Matus Laco" },
+  selectedBicycle: undefined,
+  selectedCustomer: undefined,
   productCart: [],
   bicycleCart: [],
-  signedIn: { id: 2, name: 'Matus Laco', role: null },
+  taskCart: [],
   bicycleProps: {},
   productProps: {},
-  emptyCart: () => set((state) => ({ ...state, productCart: [], bicycleCart: [] })),
   tasks: {},
+  taskCategories: {},
 
-  selectCustomer: (customer) => set((state) => ({ ...state, selectedCustomer: customer })),
-  selectBicycle: (bicycle) => set((state) => ({ ...state, selectedBicycle: bicycle })),
+  emptyStore: () =>
+    set((state) => ({
+      ...state,
+      productCart: [],
+      bicycleCart: [],
+      taskCart: [],
+    })),
+  selectCustomer: (customer) =>
+    set((state) => ({ ...state, selectedCustomer: customer })),
+  selectBicycle: (bicycle) =>
+    set((state) => ({ ...state, selectedBicycle: bicycle })),
   addProductToCart: (product) =>
     set(({ productCart }) => {
       const productIndex = productCart.findIndex(
@@ -43,11 +49,22 @@ const store = (set) => ({
         };
       }
     }),
+  updateTime: (taskId, time) => {
+    set(({ taskCart }) => {
+      return {
+        taskCart: taskCart.map((task) =>
+          task.id === taskId ? { ...task, duration: time } : task
+        ),
+      };
+    });
+  },
   removeProductFromCart: ({ id }) =>
     set(({ productCart }) => {
-      const productIndex = productCart.findIndex((cartItem) => cartItem.product.id === id);
+      const productIndex = productCart.findIndex(
+        (cartItem) => cartItem.product.id === id
+      );
       if (productIndex === -1) {
-        console.log(new Error('Something went wrong: index not found in cart'));
+        console.log(new Error("Index not found in cart"));
       } else {
         const productToRemove = productCart[productIndex];
         if (productToRemove.amount === 1) {
@@ -70,13 +87,14 @@ const store = (set) => ({
   addBicycleToCart: (bicycle, price) => {
     const bicycleItem = { ...bicycle, price };
     return set(({ bicycleCart }) => {
-      const bicycleIndex = bicycleCart.findIndex((cartBicycle) => cartBicycle.id === bicycle.id);
+      const bicycleIndex = bicycleCart.findIndex(
+        (cartBicycle) => cartBicycle.id === bicycle.id
+      );
       if (bicycleIndex === -1) {
         return { bicycleCart: [...bicycleCart, bicycleItem] };
       }
     });
   },
-
   removeBicycleFromCart: ({ id }) =>
     set(({ bicycleCart }) => {
       return {
@@ -85,10 +103,32 @@ const store = (set) => ({
         }),
       };
     }),
+  addTaskToCart: (task) => {
+    return set(({ taskCart }) => {
+      const taskIndex = taskCart.findIndex(
+        (cartTask) => cartTask.id === task.id
+      );
+      if (taskIndex === -1) {
+        return { taskCart: [...taskCart, task] };
+      }
+    });
+  },
+  removeTaskFromCart: ({ id }) =>
+    set(({ taskCart }) => {
+      return {
+        taskCart: taskCart.filter((task) => {
+          return task.id !== id;
+        }),
+      };
+    }),
   signIn: (employee) => set((state) => ({ ...state, signedIn: employee })),
-  storeBicycleProps: (props) => set((state) => ({ ...state, bicycleProps: props })),
-  storeProduceProps: (props) => set((state) => ({ ...state, productProps: props })),
+  storeBicycleProps: (props) =>
+    set((state) => ({ ...state, bicycleProps: props })),
+  storeProduceProps: (props) =>
+    set((state) => ({ ...state, productProps: props })),
   storeTasks: (props) => set((state) => ({ ...state, tasks: props })),
+  storeTaskCategories: (props) =>
+    set((state) => ({ ...state, taskCategories: props })),
 });
 
 export const useStore = create(devtools(store));

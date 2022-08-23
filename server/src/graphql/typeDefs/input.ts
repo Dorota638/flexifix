@@ -1,21 +1,8 @@
 export const input = `
-  input createCustomerInput {
+  input createEditCustomerInput {
+    id: ID
     firstName: String!
     lastName: String!
-    company: String
-    cvr: String
-    phone: String
-    address: String
-    zipCode: String
-    city: String
-    email: String
-    idInfo: String
-  }
-
-  input editCustomerInput {
-    id: ID!
-    firstName: String
-    lastName: String
     company: String
     cvr: String
     phone: String
@@ -76,6 +63,19 @@ export const input = `
     fkSpareBicycleId: String
     comment: String
   }
+  input editRepairInput {
+    id: ID
+    fkPaymentMethod: Int
+    status: Int
+    fkTechnicianId: Int
+    dateStarted: Int
+    dateFinished: Int
+    dateReturned: Int
+    fkSpareBicycleId: String
+    comment: String
+  }
+
+  
   input productInput {
     id: ID
     fkSupplier: Int
@@ -90,6 +90,7 @@ export const input = `
     sellPrice: Float
     expectedDurability: Int
   }
+
   input accountInput {
     id: Int!
     amount: Int!

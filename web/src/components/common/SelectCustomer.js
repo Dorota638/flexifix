@@ -1,12 +1,12 @@
-import { useForm } from '@mantine/form';
-import { TextInput, Button, Group, Box } from '@mantine/core';
-import React, { useState } from 'react';
-import ListCustomers from './ListCustomers.js';
+import { useForm } from "@mantine/form";
+import { TextInput, Button, Group, Box } from "@mantine/core";
+import React, { useState } from "react";
+import { ListCustomers } from "./ListCustomers.js";
 
-const SelectCustomer = () => {
+export const SelectCustomer = () => {
   const form = useForm({
     initialValues: {
-      name: '',
+      name: "",
     },
   });
   const [Name, setName] = useState();
@@ -22,7 +22,7 @@ const SelectCustomer = () => {
             autoComplete="off"
             required
             label="Name"
-            {...form.getInputProps('name')}
+            {...form.getInputProps("name")}
           />
           <Group position="right" mt="md">
             <Button type="submit">Submit</Button>
@@ -33,5 +33,3 @@ const SelectCustomer = () => {
     </>
   );
 };
-
-export default SelectCustomer;

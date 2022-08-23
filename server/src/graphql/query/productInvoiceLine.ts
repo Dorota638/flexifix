@@ -2,8 +2,8 @@ import { errHandler } from '../../helper';
 
 const { ProductInvoiceLine } = require('../../models/InvoiceLines');
 const { Product } = require('../../models/Product');
-const Sale = require('../../models/Sale');
-const Repair = require('../../models/Repair');
+const { Sale } = require('../../models/Sale');
+const { Repair } = require('../../models/Repair');
 
 export const queryResolvers = {
   async productInvoiceLines(_: any, { saleId }: any) {
@@ -14,9 +14,7 @@ export const queryResolvers = {
         }).catch(errHandler);
         return productInvoiceLine;
       } else {
-        const productInvoiceLine = await ProductInvoiceLine.findAll().catch(
-          errHandler
-        );
+        const productInvoiceLine = await ProductInvoiceLine.findAll().catch(errHandler);
         return productInvoiceLine;
       }
     } catch (err) {
@@ -28,9 +26,7 @@ export const queryResolvers = {
 export const resolvers = {
   async product(parent: any) {
     try {
-      const product = await Product.findByPk(parent.fkProductId).catch(
-        errHandler
-      );
+      const product = await Product.findByPk(parent.fkProductId).catch(errHandler);
       return product;
     } catch (err) {
       throw new Error(err);

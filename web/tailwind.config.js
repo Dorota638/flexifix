@@ -30,7 +30,12 @@ module.exports = {
       // => @media (min-width: 1024px) { ... }
     }
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('child', '& > *');
+      addVariant('child-hover', '& > *:hover');
+  }
+  ],
   corePlugins: {
     preflight: false,
   },

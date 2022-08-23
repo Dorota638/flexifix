@@ -1,4 +1,3 @@
-
 export const query = `
   type Query {
     employees: [Employees!]!
@@ -11,8 +10,11 @@ export const query = `
     bicyclesByCustomerId(customerId: String!): [Bicycle!]!
     bicycleInvoiceLines(saleId: String): [BicycleInvoiceLine!]!
     repairs(customerId: String): [Repair!]!
+    repairsToDo: [Repair!]!
+    repairsInProgress: [Repair!]!
+    repairsDone: [Repair!]!
     tasks: [Task!]!
-    taskInvoiceLines: [TaskInvoiceLine!]!
+    taskInvoiceLines(repairId: String): [TaskInvoiceLine!]!
     sales: [Sale!]!
     products: [Product!]!
     productProps: ProductProps!
