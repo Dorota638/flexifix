@@ -5,7 +5,7 @@ export const input = `
     lastName: String!
     company: String
     cvr: String
-    phone: String
+    phone: Int
     address: String
     zipCode: String
     city: String
@@ -68,9 +68,9 @@ export const input = `
     fkPaymentMethod: Int
     status: Int
     fkTechnicianId: Int
-    dateStarted: Int
-    dateFinished: Int
-    dateReturned: Int
+    dateStarted: String
+    dateFinished: String
+    dateReturned: String
     fkSpareBicycleId: String
     comment: String
   }

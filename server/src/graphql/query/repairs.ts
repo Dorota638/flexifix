@@ -15,7 +15,7 @@ export const queryResolvers = {
         }).catch(errHandler);
         return repairs;
       } else {
-        const repairs = await Repair.findAll().catch(errHandler);
+        const repairs = await Repair.findAll({ order: ['status'] }).catch(errHandler);
         return repairs;
       }
     } catch (err) {
@@ -54,6 +54,14 @@ export const queryResolvers = {
         },
       }).catch(errHandler);
       return repairs;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+  getRepair: async (_: any, { id }) => {
+    try {
+      const repair = await Repair.findByPk(id).catch(errHandler);
+      return repair;
     } catch (err) {
       throw new Error(err);
     }

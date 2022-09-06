@@ -16,7 +16,6 @@ export const queryMutations = {
             .then((invoiceLines) => {
               const d = new Date();
               const date = '3/5/2022';
-              console.log('date', date);
               
               const data = {
                 customize: {
