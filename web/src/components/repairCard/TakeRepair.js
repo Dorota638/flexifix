@@ -2,26 +2,14 @@ import React from "react";
 import { gql, useMutation } from "@apollo/client";
 import { Button } from "@mantine/core";
 import { useStore } from "../../Store";
+import { GET_TODO, TAKE_REPAIR } from "../../queries";
 
-const TAKE_REPAIR = gql`
-  mutation ($id: ID, $fkTechnicianId: Int) {
-    editRepair(input: { id: $id, fkTechnicianId: $fkTechnicianId }) {
-      id
-      technician {
-        name
-      }
-      status {
-        id
-        status
-      }
-      dateStarted
-    }
-  }
-`;
 
-export const TakeRepairButton = ({repair}) => {
+export const TakeRepair = ({ repair }) => {
   const technician = useStore((store) => store.signedIn.id);
-  const [takeRepair] = useMutation(TAKE_REPAIR);
+  const [takeRepair] = useMutation(TAKE_REPAIR, {
+    refetchQueries: [{ query: GET_TODO }],
+  });
   return (
     <Button
       className="mx-2 grow"
@@ -29,6 +17,8 @@ export const TakeRepairButton = ({repair}) => {
         takeRepair({
           variables: {
             id: repair.id,
+            status: 3,
+            dateStarted: new Date(),
             fkTechnicianId: technician,
           },
         });

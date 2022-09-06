@@ -2,37 +2,8 @@ import { gql, useQuery } from "@apollo/client";
 import { Button, Modal, Table } from "@mantine/core";
 import React, { useState } from "react";
 import { EditProductForm } from "../components/forms/EditProductForm";
+import { GET_ALL_PRODUCTS } from "../queries";
 
-const GET_ALL_PRODUCTS = gql`
-  query {
-    products {
-      id
-      productSupplier {
-        name
-        id
-      }
-      productBrand {
-        name
-        id
-      }
-      productCategory {
-        name
-        id
-      }
-      productGroup {
-        name
-        id
-      }
-      description
-      ean
-      stock
-      minStock
-      buyPrice
-      sellPrice
-      expectedDurability
-    }
-  }
-`;
 
 export const Inventory = () => {
   const [opened, setOpened] = useState(false);

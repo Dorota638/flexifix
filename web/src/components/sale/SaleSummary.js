@@ -4,6 +4,11 @@ import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import React from "react";
 import { useStore } from "../../Store";
+import {
+  POST_NEW_SALE,
+  ADD_PRODUCT_INVOICE_LINES,
+  ADD_BICYCLE_INVOICE_LINES,
+} from "../../queries";
 
 export const SaleSummary = () => {
   const sale = useStore((store) => ({
@@ -16,64 +21,6 @@ export const SaleSummary = () => {
       fkPaymentMethod: 0,
     },
   });
-  const POST_NEW_SALE = gql`
-    mutation (
-      $fkPaymentMethod: Int!
-      $fkCustomerId: String!
-      $fkSalespersonId: Int!
-    ) {
-      createSale(
-        input: {
-          fkPaymentMethod: $fkPaymentMethod
-          fkCustomerId: $fkCustomerId
-          fkSalespersonId: $fkSalespersonId
-        }
-      ) {
-        id
-      }
-    }
-  `;
-  const ADD_PRODUCT_INVOICE_LINES = gql`
-    mutation (
-      $fkSaleId: String
-      $fkProductId: String!
-      $amount: Int!
-      $price: Float!
-    ) {
-      createProductInvoiceLine(
-        input: {
-          fkSaleId: $fkSaleId
-          fkProductId: $fkProductId
-          amount: $amount
-          price: $price
-        }
-      ) {
-        id
-        product {
-          id
-        }
-        amount
-        price
-      }
-    }
-  `;
-  const ADD_BICYCLE_INVOICE_LINES = gql`
-    mutation ($fkSaleId: String!, $fkBicycleId: String!, $price: Float!) {
-      createBicycleInvoiceLine(
-        input: { fkSaleId: $fkSaleId, fkBicycleId: $fkBicycleId, price: $price }
-      ) {
-        id
-        sale {
-          id
-        }
-        bicycle {
-          id
-        }
-        price
-      }
-    }
-  `;
-
 
   const emptyStore = useStore((state) => state.emptyStore);
   const salesPerson = useStore((state) => state.signedIn);

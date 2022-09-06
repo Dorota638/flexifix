@@ -3,32 +3,7 @@ import {  Table } from '@mantine/core';
 import React from 'react';
 import { ProductCart } from './ProductCart';
 import { useStore } from '../../Store';
-const GET_PRODUCTS = gql`
-  query {
-    products {
-      id
-      productBrand {
-        name
-        id
-      }
-      productCategory {
-        name
-        id
-      }
-      productGroup {
-        name
-        id
-      }
-      description
-      ean
-      stock
-      minStock
-      buyPrice
-      sellPrice
-      expectedDurability
-    }
-  }
-`;
+import { GET_PRODUCTS } from "../../queries";
 
 export const SelectProducts = ({ hidden }) => {
   const { data } = useQuery(GET_PRODUCTS);

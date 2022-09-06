@@ -2,46 +2,9 @@ import { gql, useQuery } from '@apollo/client';
 import { Button, Group, Modal, NumberInput, Table } from '@mantine/core';
 import React, { useState } from 'react';
 import { BicycleCart } from './BicycleCart';
-
 import { useStore } from '../../Store';
-const GET_BICYCLES = gql`
-  query ($customerId: String!) {
-    bicyclesByCustomerId(customerId: $customerId) {
-      id
-      type
-      name
-      color {
-        id
-        color
-      }
-      brand {
-        name
-        id
-      }
-      gearsystem {
-        type
-        id
-      }
-      status {
-        status
-        id
-      }
-      tires {
-        size
-        id
-      }
-      frameNumber
-      owner {
-        fullName
-        id
-      }
-      holder {
-        id
-        fullName
-      }
-    }
-  }
-`;
+import { GET_BICYCLES } from "../../queries";
+
 
 export const SelectBicycles = ({ hidden }) => {
   const { data } = useQuery(GET_BICYCLES, {

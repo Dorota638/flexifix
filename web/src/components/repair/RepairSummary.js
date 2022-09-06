@@ -4,78 +4,7 @@ import { useForm } from "@mantine/hooks";
 import React from "react";
 import { useStore } from "../../Store";
 import { showNotification } from "@mantine/notifications";
-
-const POST_NEW_REPAIR = gql`
-  mutation (
-    $fkBicycleId: String!
-    $fkCustomerId: String!
-    $fkTakenBy: Int!
-    $comment: String
-    $status: Int!
-  ) {
-    createRepair(
-      input: {
-        fkBicycleId: $fkBicycleId
-        fkCustomerId: $fkCustomerId
-        fkTakenBy: $fkTakenBy
-        comment: $comment
-        status: $status
-      }
-    ) {
-      id
-      bicycle {
-        id
-      }
-      customer {
-        id
-      }
-      takenBy {
-        id
-      }
-      createdAt
-      updatedAt
-      status {
-        id
-      }
-      number
-    }
-  }
-`;
-
-const POST_TASKS = gql`
-  mutation (
-    $fkTask: Int!
-    $fkRepairId: String!
-    $amount: Int!
-    $time: Float!
-    $price: Float!
-  ) {
-    createTaskInvoiceLine(
-      input: {
-        fkTask: $fkTask
-        fkRepairId: $fkRepairId
-        amount: $amount
-        time: $time
-        price: $price
-      }
-    ) {
-      id
-      task {
-        id
-        name
-        taskCategory {
-          name
-          id
-        }
-        duration
-      }
-      fkRepairId
-      amount
-      price
-      time
-    }
-  }
-`;
+import { POST_NEW_REPAIR, POST_TASKS } from "../../queries";
 
 export const RepairSummary = ({ nextStep }) => {
   const customer = useStore((state) => state.selectedCustomer);

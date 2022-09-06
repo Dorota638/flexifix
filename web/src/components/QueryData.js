@@ -1,69 +1,7 @@
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import React from "react";
 import { useStore } from "../Store";
-
-const GET_BICYCLE_PROPS = gql`
-  query {
-    bicycleProps {
-      color {
-        id
-        color
-      }
-      tires {
-        id
-        size
-      }
-      status {
-        id
-        status
-      }
-      gearsystem {
-        id
-        type
-      }
-      brand {
-        id
-        name
-      }
-    }
-  }
-`;
-const GET_PRODUCT_PROPS = gql`
-  query {
-    productProps {
-      brand {
-        name
-        id
-      }
-      category {
-        name
-        id
-      }
-      group {
-        name
-        id
-      }
-      supplier {
-        minOrder
-        name
-        id
-      }
-    }
-  }
-`;
-const GET_TASKS = gql`
-  query {
-    tasks {
-      taskCategory {
-        name
-        id
-      }
-      id
-      name
-      duration
-    }
-  }
-`;
+import { GET_BICYCLE_PROPS, GET_PRODUCT_PROPS, GET_TASKS } from "../queries";
 
 export const QueryData = () => {
   const { data: bicycleProps } = useQuery(GET_BICYCLE_PROPS);

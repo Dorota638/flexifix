@@ -2,6 +2,8 @@ import { gql, useMutation } from "@apollo/client";
 import { Button, Group, NumberInput, Select, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useStore } from "../../Store";
+import { EDIT_PRODUCT } from "../../queries";
+
 export const EditProductForm = ({ product, setOpened }) => {
   const productProps = useStore((store) => store.productProps);
   const [editProduct] = useMutation(EDIT_PRODUCT);
@@ -20,64 +22,6 @@ export const EditProductForm = ({ product, setOpened }) => {
       expectedDurability: product?.expectedDurability,
     },
   });
-  const EDIT_PRODUCT = gql`
-    mutation (
-      $id: ID
-      $fkSupplier: Int
-      $fkBrand: Int
-      $fkGroup: Int
-      $fkCategory: Int
-      $description: String
-      $ean: String
-      $stock: Int
-      $minStock: Int
-      $buyPrice: Float
-      $sellPrice: Float
-      $expectedDurability: Int
-    ) {
-      editProduct(
-        input: {
-          id: $id
-          fkSupplier: $fkSupplier
-          fkBrand: $fkBrand
-          fkGroup: $fkGroup
-          fkCategory: $fkCategory
-          description: $description
-          ean: $ean
-          stock: $stock
-          minStock: $minStock
-          buyPrice: $buyPrice
-          sellPrice: $sellPrice
-          expectedDurability: $expectedDurability
-        }
-      ) {
-        id
-        productSupplier {
-          name
-          id
-        }
-        productBrand {
-          id
-          name
-        }
-        productCategory {
-          id
-          name
-        }
-        productGroup {
-          id
-          name
-        }
-        description
-        ean
-        stock
-        minStock
-        buyPrice
-        sellPrice
-        expectedDurability
-      }
-    }
-  `;
   return (
     <>
       <form

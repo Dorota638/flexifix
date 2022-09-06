@@ -1,45 +1,8 @@
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Table } from "@mantine/core";
+import { GET_ALL_BICYCLES } from "../queries";
 
-const GET_ALL_BICYCLES = gql`
-  query {
-    bicycles {
-      type
-      name
-      color {
-        id
-        color
-      }
-      brand {
-        name
-        id
-      }
-      gearsystem {
-        type
-        id
-      }
-      status {
-        status
-        id
-      }
-      tires {
-        size
-        id
-      }
-      frameNumber
-      owner {
-        fullName
-        id
-      }
-      holder {
-        id
-        fullName
-      }
-      id
-    }
-  }
-`;
 
 export const Bicycles = () => {
   const { data: bicycles } = useQuery(GET_ALL_BICYCLES);

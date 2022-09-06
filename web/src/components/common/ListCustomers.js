@@ -2,16 +2,7 @@ import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { Card, Title, Grid } from '@mantine/core';
 import { useStore } from '../../Store';
-
-const GET_CUSTOMER = gql`
-  query getCustomer($name: String!) {
-    customerByName(name: $name) {
-      id
-      fullName
-      email
-    }
-  }
-`;
+import { GET_CUSTOMER } from "../../queries";
 
 export const ListCustomers = ({ name }) => {
   const { data } = useQuery(GET_CUSTOMER, {

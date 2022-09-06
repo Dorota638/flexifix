@@ -2,23 +2,8 @@ import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { Button, Modal, Table } from "@mantine/core";
 import { CustomerForm } from "../components/forms/CustomerForm";
+import { GET_ALL_CUSTOMERS } from "../queries";
 
-const GET_ALL_CUSTOMERS = gql`
-  query {
-    customers {
-      id
-      firstName
-      lastName
-      company
-      cvr
-      phone
-      address
-      zipCode
-      city
-      email
-    }
-  }
-`;
 
 export const Customers = () => {
   const [opened, setOpened] = useState(false);
