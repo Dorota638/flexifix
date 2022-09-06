@@ -8,7 +8,7 @@ export const queryMutations = {
       try {
         const customer = await Customer.findByPk(input.id).catch(errHandler);
         customer.set({ ...input });
-        customer.save()
+        customer.save();
         return customer;
       } catch (err) {
         throw new Error(err);
@@ -16,7 +16,6 @@ export const queryMutations = {
     } else {
       try {
         const customer = await Customer.create({ id: UUIDV4(), ...input }).catch(errHandler);
-
         return customer;
       } catch (err) {
         throw new Error(err);

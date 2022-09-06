@@ -81,7 +81,7 @@ export const resolvers = {
       const bicycleInvoiceLines = await BicycleInvoiceLine.findAll({
         where: { fkSaleId: parent.id },
       }).catch(errHandler);
-      console.log('bicycleInvoiceLines', bicycleInvoiceLines);
+
       return bicycleInvoiceLines;
     } catch (err) {
       throw new Error(err);

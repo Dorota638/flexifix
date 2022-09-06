@@ -11,10 +11,10 @@ export const queryResolvers = {
   async products() {
     try {
       const products = await Product.findAll().catch(errHandler);
-      console.log(
-        'products',
-        products.map((product) => product.dataValues.fkGroup)
-      );
+      // console.log(
+      //   'products',
+      //   products.map((product) => product.dataValues.fkGroup)
+      // );
 
       return products;
     } catch (err) {

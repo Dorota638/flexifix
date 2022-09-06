@@ -17,12 +17,14 @@ export const queryMutations = {
     }
   },
   editRepair: async (_: any, { input }: any) => {
+    console.log('edit repair input', input);
     try {
       const repair = await Repair.findByPk(input.id).catch(errHandler);
       repair.set({
-        status: 3,
-        fkTechnicianId: input.fkTechnicianId,
-        dateStarted: new Date()
+        ...input,
+        // status: ,
+        // fkTechnicianId: input.fkTechnicianId,
+        // dateStarted: new Date()
       });
       await repair.save();
       return repair

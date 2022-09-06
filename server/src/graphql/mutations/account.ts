@@ -9,7 +9,7 @@ export const queryMutations = {
         total: account.total + input.amount,
       });
       await account.save().catch(errHandler);
-      console.log('account', account);
+      // console.log('account', account);
 
       return account;
     } catch (err) {

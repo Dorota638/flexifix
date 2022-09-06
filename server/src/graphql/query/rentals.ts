@@ -15,8 +15,6 @@ export const queryResolvers = {
         return rentals;
       } else {
         const rentals = await Rental.findAll().catch(errHandler);
-        console.log();
-
         return rentals;
       }
     } catch (err) {
@@ -39,7 +37,6 @@ export const resolvers = {
       const rentalInvoiceLines = await RentalInvoiceLine.findAll({
         where: { fkRentalId: parent.id },
       }).catch(errHandler);
-      console.log('RentalInvoiceLine', rentalInvoiceLines);
 
       return rentalInvoiceLines;
     } catch (err) {

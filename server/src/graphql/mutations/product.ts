@@ -12,8 +12,8 @@ export const queryMutations = {
           ...input,
         },
       }).catch(errHandler);
-      console.log('created', created);
-      console.log('product', product);
+      // console.log('created', created);
+      // console.log('product', product);
 
       return product;
     } catch (err) {
