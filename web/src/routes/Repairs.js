@@ -72,7 +72,7 @@ export const Repairs = () => {
         onClose={() => setOpened(false)}
         title="Invoice"
       >
-        <Invoice setOpened={setOpened} repair={repairs} />
+        <Invoice setOpened={setOpened} repair={repair} />
       </Modal>
     </div>
   );

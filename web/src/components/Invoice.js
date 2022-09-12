@@ -31,7 +31,7 @@ function Invoice({ repair }) {
 
 
             <section>
-                <h2>Repair Number: {repair.repairs.id}</h2>
+                <h2>Repair Number: {repair.number}</h2>
                 <p></p>
                 <p>bicycle</p>
             </section>
