@@ -10,28 +10,7 @@ import {
 import { PersonIcon } from "@modulz/radix-icons";
 import { gql, useMutation } from "@apollo/client";
 import { useStore } from "../../Store";
-
-const NEW_CUSTOMER = gql`
-  mutation (
-    $id: ID
-    $firstName: String!
-    $lastName: String!
-    $email: String!
-  ) {
-    createEditCustomer(
-      input: {
-        id: $id
-        firstName: $firstName
-        lastName: $lastName
-        email: $email
-      }
-    ) {
-      id
-      fullName
-      email
-    }
-  }
-`;
+import { NEW_CUSTOMER } from "../../queries";
 
 export const CustomerForm = ({ setOpened, customer }) => {
   const form = useForm({
@@ -39,11 +18,11 @@ export const CustomerForm = ({ setOpened, customer }) => {
       firstName: customer ? customer.firstName : "",
       lastName: customer ? customer.lastName : "",
       email: customer ? customer.email : "@",
-      phone: customer ? customer.phone : "",
+      phone: customer ? parseInt(customer.phone) : "",
       company: customer ? customer.company : "",
       cvr: customer ? customer.cvr : "",
       address: customer ? customer.address : "",
-      zipCOnde: customer ? customer.zipCOnde : "",
+      zipCode: customer ? customer.zipCode : "",
       city: customer ? customer.city : "",
     },
   });
@@ -69,52 +48,19 @@ export const CustomerForm = ({ setOpened, customer }) => {
               firstName: values.firstName,
               lastName: values.lastName,
               email: values.email,
+              phone: values.phone,
+              company: values.company,
+              cvr: values.cvr,
+              address: values.address,
+              zipCode: values.zipCode,
+              city: values.city,
             },
           })
         )}
       >
         <Group>
           <div>
-            <NumberInput
-              // className="w-60"
-              label="Phone"
-              placeholder="Phone"
-              {...form.getInputProps("phone")}
-            />
             <TextInput
-              // className="w-60"
-              label="Company"
-              placeholder="Company"
-              {...form.getInputProps("company")}
-            />
-            <TextInput
-              // className="w-60"
-              label="CVR"
-              placeholder="CVR"
-              {...form.getInputProps("cvr")}
-            />
-            <TextInput
-              // className="w-60"
-              label="Address"
-              placeholder="Address"
-              {...form.getInputProps("address")}
-            />
-            <NumberInput
-              // className="w-60"
-              label="ZipCode"
-              placeholder="ZipCode"
-              {...form.getInputProps("zipCode")}
-            />
-            <TextInput
-              // className="w-60"
-              label="City"
-              placeholder="City"
-              {...form.getInputProps("city")}
-            />
-          </div>
-          <div>
-            <TextInput
-              // className="w-60"
               icon={<PersonIcon />}
               required
               label="First Name"
@@ -122,18 +68,49 @@ export const CustomerForm = ({ setOpened, customer }) => {
               {...form.getInputProps("firstName")}
             />
             <TextInput
-              // className="w-60"
               required
               label="Last Name"
               placeholder="Last Name"
               {...form.getInputProps("lastName")}
             />
             <TextInput
-              // className="w-60"
               required
               label="Email"
               placeholder="your@email.com"
               {...form.getInputProps("email")}
+            />
+          </div>
+          <div>
+            <NumberInput
+              label="Phone"
+              placeholder="Phone"
+              hideControls
+              {...form.getInputProps("phone")}
+            />
+            <TextInput
+              label="Company"
+              placeholder="Company"
+              {...form.getInputProps("company")}
+            />
+            <TextInput
+              label="CVR"
+              placeholder="CVR"
+              {...form.getInputProps("cvr")}
+            />
+            <TextInput
+              label="Address"
+              placeholder="Address"
+              {...form.getInputProps("address")}
+            />
+            <TextInput
+              label="ZipCode"
+              placeholder="ZipCode"
+              {...form.getInputProps("zipCode")}
+            />
+            <TextInput
+              label="City"
+              placeholder="City"
+              {...form.getInputProps("city")}
             />
           </div>
         </Group>

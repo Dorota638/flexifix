@@ -4,6 +4,7 @@ import { useForm } from '@mantine/form';
 import { showNotification } from '@mantine/notifications';
 import React from 'react';
 import { useStore } from '../../Store';
+import { LOGIN, GET_EMPLOYEES } from "../../queries";
 
 export const SignInForm = ({ setOpen }) => {
   const form = useForm({
@@ -12,31 +13,6 @@ export const SignInForm = ({ setOpen }) => {
       password: '',
     },
   });
-
-  const LOGIN = gql`
-    mutation ($id: Int!, $password: String!) {
-      comparePassword(
-        id: $id,
-        password: $password
-        ) {
-        error
-        employee {
-          id
-          name
-          role
-        }
-      }
-    }
-  `;
-
-  const GET_EMPLOYEES = gql`
-    query {
-      employees {
-        id
-        name
-      }
-    }
-  `;
 
   const [logIn] = useMutation(LOGIN);
   const { data } = useQuery(GET_EMPLOYEES);

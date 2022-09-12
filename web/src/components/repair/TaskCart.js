@@ -1,35 +1,8 @@
-import { gql, useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { Button, NumberInput, Table } from "@mantine/core";
 import React from "react";
 import { useStore } from "../../Store";
-
-const GET_TASK_INVOICE_LINES = gql`
-  query Query($repairId: String) {
-    taskInvoiceLines(repairId: $repairId) {
-      id
-      task {
-        id
-        name
-        taskCategory {
-          name
-          id
-        }
-        duration
-      }
-      fkRepairId
-      amount
-      time
-      price
-    }
-  }
-`;
-const DELETE_TASK_INVOICE_LINE = gql`
-  mutation ($id: String!) {
-    deleteTaskInvoiceLine(id: $id) {
-      deleted
-    }
-  }
-`;
+import { GET_TASK_INVOICE_LINES, DELETE_TASK_INVOICE_LINE } from "../../queries";
 
 export const TaskCart = ({ repairId }) => {
   const removeTaskFromCart = useStore((state) => state.removeTaskFromCart);
@@ -45,9 +18,7 @@ export const TaskCart = ({ repairId }) => {
     variables: { repairId },
   });
 
-  console.log("data", data);
-
-  const selectedtasks = taskCart.map((item) => (
+  const selectedTasks = taskCart.map((item) => (
     <tr key={item.id} className="odd:bg-gray-900">
       <td>{item?.name}</td>
       <td>
@@ -73,25 +44,27 @@ export const TaskCart = ({ repairId }) => {
       </td>
     </tr>
   ));
-  const savedTasks = (data?.taskInvoiceLines ?? []).map((item) => (
-    <tr key={item.id} className="odd:bg-gray-900">
-      <td>{item?.task.name}</td>
-      <td>{item?.task.duration}</td>
-      <td className="hover:cursor-pointer">
-        <Button
-          onClick={() => {
-            deleteTaskInvoiceLine({
-              variables: {
-                id: item?.id,
-              },
-            });
-          }}
-        >
-          Delete
-        </Button>
-      </td>
-    </tr>
-  ));
+  const savedTasks = (data?.taskInvoiceLines ?? []).map((item) => {
+    return (
+      <tr key={item.id} className="odd:bg-gray-900">
+        <td>{item?.task.name}</td>
+        <td>{item?.time}</td>
+        <td className="hover:cursor-pointer">
+          <Button
+            onClick={() => {
+              deleteTaskInvoiceLine({
+                variables: {
+                  id: item?.id,
+                },
+              });
+            }}
+          >
+            Delete
+          </Button>
+        </td>
+      </tr>
+    )
+  });
   return (
     <Table className="mt-10">
       <thead>
@@ -101,7 +74,7 @@ export const TaskCart = ({ repairId }) => {
           <th>Delete</th>
         </tr>
       </thead>
-      <tbody>{selectedtasks}</tbody>
+      <tbody>{selectedTasks}</tbody>
       <tbody>{savedTasks}</tbody>
     </Table>
   );

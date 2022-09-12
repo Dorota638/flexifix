@@ -2,20 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { Card, Grid, Title } from "@mantine/core";
 import React from "react";
 import { useStore } from "../../Store";
-
-const GET_BICYCLES = gql`
-  query ($customerId: String!) {
-    bicyclesByCustomerId(customerId: $customerId) {
-      id
-      color {
-        color
-      }
-      brand {
-        name
-      }
-    }
-  }
-`;
+import { GET_BICYCLES } from "../../queries";
 
 export const SelectBicycle = ({selectedBicycle}) => {
   const customer = useStore((state) => state.selectedCustomer);
