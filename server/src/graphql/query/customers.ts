@@ -24,15 +24,25 @@ export const queryResolvers = {
       throw new Error(err);
     }
   },
-  async customers() {
+
+  async customers(_: any, { customerId }) {
+    console.log("custoemerid", customerId);
+    
     try {
+      if (customerId) {
+        const customers = await Customer.findAll({
+          where: { id: customerId },
+        }).catch(errHandler);
+        return customers;
+      }
       const customers = await Customer.findAll().catch(errHandler);
       return customers;
     } catch (err) {
       throw new Error(err);
     }
   },
-};
+};``
+
 export const resolvers = {
   bicycles: async (parent: any) => {
     try {
