@@ -1,53 +1,19 @@
-// import { gql, useQuery } from "@apollo/client";
-// import React from "react";
-// import { RepairCard } from "../components/repairCard/RepairCard";
-// import { GET_ALL_REPAIRS } from "../queries";
-
-// // export const Repairs = () => {
-// //   const { data: repairs } = useQuery(GET_ALL_REPAIRS);
-// //   return (
-// //     <div className="flex flex-wrap">
-// //       {repairs?.repairs.map((repair) => (
-// //         <RepairCard repair={repair} key={repair.id} />
-// //       ))}
-// //     </div>
-// //   );
-// // };
-
-
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Button, Modal, Table } from "@mantine/core";
 import React, { useState } from "react";
 import Invoice from "../components/Invoice";
 import { EditRepair } from "../components/repairCard/EditRepair";
+import { GET_ALL_REPAIRS } from "../queries";
 
-const GET_ALL_REPAIRS = gql`
-  query {
-    repairs {
-      id
-      number
-      customer {
-        fullName
-      }
-      bicycle {
-        brand {
-          name
-        }
-      }
-      status {
-        status
-        id
-      }
-      createdAt
-    }
-  }
-`;
+
 
 export const Repairs = () => {
   const [opened, setOpened] = useState(false);
+  const [openEdit, setOpenEdit] = useState(false);
   const [repair, setRepair] = useState({});
   const { data: repairs } = useQuery(GET_ALL_REPAIRS);
   console.log("repairsdata", repairs);
+  // console.log("repair", repair);
   const repairRows = repairs?.repairs.map((repair) => (
     <tr key={repair.id} className="odd:bg-gray-900">
       <td>{repair.number}</td>
@@ -83,7 +49,7 @@ export const Repairs = () => {
           <tr>
             <th>Repair number</th>
             <th>Customer</th>
-            <th>Bycicle</th>
+            <th>Bicycle</th>
             <th>Status</th>
             <th>Invoice</th>
             <th>Edit</th>
@@ -94,11 +60,11 @@ export const Repairs = () => {
 
       <Modal
         size="md"
-        opened={opened}
-        onClose={() => setOpened(false)}
-        title="Create repair"
+        opened={openEdit}
+        onClose={() => setOpenEdit(false)}
+        title="Edit Repair"
       >
-        <EditRepair setOpened={setOpened} customer={repair} />
+        <EditRepair />
       </Modal>
       <Modal
         size="md"
@@ -106,7 +72,7 @@ export const Repairs = () => {
         onClose={() => setOpened(false)}
         title="Invoice"
       >
-        <Invoice setOpened={setOpened} />
+        <Invoice setOpened={setOpened} repair={repairs} />
       </Modal>
     </div>
   );

@@ -1,26 +1,13 @@
-import { gql } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import { Button, Table } from '@mantine/core'
 import React from 'react'
 
-const GET_ALL_INVOICE_LINES = gql`
-query TaskInvoiceLines($repairId: String) {
-  taskInvoiceLines(repairId: $repairId) {
-    id
-    task {
-      name
-    }
-    amount
-    time
-    price
-    fkRepairId
-  }
-}
-`
-
-function Invoice() {
+function Invoice({ repair }) {
     const handlePrint = () => {
         window.print()
     }
+    console.log("repairinfo", repair);
+
     return (
         <div>
             <header>
@@ -44,7 +31,8 @@ function Invoice() {
 
 
             <section>
-                <p>Customer</p>
+                <h2>Repair Number: {repair.repairs.id}</h2>
+                <p></p>
                 <p>bicycle</p>
             </section>
             {/* end of customer info */}

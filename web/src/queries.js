@@ -231,6 +231,27 @@ export const GET_ALL_REPAIRS = gql`
     }
   }
 `;
+export const GET_ALL_REPAIRS_LIST = gql`
+  query {
+    repairs {
+      id
+      number
+      customer {
+        fullName
+      }
+      bicycle {
+        brand {
+          name
+        }
+      }
+      status {
+        status
+        id
+      }
+      createdAt
+    }
+  }
+`;
 export const TAKE_REPAIR = gql`
   mutation ($id: ID, $status: Int, $fkTechnicianId: Int, $dateStarted: String) {
     editRepair(
