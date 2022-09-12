@@ -1,11 +1,13 @@
 import React from "react";
-import { Button, Group } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { SelectTasks } from "../repair/SelectTasks";
+import { SelectProducts } from "../common/SelectProducts";
 import { TaskCart } from "../repair/TaskCart";
-import { gql, useMutation } from "@apollo/client";
+import { ProductCart } from "../common/ProductCart";
+import { useMutation } from "@apollo/client";
 import { useStore } from "../../Store";
 import { showNotification } from "@mantine/notifications";
-import { POST_TASKS, GET_TASK_INVOICE_LINES } from "../../queries";
+import { ADD_TASK_INVOICE_LINE, GET_TASK_INVOICE_LINES } from "../../queries";
 
 const SubmitTasks = ({ tasks, submitTasks }) => {
   if (tasks.length > 0) {
@@ -13,11 +15,38 @@ const SubmitTasks = ({ tasks, submitTasks }) => {
   }
 };
 
+const SubmitProducts = ({ products, submitProducts }) => {
+  if (products.length > 0) {
+    return <Button onClick={() => submitProducts()}>Submit products</Button>;
+  }
+};
+
+const Tasks = ({ repairId, tasks, submitTasks }) => {
+  return (
+    <>
+      <SelectTasks />
+      <TaskCart repairId={repairId} />
+      <SubmitTasks tasks={tasks} submitTasks={submitTasks} />
+    </>
+  )
+}
+
+const Products = ({ repairId, products, submitProducts }) => {
+  return (
+    <>
+      <SelectProducts />
+      <ProductCart repairId={repairId} />
+      <SubmitProducts products={products} submitProducts={submitProducts} />
+    </>
+  )
+}
+
 export const EditRepair = ({ repairId }) => {
-  const [createTaskInvoiceLine] = useMutation(POST_TASKS, {
-    refetchQueries: [{ query: GET_TASK_INVOICE_LINES, variables: { repairId }  }],
+  const [createTaskInvoiceLine] = useMutation(ADD_TASK_INVOICE_LINE, {
+    refetchQueries: [{ query: GET_TASK_INVOICE_LINES, variables: { repairId } }],
   });
   const tasks = useStore((state) => state.taskCart);
+  const products = useStore((state) => state.productCart);
   const emptyStore = useStore((state) => state.emptyStore);
 
   const submitTasks = () => {
@@ -41,15 +70,30 @@ export const EditRepair = ({ repairId }) => {
       });
     });
   };
+  const submitProducts = () => {
+    products?.map((item) => {
+      createTaskInvoiceLine({
+        variables: {
+          fkRepairId: repairId,
+          fkProductId: item.product.id,
+          amount: item.amount,
+          price: item.product.price,
+        },
+      }).then(() => {
+        showNotification({
+          title: "Success",
+          message: "Product added to repair",
+          autoClose: 3000,
+          color: "Green",
+        });
+        emptyStore();
+      });
+    });
+  };
   return (
     <>
-      <Group>
-        <Button>Tasks</Button>
-        <Button>Parts</Button>
-      </Group>
-      <SelectTasks />
-      <TaskCart repairId={repairId} />
-      <SubmitTasks tasks={tasks} submitTasks={submitTasks} />
+      <Tasks repairId={repairId} tasks={tasks} submitTasks={submitTasks} />
+      <Products repairId={repairId} products={products} submitProducts={submitProducts} />
     </>
   );
 };

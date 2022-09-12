@@ -1,5 +1,5 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Card, Title, Grid } from '@mantine/core';
 import { useStore } from '../../Store';
 import { GET_CUSTOMER } from "../../queries";
@@ -12,6 +12,7 @@ export const ListCustomers = ({ name }) => {
   const customers = data?.customerByName;
   const setCustomer = useStore((state) => state.selectCustomer);
   const selectedCustomer = useStore((state) => state.selectedCustomer);
+
 
   return (
     <Grid>

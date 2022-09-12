@@ -139,6 +139,7 @@ export const RepairCard = ({ repair }) => {
       <CanEdit status={repair.status.id} />
       <>
         <Modal
+        size={600}
           opened={openEdit}
           onClose={() => setOpenEdit(false)}
           title="Edit Repair"
