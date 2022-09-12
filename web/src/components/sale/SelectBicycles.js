@@ -1,4 +1,4 @@
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Button, Group, Modal, NumberInput, Table } from '@mantine/core';
 import React, { useState } from 'react';
 import { BicycleCart } from './BicycleCart';

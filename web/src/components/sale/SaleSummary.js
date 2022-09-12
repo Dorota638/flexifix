@@ -1,14 +1,10 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Box, Button, Select, Table } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { showNotification } from "@mantine/notifications";
 import React from "react";
 import { useStore } from "../../Store";
-import {
-  POST_NEW_SALE,
-  ADD_PRODUCT_INVOICE_LINES,
-  ADD_BICYCLE_INVOICE_LINES,
-} from "../../queries";
+import { POST_NEW_SALE, ADD_PRODUCT_INVOICE_LINE, ADD_BICYCLE_INVOICE_LINE, } from "../../queries";
 
 export const SaleSummary = () => {
   const sale = useStore((store) => ({
@@ -27,8 +23,8 @@ export const SaleSummary = () => {
   const customer = useStore((state) => state.selectedCustomer);
 
   const [createSale] = useMutation(POST_NEW_SALE);
-  const [createProductInvoiceLines] = useMutation(ADD_PRODUCT_INVOICE_LINES);
-  const [createBicycleInvoiceLines] = useMutation(ADD_BICYCLE_INVOICE_LINES);
+  const [createProductInvoiceLines] = useMutation(ADD_PRODUCT_INVOICE_LINE);
+  const [createBicycleInvoiceLines] = useMutation(ADD_BICYCLE_INVOICE_LINE);
 
   const productRows = sale.productCart.map((item) => (
     <tr key={item.product.id} className="odd:bg-gray-900">
@@ -54,7 +50,7 @@ export const SaleSummary = () => {
   const totalPrice = sale.productCart.reduce(
     (prev, curr) => prev + curr.amount * curr.product.sellPrice,
     initVal +
-      sale.bicycleCart.reduce((prev, curr) => prev + curr.price, initVal)
+    sale.bicycleCart.reduce((prev, curr) => prev + curr.price, initVal)
   );
 
   const postSale = (values) => {

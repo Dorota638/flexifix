@@ -274,6 +274,34 @@ export const TAKE_REPAIR = gql`
     }
   }
 `;
+export const GET_PRODUCT_INVOICE_LINES = gql`
+  query ProductInvoiceLines($repairId: String) {
+    productInvoiceLines(repairId: $repairId) {
+      id
+      amount
+      product {
+        id
+        productBrand {
+          name
+          id
+        }
+        productCategory {
+          name
+          id
+        }
+        description
+        sellPrice
+      }
+    }
+  }
+`;
+export const DELETE_PRODUCT_INVOICE_LINE = gql`
+  mutation ($id: String!) {
+    deleteProductInvoiceLine(id: $id) {
+      deleted
+    }
+  }
+`;
 export const GET_TASK_INVOICE_LINES = gql`
   query Query($repairId: String) {
     taskInvoiceLines(repairId: $repairId) {
@@ -310,6 +338,9 @@ export const GET_BICYCLES = gql`
       }
       brand {
         name
+      }
+      gearsystem{
+        type
       }
     }
   }
@@ -350,7 +381,7 @@ export const POST_NEW_REPAIR = gql`
     }
   }
 `;
-export const POST_TASKS = gql`
+export const ADD_TASK_INVOICE_LINE = gql`
   mutation (
     $fkTask: Int!
     $fkRepairId: String!
@@ -384,6 +415,50 @@ export const POST_TASKS = gql`
     }
   }
 `;
+export const ADD_PRODUCT_INVOICE_LINE = gql`
+  mutation (
+    $fkRepairId: String
+    $fkSaleId: String
+    $fkProductId: String!
+    $amount: Int!
+    $price: Float!
+  ) {
+    createProductInvoiceLine(
+      input: {
+        fkRepairId: $fkRepairId
+        fkSaleId: $fkSaleId
+        fkProductId: $fkProductId
+        amount: $amount
+        price: $price
+      }
+      ) {
+      id
+      product {
+        id
+        productSupplier {
+          name
+          id
+        }
+        productBrand {
+          id
+          name
+        }
+        productCategory {
+          id
+          name
+        }
+        productGroup {
+          id
+          name
+        }
+        description
+        ean
+        sellPrice
+      }
+      price
+    }
+  }
+`
 export const GET_REPAIR = gql`
   query Query($repairId: String) {
     taskInvoiceLines(repairId: $repairId) {
@@ -408,6 +483,7 @@ export const GET_CUSTOMER = gql`
     customerByName(name: $name) {
       id
       fullName
+      email
     }
   }
 `;
@@ -583,31 +659,7 @@ export const POST_NEW_SALE = gql`
     }
   }
 `;
-export const ADD_PRODUCT_INVOICE_LINES = gql`
-  mutation (
-    $fkSaleId: String
-    $fkProductId: String!
-    $amount: Int!
-    $price: Float!
-  ) {
-    createProductInvoiceLine(
-      input: {
-        fkSaleId: $fkSaleId
-        fkProductId: $fkProductId
-        amount: $amount
-        price: $price
-      }
-    ) {
-      id
-      product {
-        id
-      }
-      amount
-      price
-    }
-  }
-`;
-export const ADD_BICYCLE_INVOICE_LINES = gql`
+export const ADD_BICYCLE_INVOICE_LINE = gql`
   mutation ($fkSaleId: String!, $fkBicycleId: String!, $price: Float!) {
     createBicycleInvoiceLine(
       input: { fkSaleId: $fkSaleId, fkBicycleId: $fkBicycleId, price: $price }

@@ -11,6 +11,7 @@ const store = (set) => ({
   bicycleProps: {},
   productProps: {},
   tasks: {},
+  products: {},
   taskCategories: {},
 
   emptyStore: () =>
@@ -49,15 +50,6 @@ const store = (set) => ({
         };
       }
     }),
-  updateTime: (taskId, time) => {
-    set(({ taskCart }) => {
-      return {
-        taskCart: taskCart.map((task) =>
-          task.id === taskId ? { ...task, duration: time } : task
-        ),
-      };
-    });
-  },
   removeProductFromCart: ({ id }) =>
     set(({ productCart }) => {
       const productIndex = productCart.findIndex(
@@ -84,6 +76,15 @@ const store = (set) => ({
         }
       }
     }),
+  updateTime: (taskId, time) => {
+    set(({ taskCart }) => {
+      return {
+        taskCart: taskCart.map((task) =>
+          task.id === taskId ? { ...task, duration: time } : task
+        ),
+      };
+    });
+  },
   addBicycleToCart: (bicycle, price) => {
     const bicycleItem = { ...bicycle, price };
     return set(({ bicycleCart }) => {
@@ -126,6 +127,7 @@ const store = (set) => ({
     set((state) => ({ ...state, bicycleProps: props })),
   storeProduceProps: (props) =>
     set((state) => ({ ...state, productProps: props })),
+  storeProducts: (products) => set((state) => ({ ...state, products: products })),
   storeTasks: (props) => set((state) => ({ ...state, tasks: props })),
   storeTaskCategories: (props) =>
     set((state) => ({ ...state, taskCategories: props })),

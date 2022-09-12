@@ -16,7 +16,7 @@ export const SelectTasks = () => {
   const tasks = filteredTasks(categoryId)?.map((task) => {
     return (
       <tr
-        key={task.id}
+        key={`task${task.id}`}
         onClick={() => {
           addTaskToCart(task);
         }}
@@ -37,7 +37,7 @@ export const SelectTasks = () => {
         searchable
         nothingFound="¿QUE?"
         onChange={setCategoryId}
-        data={tasksList.map((t) => ({
+        data={tasksList?.map((t) => ({
           value: t.taskCategory.id,
           label: t.taskCategory.name,
         }))}

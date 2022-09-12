@@ -18,7 +18,7 @@ export const TaskCart = ({ repairId }) => {
     variables: { repairId },
   });
 
-  const selectedtasks = taskCart.map((item) => (
+  const selectedTasks = taskCart.map((item) => (
     <tr key={item.id} className="odd:bg-gray-900">
       <td>{item?.name}</td>
       <td>
@@ -44,25 +44,27 @@ export const TaskCart = ({ repairId }) => {
       </td>
     </tr>
   ));
-  const savedTasks = (data?.taskInvoiceLines ?? []).map((item) => (
-    <tr key={item.id} className="odd:bg-gray-900">
-      <td>{item?.task.name}</td>
-      <td>{item?.task.duration}</td>
-      <td className="hover:cursor-pointer">
-        <Button
-          onClick={() => {
-            deleteTaskInvoiceLine({
-              variables: {
-                id: item?.id,
-              },
-            });
-          }}
-        >
-          Delete
-        </Button>
-      </td>
-    </tr>
-  ));
+  const savedTasks = (data?.taskInvoiceLines ?? []).map((item) => {
+    return (
+      <tr key={item.id} className="odd:bg-gray-900">
+        <td>{item?.task.name}</td>
+        <td>{item?.time}</td>
+        <td className="hover:cursor-pointer">
+          <Button
+            onClick={() => {
+              deleteTaskInvoiceLine({
+                variables: {
+                  id: item?.id,
+                },
+              });
+            }}
+          >
+            Delete
+          </Button>
+        </td>
+      </tr>
+    )
+  });
   return (
     <Table className="mt-10">
       <thead>
@@ -72,7 +74,7 @@ export const TaskCart = ({ repairId }) => {
           <th>Delete</th>
         </tr>
       </thead>
-      <tbody>{selectedtasks}</tbody>
+      <tbody>{selectedTasks}</tbody>
       <tbody>{savedTasks}</tbody>
     </Table>
   );

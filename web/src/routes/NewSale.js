@@ -3,7 +3,7 @@ import { Box, Button, Group, Stepper } from "@mantine/core";
 import { SelectCustomer } from "../components/common/SelectCustomer";
 import { SelectedCustomer } from "../components/common/SelectedCustomer";
 import { CreateCustomer } from "../components/common/CreateCustomer";
-import { SelectProducts } from "../components/sale/SelectProducts";
+import { SelectProducts } from "../components/common/SelectProducts";
 import { SelectBicycles } from "../components/sale/SelectBicycles";
 import { SaleSummary } from "../components/sale/SaleSummary";
 
