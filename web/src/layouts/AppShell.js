@@ -22,6 +22,7 @@ import { Repairs } from "../routes/Repairs";
 import { Bicycles } from "../routes/Bicycles";
 import { SignedIn } from "../components/SignedIn";
 import { FinishRepair } from "../components/repair/FinishRepair";
+import Invoice from "../components/Invoice";
 
 export const Shell = () => {
   const theme = useMantineTheme();
@@ -90,6 +91,8 @@ export const Shell = () => {
           <Route path="/bicycles" element={<Bicycles />} />
           <Route path="/newCustomer" element={<NewCustomer />} />
           <Route path="/finishRepair" element={<FinishRepair />} />
+          <Route path="/invoice" element={<Invoice />} />
+
         </Routes>
       </AppShell>
     </Router>
