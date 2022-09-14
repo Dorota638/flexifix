@@ -5,7 +5,22 @@ import Invoice from "../components/Invoice";
 import { EditRepair } from "../components/repairCard/EditRepair";
 import { GET_ALL_REPAIRS } from "../queries";
 
+const HaveInvoice = ({ status, setRepair, setOpened, repair }) => {
+  if (status === 4 || status === 5 || status === 6) {
+    return (
 
+      <Button
+        onClick={() => {
+          setOpened(true);
+          setRepair(repair);
+        }}
+      >
+        Invoice
+      </Button>
+
+    );
+  }
+};
 
 export const Repairs = () => {
   const [opened, setOpened] = useState(false);
@@ -21,14 +36,7 @@ export const Repairs = () => {
       <td>{repair.bicycle.brand.name}</td>
       <td>{repair.status.status}</td>
       <td>
-        <Button
-          onClick={() => {
-            setOpened(true);
-            setRepair(repair);
-          }}
-        >
-          Invoice
-        </Button>
+        <HaveInvoice status={repair.status.id} setRepair={setRepair} setOpened={setOpened} repair={repair} />
       </td>
       <td>
         <Button

@@ -1,4 +1,3 @@
-import { gql, useQuery } from '@apollo/client'
 import { Button, Table } from '@mantine/core'
 import React from 'react'
 
@@ -7,7 +6,17 @@ function Invoice({ repair }) {
         window.print()
     }
     console.log("repairinfo", repair);
+    const tasksInvoiceRows = repair?.taskInvoiceLines?.map((taskLine) => (
+        <tr key={taskLine.id} className="odd:bg-gray-900">
+            <td>{taskLine.task.taskCategory.name}</td>
+            <td>{taskLine.task.name}</td>
+            <td>{taskLine.time}</td>
+            <td>{taskLine.price}</td>
+            <td>25</td>
+            <td>xxxx</td>
 
+        </tr>
+    ))
     return (
         <div>
             <header>
@@ -23,25 +32,25 @@ function Invoice({ repair }) {
             <section>
                 <h2>Flexi Fix</h2>
                 <p>Danmarksgade 86A<br></br> 9000 Aalborg </p>
-                <p>phone</p>
-                <p>email</p>
-                <p>CVR</p>
+                <p>+45 91 86 95 25</p>
+                <p>flexi-fix@gmail.com</p>
+                <p>CVR: 37692182</p>
             </section>
             {/* end of your info */}
 
 
             <section>
-                <h2>Repair Number: {repair.number}</h2>
-                <p></p>
-                <p>bicycle</p>
+                <p>Repair Number: {repair.number}</p>
+                <p>Customer: {repair?.customer?.fullName}</p>
+                <p>Bicycle: <span>{repair?.bicycle?.brand?.name}</span></p>
             </section>
             {/* end of customer info */}
 
 
             <section>
-                <p>mechanic</p>
+                <p>Mechanic: {repair?.technician?.name}</p>
                 <p>issued</p>
-                <p>payment method</p>
+                <p>Payment method: {repair?.paymentMethod}</p>
             </section>
 
             <section>
@@ -57,7 +66,7 @@ function Invoice({ repair }) {
                             <th>Total</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>{tasksInvoiceRows}</tbody>
                 </Table>
                 <Table>
                     <thead>
