@@ -80,13 +80,8 @@ export const Repairs = () => {
         onClose={() => setOpened(false)}
         title="Invoice"
       >
-<<<<<<< Updated upstream
-        <Invoice setOpened={setOpened} repair={repair} />
-      </Modal>
-=======
         <Invoice setOpened={setOpened} repair={repairs} />
       </Modal> */}
->>>>>>> Stashed changes
     </div>
   );
 };
