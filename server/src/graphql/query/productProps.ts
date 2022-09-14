@@ -21,6 +21,8 @@ export const queryResolvers = {
         group,
         supplier
       };
+      console.log('props', props.brand);
+      
       return props;
     } catch (err) {
       throw new Error(err);

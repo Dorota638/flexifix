@@ -12,10 +12,7 @@ const {
   queryResolvers: repairQueryResolvers,
   resolvers: repairResolvers,
 } = require('./query/repairs');
-const {
-  queryResolvers: taskQueryResolvers,
-  resolvers: taskResolvers,
-} = require('./query/tasks');
+const { queryResolvers: taskQueryResolvers, resolvers: taskResolvers } = require('./query/tasks');
 const {
   queryResolvers: taskInvoiceLineQueryResolvers,
   resolvers: taskInvoiceLineResolvers,
@@ -26,12 +23,9 @@ const {
 } = require('./query/products');
 const { queryResolvers: accountQueryResolvers } = require('./query/accounts');
 const { queryResolvers: passwordQueryResolvers } = require('./query/passwords');
-const {
-  queryResolvers: bicyclePropsQueryResolvers,
-} = require('./query/bicycleProps');
-const {
-  queryResolvers: productPropsQueryResolvers,
-} = require('./query/productProps');
+const { queryResolvers: bicyclePropsQueryResolvers } = require('./query/bicycleProps');
+const { queryResolvers: productPropsQueryResolvers } = require('./query/productProps');
+const { queryResolvers: taskPropsQueryResolvers } = require('./query/taskProps');
 const {
   queryResolvers: bicycleInvoiceLineQueryResolvers,
   resolvers: bicycleInvoiceLineResolvers,
@@ -40,10 +34,7 @@ const {
   queryResolvers: productInvoiceLineQueryResolvers,
   resolvers: productInvoiceLineResolvers,
 } = require('./query/productInvoiceLine');
-const {
-  queryResolvers: saleQueryResolvers,
-  resolvers: saleResolvers,
-} = require('./query/sale');
+const { queryResolvers: saleQueryResolvers, resolvers: saleResolvers } = require('./query/sale');
 const {
   queryResolvers: rentalQueryResolvers,
   resolvers: rentalResolvers,
@@ -52,33 +43,19 @@ const {
   queryResolvers: rentalInvoiceLineQueryResolvers,
   resolvers: rentalInvoiceLineResolvers,
 } = require('./query/rentalInvoiceLines');
-const {
-  queryResolvers: employeeQueryResolvers,
-} = require('./query/employees');
+const { queryResolvers: employeeQueryResolvers } = require('./query/employees');
 
 // -------------------------------------------------------
 
-const {
-  queryMutations: customerMutationsResolvers,
-} = require('./mutations/customer');
-const {
-  queryMutations: repairMutationsResolvers,
-} = require('./mutations/repair');
-const {
-  queryMutations: bicycleMutationsResolvers,
-} = require('./mutations/bicycle');
+const { queryMutations: customerMutationsResolvers } = require('./mutations/customer');
+const { queryMutations: repairMutationsResolvers } = require('./mutations/repair');
+const { queryMutations: bicycleMutationsResolvers } = require('./mutations/bicycle');
 const {
   queryMutations: taskInvoiceLineMutationsResolvers,
 } = require('./mutations/taskInvoiceLine');
-const {
-  queryMutations: productMutationsResolvers,
-} = require('./mutations/product');
-const {
-  queryMutations: accountMutationsResolvers,
-} = require('./mutations/account');
-const {
-  queryMutations: employeePasswordMutationsResolvers,
-} = require('./mutations/password');
+const { queryMutations: productMutationsResolvers } = require('./mutations/product');
+const { queryMutations: accountMutationsResolvers } = require('./mutations/account');
+const { queryMutations: employeePasswordMutationsResolvers } = require('./mutations/password');
 const {
   queryMutations: bicycleInvoiceLineMutationsResolvers,
 } = require('./mutations/bicycleInvoiceLine');
@@ -86,19 +63,13 @@ const {
   queryMutations: productInvoiceLineMutationsResolvers,
 } = require('./mutations/productInvoiceLine');
 const { queryMutations: saleMutationsResolvers } = require('./mutations/sale');
-const {
-  queryMutations: rentalMutationsResolvers,
-} = require('./mutations/rental');
+const { queryMutations: rentalMutationsResolvers } = require('./mutations/rental');
 const {
   queryMutations: rentalInvoiceLineMutationsResolvers,
 } = require('./mutations/rentalInvoiceLine');
 const { queryMutations: taskMutationsResolvers } = require('./mutations/task');
-const {
-  queryMutations: taskCategoryMutationsResolvers,
-} = require('./mutations/taskCategory');
-const {
-  queryMutations: invoiceMutationsResolvers,
-} = require('./mutations/invoice');
+const { queryMutations: taskCategoryMutationsResolvers } = require('./mutations/taskCategory');
+const { queryMutations: invoiceMutationsResolvers } = require('./mutations/invoice');
 
 export const resolvers: IResolvers = {
   Query: {
@@ -115,6 +86,7 @@ export const resolvers: IResolvers = {
     ...passwordQueryResolvers,
     ...bicyclePropsQueryResolvers,
     ...productPropsQueryResolvers,
+    ...taskPropsQueryResolvers,
     ...saleQueryResolvers,
     ...rentalQueryResolvers,
     ...rentalInvoiceLineQueryResolvers,
@@ -147,6 +119,6 @@ export const resolvers: IResolvers = {
     ...rentalInvoiceLineMutationsResolvers,
     ...taskMutationsResolvers,
     ...taskCategoryMutationsResolvers,
-    ...invoiceMutationsResolvers
+    ...invoiceMutationsResolvers,
   },
 };

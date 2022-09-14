@@ -19,6 +19,7 @@ export const query = `
     sales: [Sale!]!
     products: [Product!]!
     productProps: ProductProps!
+    taskProps: TaskProps!
     productsByCategory(categoryId: Int!): [Product!]!
     productInvoiceLines(saleId: String, repairId: String): [ProductInvoiceLine!]!
     rentals(customerId: String): [Rental!]!

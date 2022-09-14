@@ -206,6 +206,10 @@ export const types = `
     supplier: [ProductSupplier!]!
   }
 
+  type TaskProps {
+    category: [TaskCategory!]!
+  }
+
   type Sale {
     id: ID!
     number: String!
