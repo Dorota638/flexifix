@@ -17,9 +17,6 @@ export const ProductCart = ({ repairId }) => {
     variables: { repairId },
   });
 
-  console.log('  data?.productInvoiceLines',
-    data?.productInvoiceLines);
-
   const selectedProducts = productCart?.map((item) => (
     <tr
       key={item.product.id} className="odd:bg-gray-900">

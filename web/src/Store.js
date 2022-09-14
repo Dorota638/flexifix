@@ -10,6 +10,7 @@ const store = (set) => ({
   taskCart: [],
   bicycleProps: {},
   productProps: {},
+  taskProps: {},
   tasks: {},
   products: {},
   taskCategories: {},
@@ -125,6 +126,8 @@ const store = (set) => ({
   signIn: (employee) => set((state) => ({ ...state, signedIn: employee })),
   storeBicycleProps: (props) =>
     set((state) => ({ ...state, bicycleProps: props })),
+  storeTaskProps: (props) =>
+    set((state) => ({ ...state, taskProps: props })),
   storeProduceProps: (props) =>
     set((state) => ({ ...state, productProps: props })),
   storeProducts: (products) => set((state) => ({ ...state, products: products })),

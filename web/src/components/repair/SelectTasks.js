@@ -5,7 +5,12 @@ import { useStore } from "../../Store";
 export const SelectTasks = () => {
   const addTaskToCart = useStore(({ addTaskToCart }) => addTaskToCart);
   const tasksList = useStore(({ tasks }) => tasks);
+  const { category } = useStore(({ taskProps }) => taskProps);
   const [categoryId, setCategoryId] = useState("");
+
+
+
+  console.log('category task', category);
 
   const filteredTasks = (taskId) => {
     if (taskId) {
@@ -37,9 +42,9 @@ export const SelectTasks = () => {
         searchable
         nothingFound="¿QUE?"
         onChange={setCategoryId}
-        data={tasksList?.map((t) => ({
-          value: t.taskCategory.id,
-          label: t.taskCategory.name,
+        data={category?.map((t) => ({
+          value: t.id,
+          label: t.name,
         }))}
       ></Select>
       <Table className="mt-10 max-w-md">

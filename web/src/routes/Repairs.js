@@ -74,14 +74,19 @@ export const Repairs = () => {
       >
         <EditRepair />
       </Modal>
-      <Modal
+      {/* <Modal
         size="md"
         opened={opened}
         onClose={() => setOpened(false)}
         title="Invoice"
       >
+<<<<<<< Updated upstream
         <Invoice setOpened={setOpened} repair={repair} />
       </Modal>
+=======
+        <Invoice setOpened={setOpened} repair={repairs} />
+      </Modal> */}
+>>>>>>> Stashed changes
     </div>
   );
 };

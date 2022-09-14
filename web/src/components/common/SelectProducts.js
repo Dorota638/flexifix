@@ -5,13 +5,19 @@ import { useStore } from "../../Store";
 export const SelectProducts = () => {
   const addProductToCart = useStore(({ addProductToCart }) => addProductToCart);
   const productList = useStore(({ products }) => products);
+  const { category } = useStore(({ productProps }) => productProps);
   const [categoryId, setCategoryId] = useState("");
-  
+
+
+
+  console.log('category prod', category);
+
   const filteredProducts = (productId) => {
     if (productId) {
       return productList.filter((product) => product.productCategory.id === productId);
     }
   };
+
 
   const products = filteredProducts(categoryId)?.map((product) => {
     return (
@@ -39,9 +45,9 @@ export const SelectProducts = () => {
         searchable
         nothingFound="¿QUE?"
         onChange={setCategoryId}
-        data={productList?.map((t) => ({
-          value: t.productCategory.id,
-          label: t.productCategory.name,
+        data={category?.map((t) => ({
+          value: t.id,
+          label: t.name,
         }))}
       ></Select>
       <Table className="mt-10 max-w-md">

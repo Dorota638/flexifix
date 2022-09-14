@@ -750,6 +750,16 @@ export const GET_PRODUCT_PROPS = gql`
     }
   }
 `;
+export const GET_TASK_PROPS = gql`
+  query {
+    taskProps {
+      category {
+        name
+        id
+      }
+    }
+  }
+`;
 export const GET_TASKS = gql`
   query {
     tasks {
