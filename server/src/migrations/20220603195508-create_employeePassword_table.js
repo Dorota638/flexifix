@@ -3,8 +3,8 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     queryInterface.createTable('EmployeePasswords', {
-      employeeId: {
-        type: Sequelize.SMALLINT(),
+      id: {
+        type: Sequelize.STRING(36),
         allowNull: false,
         autoIncrement: false,
         primaryKey: true,

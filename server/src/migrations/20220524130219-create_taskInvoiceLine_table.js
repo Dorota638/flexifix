@@ -9,7 +9,7 @@ module.exports = {
         autoIncrement: false,
         primaryKey: true,
       },
-      fkTask: { type: Sequelize.SMALLINT(), allowNull: false },
+      fkTask: { type: Sequelize.STRING(36), allowNull: false },
       fkRepairId: { type: Sequelize.STRING(36), allowNull: false },
       amount: { type: Sequelize.SMALLINT(), allowNull: false },
       time: { type: Sequelize.DOUBLE(), allowNull: false },

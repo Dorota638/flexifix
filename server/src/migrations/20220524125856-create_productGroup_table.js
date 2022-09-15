@@ -9,7 +9,7 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
       },
-      name: { type: Sequelize.STRING(20), allowNull: false },
+      value: { type: Sequelize.STRING(20), allowNull: false },
       createdAt: { type: Sequelize.DATE() },
       updatedAt: { type: Sequelize.DATE() },
     });

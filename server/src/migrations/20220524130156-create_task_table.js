@@ -4,13 +4,13 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     queryInterface.createTable('Tasks', {
       id: {
-        type: Sequelize.SMALLINT(),
+        type: Sequelize.STRING(36),
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
       },
       name: { type: Sequelize.STRING(25), allowNull: false },
-      fkTaskCategory: { type: Sequelize.SMALLINT, allowNull: false },
+      fkTaskCategory: { type: Sequelize.STRING(36), allowNull: false },
       duration: { type: Sequelize.SMALLINT, allowNull: false },
       createdAt: { type: Sequelize.DATE() },
       updatedAt: { type: Sequelize.DATE() },

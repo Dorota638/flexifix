@@ -5,8 +5,6 @@ export const queryResolvers = {
   async taskProps() {
     try {
       const category = await TaskCategory.findAll().catch(errHandler);
-      console.log('category');
-      
       const props = {
         category,
       };

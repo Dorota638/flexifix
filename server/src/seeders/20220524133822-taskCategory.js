@@ -1,92 +1,95 @@
 'use strict';
+
+const { v4: UUIDV4 } = require('uuid');
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('TaskCategories', [
       {
-        id: 1,
+        id: UUIDV4(),
         name: 'Bottom Bracket',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 2,
+        id: UUIDV4(),
         name: 'Front Wheel',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 3,
+        id: UUIDV4(),
         name: 'Rear Wheel',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 4,
+        id: UUIDV4(),
         name: 'Drivetrain',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 5,
+        id: UUIDV4(),
         name: 'Front Brake',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 6,
+        id: UUIDV4(),
         name: 'Rear Brake',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 7,
+        id: UUIDV4(),
         name: 'Accessory',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 8,
+        id: UUIDV4(),
         name: 'Fork and steering',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 9,
+        id: UUIDV4(),
         name: 'Front Derailleur',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 10,
+        id: UUIDV4(),
         name: 'Internal Gears',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 11,
+        id: UUIDV4(),
         name: 'External Gears',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 12,
+        id: UUIDV4(),
         name: 'Maintenance',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      { id: 13,
+      { id: UUIDV4(),
         name: 'Headset',
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        id: 14,
+        id: UUIDV4(),
         name: 'Cargo bike',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 15,
+        id: UUIDV4(),
         name: 'E-Scooter',
         createdAt: new Date(),
         updatedAt: new Date(),

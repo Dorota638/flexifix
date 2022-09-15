@@ -8,10 +8,10 @@ const { Repair } = require('../../models/Repair');
 export const queryResolvers = {
   async productInvoiceLines(_: any, { saleId, repairId }: any) {
     try {
-      if (saleId) {
+      if (saleId || repairId) {
         const productInvoiceLine = await ProductInvoiceLine.findAll({
           where: {
-            [Op.or]: [{ fkSaleId: saleId }, { fkRepairId: repairId }],
+            [Op.or]: [{ fkSaleId: saleId ?? "" }, { fkRepairId: repairId ?? "" }],
           },
         }).catch(errHandler);
         return productInvoiceLine;

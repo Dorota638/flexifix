@@ -4,12 +4,12 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     queryInterface.createTable('BicycleTires', {
       id: {
-        type: Sequelize.SMALLINT(),
+        type: Sequelize.STRING(36),
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
       },
-      size: { type: Sequelize.STRING(20), allowNull: false },
+      value: { type: Sequelize.STRING(20), allowNull: false },
       createdAt: { type: Sequelize.DATE() },
       updatedAt: { type: Sequelize.DATE() },
     });

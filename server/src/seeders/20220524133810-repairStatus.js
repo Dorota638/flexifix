@@ -1,36 +1,38 @@
 'use strict';
 
+const { v4: UUIDV4 } = require('uuid');
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('RepairStatus', [
       {
-        id: 1,
-        status: 'Waiting for repair',
+        id: UUIDV4(),
+        value: 'Waiting for repair',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 2,
-        status: 'Waiting for parts',
+        id: UUIDV4(),
+        value: 'Waiting for parts',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 3,
-        status: 'Repair in progress',
+        id: UUIDV4(),
+        value: 'Repair in progress',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 4,
-        status: 'Done - waiting for pickup',
+        id: UUIDV4(),
+        value: 'Done - waiting for pickup',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-      { id: 5, status: 'Done', createdAt: new Date(), updatedAt: new Date() },
+      { id: UUIDV4(), value: 'Done', createdAt: new Date(), updatedAt: new Date() },
       {
-        id: 6,
-        status: 'Canceled',
+        id: UUIDV4(),
+        value: 'Canceled',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

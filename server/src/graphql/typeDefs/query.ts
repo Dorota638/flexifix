@@ -1,7 +1,7 @@
 export const query = `
   type Query {
     employees: [Employees!]!
-    comparePassword(id: Int!, password: String!): CheckedPassword
+    comparePassword(id: String!, password: String!): CheckedPassword
     customers(customerId: String): [Customer!]!
     customerByName(name: String!): [Customer!]!
     getAccounts: [Account!]!
@@ -20,7 +20,7 @@ export const query = `
     products: [Product!]!
     productProps: ProductProps!
     taskProps: TaskProps!
-    productsByCategory(categoryId: Int!): [Product!]!
+    productsByCategory(categoryId: String!): [Product!]!
     productInvoiceLines(saleId: String, repairId: String): [ProductInvoiceLine!]!
     rentals(customerId: String): [Rental!]!
     rentalInvoiceLines: [RentalInvoiceLine!]!

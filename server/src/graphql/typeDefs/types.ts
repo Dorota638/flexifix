@@ -1,7 +1,6 @@
 export const types = `
-
   type Employees {
-    id: Int!
+    id: String!
     name: String!
   } 
 
@@ -49,6 +48,7 @@ export const types = `
     takenBy: Employee!
     technician: Employee
     taskInvoiceLines: [TaskInvoiceLine!]!
+    productInvoiceLines: [ProductInvoiceLine!]!
     dateStarted: String
     dateFinished: String
     dateReturned: String
@@ -101,21 +101,21 @@ export const types = `
   }
 
   type ProductSupplier {
-    id: Int!
-    name: String!
+    id: String!
+    value: String!
     minOrder: Int
   }
   type ProductBrand {
-    id: Int!
-    name: String!
+    id: String!
+    value: String!
   }
   type ProductCategory {
-    id: Int!
-    name: String!
+    id: String!
+    value: String!
   }
   type ProductGroup {
-    id: Int!
-    name: String!
+    id: String!
+    value: String!
   }
 
   type TaskInvoiceLine {
@@ -150,45 +150,45 @@ export const types = `
   }
 
   type Task {
-    id: Int!
+    id: String!
     name: String!
     taskCategory: TaskCategory!
     duration: Float!
   }
 
   type TaskCategory {
-    id: Int!
+    id: String!
     name: String!
   }
 
   type BicycleColor {
-    id: Int!
-    color: String!
+    id: String!
+    value: String!
   }
 
   type BicycleBrands {
-    id: Int!
-    name: String!
+    id: String!
+    value: String!
   }
 
   type BicycleGearsystem {
-    id: Int!
-    type: String!
+    id: String!
+    value: String!
   }
 
   type BicycleStatus {
-    id: Int!
-    status: String!
+    id: String!
+    value: String!
   }
 
   type BicycleTires {
-    id: Int!
-    size: String!
+    id: String!
+    value: String!
   }
 
   type RepairStatus {
-    id: Int!
-    status: String!
+    id: String!
+    value: String!
   }
 
   type BicycleProps {
@@ -249,7 +249,7 @@ export const types = `
   }
 
   type Employee {
-    id: Int!
+    id: String!
     name: String!
     role: Int
   }

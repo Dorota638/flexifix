@@ -1,59 +1,61 @@
 'use strict';
 
+const { v4: UUIDV4 } = require('uuid');
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('ProductSuppliers', [
       {
-        id: 1,
-        name: 'BikePartner',
+        id: UUIDV4(),
+        value: 'BikePartner',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 2,
-        name: 'Cycle Service Nordic',
+        id: UUIDV4(),
+        value: 'Cycle Service Nordic',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 3,
-        name: 'EWBP',
+        id: UUIDV4(),
+        value: 'EWBP',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 4,
-        name: 'Cykelgear',
+        id: UUIDV4(),
+        value: 'Cykelgear',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 5,
-        name: 'FlexiFix',
+        id: UUIDV4(),
+        value: 'FlexiFix',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 6,
-        name: 'C. Reinhardt',
+        id: UUIDV4(),
+        value: 'C. Reinhardt',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 7,
-        name: 'HF Christiansen',
+        id: UUIDV4(),
+        value: 'HF Christiansen',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 8,
-        name: 'Claudi Fischer',
+        id: UUIDV4(),
+        value: 'Claudi Fischer',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 9,
-        name: 'Shimano',
+        id: UUIDV4(),
+        value: 'Shimano',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

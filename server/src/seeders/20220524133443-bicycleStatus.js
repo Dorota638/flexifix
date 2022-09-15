@@ -1,59 +1,62 @@
 'use strict';
 
+const { v4: UUIDV4 } = require('uuid');
+
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('BicycleStatus', [
       {
-        id: 1,
-        status: 'Nothing',
+        id: UUIDV4(),
+        value: 'Nothing',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 2,
-        status: 'Scrap',
+        id: UUIDV4(),
+        value: 'Scrap',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 3,
-        status: 'Being Repaired',
+        id: UUIDV4(),
+        value: 'Being Repaired',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 4,
-        status: 'Spare - Available',
+        id: UUIDV4(),
+        value: 'Spare - Available',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 5,
-        status: 'Spare - Borrowed',
+        id: UUIDV4(),
+        value: 'Spare - Borrowed',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 6,
-        status: 'For Sale',
+        id: UUIDV4(),
+        value: 'For Sale',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 7,
-        status: 'For Rent',
+        id: UUIDV4(),
+        value: 'For Rent',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 8,
-        status: 'Rented Out',
+        id: UUIDV4(),
+        value: 'Rented Out',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 9,
-        status: 'At Customer Use',
+        id: UUIDV4(),
+        value: 'At Customer Use',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

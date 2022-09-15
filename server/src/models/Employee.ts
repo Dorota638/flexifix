@@ -3,7 +3,7 @@ const sequelize = require('../database/connection');
 
 export const Employee = sequelize.define('Employee', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.UUIDV4(),
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,

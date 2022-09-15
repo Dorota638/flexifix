@@ -5,13 +5,13 @@ module.exports = {
     return queryInterface.bulkInsert('ProductGroups', [
       {
         id: 1,
-        name: 'Part',
+        value: 'Part',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
         id: 2,
-        name: 'Ware',
+        value: 'Ware',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

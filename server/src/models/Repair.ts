@@ -10,12 +10,12 @@ export const Repair = sequelize.define('Repair', {
   },
   number: { type: Sequelize.STRING(10), allowNull: false },
   fkPaymentMethod: { type: Sequelize.SMALLINT(), allowNull: true },
-  fkAccount: { type: Sequelize.SMALLINT(), allowNull: true },
+  // fkAccount: { type: Sequelize.SMALLINT(), allowNull: true },
   fkBicycleId: { type: Sequelize.STRING(36), allowNull: false },
   fkCustomerId: { type: Sequelize.STRING(36), allowNull: false },
-  status: { type: Sequelize.SMALLINT(), allowNull: false },
-  fkTakenBy: { type: Sequelize.SMALLINT(), allowNull: false },
-  fkTechnicianId: { type: Sequelize.SMALLINT(), allowNull: true },
+  status: { type: Sequelize.STRING(36), allowNull: false },
+  fkTakenBy: { type: Sequelize.STRING(36), allowNull: false },
+  fkTechnicianId: { type: Sequelize.STRING(36), allowNull: true },
   dateStarted: { type: Sequelize.DATE(), allowNull: true },
   dateFinished: { type: Sequelize.DATE(), allowNull: true },
   dateReturned: { type: Sequelize.DATE(), allowNull: true },
@@ -27,12 +27,12 @@ export const RepairStatus = sequelize.define(
   'RepairStatus',
   {
     id: {
-      type: Sequelize.SMALLINT(),
+      type: Sequelize.STRING(36),
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    status: { type: Sequelize.STRING(30), allowNull: false },
+    value: { type: Sequelize.STRING(30), allowNull: false },
   },
   { freezeTableName: true }
 );

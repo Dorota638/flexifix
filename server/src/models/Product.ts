@@ -8,9 +8,9 @@ export const Product = sequelize.define('Product', {
     autoIncrement: false,
     primaryKey: true,
   },
-  fkSupplier: { type: Sequelize.SMALLINT() },
-  fkBrand: { type: Sequelize.SMALLINT(), allowNull: false },
-  fkCategory: { type: Sequelize.SMALLINT(), allowNull: false },
+  fkSupplier: { type: Sequelize.UUIDV4() },
+  fkBrand: { type: Sequelize.UUIDV4(), allowNull: false },
+  fkCategory: { type: Sequelize.UUIDV4(), allowNull: false },
   fkGroup: { type: Sequelize.SMALLINT(), allowNull: false },
   description: { type: Sequelize.STRING(36) },
   ean: { type: Sequelize.STRING(20) },
@@ -23,41 +23,41 @@ export const Product = sequelize.define('Product', {
 
 export const ProductBrand = sequelize.define('ProductBrand', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.UUIDV4(),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  name: { type: Sequelize.STRING(20), allowNull: false },
+  value: { type: Sequelize.STRING(20), allowNull: false },
 });
 
 export const ProductCategory = sequelize.define('ProductCategory', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.UUIDV4(),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  name: { type: Sequelize.STRING(20), allowNull: false },
+  value: { type: Sequelize.STRING(20), allowNull: false },
 });
 
 export const ProductGroup = sequelize.define('ProductGroup', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.UUIDV4(),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  name: { type: Sequelize.STRING(20), allowNull: false },
+  value: { type: Sequelize.STRING(20), allowNull: false },
 });
 
 export const ProductSupplier = sequelize.define('ProductSupplier', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.UUIDV4(),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  name: { type: Sequelize.STRING(20), allowNull: false },
+  value: { type: Sequelize.STRING(20), allowNull: false },
   minOrder: { type: Sequelize.SMALLINT(), allowNull: true },
 });

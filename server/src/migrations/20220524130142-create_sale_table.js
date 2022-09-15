@@ -13,7 +13,7 @@ module.exports = {
       fkPaymentMethod: { type: Sequelize.SMALLINT(), allowNull: false },
       fkAccount: { type: Sequelize.SMALLINT(), allowNull: false },
       fkCustomerId: { type: Sequelize.STRING(36), allowNull: true },
-      fkSalespersonId: { type: Sequelize.SMALLINT(), allowNull: false },
+      fkSalespersonId: { type: Sequelize.STRING(36), allowNull: false },
       createdAt: { type: Sequelize.DATE() },
       updatedAt: { type: Sequelize.DATE() },
     });

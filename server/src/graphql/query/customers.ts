@@ -26,8 +26,6 @@ export const queryResolvers = {
   },
 
   async customers(_: any, { customerId }) {
-    console.log("custoemerid", customerId);
-    
     try {
       if (customerId) {
         const customers = await Customer.findAll({

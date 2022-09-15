@@ -10,11 +10,11 @@ export const Bicycle = sequelize.define('Bicycle', {
   },
   type: { type: Sequelize.STRING(20), allowNull: true },
   name: { type: Sequelize.STRING(20), allowNull: true },
-  color: { type: Sequelize.SMALLINT(), allowNull: false },
-  brand: { type: Sequelize.SMALLINT(), allowNull: false },
-  gearsystem: { type: Sequelize.SMALLINT(), allowNull: false },
-  status: { type: Sequelize.SMALLINT(), allowNull: false },
-  tires: { type: Sequelize.SMALLINT(), allowNull: false },
+  color: { type: Sequelize.UUIDV4(), allowNull: false },
+  brand: { type: Sequelize.UUIDV4(), allowNull: false },
+  gearsystem: { type: Sequelize.UUIDV4(), allowNull: false },
+  status: { type: Sequelize.UUIDV4(), allowNull: false },
+  tires: { type: Sequelize.UUIDV4(), allowNull: false },
   frameNumber: { type: Sequelize.STRING(20), allowNull: true },
   fkOwnerId: { type: Sequelize.STRING(36), allowNull: false },
   fkHolderId: { type: Sequelize.STRING(36), allowNull: false },
@@ -23,12 +23,12 @@ export const Bicycle = sequelize.define('Bicycle', {
 
 export const BicycleBrand = sequelize.define('BicycleBrand', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.UUIDV4(),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  name: {
+  value: {
     type: Sequelize.STRING(30),
     allowNull: false,
   },
@@ -36,12 +36,12 @@ export const BicycleBrand = sequelize.define('BicycleBrand', {
 
 export const BicycleTires = sequelize.define('BicycleTires', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.UUIDV4(),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  size: {
+  value: {
     type: Sequelize.STRING(20),
     allowNull: false,
   },
@@ -49,24 +49,24 @@ export const BicycleTires = sequelize.define('BicycleTires', {
 
 export const BicycleColor = sequelize.define('BicycleColor', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.UUIDV4(),
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
   },
-  color: { type: Sequelize.STRING(15), allowNull: false },
+  value: { type: Sequelize.STRING(15), allowNull: false },
 });
 
 export const BicycleGearsystem = sequelize.define(
   'BicycleGearsystem',
   {
     id: {
-      type: Sequelize.SMALLINT(),
+      type: Sequelize.UUIDV4(),
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    type: {
+    value: {
       type: Sequelize.STRING(20),
       allowNull: false,
     },
@@ -90,12 +90,12 @@ export const BicycleStatus = sequelize.define(
   'BicycleStatus',
   {
     id: {
-      type: Sequelize.SMALLINT(),
+      type: Sequelize.UUIDV4(),
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    status: {
+    value: {
       type: Sequelize.STRING(20),
       allowNull: false,
     },

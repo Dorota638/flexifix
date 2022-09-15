@@ -5,6 +5,7 @@ const { Bicycle } = require('../../models/Bicycle');
 const { Customer } = require('../../models/Customer');
 const { Employee } = require('../../models/Employee');
 const { TaskInvoiceLine } = require('../../models/InvoiceLines');
+const { ProductInvoiceLine } = require('../../models/InvoiceLines');
 
 export const queryResolvers = {
   repairs: async (_: any, { customerId }) => {
@@ -26,7 +27,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: 1,
+          status: "94e02487-77d7-435d-be8b-99a2ed8cde07",
         },
       }).catch(errHandler);
       return repairs;
@@ -38,7 +39,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: 3,
+          status: "5597ef43-3989-4481-a6c5-d039bf70ef56",
         },
       }).catch(errHandler);
       return repairs;
@@ -50,7 +51,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: 4,
+          status: "337a9aaa-8839-45a5-8eff-37bad227846c",
         },
       }).catch(errHandler);
       return repairs;
@@ -74,6 +75,17 @@ export const resolvers = {
         where: { fkRepairId: parent.id },
       }).catch(errHandler);
       return taskInvoiceLines;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
+  async productInvoiceLines(parent: any) {
+    try {
+      const productInvoiceLines = await ProductInvoiceLine.findAll({
+        where: { fkRepairId: parent.id },
+      }).catch(errHandler);
+      return productInvoiceLines;
     } catch (err) {
       throw new Error(err);
     }
@@ -105,6 +117,7 @@ export const resolvers = {
     }
   },
   status: async (parent: any) => {
+    
     try {
       const status = await RepairStatus.findByPk(parent.status).catch(errHandler);
       return status;

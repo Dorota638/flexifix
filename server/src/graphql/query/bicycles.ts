@@ -51,6 +51,8 @@ export const resolvers = {
     }
   },
   async color(parent: any) {
+    console.log("colorParent", parent);
+    
     try {
       const color = await BicycleColor.findByPk(parent.color).catch(
         console.error

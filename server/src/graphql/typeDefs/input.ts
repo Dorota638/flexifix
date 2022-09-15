@@ -16,11 +16,11 @@ export const input = `
   input createBicycleInput {
     type: String
     name: String
-    color: Int!
-    brand: Int!
-    gearsystem: Int!
-    status: Int!
-    tires: Int!
+    color: String!
+    brand: String!
+    gearsystem: String!
+    status: String!
+    tires: String!
     frameNumber: String
     fkOwnerId: String!
     fkHolderId: String!
@@ -31,11 +31,11 @@ export const input = `
     id: ID!
     type: String
     name: String
-    color: Int
-    brand: Int
-    gearsystem: Int
-    status: Int
-    tires: Int
+    color: String
+    brand: String
+    gearsystem: String
+    status: String
+    tires: String
     frameNumber: String
     fkOwnerId: String
     fkHolderId: String
@@ -43,7 +43,7 @@ export const input = `
   }
 
   input createTaskInvoiceLineInput {
-    fkTask: Int!
+    fkTask: String!
     fkRepairId: String!
     amount: Int!
     time: Float!
@@ -54,9 +54,9 @@ export const input = `
     fkPaymentMethod: Int
     fkBicycleId: String!
     fkCustomerId: String!
-    status: Int!
-    fkTakenBy: Int!
-    fkTechnicianId: Int
+    status: String!
+    fkTakenBy: String!
+    fkTechnicianId: String
     dateStarted: Int
     dateFinished: Int
     dateReturned: Int
@@ -66,8 +66,8 @@ export const input = `
   input editRepairInput {
     id: ID
     fkPaymentMethod: Int
-    status: Int
-    fkTechnicianId: Int
+    status: String
+    fkTechnicianId: String
     dateStarted: String
     dateFinished: String
     dateReturned: String
@@ -78,10 +78,10 @@ export const input = `
   
   input productInput {
     id: ID
-    fkSupplier: Int
-    fkBrand: Int
-    fkCategory: Int
-    fkGroup: Int
+    fkSupplier: String
+    fkBrand: String
+    fkCategory: String
+    fkGroup: String
     description: String
     ean: String
     stock: Int
@@ -96,7 +96,7 @@ export const input = `
     amount: Int!
   }
   input passwordInput {
-    employeeId: Int!
+    employeeId: String!
     password: String!
   }
   input changePasswordInput{
@@ -112,7 +112,7 @@ export const input = `
     input saleInput {
     fkPaymentMethod: Int!
     fkCustomerId: String
-    fkSalespersonId: Int!
+    fkSalespersonId: String!
   }
   input productInvoiceLineInput{
     fkSaleId: String
@@ -140,7 +140,7 @@ export const input = `
   }
   input taskInput{
     name: String!
-    fkTaskCategory: Int!
+    fkTaskCategory: String!
     duration: Int!
   }
   input taskCategoryInput{

@@ -1,35 +1,37 @@
 'use strict';
 
+const { v4: UUIDV4 } = require('uuid');
+
 module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('ProductBrands', [
       {
-        id: 1,
-        name: 'Adidas',
+        id: UUIDV4(),
+        value: 'Adidas',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 2,
-        name: 'Nike',
+        id: UUIDV4(),
+        value: 'Nike',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 3,
-        name: 'Puma',
+        id: UUIDV4(),
+        value: 'Puma',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 4,
-        name: 'New Balance',
+        id: UUIDV4(),
+        value: 'New Balance',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: 5,
-        name: 'Bilka',
+        id: UUIDV4(),
+        value: 'Bilka',
         createdAt: new Date(),
         updatedAt: new Date(),
       },

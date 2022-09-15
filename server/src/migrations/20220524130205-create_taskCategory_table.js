@@ -4,9 +4,9 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     queryInterface.createTable('TaskCategories', {
       id: {
-        type: Sequelize.SMALLINT(),
+        type: Sequelize.STRING(36),
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
       },
       name: { type: Sequelize.STRING(20), allowNull: false },

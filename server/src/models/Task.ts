@@ -9,15 +9,15 @@ export const Task = sequelize.define('Task', {
     primaryKey: true,
   },
   name: { type: Sequelize.STRING(25), allowNull: false },
-  fkTaskCategory: { type: Sequelize.SMALLINT, allowNull: false },
+  fkTaskCategory: { type: Sequelize.STRING(36), allowNull: false },
   duration: { type: Sequelize.DOUBLE, allowNull: false },
 });
 
 export const TaskCategory = sequelize.define('TaskCategory', {
   id: {
-    type: Sequelize.SMALLINT(),
+    type: Sequelize.STRING(36),
     allowNull: false,
-    autoIncrement: true,
+    autoIncrement: false,
     primaryKey: true,
   },
   name: {
