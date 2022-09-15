@@ -1,4 +1,4 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Button, Group, Loader, Select } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import { useStore } from "../../Store";
@@ -13,21 +13,28 @@ export const NewBicycleForm = ({ setOpened }) => {
   const { color, tires, status, gearsystem, brand } = useStore(
     (state) => state.bicycleProps
   );
+  console.log('color tires status gearsystem brand',
+  color,
+  tires,
+  status,
+  gearsystem,
+  brand);
+  
   const colornames = color.map((color) => ({
-    label: color.color,
+    label: color.value,
     value: color.id,
   }));
   const tiressize = tires.map((tire) => ({ label: tire.size, value: tire.id }));
   const statusstatus = status.map((status) => ({
-    label: status.status,
+    label: status.value,
     value: status.id,
   }));
   const gearsystemtype = gearsystem.map((gearsystem) => ({
-    label: gearsystem.type,
+    label: gearsystem.value,
     value: gearsystem.id,
   }));
   const brandname = brand.map((brand) => ({
-    label: brand.name,
+    label: brand.value,
     value: brand.id,
   }));
   const setBicycle = useStore((state) => state.storebicycleProps);

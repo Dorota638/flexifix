@@ -25,7 +25,7 @@ export const RepairSummary = ({ nextStep }) => {
     initialValues: {
       fkPaymentMethod: 0,
       comment: "comment",
-      status: 1,
+      status: '94e02487-77d7-435d-be8b-99a2ed8cde07',
     },
   });
   const selectedTasks = repair.tasks?.map((task) => (

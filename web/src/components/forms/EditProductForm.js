@@ -1,4 +1,4 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Button, Group, NumberInput, Select, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useStore } from "../../Store";
@@ -53,7 +53,7 @@ export const EditProductForm = ({ product, setOpened }) => {
           value={product?.productBrand?.id}
           data={productProps?.brand.map((b) => ({
             value: b.id,
-            label: b.name,
+            label: b.value,
           }))}
           {...form.getInputProps("productBrand")}
         />
@@ -64,7 +64,7 @@ export const EditProductForm = ({ product, setOpened }) => {
           nothingFound="No options"
           data={productProps?.category.map((c) => ({
             value: c.id,
-            label: c.name,
+            label: c.value,
           }))}
           {...form.getInputProps("productCategory")}
         />
@@ -105,7 +105,7 @@ export const EditProductForm = ({ product, setOpened }) => {
           nothingFound="No options"
           data={productProps?.supplier.map((s) => ({
             value: s.id,
-            label: s.name,
+            label: s.value,
           }))}
           {...form.getInputProps("productSupplier")}
         />
@@ -116,7 +116,7 @@ export const EditProductForm = ({ product, setOpened }) => {
           nothingFound="No options"
           data={productProps?.group.map((s) => ({
             value: s.id,
-            label: s.name,
+            label: s.value,
           }))}
           {...form.getInputProps("productGroup")}
         />

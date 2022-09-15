@@ -27,8 +27,8 @@ export const SelectBicycle = ({selectedBicycle}) => {
             className={` ${bicycle.id === selectedBicycle?.id ? 'bg-primary-900' : ''}`}
           >
             <Card.Section className='p-2'>
-              <Title order={1}> {bicycle.brand.name} </Title>
-              <Title order={5}> {bicycle.color.color} </Title>
+              <Title order={1}> {bicycle.brand.value} </Title>
+              <Title order={5}> {bicycle.color.value} </Title>
             </Card.Section>
           </Card>
         </Grid.Col>

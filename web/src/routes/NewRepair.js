@@ -50,7 +50,7 @@ export const NewRepair = () => {
 
         <Stepper.Step label="Bicycle" allowStepSelect={active > 1}>
           <Box sx={{ maxWidth: 800 }} mx="auto">
-            <CreateBicycle opened={opened} setOpened={setOpened} />
+            {/* <CreateBicycle opened={opened} setOpened={setOpened} /> */}
             <SelectBicycle selectedBicycle={selectedBicycle} />
           </Box>
           <Group position="center" mt="xl">

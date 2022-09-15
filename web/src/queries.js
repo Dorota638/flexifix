@@ -9,17 +9,17 @@ export const GET_TODO = gql`
         id
         type
         color {
-          color
+          value
         }
         brand {
-          name
+          value
         }
       }
       customer {
         fullName
       }
       status {
-        status
+        value
         id
       }
       takenBy {
@@ -50,17 +50,17 @@ export const GET_TODO = gql`
         id
         type
         color {
-          color
+          value
         }
         brand {
-          name
+          value
         }
       }
       customer {
         fullName
       }
       status {
-        status
+        value
         id
       }
       takenBy {
@@ -91,17 +91,17 @@ export const GET_TODO = gql`
         id
         type
         color {
-          color
+          value
         }
         brand {
-          name
+          value
         }
       }
       customer {
         fullName
       }
       status {
-        status
+        value
         id
       }
       takenBy {
@@ -142,23 +142,23 @@ export const GET_ALL_REPAIRS = gql`
         name
         color {
           id
-          color
+          value
         }
         brand {
           id
-          name
+          value
         }
         gearsystem {
           id
-          type
+          value
         }
         status {
           id
-          status
+          value
         }
         tires {
           id
-          size
+          value
         }
         frameNumber
         owner {
@@ -188,7 +188,7 @@ export const GET_ALL_REPAIRS = gql`
       }
       status {
         id
-        status
+        value
       }
       takenBy {
         id
@@ -245,7 +245,7 @@ export const GET_ALL_REPAIRS_LIST = gql`
         }
       }
       status {
-        status
+        value
         id
       }
       createdAt
@@ -253,7 +253,7 @@ export const GET_ALL_REPAIRS_LIST = gql`
   }
 `;
 export const TAKE_REPAIR = gql`
-  mutation ($id: ID, $status: Int, $fkTechnicianId: Int, $dateStarted: String) {
+  mutation ($id: ID, $status: String, $fkTechnicianId: String, $dateStarted: String) {
     editRepair(
       input: {
         id: $id
@@ -268,7 +268,7 @@ export const TAKE_REPAIR = gql`
       }
       status {
         id
-        status
+        value
       }
       dateStarted
     }
@@ -282,11 +282,11 @@ export const GET_PRODUCT_INVOICE_LINES = gql`
       product {
         id
         productBrand {
-          name
+          value
           id
         }
         productCategory {
-          name
+          value
           id
         }
         description
@@ -334,13 +334,13 @@ export const GET_BICYCLES = gql`
     bicyclesByCustomerId(customerId: $customerId) {
       id
       color {
-        color
+        value
       }
       brand {
-        name
+        value
       }
       gearsystem{
-        type
+        value
       }
     }
   }
@@ -349,9 +349,9 @@ export const POST_NEW_REPAIR = gql`
   mutation (
     $fkBicycleId: String!
     $fkCustomerId: String!
-    $fkTakenBy: Int!
+    $fkTakenBy: String!
     $comment: String
-    $status: Int!
+    $status: String!
   ) {
     createRepair(
       input: {
@@ -383,7 +383,7 @@ export const POST_NEW_REPAIR = gql`
 `;
 export const ADD_TASK_INVOICE_LINE = gql`
   mutation (
-    $fkTask: Int!
+    $fkTask: String!
     $fkRepairId: String!
     $amount: Int!
     $time: Float!
@@ -436,20 +436,20 @@ export const ADD_PRODUCT_INVOICE_LINE = gql`
       product {
         id
         productSupplier {
-          name
+          value
           id
         }
         productBrand {
           id
-          name
+          value
         }
         productCategory {
           id
-          name
+          value
         }
         productGroup {
           id
-          name
+          value
         }
         description
         ean
@@ -489,11 +489,11 @@ export const GET_CUSTOMER = gql`
 `;
 export const NEW_BICYCLE = gql`
   mutation CreateBicycle(
-    $color: Int!
-    $brand: Int!
-    $gearsystem: Int!
-    $status: Int!
-    $tires: Int!
+    $color: String!
+    $brand: String!
+    $gearsystem: String!
+    $status: String!
+    $tires: String!
     $fkOwnerId: String!
     $fkHolderId: String!
   ) {
@@ -510,34 +510,92 @@ export const NEW_BICYCLE = gql`
     ) {
       color {
         id
-        color
+        value
       }
       brand {
         id
-        name
+        value
       }
       gearsystem {
         id
-        type
+        value
       }
       status {
         id
-        status
+        value
       }
       tires {
         id
-        size
+        value
       }
     }
   }
 `;
+export const EDIT_BICYCLE = gql`
+mutation (
+  $id: ID!
+  $name: String
+  $brand: Int
+  $type: String
+  $color: String
+  $gearsystem: String
+  $tires: String
+  $status: String
+  $frameNumber: String
+) {
+  editBicycle(input: {
+    id: $id
+    type: $type
+    name: $name
+    color: $color
+    brand: $brand
+    gearsystem: $gearsystem
+    status: $status
+    tires: $tires
+    frameNumber: $frameNumber
+  }) {
+    id
+    type
+    name
+    color {
+      id
+      value
+    }
+    brand {
+      id
+      value
+    }
+    gearsystem {
+      id
+      value
+    }
+    status {
+      id
+      value
+    }
+    tires {
+      id
+      value
+    }
+    frameNumber
+    owner {
+      id
+      fullName
+    }
+    holder {
+      id
+      fullName
+    }
+  }
+}
+`
 export const EDIT_PRODUCT = gql`
   mutation (
     $id: ID
-    $fkSupplier: Int
-    $fkBrand: Int
+    $fkSupplier: String
+    $fkBrand: String
     $fkGroup: Int
-    $fkCategory: Int
+    $fkCategory: String
     $description: String
     $ean: String
     $stock: Int
@@ -564,20 +622,20 @@ export const EDIT_PRODUCT = gql`
     ) {
       id
       productSupplier {
-        name
+        value
         id
       }
       productBrand {
         id
-        name
+        value
       }
       productCategory {
         id
-        name
+        value
       }
       productGroup {
         id
-        name
+        value
       }
       description
       ean
@@ -629,13 +687,13 @@ export const NEW_CUSTOMER = gql`
   }
 `;
 export const FINISH_REPAIR = gql`
-  mutation ($id: ID, $status: Int, $dateFinished: String) {
+  mutation ($id: ID, $status: String, $dateFinished: String) {
     editRepair(
       input: { id: $id, status: $status, dateFinished: $dateFinished }
     ) {
       id
       status {
-        status
+        value
         id
       }
       dateFinished
@@ -680,15 +738,15 @@ export const GET_PRODUCTS = gql`
     products {
       id
       productBrand {
-        name
+        value
         id
       }
       productCategory {
-        name
+        value
         id
       }
       productGroup {
-        name
+        value
         id
       }
       description
@@ -706,23 +764,23 @@ export const GET_BICYCLE_PROPS = gql`
     bicycleProps {
       color {
         id
-        color
+        value
       }
       tires {
         id
-        size
+        value
       }
       status {
         id
-        status
+        value
       }
       gearsystem {
         id
-        type
+        value
       }
       brand {
         id
-        name
+        value
       }
     }
   }
@@ -731,20 +789,20 @@ export const GET_PRODUCT_PROPS = gql`
   query {
     productProps {
       brand {
-        name
+        value
         id
       }
       category {
-        name
+        value
         id
       }
       group {
-        name
+        value
         id
       }
       supplier {
         minOrder
-        name
+        value
         id
       }
     }
@@ -780,28 +838,28 @@ export const GET_ALL_BICYCLES = gql`
       name
       color {
         id
-        color
+        value
       }
       brand {
-        name
+        value
         id
       }
       gearsystem {
-        type
+        value
         id
       }
       status {
-        status
+        value
         id
       }
       tires {
-        size
+        value
         id
       }
       frameNumber
       owner {
-        fullName
         id
+        fullName
       }
       holder {
         id
@@ -832,19 +890,19 @@ export const GET_ALL_PRODUCTS = gql`
     products {
       id
       productSupplier {
-        name
+        value
         id
       }
       productBrand {
-        name
+        value
         id
       }
       productCategory {
-        name
+        value
         id
       }
       productGroup {
-        name
+        value
         id
       }
       description
