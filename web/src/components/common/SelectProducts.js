@@ -8,10 +8,6 @@ export const SelectProducts = () => {
   const { category } = useStore(({ productProps }) => productProps);
   const [categoryId, setCategoryId] = useState("");
 
-
-
-  console.log('category prod', category);
-
   const filteredProducts = (productId) => {
     if (productId) {
       return productList.filter((product) => product.productCategory.id === productId);
@@ -28,8 +24,8 @@ export const SelectProducts = () => {
         }}
         className="odd:bg-gray-900"
       >
-        <td>{product?.productBrand.name}</td>
-        <td>{product?.productCategory.name}</td>
+        <td>{product?.productBrand.value}</td>
+        <td>{product?.productCategory.value}</td>
         <td>{product?.description}</td>
         <td>{product?.sellPrice}</td>
       </tr>
@@ -47,7 +43,7 @@ export const SelectProducts = () => {
         onChange={setCategoryId}
         data={category?.map((t) => ({
           value: t.id,
-          label: t.name,
+          label: t.value,
         }))}
       ></Select>
       <Table className="mt-10 max-w-md">

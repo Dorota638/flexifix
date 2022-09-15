@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { Button, Modal, Table } from "@mantine/core";
 import { CustomerForm } from "../components/forms/CustomerForm";
 import { GET_ALL_CUSTOMERS } from "../queries";
 
 
 export const Customers = () => {
+  const { data: customers } = useQuery(GET_ALL_CUSTOMERS);
   const [opened, setOpened] = useState(false);
   const [customer, setCustomer] = useState({});
-  const { data: customers } = useQuery(GET_ALL_CUSTOMERS);
   const customerRows = customers?.customers.map((customer) => (
     <tr key={customer.id} className="odd:bg-gray-900">
       <td>{customer.firstName}</td>

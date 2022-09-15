@@ -5,7 +5,7 @@ function Invoice({ repair }) {
     const handlePrint = () => {
         window.print()
     }
-    console.log("repairinfo", repair);
+
     const tasksInvoiceRows = repair?.taskInvoiceLines?.map((taskLine) => (
         <tr key={taskLine.id} className="odd:bg-gray-900">
             <td>{taskLine.task.taskCategory.name}</td>
@@ -40,7 +40,7 @@ function Invoice({ repair }) {
 
 
             <section>
-                <p>Repair Number: {repair.number}</p>
+                <p>Repair Number: {repair?.number}</p>
                 <p>Customer: {repair?.customer?.fullName}</p>
                 <p>Bicycle: <span>{repair?.bicycle?.brand?.name}</span></p>
             </section>

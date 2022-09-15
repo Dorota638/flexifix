@@ -8,10 +8,6 @@ export const SelectTasks = () => {
   const { category } = useStore(({ taskProps }) => taskProps);
   const [categoryId, setCategoryId] = useState("");
 
-
-
-  console.log('category task', category);
-
   const filteredTasks = (taskId) => {
     if (taskId) {
       return tasksList.filter((task) => task.taskCategory.id === taskId);

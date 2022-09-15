@@ -1,14 +1,7 @@
 import { useForm } from "@mantine/form";
-import {
-  TextInput,
-  Button,
-  Group,
-  Box,
-  Loader,
-  NumberInput,
-} from "@mantine/core";
+import { TextInput, Button, Group, Box, Loader, NumberInput, } from "@mantine/core";
 import { PersonIcon } from "@modulz/radix-icons";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { useStore } from "../../Store";
 import { NEW_CUSTOMER } from "../../queries";
 

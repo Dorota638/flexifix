@@ -2,7 +2,7 @@ import create from "zustand";
 import { devtools } from "zustand/middleware";
 
 const store = (set) => ({
-  signedIn: { id: 2, name: "Matus Laco" },
+  signedIn: { id: "cdc0bf63-4bce-4188-bfca-4ca16e693c4c", name: "Matus Laco" },
   selectedBicycle: undefined,
   selectedCustomer: undefined,
   productCart: [],
