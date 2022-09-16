@@ -5,7 +5,7 @@ function Invoice({ repair }) {
     const handlePrint = () => {
         window.print()
     }
-
+    console.log("repairinfo", repair);
     const tasksInvoiceRows = repair?.taskInvoiceLines?.map((taskLine) => (
         <tr key={taskLine.id} className="odd:bg-gray-900">
             <td>{taskLine.task.taskCategory.name}</td>
@@ -14,7 +14,16 @@ function Invoice({ repair }) {
             <td>{taskLine.price}</td>
             <td>25</td>
             <td>xxxx</td>
-
+        </tr>
+    ))
+    const partsInvoiceRows = repair?.productInvoiceLines?.map((productLine) => (
+        <tr key={productLine.id} className="odd:bg-gray-900">
+            <td>{productLine.product.productCategory.name}</td>
+            <td>{productLine.product.productBrand.name}</td>
+            <td>{productLine.price}</td>
+            <td>VAT </td>
+            <td>{productLine.amount}</td>
+            <td>xxxx</td>
         </tr>
     ))
     return (
@@ -40,7 +49,7 @@ function Invoice({ repair }) {
 
 
             <section>
-                <p>Repair Number: {repair?.number}</p>
+                <p>Repair Number: {repair.number}</p>
                 <p>Customer: {repair?.customer?.fullName}</p>
                 <p>Bicycle: <span>{repair?.bicycle?.brand?.name}</span></p>
             </section>
@@ -67,19 +76,21 @@ function Invoice({ repair }) {
                         </tr>
                     </thead>
                     <tbody>{tasksInvoiceRows}</tbody>
+                    <hr></hr>
+                    <p>total</p>
                 </Table>
                 <Table>
                     <thead>
                         <tr className="bg-primary-800">
                             <th><h2>Parts description</h2></th>
                             <th></th>
-                            <th>Hours</th>
-                            <th>Price</th>
+                            <th>Unit (ex)</th>
                             <th>VAT</th>
+                            <th>Quantity</th>
                             <th>Total</th>
                         </tr>
                     </thead>
-                    <tbody></tbody>
+                    <tbody>{partsInvoiceRows}</tbody>
                 </Table>
                 <Table>
                     <thead>

@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Invoice from "../components/Invoice";
 import { EditRepair } from "../components/repairCard/EditRepair";
 import { GET_ALL_REPAIRS } from "../queries";
-
 const HaveInvoice = ({ status, setRepair, setOpened, repair }) => {
   if (status === 4 || status === 5 || status === 6) {
     return (
@@ -27,7 +26,6 @@ export const Repairs = () => {
   const [openEdit, setOpenEdit] = useState(false);
   const [repair, setRepair] = useState({});
   const { data: repairs } = useQuery(GET_ALL_REPAIRS);
-
   const repairRows = repairs?.repairs.map((repair) => (
     <tr key={repair.id} className="odd:bg-gray-900">
       <td>{repair.number}</td>
