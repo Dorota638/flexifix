@@ -303,7 +303,7 @@ export const DELETE_PRODUCT_INVOICE_LINE = gql`
   }
 `;
 export const GET_TASK_INVOICE_LINES = gql`
-  query Query($repairId: String) {
+  query taskInvoiceLines($repairId: String) {
     taskInvoiceLines(repairId: $repairId) {
       id
       task {

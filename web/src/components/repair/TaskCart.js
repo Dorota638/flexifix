@@ -13,7 +13,6 @@ export const TaskCart = ({ repairId }) => {
       { query: GET_TASK_INVOICE_LINES, variables: { repairId } },
     ],
   });
-
   const { data } = useQuery(GET_TASK_INVOICE_LINES, {
     variables: { repairId },
   });

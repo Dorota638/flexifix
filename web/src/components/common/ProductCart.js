@@ -21,8 +21,8 @@ export const ProductCart = ({ repairId }) => {
     <tr
       key={item.product.id} className="odd:bg-gray-900">
       <td>{item?.product?.description}</td>
-      <td>{item?.product?.productBrand?.name}</td>
-      <td>{item?.product?.productCategory?.name}</td>
+      <td>{item?.product?.productBrand?.value}</td>
+      <td>{item?.product?.productCategory?.value}</td>
       <td>{item?.product?.sellPrice}</td>
       <td>{item?.amount}</td>
       <td className="hover:cursor-pointer">
@@ -41,8 +41,8 @@ export const ProductCart = ({ repairId }) => {
     return (
       <tr key={item.id} className="odd:bg-gray-900">
         <td>{item?.product?.description}</td>
-        <td>{item?.product?.productBrand?.name}</td>
-        <td>{item?.product?.productCategory?.name}</td>
+        <td>{item?.product?.productBrand?.value}</td>
+        <td>{item?.product?.productCategory?.value}</td>
         <td>{item?.product?.sellPrice}</td>
         <td>{item?.amount}</td>
         <td className="hover:cursor-pointer">

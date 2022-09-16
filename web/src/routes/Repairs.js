@@ -6,7 +6,7 @@ import { EditRepair } from "../components/repairCard/EditRepair";
 import { GET_ALL_REPAIRS } from "../queries";
 
 const HaveInvoice = ({ status, setRepair, setOpened, repair }) => {
-  if (status === 4 || status === 5 || status === 6) {
+  if (status === "337a9aaa-8839-45a5-8eff-37bad227846c" || status === "cbf710fd-870b-4219-876b-b236693f86f2") {
     return (
 
       <Button
@@ -32,16 +32,20 @@ export const Repairs = () => {
     <tr key={repair.id} className="odd:bg-gray-900">
       <td>{repair.number}</td>
       <td>{repair.customer.fullName}</td>
-      <td>{repair.bicycle.brand.name}</td>
-      <td>{repair.status.status}</td>
+      <td>{repair.bicycle.brand.value}</td>
+      <td>{repair.status.value}</td>
       <td>
-        <HaveInvoice status={repair.status.id} setRepair={setRepair} setOpened={setOpened} repair={repair} />
+        <HaveInvoice
+          status={repair.status.id}
+          setRepair={setRepair}
+          setOpened={setOpened}
+          repair={repair} />
       </td>
       <td>
         <Button
           onClick={() => {
-            setOpened(true);
-
+            setOpenEdit(true);
+            setRepair(repair);
           }}
         >
           Edit
@@ -66,12 +70,12 @@ export const Repairs = () => {
       </Table>
 
       <Modal
-        size="md"
+        size="xl"
         opened={openEdit}
         onClose={() => setOpenEdit(false)}
         title="Edit Repair"
       >
-        <EditRepair />
+        <EditRepair repairId={repair.id}/>
       </Modal>
       <Modal
         size="md"
