@@ -1,4 +1,4 @@
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Button } from "@mantine/core";
 import React from "react";
 import { TAKE_REPAIR } from "../../queries";
@@ -13,7 +13,7 @@ export const ReturnRepair = ({ repair }) => {
         returnRepair({
           variables: {
             id: repair.id,
-            status: 5,
+            status: "cbf710fd-870b-4219-876b-b236693f86f2",
             dateReturned: new Date(),
             fkPaymentMethod: 1,
           },

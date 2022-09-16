@@ -209,6 +209,9 @@ export const types = `
   type TaskProps {
     category: [TaskCategory!]!
   }
+  type RepairStatuses {
+    status: RepairStatus!
+  }
 
   type Sale {
     id: ID!

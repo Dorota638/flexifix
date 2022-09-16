@@ -14,14 +14,15 @@ export const query = `
     repairsToDo: [Repair!]!
     repairsInProgress: [Repair!]!
     repairsDone: [Repair!]!
+    repairStatuses: [RepairStatus!]!
+    taskProps: TaskProps!
     tasks: [Task!]!
     taskInvoiceLines(repairId: String): [TaskInvoiceLine!]!
-    sales: [Sale!]!
     products: [Product!]!
     productProps: ProductProps!
-    taskProps: TaskProps!
     productsByCategory(categoryId: String!): [Product!]!
     productInvoiceLines(saleId: String, repairId: String): [ProductInvoiceLine!]!
+    sales: [Sale!]!
     rentals(customerId: String): [Rental!]!
     rentalInvoiceLines: [RentalInvoiceLine!]!
   }

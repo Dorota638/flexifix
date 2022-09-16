@@ -317,7 +317,7 @@ export const DELETE_PRODUCT_INVOICE_LINE = gql`
   }
 `;
 export const GET_TASK_INVOICE_LINES = gql`
-  query Query($repairId: String) {
+  query taskInvoiceLines($repairId: String) {
     taskInvoiceLines(repairId: $repairId) {
       id
       task {
@@ -949,3 +949,22 @@ export const GET_EMPLOYEES = gql`
     }
   }
 `;
+export const CHANGE_REPAIR_STATUS = gql`
+mutation editRepair($id: String! $status: String!) {
+  editRepair(input:{id: $id status: $status}) {
+    id
+    status {
+      id
+    value
+    }
+  }
+}
+`
+export const GET_REPAIR_STATUSES = gql`
+query RepairStatuses {
+  repairStatuses {
+    id
+    value
+  }
+}
+`

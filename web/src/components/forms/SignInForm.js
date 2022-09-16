@@ -28,9 +28,9 @@ export const SignInForm = ({ setOpen }) => {
             variables: {
               id: employees.find((employee) => employee.name === values.name).id, // id z mena
               password: values.password,
-            },
+            }
           })
-            .then(({data}) => {
+            .then(({ data }) => {
               setEmployee(data.comparePassword.employee);
               setOpen(false);
             })

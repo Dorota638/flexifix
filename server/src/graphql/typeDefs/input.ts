@@ -64,7 +64,7 @@ export const input = `
     comment: String
   }
   input editRepairInput {
-    id: ID
+    id: String!
     fkPaymentMethod: Int
     status: String
     fkTechnicianId: String
@@ -146,7 +146,6 @@ export const input = `
   input taskCategoryInput{
     name: String!
   }
-
   input invoiceInput{
     id: String!
   }

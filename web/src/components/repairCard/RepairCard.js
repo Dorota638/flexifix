@@ -32,11 +32,12 @@ export const RepairCard = ({ repair }) => {
   };
 
   const CanEdit = ({ status }) => {
-    if (status === 4 || status === 5 || status === 6) {
+    if (status === "418d6f62-0e10-4869-beb6-a9177fbf5cd5" || status === "cbf710fd-870b-4219-876b-b236693f86f2") {
       return;
     } else {
       return (
         <Group position="center">
+
           <Button onClick={() => setOpenEdit(true)}>Edit Repair</Button>
         </Group>
       );
