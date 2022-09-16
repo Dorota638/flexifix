@@ -115,7 +115,7 @@ export const RepairSummary = ({ nextStep }) => {
       </Box>
       <Box>
         <h1>Bicycle:</h1>
-        <p>{repair.bicycle.brand.name || "No bicycle selected"}</p>
+        <p>{repair.bicycle.brand.value || "No bicycle selected"}</p>
       </Box>
       <Box className="mt-5">
         <h1>Tasks</h1>

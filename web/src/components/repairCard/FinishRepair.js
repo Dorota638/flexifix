@@ -1,5 +1,5 @@
 import React from "react";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { Button } from "@mantine/core";
 import { FINISH_REPAIR } from "../../queries";
 import { GET_TODO } from "../../queries";
@@ -16,7 +16,7 @@ export const FinishRepair = ({ setOpened, repair }) => {
         finishRepair({
           variables: {
             id: repair.id,
-            status: 4,
+            status: "337a9aaa-8839-45a5-8eff-37bad227846c",
             dateFinished: new Date(),
           },
         });
