@@ -12,6 +12,7 @@ const {
   queryResolvers: repairQueryResolvers,
   resolvers: repairResolvers,
 } = require('./query/repairs');
+const { queryResolvers: repairPropsQueryResolvers } = require('./query/repairProps');
 const { queryResolvers: taskQueryResolvers, resolvers: taskResolvers } = require('./query/tasks');
 const {
   queryResolvers: taskInvoiceLineQueryResolvers,
@@ -77,6 +78,7 @@ export const resolvers: IResolvers = {
     ...customerQueryResolvers,
     ...bicycleQueryResolvers,
     ...repairQueryResolvers,
+    ...repairPropsQueryResolvers,
     ...taskQueryResolvers,
     ...taskInvoiceLineQueryResolvers,
     ...bicycleInvoiceLineQueryResolvers,
