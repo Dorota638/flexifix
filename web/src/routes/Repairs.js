@@ -25,7 +25,7 @@ const HaveInvoice = ({ status, setRepair, setOpened, repair }) => {
 export const Repairs = () => {
   const [opened, setOpened] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
-  const [repair, setRepair] = useState({});
+  const [repair, setRepair] = useState(null);
   const { data: repairs } = useQuery(GET_ALL_REPAIRS);
 
   const repairRows = repairs?.repairs.map((repair) => (
@@ -75,7 +75,7 @@ export const Repairs = () => {
         onClose={() => setOpenEdit(false)}
         title="Edit Repair"
       >
-        <EditRepair repairId={repair.id}/>
+        <EditRepair repair={repair}/>
       </Modal>
       <Modal
         size="md"

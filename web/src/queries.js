@@ -935,3 +935,22 @@ export const GET_EMPLOYEES = gql`
     }
   }
 `;
+export const CHANGE_REPAIR_STATUS = gql`
+mutation editRepair($id: String! $status: String!) {
+  editRepair(input:{id: $id status: $status}) {
+    id
+    status {
+      id
+    value
+    }
+  }
+}
+`
+export const GET_REPAIR_STATUSES = gql`
+query RepairStatuses {
+  repairStatuses {
+    id
+    value
+  }
+}
+`

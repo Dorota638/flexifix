@@ -24,12 +24,12 @@ export const Bicycles = () => {
   const bicycleRows = bicycles?.bicycles.map((bicycle) => (
     <tr key={bicycle.id} className="odd:bg-gray-900">
       <td>{bicycle.name}</td>
-      <td>{bicycle.brand.name}</td>
+      <td>{bicycle.brand.value}</td>
       <td>{bicycle.type}</td>
-      <td>{bicycle.color.color}</td>
-      <td>{bicycle.gearsystem.type}</td>
-      <td>{bicycle.tires.size}</td>
-      <td>{bicycle.status.status}</td>
+      <td>{bicycle.color.value}</td>
+      <td>{bicycle.gearsystem.value}</td>
+      <td>{bicycle.tires.value}</td>
+      <td>{bicycle.status.value}</td>
       <td>{bicycle.frameNumber}</td>
       <td>{bicycle.owner.fullName}</td>
       <td>{bicycle.holder.fullName}</td>
