@@ -16,8 +16,8 @@ export const queryResolvers = {
         }).catch(errHandler);
         return productInvoiceLine;
       } else {
-        const productInvoiceLine = await ProductInvoiceLine.findAll().catch(errHandler);
-        return productInvoiceLine;
+        // const productInvoiceLine = await ProductInvoiceLine.findAll().catch(errHandler);
+        // return productInvoiceLine;
       }
     } catch (err) {
       throw new Error(err);
