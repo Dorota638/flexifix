@@ -26,6 +26,7 @@ export const Repairs = () => {
   const [openEdit, setOpenEdit] = useState(false);
   const [repair, setRepair] = useState(null);
   const { data: repairs } = useQuery(GET_ALL_REPAIRS);
+  console.log(repairs, "repairsdata");
   const repairRows = repairs?.repairs.map((repair) => (
     <tr key={repair.id} className="odd:bg-gray-900">
       <td>{repair.number}</td>
@@ -73,7 +74,7 @@ export const Repairs = () => {
         onClose={() => setOpenEdit(false)}
         title="Edit Repair"
       >
-        <EditRepair repair={repair}/>
+        <EditRepair repair={repair} />
       </Modal>
       <Modal
         size="md"

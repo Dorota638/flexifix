@@ -18,8 +18,8 @@ function Invoice({ repair }) {
     ))
     const partsInvoiceRows = repair?.productInvoiceLines?.map((productLine) => (
         <tr key={productLine.id} className="odd:bg-gray-900">
-            <td>{productLine.product.productCategory.name}</td>
-            <td>{productLine.product.productBrand.name}</td>
+            <td>{productLine.product.productCategory.value}</td>
+            <td>{productLine.product.productBrand.value}</td>
             <td>{productLine.price}</td>
             <td>VAT </td>
             <td>{productLine.amount}</td>
@@ -49,7 +49,7 @@ function Invoice({ repair }) {
 
 
             <section>
-                <p>Repair Number: {repair.number}</p>
+                <p>Repair Number: {repair?.number}</p>
                 <p>Customer: {repair?.customer?.fullName}</p>
                 <p>Bicycle: <span>{repair?.bicycle?.brand?.name}</span></p>
             </section>
@@ -76,8 +76,6 @@ function Invoice({ repair }) {
                         </tr>
                     </thead>
                     <tbody>{tasksInvoiceRows}</tbody>
-                    <hr></hr>
-                    <p>total</p>
                 </Table>
                 <Table>
                     <thead>

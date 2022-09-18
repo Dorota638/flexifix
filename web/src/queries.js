@@ -217,10 +217,10 @@ export const GET_ALL_REPAIRS = gql`
       productInvoiceLines {
         product {
           productBrand {
-            name
+            value
           }
           productCategory {
-            name
+            value
           }
           sellPrice
         }
