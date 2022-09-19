@@ -38,7 +38,7 @@ export const Inventory = () => {
   return (
     <div>
       <Modal opened={opened} onClose={() => setOpened(false)}>
-        <EditProductForm product={selectedProduct} setOpened={setOpened}/>
+        <EditProductForm product={selectedProduct} setOpened={setOpened} />
       </Modal>
 
       <Table>

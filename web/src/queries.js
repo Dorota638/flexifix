@@ -214,6 +214,20 @@ export const GET_ALL_REPAIRS = gql`
         time
         price
       }
+      productInvoiceLines {
+        product {
+          productBrand {
+            value
+          }
+          productCategory {
+            value
+          }
+          sellPrice
+        }
+        amount
+        price
+        id
+      }
       dateStarted
       dateFinished
       dateReturned

@@ -31,7 +31,7 @@ export const SelectProducts = () => {
       </tr>
     );
   });
-
+  console.log(products, "products");
   return (
     <div className="child:mx-auto">
       <Select
