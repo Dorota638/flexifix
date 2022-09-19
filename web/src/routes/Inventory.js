@@ -11,8 +11,8 @@ export const Inventory = () => {
   const { data: products } = useQuery(GET_ALL_PRODUCTS);
   const productRows = products?.products.map((product) => (
     <tr key={product.id} className="odd:bg-gray-900">
-      <td>{product.productBrand.name}</td>
-      <td>{product.productCategory.name}</td>
+      <td>{product.productBrand.value}</td>
+      <td>{product.productCategory.value}</td>
       <td>{product.description}</td>
       <td>{product.stock}</td>
       <td>{product.minStock}</td>
@@ -38,7 +38,7 @@ export const Inventory = () => {
   return (
     <div>
       <Modal opened={opened} onClose={() => setOpened(false)}>
-        <EditProductForm product={selectedProduct} setOpened={setOpened}/>
+        <EditProductForm product={selectedProduct} setOpened={setOpened} />
       </Modal>
 
       <Table>
