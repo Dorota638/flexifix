@@ -704,7 +704,7 @@ export const POST_NEW_SALE = gql`
   mutation (
     $fkPaymentMethod: Int!
     $fkCustomerId: String!
-    $fkSalespersonId: Int!
+    $fkSalespersonId: String!
   ) {
     createSale(
       input: {
@@ -951,6 +951,40 @@ query RepairStatuses {
   repairStatuses {
     id
     value
+  }
+}
+`
+export const GET_RENTAL_BICYCLES = gql`
+query RentalBicycles {
+  rentalBicycles {
+    id
+    type
+    name
+    color {
+      value
+    }
+    brand {
+      value
+    }
+  }
+}
+`
+export const POST_NEW_RENTAL = gql`
+mutation CreateRental( $fkSalesPersonId: String! $fkCustomerId: String! $periodStart: String! $periodEnd: String! $fkBicycleId: String!
+  ) {
+  createRental(input: { fkSalesPersonId: $fkSalesPersonId fkCustomerId: $fkCustomerId periodStart: $periodStart periodEnd: $periodEnd fkBicycleId: $fkBicycleId
+  }) {
+    id
+    number
+    salesPerson {
+      name
+    }
+    customer {
+      id
+      fullName
+    }
+    periodStart
+    periodEnd
   }
 }
 `

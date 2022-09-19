@@ -65,7 +65,6 @@ export const SelectBicycles = ({ hidden }) => {
         </thead>
         <tbody>{bicycleRows}</tbody>
       </Table>
-      <BicycleCart />
     </div>
   );
 };

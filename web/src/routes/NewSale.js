@@ -6,6 +6,9 @@ import { CreateCustomer } from "../components/common/CreateCustomer";
 import { SelectProducts } from "../components/common/SelectProducts";
 import { SelectBicycles } from "../components/sale/SelectBicycles";
 import { SaleSummary } from "../components/sale/SaleSummary";
+import { useStore } from "../Store";
+import { ProductCart } from "../components/common/ProductCart";
+import { BicycleCart } from "../components/sale/BicycleCart";
 
 export const NewSale = () => {
   const [active, setActive] = useState(0);
@@ -13,6 +16,7 @@ export const NewSale = () => {
     setActive((current) => (current < 3 ? current + 1 : current));
   const prevStep = () =>
     setActive((current) => (current > 0 ? current - 1 : current));
+  const selectedCustomer = useStore(({ selectedCustomer }) => selectedCustomer);
 
   const [bicycles, setBicycles] = useState(false);
   const [products, setProducts] = useState(true);
@@ -32,17 +36,9 @@ export const NewSale = () => {
       <Stepper active={active} onStepClick={setActive} breakpoint="sm">
         <Stepper.Step label="Customer" allowStepSelect={active > 0}>
           <Box sx={{ maxWidth: 800 }} mx="auto">
-            <Button
-              onClick={() => {
-                setOpened(true);
-              }}
-              className="my-10"
-            >
-              Create customer
-            </Button>
             <CreateCustomer opened={opened} setOpened={setOpened} />
             <SelectCustomer />
-            <SelectedCustomer />
+            <SelectedCustomer customer={selectedCustomer} />
           </Box>
         </Stepper.Step>
 
@@ -54,6 +50,8 @@ export const NewSale = () => {
             </Button>
             <SelectProducts hidden={bicycles} />
             <SelectBicycles hidden={products} />
+            <ProductCart/>
+            <BicycleCart/>
           </Box>
         </Stepper.Step>
 

@@ -4,7 +4,6 @@ import { SelectCustomer } from "../components/common/SelectCustomer";
 import { CreateCustomer } from "../components/common/CreateCustomer";
 import { SelectedCustomer } from "../components/common/SelectedCustomer";
 import { SelectBicycle } from "../components/repair/SelectBicycle";
-import { CreateBicycle } from "../components/repair/CreateBicycle";
 import { SelectTasks } from "../components/repair/SelectTasks";
 import { SelectProducts } from "../components/common/SelectProducts";
 import { TaskCart } from "../components/repair/TaskCart";
@@ -68,7 +67,7 @@ export const NewRepair = () => {
 
         <Stepper.Step label="Tasks" allowStepSelect={active > 2}>
           <SelectTasks />
-          <TaskCart/>
+          <TaskCart />
           <Group position="center" mt="xl">
             <Button variant="default" onClick={prevStep}>
               Back

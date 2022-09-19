@@ -69,7 +69,6 @@ export const SaleSummary = () => {
           color: "Green",
         });
         sale?.productCart?.map(({ amount, product }) => {
-          // setInvoiceLines({ ...invoiceLines, item: { amount, product } }); treba toto?????
           createProductInvoiceLines({
             variables: {
               fkSaleId: data.createSale.id,
