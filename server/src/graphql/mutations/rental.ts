@@ -1,3 +1,4 @@
+import { getRentalNumber } from './../../helper';
 import { v4 as UUIDV4 } from 'uuid';
 import { errHandler } from '../../helper';
 const { Rental } = require('../../models/Rental');
@@ -8,9 +9,7 @@ export const queryMutations = {
       const rental = await Rental.create({
         id: UUIDV4(),
         ...input,
-        periodStart: new Date(),
-        periodEnd: new Date(),
-        returned: new Date(),
+        number: getRentalNumber(),
       }).catch(errHandler);
       return rental;
     } catch (err) {

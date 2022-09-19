@@ -8,6 +8,7 @@ export const query = `
     bicycles: [Bicycle!]!
     bicycleProps: BicycleProps!
     bicyclesByCustomerId(customerId: String!): [Bicycle!]!
+    rentalBicycles: [Bicycle!]!
     bicycleInvoiceLines(saleId: String): [BicycleInvoiceLine!]!
     getRepair(id: String!): Repair!
     repairs(customerId: String): [Repair!]!

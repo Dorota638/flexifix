@@ -29,6 +29,20 @@ export const queryResolvers = {
       throw new Error(err);
     }
   },
+
+  async rentalBicycles() {
+    try {
+      const rentalBicycles = await Bicycle.findAll({
+        where: {
+          fkOwnerId: 'c6389cef-b019-4b77-b0f7-44f68aebf155',
+          status: '951c7c29-4848-4220-ba30-07b9f42f3f88',
+        },
+      }).catch(errHandler);
+      return rentalBicycles;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 };
 
 export const resolvers = {
@@ -42,21 +56,17 @@ export const resolvers = {
   },
   holder: async (parent: any) => {
     try {
-      const holder = await Customer.findByPk(parent.fkHolderId).catch(
-        errHandler
-      );
+      const holder = await Customer.findByPk(parent.fkHolderId).catch(errHandler);
       return holder;
     } catch (err) {
       throw new Error(err);
     }
   },
   async color(parent: any) {
-    console.log("colorParent", parent);
-    
+    console.log('colorParent', parent);
+
     try {
-      const color = await BicycleColor.findByPk(parent.color).catch(
-        console.error
-      );
+      const color = await BicycleColor.findByPk(parent.color).catch(console.error);
       return color;
     } catch (err) {
       throw new Error(err);
@@ -64,9 +74,7 @@ export const resolvers = {
   },
   async brand(parent: any) {
     try {
-      const brand = await BicycleBrand.findByPk(parent.brand).catch(
-        console.error
-      );
+      const brand = await BicycleBrand.findByPk(parent.brand).catch(console.error);
       return brand;
     } catch (err) {
       throw new Error(err);
@@ -74,9 +82,7 @@ export const resolvers = {
   },
   async gearsystem(parent: any) {
     try {
-      const gearsystem = await BicycleGearsystem.findByPk(
-        parent.gearsystem
-      ).catch(console.error);
+      const gearsystem = await BicycleGearsystem.findByPk(parent.gearsystem).catch(console.error);
       return gearsystem;
     } catch (err) {
       throw new Error(err);
@@ -84,9 +90,7 @@ export const resolvers = {
   },
   async status(parent: any) {
     try {
-      const status = await BicycleStatus.findByPk(parent.status).catch(
-        console.error
-      );
+      const status = await BicycleStatus.findByPk(parent.status).catch(console.error);
       return status;
     } catch (err) {
       throw new Error(err);
@@ -94,9 +98,7 @@ export const resolvers = {
   },
   async tires(parent: any) {
     try {
-      const tires = await BicycleTires.findByPk(parent.tires).catch(
-        console.error
-      );
+      const tires = await BicycleTires.findByPk(parent.tires).catch(console.error);
       return tires;
     } catch (err) {
       throw new Error(err);

@@ -13,10 +13,10 @@ export const getRepairNumber = () => {
 export const getSaleNumber = () => {
   const date = new Date();
   S++;
-  return `RR${date.getDate()}${date.getMonth()+1}${date.getFullYear().toString().slice(-2)}/${S}`;
+  return `SL${date.getDate()}${date.getMonth()+1}${date.getFullYear().toString().slice(-2)}/${S}`;
 };
 export const getRentalNumber = () => {
   const date = new Date();
   RL++;
-  return `RR${date.getDate()}${date.getMonth()+1}${date.getFullYear().toString().slice(-2)}/${RL}`;
+  return `RL${date.getDate()}${date.getMonth()+1}${date.getFullYear().toString().slice(-2)}/${RL}`;
 };

@@ -122,17 +122,18 @@ export const input = `
     price: Float!
   }
   input rentalInput{
-    fkSalesPersonId: Int!
+    fkSalesPersonId: String!
     fkCustomerId: String!
+    fkBicycleId: String!
     periodStart: String!
     periodEnd: String!
-    fkPaymentMethod: Int!
-    deposit: Int!
-    wireLock: Boolean!
+    fkPaymentMethod: Int
+    deposit: Int
+    wireLock: Boolean
     depositId: Boolean
     returned: String
     workHours: Float
-    active: Boolean!
+    active: Boolean
   }
   input rentalInvoiceLineInput{
     fkRentalId: String!
