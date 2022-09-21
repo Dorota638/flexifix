@@ -10,7 +10,7 @@ import { SelectPeriod } from "../components/rental/SelectPeriod";
 export const NewRental = () => {
     const [active, setActive] = useState(0);
     const nextStep = () =>
-        setActive((current) => (current < 5 ? current + 1 : current));
+        setActive((current) => (current < 4 ? current + 1 : current));
     const prevStep = () =>
         setActive((current) => (current > 0 ? current - 1 : current));
     const [opened, setOpened] = useState(false);
@@ -68,8 +68,6 @@ export const NewRental = () => {
                             Next
                         </Button>
                     </Group>
-                </Stepper.Step>
-                <Stepper.Step label="Tasks" allowStepSelect={active > 2}>
                 </Stepper.Step>
                 <Stepper.Completed>Rental created</Stepper.Completed>
             </Stepper>

@@ -1002,3 +1002,28 @@ mutation CreateRental( $fkSalesPersonId: String! $fkCustomerId: String! $periodS
   }
 }
 `
+export const GET_ALL_RENTALS = gql`
+query getAlRentals {
+  rentals {
+    id
+    number
+    returned
+    customer {
+      fullName
+    }
+    periodStart
+    periodEnd
+  }
+}
+`
+
+export const RETURN_RENTAL = gql`
+mutation returnRental($rentalId: String!) {
+  returnRental(rentalId: $rentalId) {
+    id
+    number
+    returned
+    active
+  }
+}
+`

@@ -40,6 +40,7 @@ export const NavbarLinks = () => {
             : theme.colors.gray[0],
       })}>
         <Button component={Link} to="/repairs">Repairs</Button>
+        <Button component={Link} to="/rentals">Rentals</Button>
         <Button component={Link} to="/customers">Customers</Button>
         <Button component={Link} to="/bicycles">Bicycles</Button>
         <Button component={Link} to="/inventory">Inventory</Button>

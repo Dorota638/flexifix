@@ -16,7 +16,7 @@ export const SelectPeriod = () => {
         <div>
             <DatePicker placeholder="Pick date" label="Start date" onChange={setStartDate} />
             <DatePicker placeholder="Pick date" label="Return date" onChange={setEndDate} />
-            <Button disabled={!startDate && !endDate} onClick={() => {
+            <Button disabled={!startDate || !endDate} onClick={() => {
                 postRental({
                     variables: {
                         fkSalesPersonId: salesperson.id,
