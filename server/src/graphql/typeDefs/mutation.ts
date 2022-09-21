@@ -17,6 +17,7 @@ export const mutation = `
     createProductInvoiceLine(input: productInvoiceLineInput): ProductInvoiceLine!
     deleteProductInvoiceLine(id: String!): Deleted!
     createRental(input: rentalInput): Rental!
+    returnRental(rentalId: String!): Rental!
     createRentalInvoiceLine(input: rentalInvoiceLineInput): RentalInvoiceLine!
     createTask(input: taskInput): Task!
     createTaskCategory(input: taskCategoryInput): TaskCategory!
