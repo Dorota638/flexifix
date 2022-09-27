@@ -2,11 +2,11 @@ import { useMutation } from "@apollo/client";
 import { Button, Group, NumberInput, Select, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useStore } from "../../Store";
-import { EDIT_PRODUCT } from "../../queries";
+import { CREATE_EDIT_PRODUCT } from "../../queries";
 
 export const EditProductForm = ({ product, setOpened }) => {
   const productProps = useStore((store) => store.productProps);
-  const [editProduct] = useMutation(EDIT_PRODUCT);
+  const [editProduct] = useMutation(CREATE_EDIT_PRODUCT);
   const form = useForm({
     initialValues: {
       productBrand: product?.productBrand?.id,

@@ -14,6 +14,7 @@ export const SelectBicycles = ({ hidden }) => {
   const [bicycle, setBicycle] = useState({});
   const [opened, setOpened] = useState(false);
   const addToCart = useStore((state) => state.addBicycleToCart);
+  console.log('data?.bicyclesByCustomerId', data?.bicyclesByCustomerId);
   const bicycleRows = data?.bicyclesByCustomerId.map((bicycle) => (
     <tr
       key={bicycle.id}
@@ -23,9 +24,9 @@ export const SelectBicycles = ({ hidden }) => {
       }}
       className="odd:bg-gray-900"
     >
-      <td>{bicycle.brand.name}</td>
+      <td>{bicycle.brand.value}</td>
       <td>{bicycle.type}</td>
-      <td>{bicycle.gearsystem.type}</td>
+      <td>{bicycle.gearsystem.value}</td>
       <td>{bicycle.frameNumber}</td>
     </tr>
   ));

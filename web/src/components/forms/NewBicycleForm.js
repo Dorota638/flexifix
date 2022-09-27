@@ -1,5 +1,5 @@
 import { useMutation } from "@apollo/client";
-import { Button, Group, Loader, Select } from "@mantine/core";
+import { Button, Group, Loader, Select, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/hooks";
 import { useStore } from "../../Store";
 import { showNotification } from "@mantine/notifications";
@@ -14,22 +14,22 @@ export const NewBicycleForm = ({ setOpened }) => {
     (state) => state.bicycleProps
   );
   console.log('color tires status gearsystem brand',
-  color,
-  tires,
-  status,
-  gearsystem,
-  brand);
-  
+    color,
+    tires,
+    status,
+    gearsystem,
+    brand);
+
   const colornames = color.map((color) => ({
     label: color.value,
     value: color.id,
   }));
-  const tiressize = tires.map((tire) => ({ label: tire.size, value: tire.id }));
+  const tiressize = tires.map((tire) => ({ label: tire.value, value: tire.id }));
   const statusstatus = status.map((status) => ({
     label: status.value,
     value: status.id,
   }));
-  const gearsystemtype = gearsystem.map((gearsystem) => ({
+  const gearSystem = gearsystem.map((gearsystem) => ({
     label: gearsystem.value,
     value: gearsystem.id,
   }));
@@ -51,10 +51,12 @@ export const NewBicycleForm = ({ setOpened }) => {
             color: values.color,
             tires: values.size,
             status: values.status,
-            gearsystem: values.type,
+            gearsystem: values.gearsystem,
             brand: values.brandname,
-            fkOwnerId: customer.id,
-            fkHolderId: customer.id,
+            type: values.type,
+            frameNumber: values.frameNumber,
+            fkOwnerId: customer ? customer.id : 'c6389cef-b019-4b77-b0f7-44f68aebf155',
+            fkHolderId: customer ? customer.id : 'c6389cef-b019-4b77-b0f7-44f68aebf155',
           },
         })
           .then((data) => {
@@ -72,8 +74,24 @@ export const NewBicycleForm = ({ setOpened }) => {
           });
       })}
     >
+      <TextInput
+        label="FrameNumber"
+        {...form.getInputProps("frameNumber")}
+      />
       <Select
-        label="Choose color"
+        label="Brand name"
+        placeholder="Pick one"
+        searchable
+        nothingFound="No options"
+        data={brandname}
+        {...form.getInputProps("brandname")}
+      />
+      <TextInput
+        label="Type"
+        {...form.getInputProps("type")}
+      />
+      <Select
+        label="Color"
         placeholder="Pick one"
         searchable
         nothingFound="No options"
@@ -81,7 +99,7 @@ export const NewBicycleForm = ({ setOpened }) => {
         {...form.getInputProps("color")}
       />
       <Select
-        label="Choose tire size"
+        label="Tire size"
         placeholder="Pick one"
         searchable
         nothingFound="No options"
@@ -89,28 +107,20 @@ export const NewBicycleForm = ({ setOpened }) => {
         {...form.getInputProps("size")}
       />
       <Select
-        label="Choose status"
+        label="Gear system"
+        placeholder="Pick one"
+        searchable
+        nothingFound="No options"
+        data={gearSystem}
+        {...form.getInputProps("gearsystem")}
+      />
+      <Select
+        label="Status"
         placeholder="Pick one"
         searchable
         nothingFound="No options"
         data={statusstatus}
         {...form.getInputProps("status")}
-      />
-      <Select
-        label="Choose gear system type"
-        placeholder="Pick one"
-        searchable
-        nothingFound="No options"
-        data={gearsystemtype}
-        {...form.getInputProps("type")}
-      />
-      <Select
-        label="Choose brand name"
-        placeholder="Pick one"
-        searchable
-        nothingFound="No options"
-        data={brandname}
-        {...form.getInputProps("brandname")}
       />
       <Group position="right" mt="md">
         <Button type="submit">Submit</Button>
