@@ -7,8 +7,7 @@ export const mutation = `
     editBicycle(input: editBicycleInput): Bicycle!
     createTaskInvoiceLine(input: createTaskInvoiceLineInput): TaskInvoiceLine!
     deleteTaskInvoiceLine(id: String!): Deleted!
-    findOrCreateProduct(input: productInput): Product!
-    editProduct(input: productInput): Product!
+    createEditProduct(input: productInput): Product!
     addToAccount(input: accountInput): Account!
     changePassword(input: changePasswordInput): String
     comparePassword(id: String!, password: String!): CheckedPassword
