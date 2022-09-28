@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { Button, Modal, Table, Title } from '@mantine/core';
 import React, { useState } from 'react'
+import SaleInvoice from '../components/sale/SaleInvoice';
 import { GET_ALL_SALES } from '../queries';
 
 const Invoice = ({ setSale, setOpenInvoice, sale }) => {
@@ -28,8 +29,8 @@ export const Sales = () => {
             <td>
                 <Invoice
                     setSale={setSale}
-                    sale={sale} />
-                    setOpenInvoice={setOpenInvoice}
+                    sale={sale} 
+                    setOpenInvoice={setOpenInvoice}/>
             </td>
         </tr>
     ));
@@ -48,14 +49,13 @@ export const Sales = () => {
                 <tbody>{salesRows}</tbody>
             </Table>
             <Modal
-                size="md"
-                opened={openInvoice}
-                onClose={() => setOpenInvoice(false)}
-                title="Invoice"
-            >
-                {/* Invoice pre Sale */}
-                {/* <Invoice setOpened={setOpenInvoice} sale={sale} /> */}
-            </Modal>
+        size="md"
+        opened={openInvoice}
+        onClose={() => setOpenInvoice(false)}
+        title="Invoice"
+      >
+        <SaleInvoice setOpened={setOpenInvoice} sale={sale} />
+      </Modal>
         </div>
     );
 };

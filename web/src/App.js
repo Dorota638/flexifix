@@ -14,7 +14,7 @@ const theme = {
 
 const client = new ApolloClient({
   // uri: 'http://localhost:3000/graphql',
-  uri: "https://893b-86-52-46-61.eu.ngrok.io/graphql",
+  uri: "https://f3b3-86-52-46-61.eu.ngrok.io/graphql",
   cache: new InMemoryCache(),
 });
 

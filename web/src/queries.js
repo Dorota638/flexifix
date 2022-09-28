@@ -1043,6 +1043,8 @@ query Sales {
     }
     productInvoiceLines {
       id
+      amount
+      price
       product {
         productBrand {
           value
