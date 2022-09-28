@@ -17,6 +17,7 @@
     "@mantine/spotlight": "^4.2.8",
     "@modulz/radix-icons": "^4.0.0",
     "@radix-ui/react-icons": "^1.1.1",
+    "@react-pdf/renderer": "^3.0.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",

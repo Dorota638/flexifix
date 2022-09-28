@@ -22,7 +22,7 @@ import { Repairs } from "../routes/Repairs";
 import { Bicycles } from "../routes/Bicycles";
 import { SignedIn } from "../components/SignedIn";
 import { FinishRepair } from "../components/repair/FinishRepair";
-import Invoice from "../components/Invoice";
+import Invoice from "../components/reports/Invoice";
 import { QueryData } from "../components/QueryData";
 import { NewRental } from "../routes/NewRental";
 
