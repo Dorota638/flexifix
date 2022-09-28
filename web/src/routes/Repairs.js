@@ -43,11 +43,10 @@ const CanEdit = ({ status, setOpenEdit, setRepair, repair }) => {
 };
 
 export const Repairs = () => {
-  const [opened, setOpened] = useState(false);
+  const [openInvoice, setOpenInvoice] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [repair, setRepair] = useState(null);
   const { data: repairs } = useQuery(GET_ALL_REPAIRS);
-  console.log(repairs, "repairsdata");
   const repairRows = repairs?.repairs.map((repair) => (
     <tr key={repair.id} className="odd:bg-gray-900">
       <td>{repair.number}</td>
@@ -58,7 +57,7 @@ export const Repairs = () => {
         <HaveInvoice
           status={repair.status.id}
           setRepair={setRepair}
-          setOpened={setOpened}
+          setOpened={setOpenInvoice}
           repair={repair} />
       </td>
       <td>

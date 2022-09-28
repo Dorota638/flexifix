@@ -29,8 +29,8 @@ export const SaleSummary = () => {
   const productRows = sale.productCart.map((item) => (
     <tr key={item.product.id} className="odd:bg-gray-900">
       <td>{item.product.description}</td>
-      <td>{item.product.productBrand.name}</td>
-      <td>{item.product.productCategory.name}</td>
+      <td>{item.product.productBrand.value}</td>
+      <td>{item.product.productCategory.value}</td>
       <td>{item.product.sellPrice}</td>
       <td>{item.amount}x</td>
     </tr>
@@ -38,9 +38,9 @@ export const SaleSummary = () => {
   const bicycleRows = sale.bicycleCart.map((bicycle) => {
     return (
       <tr key={bicycle.id} className="odd:bg-gray-900">
-        <td>{bicycle.brand.name}</td>
+        <td>{bicycle.brand.value}</td>
         <td>{bicycle.type}</td>
-        <td>{bicycle.gearsystem.type}</td>
+        <td>{bicycle.gearsystem.value}</td>
         <td>{bicycle.frameNumber}</td>
       </tr>
     );
@@ -86,17 +86,14 @@ export const SaleSummary = () => {
           });
         });
         if (sale?.bicycleCart.length) {
-          sale?.bicycleCart
-            ?.map((bicycle) => {
-              createBicycleInvoiceLines({
-                variables: {
-                  fkSaleId: data.createSale.id,
-                  fkBicycleId: bicycle.id,
-                  price: bicycle.price,
-                },
-              });
-            })
-            .then(() => {
+          sale?.bicycleCart.map((bicycle) => {
+            createBicycleInvoiceLines({
+              variables: {
+                fkSaleId: data.createSale.id,
+                fkBicycleId: bicycle.id,
+                price: bicycle.price,
+              },
+            }).then(() => {
               showNotification({
                 title: "Success",
                 message: "Bicycle added to sale",
@@ -105,6 +102,7 @@ export const SaleSummary = () => {
               });
               emptyStore();
             });
+          })
         }
       })
       .catch((err) => {

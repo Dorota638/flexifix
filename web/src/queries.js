@@ -347,6 +347,8 @@ export const GET_BICYCLES = gql`
   query ($customerId: String!) {
     bicyclesByCustomerId(customerId: $customerId) {
       id
+      type
+      frameNumber
       color {
         value
       }
@@ -504,6 +506,8 @@ export const GET_CUSTOMER = gql`
 export const NEW_BICYCLE = gql`
   mutation CreateBicycle(
     $color: String!
+    $frameNumber: String!
+    $type: String!
     $brand: String!
     $gearsystem: String!
     $status: String!
@@ -515,6 +519,8 @@ export const NEW_BICYCLE = gql`
       input: {
         color: $color
         brand: $brand
+        frameNumber: $frameNumber
+        type: $type
         gearsystem: $gearsystem
         status: $status
         tires: $tires
@@ -603,7 +609,7 @@ mutation (
   }
 }
 `
-export const EDIT_PRODUCT = gql`
+export const CREATE_EDIT_PRODUCT = gql`
   mutation (
     $id: ID
     $fkSupplier: String
@@ -999,6 +1005,65 @@ mutation CreateRental( $fkSalesPersonId: String! $fkCustomerId: String! $periodS
     }
     periodStart
     periodEnd
+  }
+}
+`
+export const GET_ALL_RENTALS = gql`
+query getAlRentals {
+  rentals {
+    id
+    number
+    returned
+    customer {
+      fullName
+    }
+    periodStart
+    periodEnd
+  }
+}
+`
+
+export const RETURN_RENTAL = gql`
+mutation returnRental($rentalId: String!) {
+  returnRental(rentalId: $rentalId) {
+    id
+    number
+    returned
+    active
+  }
+}
+`
+export const GET_ALL_SALES = gql`
+query Sales {
+  sales {
+    id
+    number
+    customer {
+      fullName
+    }
+    productInvoiceLines {
+      id
+      amount
+      price
+      product {
+        productBrand {
+          value
+        }
+        description
+      }
+    }
+    salesperson {
+      name
+    }
+    bicycleInvoiceLines {
+      id
+      bicycle {
+        brand {
+          value
+        }
+        type
+      }
+    }
   }
 }
 `

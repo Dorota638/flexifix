@@ -25,6 +25,8 @@ import { FinishRepair } from "../components/repair/FinishRepair";
 import Invoice from "../components/reports/Invoice";
 import { QueryData } from "../components/QueryData";
 import { NewRental } from "../routes/NewRental";
+import { Rentals } from "../routes/Rentals";
+import { Sales } from "../routes/Sales";
 
 export const Shell = () => {
   const theme = useMantineTheme();
@@ -89,6 +91,8 @@ export const Shell = () => {
           <Route path="/newBicycle" element={<NewBicycle />} />
           <Route path="/analytics" element={<Analytics />} />
           <Route path="/repairs" element={<Repairs />} />
+          <Route path="/rentals" element={<Rentals />} />
+          <Route path="/sales" element={<Sales />} />
           <Route path="/inventory" element={<Inventory />} />
           <Route path="/bicycles" element={<Bicycles />} />
           <Route path="/newCustomer" element={<NewCustomer />} />

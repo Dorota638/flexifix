@@ -79,7 +79,7 @@ export const types = `
     paymentMethod: PaymentMethod!
     salesPerson: Employee!
     customer: Customer
-    rentalInvoiceLines: [RentalInvoiceLine!]!
+    bicycle: Bicycle!
     periodStart: String!
     periodEnd: String!
     deposit: Int!

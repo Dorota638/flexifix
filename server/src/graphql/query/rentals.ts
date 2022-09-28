@@ -3,7 +3,6 @@ const { Rental } = require('../../models/Rental');
 const { PaymentMethod } = require('../../models/PaymentMethod');
 const { Customer } = require('../../models/Customer');
 const { Employee } = require('../../models/Employee');
-const { RentalInvoiceLine } = require('../../models/InvoiceLines');
 
 export const queryResolvers = {
   rentals: async (_: any, { customerId }) => {
@@ -23,6 +22,15 @@ export const queryResolvers = {
   },
 };
 export const resolvers = {
+  bicycle: async (parent: any) => {
+    try {
+      const bicycle = await Bicycle.findByPk(parent.fkBicycleId).catch(errHandler);
+      return bicycle;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
+
   paymentMethod: async (parent: any) => {
     try {
       const method = await PaymentMethod.findByPk(parent.fkPaymentMethod).catch(errHandler);
@@ -32,17 +40,6 @@ export const resolvers = {
     }
   },
 
-  rentalInvoiceLines: async (parent: any) => {
-    try {
-      const rentalInvoiceLines = await RentalInvoiceLine.findAll({
-        where: { fkRentalId: parent.id },
-      }).catch(errHandler);
-
-      return rentalInvoiceLines;
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
   customer: async (parent: any) => {
     try {
       const customer = await Customer.findByPk(parent.fkCustomerId).catch(errHandler);

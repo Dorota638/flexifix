@@ -7,8 +7,7 @@ export const mutation = `
     editBicycle(input: editBicycleInput): Bicycle!
     createTaskInvoiceLine(input: createTaskInvoiceLineInput): TaskInvoiceLine!
     deleteTaskInvoiceLine(id: String!): Deleted!
-    findOrCreateProduct(input: productInput): Product!
-    editProduct(input: productInput): Product!
+    createEditProduct(input: productInput): Product!
     addToAccount(input: accountInput): Account!
     changePassword(input: changePasswordInput): String
     comparePassword(id: String!, password: String!): CheckedPassword
@@ -17,6 +16,7 @@ export const mutation = `
     createProductInvoiceLine(input: productInvoiceLineInput): ProductInvoiceLine!
     deleteProductInvoiceLine(id: String!): Deleted!
     createRental(input: rentalInput): Rental!
+    returnRental(rentalId: String!): Rental!
     createRentalInvoiceLine(input: rentalInvoiceLineInput): RentalInvoiceLine!
     createTask(input: taskInput): Task!
     createTaskCategory(input: taskCategoryInput): TaskCategory!
