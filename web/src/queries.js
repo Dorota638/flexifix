@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql } from '@apollo/client';
 
 export const GET_TODO = gql`
   query RepairsInProgress {
@@ -355,7 +355,7 @@ export const GET_BICYCLES = gql`
       brand {
         value
       }
-      gearsystem{
+      gearsystem {
         value
       }
     }
@@ -398,13 +398,7 @@ export const POST_NEW_REPAIR = gql`
   }
 `;
 export const ADD_TASK_INVOICE_LINE = gql`
-  mutation (
-    $fkTask: String!
-    $fkRepairId: String!
-    $amount: Int!
-    $time: Float!
-    $price: Float!
-  ) {
+  mutation ($fkTask: String!, $fkRepairId: String!, $amount: Int!, $time: Float!, $price: Float!) {
     createTaskInvoiceLine(
       input: {
         fkTask: $fkTask
@@ -447,7 +441,7 @@ export const ADD_PRODUCT_INVOICE_LINE = gql`
         amount: $amount
         price: $price
       }
-      ) {
+    ) {
       id
       product {
         id
@@ -474,7 +468,7 @@ export const ADD_PRODUCT_INVOICE_LINE = gql`
       price
     }
   }
-`
+`;
 export const GET_REPAIR = gql`
   query Query($repairId: String) {
     taskInvoiceLines(repairId: $repairId) {
@@ -498,7 +492,15 @@ export const GET_CUSTOMER = gql`
   query getCustomer($name: String!) {
     customerByName(name: $name) {
       id
+      firstName
+      lastName
       fullName
+      company
+      cvr
+      phone
+      address
+      zipCode
+      city
       email
     }
   }
@@ -528,6 +530,49 @@ export const NEW_BICYCLE = gql`
         fkHolderId: $fkHolderId
       }
     ) {
+      id
+      type
+      frameNumber
+      color {
+        value
+      }
+      brand {
+        value
+      }
+      gearsystem {
+        value
+      }
+    }
+  }
+`;
+export const EDIT_BICYCLE = gql`
+  mutation (
+    $id: ID!
+    $name: String
+    $brand: String
+    $type: String
+    $color: String
+    $gearsystem: String
+    $tires: String
+    $status: String
+    $frameNumber: String
+  ) {
+    editBicycle(
+      input: {
+        id: $id
+        type: $type
+        name: $name
+        color: $color
+        brand: $brand
+        gearsystem: $gearsystem
+        status: $status
+        tires: $tires
+        frameNumber: $frameNumber
+      }
+    ) {
+      id
+      type
+      name
       color {
         id
         value
@@ -548,67 +593,18 @@ export const NEW_BICYCLE = gql`
         id
         value
       }
+      frameNumber
+      owner {
+        id
+        fullName
+      }
+      holder {
+        id
+        fullName
+      }
     }
   }
 `;
-export const EDIT_BICYCLE = gql`
-mutation (
-  $id: ID!
-  $name: String
-  $brand: Int
-  $type: String
-  $color: String
-  $gearsystem: String
-  $tires: String
-  $status: String
-  $frameNumber: String
-) {
-  editBicycle(input: {
-    id: $id
-    type: $type
-    name: $name
-    color: $color
-    brand: $brand
-    gearsystem: $gearsystem
-    status: $status
-    tires: $tires
-    frameNumber: $frameNumber
-  }) {
-    id
-    type
-    name
-    color {
-      id
-      value
-    }
-    brand {
-      id
-      value
-    }
-    gearsystem {
-      id
-      value
-    }
-    status {
-      id
-      value
-    }
-    tires {
-      id
-      value
-    }
-    frameNumber
-    owner {
-      id
-      fullName
-    }
-    holder {
-      id
-      fullName
-    }
-  }
-}
-`
 export const CREATE_EDIT_PRODUCT = gql`
   mutation (
     $id: ID
@@ -708,9 +704,7 @@ export const NEW_CUSTOMER = gql`
 `;
 export const FINISH_REPAIR = gql`
   mutation ($id: ID, $status: String, $dateFinished: String) {
-    editRepair(
-      input: { id: $id, status: $status, dateFinished: $dateFinished }
-    ) {
+    editRepair(input: { id: $id, status: $status, dateFinished: $dateFinished }) {
       id
       status {
         value
@@ -721,11 +715,7 @@ export const FINISH_REPAIR = gql`
   }
 `;
 export const POST_NEW_SALE = gql`
-  mutation (
-    $fkPaymentMethod: Int!
-    $fkCustomerId: String!
-    $fkSalespersonId: String!
-  ) {
+  mutation ($fkPaymentMethod: Int!, $fkCustomerId: String!, $fkSalespersonId: String!) {
     createSale(
       input: {
         fkPaymentMethod: $fkPaymentMethod
@@ -956,108 +946,78 @@ export const GET_EMPLOYEES = gql`
   }
 `;
 export const CHANGE_REPAIR_STATUS = gql`
-mutation editRepair($id: String! $status: String!) {
-  editRepair(input:{id: $id status: $status}) {
-    id
-    status {
+  mutation editRepair($id: String!, $status: String!) {
+    editRepair(input: { id: $id, status: $status }) {
       id
-    value
-    }
-  }
-}
-`
-export const GET_REPAIR_STATUSES = gql`
-query RepairStatuses {
-  repairStatuses {
-    id
-    value
-  }
-}
-`
-export const GET_RENTAL_BICYCLES = gql`
-query RentalBicycles {
-  rentalBicycles {
-    id
-    type
-    name
-    color {
-      value
-    }
-    brand {
-      value
-    }
-  }
-}
-`
-export const POST_NEW_RENTAL = gql`
-mutation CreateRental( $fkSalesPersonId: String! $fkCustomerId: String! $periodStart: String! $periodEnd: String! $fkBicycleId: String!
-  ) {
-  createRental(input: { fkSalesPersonId: $fkSalesPersonId fkCustomerId: $fkCustomerId periodStart: $periodStart periodEnd: $periodEnd fkBicycleId: $fkBicycleId
-  }) {
-    id
-    number
-    salesPerson {
-      name
-    }
-    customer {
-      id
-      fullName
-    }
-    periodStart
-    periodEnd
-  }
-}
-`
-export const GET_ALL_RENTALS = gql`
-query getAlRentals {
-  rentals {
-    id
-    number
-    returned
-    customer {
-      fullName
-    }
-    periodStart
-    periodEnd
-  }
-}
-`
-
-export const RETURN_RENTAL = gql`
-mutation returnRental($rentalId: String!) {
-  returnRental(rentalId: $rentalId) {
-    id
-    number
-    returned
-    active
-  }
-}
-`
-export const GET_ALL_SALES = gql`
-query Sales {
-  sales {
-    id
-    number
-    customer {
-      fullName
-    }
-    productInvoiceLines {
-      id
-      amount
-      price
-      product {
-        productBrand {
-          value
-        }
-        description
+      status {
+        id
+        value
       }
     }
-    salesperson {
-      name
-    }
-    bicycleInvoiceLines {
+  }
+`;
+export const GET_REPAIR_STATUSES = gql`
+  query RepairStatuses {
+    repairStatuses {
       id
+      value
+    }
+  }
+`;
+export const GET_RENTAL_BICYCLES = gql`
+  query RentalBicycles {
+    rentalBicycles {
+      id
+      type
+      name
+      color {
+        value
+      }
+      brand {
+        value
+      }
+    }
+  }
+`;
+export const POST_NEW_RENTAL = gql`
+  mutation CreateRental(
+    $fkSalesPersonId: String!
+    $fkCustomerId: String!
+    $periodStart: String!
+    $periodEnd: String!
+  ) {
+    createRental(
+      input: {
+        fkSalesPersonId: $fkSalesPersonId
+        fkCustomerId: $fkCustomerId
+        periodStart: $periodStart
+        periodEnd: $periodEnd
+      }
+    ) {
+      id
+      number
+      salesPerson {
+        name
+      }
+      customer {
+        id
+        fullName
+      }
+      periodStart
+      periodEnd
+    }
+  }
+`;
+export const ADD_NEW_RENTAL_INVOICE_LINE = gql`
+  mutation CreateRentalInvoiceLine($fkBicycleId: String!, $fkRentalId: String!) {
+    createRentalInvoiceLine(input: { fkBicycleId: $fkBicycleId, fkRentalId: $fkRentalId }) {
+      id
+      fkRentalId
       bicycle {
+        id
+        color {
+          value
+        }
         brand {
           value
         }
@@ -1065,5 +1025,64 @@ query Sales {
       }
     }
   }
-}
-`
+`;
+
+export const GET_ALL_RENTALS = gql`
+  query getAlRentals {
+    rentals {
+      id
+      number
+      returned
+      customer {
+        fullName
+      }
+      periodStart
+      periodEnd
+    }
+  }
+`;
+
+export const RETURN_RENTAL = gql`
+  mutation returnRental($rentalId: String!) {
+    returnRental(rentalId: $rentalId) {
+      id
+      number
+      returned
+      active
+    }
+  }
+`;
+export const GET_ALL_SALES = gql`
+  query Sales {
+    sales {
+      id
+      number
+      customer {
+        fullName
+      }
+      productInvoiceLines {
+        id
+        amount
+        price
+        product {
+          productBrand {
+            value
+          }
+          description
+        }
+      }
+      salesperson {
+        name
+      }
+      bicycleInvoiceLines {
+        id
+        bicycle {
+          brand {
+            value
+          }
+          type
+        }
+      }
+    }
+  }
+`;

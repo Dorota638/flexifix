@@ -13,7 +13,7 @@ export const NewRental = () => {
         setActive((current) => (current < 4 ? current + 1 : current));
     const prevStep = () =>
         setActive((current) => (current > 0 ? current - 1 : current));
-    const [opened, setOpened] = useState(false);
+    const [openCustomer, setOpenCustomer] = useState(false);
     const selectedCustomer = useStore(({ selectedCustomer }) => selectedCustomer);
     const selectedBicycle = useStore((state) => state.selectedBicycle);
     return (
@@ -21,7 +21,7 @@ export const NewRental = () => {
             <Stepper active={active} onStepClick={setActive} breakpoint="sm">
                 <Stepper.Step label="Customer" allowStepSelect={active > 0}>
                     <Box sx={{ maxWidth: 800 }} mx="auto">
-                        <CreateCustomer opened={opened} setOpened={setOpened} />
+                        <CreateCustomer opened={openCustomer} setOpenCustomer={setOpenCustomer} />
                         <SelectCustomer />
                         <SelectedCustomer customer={selectedCustomer} />
                     </Box>
@@ -46,7 +46,6 @@ export const NewRental = () => {
                             Back
                         </Button>
                         <Button
-                            disabled={selectedBicycle ? false : true}
                             onClick={nextStep}
                         >
                             Next

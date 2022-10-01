@@ -6,7 +6,7 @@ import { GET_BICYCLES } from "../../queries";
 
 export const SelectBicycle = ({ selectedBicycle }) => {
   const customer = useStore((state) => state.selectedCustomer);
-  const setBicycle = useStore((state) => state.selectBicycle);
+  const selectBicycle = useStore((state) => state.selectBicycle);
 
   const { data } = useQuery(GET_BICYCLES, {
     variables: { customerId: customer.id },
@@ -23,7 +23,7 @@ export const SelectBicycle = ({ selectedBicycle }) => {
               shadow="sm"
               p="lg"
               sx={{ minWidth: 400 }}
-              onClick={() => { setBicycle(bicycle); }}
+              onClick={() => { selectBicycle(bicycle); }}
               className={` ${bicycle.id === selectedBicycle?.id ? 'bg-primary-900' : ''}`}
             >
               <Card.Section className='p-2'>

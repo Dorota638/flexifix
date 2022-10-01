@@ -124,7 +124,7 @@ export const input = `
   input rentalInput{
     fkSalesPersonId: String!
     fkCustomerId: String!
-    fkBicycleId: String!
+    fkBicycleId: String
     periodStart: String!
     periodEnd: String!
     fkPaymentMethod: Int

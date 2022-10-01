@@ -2,23 +2,23 @@ import { Button, Modal } from "@mantine/core";
 import React from "react";
 import { NewBicycleForm } from "../forms/NewBicycleForm";
 
-export const CreateBicycle = ({ opened, setOpened }) => {
+export const CreateBicycle = ({ openBicycle, setOpenBicycle }) => {
   return (
     <>
       <Button
         onClick={() => {
-          setOpened(true);
+          setOpenBicycle(true);
         }}
         className="my-10"
       >
         Create Bicycle
       </Button>
       <Modal
-        opened={opened}
-        onClose={() => setOpened(false)}
+        opened={openBicycle}
+        onClose={() => setOpenBicycle(false)}
         title="Create bicycle"
       >
-        <NewBicycleForm setOpened={setOpened} />
+        <NewBicycleForm setOpenBicycle={setOpenBicycle} />
       </Modal>
     </>
   );

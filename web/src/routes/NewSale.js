@@ -29,14 +29,15 @@ export const NewSale = () => {
     setProducts(true);
   };
 
-  const [opened, setOpened] = useState(false);
+    const [openCustomer, setOpenCustomer] = useState(false);
+
 
   return (
     <div>
       <Stepper active={active} onStepClick={setActive} breakpoint="sm">
         <Stepper.Step label="Customer" allowStepSelect={active > 0}>
           <Box sx={{ maxWidth: 800 }} mx="auto">
-            <CreateCustomer opened={opened} setOpened={setOpened} />
+            <CreateCustomer opened={openCustomer} setOpenCustomer={setOpenCustomer} />
             <SelectCustomer />
             <SelectedCustomer customer={selectedCustomer} />
           </Box>

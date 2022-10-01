@@ -3,21 +3,16 @@ import { Button, Group, Loader, Select, TextInput } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import React from 'react'
 import { useStore } from '../../Store';
-import { EDIT_BICYCLE } from "../../queries";
+import { EDIT_BICYCLE, GET_ALL_BICYCLES } from "../../queries";
 
 export const EditBicycle = ({ bicycle, setOpened }) => {
-  const [editBicycle, { data, loading, error }] = useMutation(EDIT_BICYCLE);
+  const [editBicycle, { data, loading, error }] = useMutation(EDIT_BICYCLE, {
+    refetchQueries: [{ query: GET_ALL_BICYCLES, variables: { id: bicycle?.id } }],
+  });
 
   const { color, tires, status, gearsystem, brand } = useStore(
     (state) => state.bicycleProps
   );
-  console.log('color tires status gearsystem brand',
-    color,
-    tires,
-    status,
-    gearsystem,
-    brand);
-
   const colornames = color.map((color) => ({
     label: color.value,
     value: color.id
@@ -62,7 +57,6 @@ export const EditBicycle = ({ bicycle, setOpened }) => {
     <>
       <form
         onSubmit={form.onSubmit((values) => {
-          console.log("values.bicycleType", values.bicycleType);
           setOpened(false);
           return editBicycle({
             variables: {

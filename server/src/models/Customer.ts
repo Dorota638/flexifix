@@ -18,7 +18,7 @@ export const Customer = sequelize.define('Customer', {
   },
   company: { type: Sequelize.STRING(20), allowNull: true },
   cvr: { type: Sequelize.STRING(20), allowNull: true },
-  phone: { type: Sequelize.STRING(15), allowNull: true },
+  phone: { type: Sequelize.INTEGER(), allowNull: true },
   address: { type: Sequelize.STRING(36), allowNull: true },
   zipCode: { type: Sequelize.STRING(10), allowNull: true },
   city: { type: Sequelize.STRING(20), allowNull: true },

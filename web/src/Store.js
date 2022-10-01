@@ -8,6 +8,7 @@ const store = (set) => ({
   productCart: [],
   bicycleCart: [],
   taskCart: [],
+  rentalCart: [],
   bicycleProps: {},
   productProps: {},
   repairStatuses: {},
@@ -22,6 +23,7 @@ const store = (set) => ({
       productCart: [],
       bicycleCart: [],
       taskCart: [],
+      rentalCart: [],
     })),
   selectCustomer: (customer) =>
     set((state) => ({ ...state, selectedCustomer: customer })),
@@ -121,6 +123,25 @@ const store = (set) => ({
       return {
         taskCart: taskCart.filter((task) => {
           return task.id !== id;
+        }),
+      };
+    }),
+  addRentalToCart: (rental) => {
+    return set(({ rentalCart }) => {
+      const rentalIndex = rentalCart.findIndex(
+        (cartRental) => cartRental.id === rental.id
+      );
+      if (rentalIndex === -1) {
+        return { rentalCart: [...rentalCart, rental] };
+      }
+    });
+  },
+  removeRentalFromCart: (id) =>
+    set(({ rentalCart }) => {
+      console.log(id);
+      return {
+        rentalCart: rentalCart.filter((rental) => {
+          return rental.id !== id;
         }),
       };
     }),

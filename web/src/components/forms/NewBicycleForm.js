@@ -1,24 +1,16 @@
-import { useMutation } from "@apollo/client";
-import { Button, Group, Loader, Select, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/hooks";
-import { useStore } from "../../Store";
-import { showNotification } from "@mantine/notifications";
-import { NEW_BICYCLE } from "../../queries";
+import { useMutation } from '@apollo/client';
+import { Button, Group, Loader, Select, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/hooks';
+import { useStore } from '../../Store';
+import { showNotification } from '@mantine/notifications';
+import { GET_BICYCLES, NEW_BICYCLE } from '../../queries';
 
-export const NewBicycleForm = ({ setOpened }) => {
+export const NewBicycleForm = ({ setOpenBicycle }) => {
   const form = useForm({
     initialValues: {},
   });
 
-  const { color, tires, status, gearsystem, brand } = useStore(
-    (state) => state.bicycleProps
-  );
-  console.log('color tires status gearsystem brand',
-    color,
-    tires,
-    status,
-    gearsystem,
-    brand);
+  const { color, tires, status, gearsystem, brand } = useStore((state) => state.bicycleProps);
 
   const colornames = color.map((color) => ({
     label: color.value,
@@ -37,16 +29,23 @@ export const NewBicycleForm = ({ setOpened }) => {
     label: brand.value,
     value: brand.id,
   }));
-  const setBicycle = useStore((state) => state.storebicycleProps);
+  const selectBicycle = useStore((state) => state.selectBicycle);
   const customer = useStore((state) => state.selectedCustomer);
 
-  const [createBicycle, { loading }] = useMutation(NEW_BICYCLE);
+  const [createBicycle, { data, loading, error }] = useMutation(NEW_BICYCLE, {
+    refetchQueries: [{ query: GET_BICYCLES, variables: { customerId: customer?.id } }],
+  });
 
   if (loading) return <Loader />;
+  if (error) console.error(error);
+  if (data && loading === false) {
+    selectBicycle(data.createBicycle);
+    setOpenBicycle(false);
+  }
   return (
     <form
-      onSubmit={form.onSubmit((values) => {
-        return createBicycle({
+      onSubmit={form.onSubmit((values) =>
+        createBicycle({
           variables: {
             color: values.color,
             tires: values.size,
@@ -60,43 +59,37 @@ export const NewBicycleForm = ({ setOpened }) => {
           },
         })
           .then((data) => {
-            setBicycle(data.createBicycle);
-            setOpened(false);
+            selectBicycle(data.createBicycle);
+            setOpenBicycle(false);
             showNotification({
-              title: "Success",
-              message: "yey",
+              title: 'Success',
+              message: 'yey',
               autoClose: 3000,
-              color: "green",
+              color: 'green',
             });
           })
           .catch((error) => {
             console.log(error);
-          });
-      })}
+          })
+      )}
     >
-      <TextInput
-        label="FrameNumber"
-        {...form.getInputProps("frameNumber")}
-      />
+      <TextInput label="FrameNumber" {...form.getInputProps('frameNumber')} />
       <Select
         label="Brand name"
         placeholder="Pick one"
         searchable
         nothingFound="No options"
         data={brandname}
-        {...form.getInputProps("brandname")}
+        {...form.getInputProps('brandname')}
       />
-      <TextInput
-        label="Type"
-        {...form.getInputProps("type")}
-      />
+      <TextInput label="Type" {...form.getInputProps('type')} />
       <Select
         label="Color"
         placeholder="Pick one"
         searchable
         nothingFound="No options"
         data={colornames}
-        {...form.getInputProps("color")}
+        {...form.getInputProps('color')}
       />
       <Select
         label="Tire size"
@@ -104,7 +97,7 @@ export const NewBicycleForm = ({ setOpened }) => {
         searchable
         nothingFound="No options"
         data={tiressize}
-        {...form.getInputProps("size")}
+        {...form.getInputProps('size')}
       />
       <Select
         label="Gear system"
@@ -112,7 +105,7 @@ export const NewBicycleForm = ({ setOpened }) => {
         searchable
         nothingFound="No options"
         data={gearSystem}
-        {...form.getInputProps("gearsystem")}
+        {...form.getInputProps('gearsystem')}
       />
       <Select
         label="Status"
@@ -120,7 +113,7 @@ export const NewBicycleForm = ({ setOpened }) => {
         searchable
         nothingFound="No options"
         data={statusstatus}
-        {...form.getInputProps("status")}
+        {...form.getInputProps('status')}
       />
       <Group position="right" mt="md">
         <Button type="submit">Submit</Button>

@@ -2,12 +2,12 @@ import { Button, Modal } from "@mantine/core";
 import React from "react";
 import { CustomerForm } from "../forms/CustomerForm";
 
-export const CreateCustomer = ({ opened, setOpened }) => {
+export const CreateCustomer = ({ openCustomer, setOpenCustomer }) => {
   return (
     <>
       <Button
         onClick={() => {
-          setOpened(true);
+          setOpenCustomer(true);
         }}
         className="my-10"
       >
@@ -15,11 +15,11 @@ export const CreateCustomer = ({ opened, setOpened }) => {
       </Button>
       <Modal
         size="md"
-        opened={opened}
-        onClose={() => setOpened(false)}
+        opened={openCustomer}
+        onClose={() => setOpenCustomer(false)}
         title="Create customer"
       >
-        <CustomerForm setOpened={setOpened} />
+        <CustomerForm setOpenCustomer={setOpenCustomer} />
       </Modal>
     </>
   );
