@@ -1,4 +1,4 @@
-import { errHandler } from '../../helper';
+const { errHandler } = require('../../helper');
 const { Repair, RepairStatus } = require('../../models/Repair');
 const { PaymentMethod } = require('../../models/PaymentMethod');
 const { Bicycle } = require('../../models/Bicycle');

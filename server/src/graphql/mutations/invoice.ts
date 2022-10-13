@@ -1,7 +1,7 @@
-import { ProductInvoiceLine } from './../../models/InvoiceLines';
-import { Sale } from './../../models/Sale';
-import { errHandler } from './../../helper';
-import { Customer } from './../../models/Customer';
+import { ProductInvoiceLine } from '../../models/InvoiceLines';
+import { Sale } from '../../models/Sale';
+import { errHandler } from '../../helper';
+import { Customer } from '../../models/Customer';
 import easyinvoice from 'easyinvoice';
 
 export const queryMutations = {

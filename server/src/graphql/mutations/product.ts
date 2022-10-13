@@ -1,4 +1,4 @@
-import { errHandler } from './../../helper';
+import { errHandler } from '../../helper';
 import { v4 as UUIDV4 } from 'uuid';
 const { Product } = require('../../models/Product');
 
