@@ -36,6 +36,13 @@ const styles = StyleSheet.create({
 });
 
 export const InvoiceTasksTable = ({ repair }) => {
+
+  const totalPrice = repair?.taskInvoiceLines.reduce((acc, obj) => {
+    return acc + obj.price
+  }, 0)
+
+  console.log('totalPrice', totalPrice);
+  console.log('repair?.taskInvoiceLines', repair?.taskInvoiceLines);
   return (
     <View >
       <View style={styles.container}>
@@ -46,6 +53,12 @@ export const InvoiceTasksTable = ({ repair }) => {
         <Text style={styles.amount}>Total</Text>
       </View>
       <InvoiceTasksRow items={repair?.taskInvoiceLines} />
+
+      <View style={styles.container}>
+        <Text style={styles.description} >Total</Text>
+        <Text >{totalPrice * 1.25}</Text>
+      </View>
+
     </View>
   )
 }

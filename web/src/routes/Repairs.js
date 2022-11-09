@@ -90,10 +90,9 @@ export const Repairs = () => {
       >
         <EditRepair repair={repair} />
       </Modal>
-      <PDFViewer width="1000" height="600" opened={openInvoice}
-        onClose={() => openInvoice(false)}
+      <PDFViewer width="1000" height="600"
         title="Invoice">
-        <Invoice repair={repair} openInvoice={openInvoice} />
+        <Invoice repair={repair} />
       </PDFViewer>
 
     </div>

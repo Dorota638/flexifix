@@ -53,7 +53,6 @@ const styles = StyleSheet.create({
 
 function Invoice({ repair }) {
 
-    console.log("repairinfo", repair);
 
     return (
         <Document>
