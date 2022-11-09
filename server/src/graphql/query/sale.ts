@@ -1,4 +1,4 @@
-import { Sale } from './../../models/Sale';
+import { Sale } from '../../models/Sale';
 import { errHandler } from '../../helper';
 
 const {

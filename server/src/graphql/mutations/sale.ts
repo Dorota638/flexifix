@@ -1,6 +1,5 @@
-import { getSaleNumber } from './../../helper';
+import { getSaleNumber, errHandler} from '../../helper';
 import { v4 as UUIDV4 } from 'uuid';
-import { errHandler } from '../../helper';
 import { Sale } from '../../models/Sale';
 
 export const queryMutations = {

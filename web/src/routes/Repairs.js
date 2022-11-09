@@ -45,8 +45,15 @@ const CanEdit = ({ status, setOpenEdit, setRepair, repair }) => {
 export const Repairs = () => {
   const [openInvoice, setOpenInvoice] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  // const [openCustomer, setOpenCustomer] = useState(false)
   const [repair, setRepair] = useState(null);
+  const [customerId, setCustomerId] = useState('');
+
   const { data: repairs } = useQuery(GET_ALL_REPAIRS);
+
+  console.log('repairs', repairs);
+
+
   const repairRows = repairs?.repairs.map((repair) => (
     <tr key={repair.id} className="odd:bg-gray-900">
       <td>{repair.number}</td>

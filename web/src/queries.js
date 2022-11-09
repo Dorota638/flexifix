@@ -128,7 +128,7 @@ export const GET_TODO = gql`
   }
 `;
 export const GET_ALL_REPAIRS = gql`
-  query {
+  query GET_ALL_REPAIRS{
     repairs {
       id
       number
@@ -175,6 +175,8 @@ export const GET_ALL_REPAIRS = gql`
       customer {
         id
         fullName
+        firstName
+        lastName
         createdAt
         updatedAt
         bicycles {
