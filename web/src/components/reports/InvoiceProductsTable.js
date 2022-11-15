@@ -37,8 +37,11 @@ const styles = StyleSheet.create({
 
 export const InvoiceProductsTable = ({ repair }) => {
     const totalPrice = repair?.productInvoiceLines.reduce((acc, obj) => {
-        return acc + obj.product.sellPrice
+        console.log('obj.product', obj.amount);
+        return acc + obj.product.sellPrice * obj.amount
     }, 0)
+
+
     return (
         <View >
             <View style={styles.container}>
@@ -52,7 +55,7 @@ export const InvoiceProductsTable = ({ repair }) => {
             <InvoiceProductsRow items={repair?.productInvoiceLines} />
             <View style={styles.container}>
                 <Text style={styles.description} >Total</Text>
-                <Text >{totalPrice * 1.25}</Text>
+                <Text >{totalPrice * 1.25 }</Text>
             </View>
         </View>
     )

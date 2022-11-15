@@ -50,7 +50,7 @@ export const InvoiceProductsRow = ({ items }) => {
                 <Text style={styles.qty} >{vat}</Text>
                 <Text style={styles.price} >{item.product.sellPrice + vat} </Text>
                 <Text style={styles.qty} >{item.amount}</Text>
-                <Text style={styles.amount} >{item.product.sellPrice + vat * item.amount} </Text>
+                <Text style={styles.amount} >{(item.product.sellPrice + vat) * item.amount} </Text>
             </View>
         )
     })

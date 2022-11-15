@@ -177,16 +177,6 @@ export const GET_ALL_REPAIRS = gql`
         fullName
         firstName
         lastName
-        createdAt
-        updatedAt
-        bicycles {
-          id
-          type
-          name
-          frameNumber
-          createdAt
-          updatedAt
-        }
       }
       status {
         id
