@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/client';
 import { useStore } from '../../Store';
 import { NEW_CUSTOMER } from '../../queries';
 
-export const CustomerForm = ({ setOpenCustomer, customer }) => {
+export const CustomerForm = ({ setOpened, customer }) => {
   const form = useForm({
     initialValues: {
       firstName: customer ? customer.firstName : '',
@@ -28,7 +28,7 @@ export const CustomerForm = ({ setOpenCustomer, customer }) => {
   if (error) console.error(error);
   if (data && loading === false) {
     selectCustomer(data.createEditCustomer);
-    setOpenCustomer(false);
+    setOpened(false);
   }
 
   return (

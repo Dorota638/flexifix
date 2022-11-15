@@ -1,10 +1,11 @@
 import { useQuery } from "@apollo/client";
 import { Button, Group, Modal, Table } from "@mantine/core";
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import Invoice from "../components/reports/Invoice";
 import { EditRepair } from "../components/repairCard/EditRepair";
 import { GET_ALL_REPAIRS } from "../queries";
 import { PDFViewer } from "@react-pdf/renderer";
+
 const HaveInvoice = ({ status, setRepair, setOpened, repair }) => {
   if (status === "337a9aaa-8839-45a5-8eff-37bad227846c" || status === "cbf710fd-870b-4219-876b-b236693f86f2") {
     return (
@@ -23,7 +24,7 @@ const HaveInvoice = ({ status, setRepair, setOpened, repair }) => {
 };
 
 const CanEdit = ({ status, setOpenEdit, setRepair, repair }) => {
-  if (status === "418d6f62-0e10-4869-beb6-a9177fbf5cd5" || status === "cbf710fd-870b-4219-876b-b236693f86f2") {
+  if (status === "cbf710fd-870b-4219-876b-b236693f86f2" || status === "337a9aaa-8839-45a5-8eff-37bad227846c") {
     return;
   } else {
     return (
