@@ -24,10 +24,6 @@ export const Bicycles = () => {
     return bicycles.filter((bicycle) => bicycle[filter].value === value);
   };
 
-  // console.log(
-  //   'filtered',
-  //   filteredBicycles(bicycles ? bicycles.bicycles : [], 'brand', bicycleBrand)
-  // );
 
   const bicycleRows = filteredBicycles(
     bicycles ? bicycles.bicycles : [],

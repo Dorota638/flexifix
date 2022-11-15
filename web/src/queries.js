@@ -269,7 +269,7 @@ export const GET_ALL_REPAIRS_LIST = gql`
   }
 `;
 export const TAKE_REPAIR = gql`
-  mutation ($id: ID, $status: String, $fkTechnicianId: String, $dateStarted: String) {
+  mutation ($id: String!, $status: String, $fkTechnicianId: String, $dateStarted: String) {
     editRepair(
       input: {
         id: $id
@@ -705,7 +705,7 @@ export const NEW_CUSTOMER = gql`
   }
 `;
 export const FINISH_REPAIR = gql`
-  mutation ($id: ID, $status: String, $dateFinished: String) {
+  mutation ($id: String!, $status: String, $dateFinished: String) {
     editRepair(input: { id: $id, status: $status, dateFinished: $dateFinished }) {
       id
       status {

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { Button, Group, Table, TextInput } from '@mantine/core';
+import { Button, Group, Modal, Table, TextInput } from '@mantine/core';
 import { GET_CUSTOMER } from '../queries';
 import { useForm } from '@mantine/form';
+import { CustomerForm } from '../components/forms/CustomerForm';
 
 const FilteredCustomers = ({ name }) => {
   const [opened, setOpened] = useState(false);
   const [customer, setCustomer] = useState({});
 
   // const { data: customers } = useQuery(GET_ALL_CUSTOMERS);
-  const [openCustomer, setOpenCustomer] = useState(true);
+  // const [openCustomer, setOpenCustomer] = useState(true);
   const { data: customers } = useQuery(GET_CUSTOMER, {
     variables: { name },
   });
@@ -57,6 +58,10 @@ const FilteredCustomers = ({ name }) => {
         </thead>
         <tbody>{customerRows}</tbody>
       </Table>
+      <Modal size={600} opened={opened} onClose={() => setOpened(false)} title="Edit customer">
+        <CustomerForm setOpened={setOpened} customer={customer} /> {//change name CustomerForm to edit customer
+        }
+      </Modal>
     </>
   );
 };
@@ -70,7 +75,7 @@ export const Customers = () => {
   return (
     <div>
       <form onSubmit={form.onSubmit(({ name }) => setName(`${name} `))}>
-        <TextInput label="Name" autocomplete="off" {...form.getInputProps('name')} />
+        <TextInput label="Name" autoComplete="off" {...form.getInputProps('name')} />
         <Group position="right" mt="md">
           <Button type="submit">Submit</Button>
         </Group>

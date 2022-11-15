@@ -75,11 +75,11 @@ export const Shell = () => {
             <NavbarLinks />
           </Navbar>
         }
-        footer={
-          <Footer height={60} p="md">
-            Application footer
-          </Footer>
-        }
+        // footer={
+        //   <Footer height={60} p="md">
+        //     Application footer
+        //   </Footer>
+        // }
       >
         <QueryData />
         <Routes>

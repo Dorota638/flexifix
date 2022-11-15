@@ -5,7 +5,7 @@ function SaleInvoice({ sale }) {
   const handlePrint = () => {
     window.print();
   };
-  console.log('SaleInfo', sale);
+  // console.log('SaleInfo', sale);
   const saleInvoiceRows = sale?.productInvoiceLines?.map((saleLine) => 
   {
     console.log('saleLine', saleLine);
@@ -17,7 +17,7 @@ function SaleInvoice({ sale }) {
       <td>{saleLine?.product.description}</td>
     </tr>
   )});
-  console.log('saleInvoiceRows', saleInvoiceRows);
+  // console.log('saleInvoiceRows', saleInvoiceRows);
 
   return (
     <div>
