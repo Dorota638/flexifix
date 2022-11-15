@@ -53,8 +53,7 @@ export const InvoiceTasksRow = ({ items }) => {
       </View>
 
     )
-  }
-  )
+  })
   return (
     <Fragment>{rows}</Fragment>
   )

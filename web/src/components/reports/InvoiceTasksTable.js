@@ -41,8 +41,6 @@ export const InvoiceTasksTable = ({ repair }) => {
     return acc + obj.price
   }, 0)
 
-  console.log('totalPrice', totalPrice);
-  console.log('repair?.taskInvoiceLines', repair?.taskInvoiceLines);
   return (
     <View >
       <View style={styles.container}>

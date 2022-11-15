@@ -77,11 +77,12 @@ export const RepairSummary = ({ nextStep }) => {
           });
         });
         repair.products?.map((item) => {
+          console.log("item", item);
           createProductInvoiceLine({
             variables: {
               fkRepairId: data.createRepair.id,
               fkProductId: item.product.id,
-              amount: 1,
+              amount: item.amount,
               price: 1,
             }
           }).then(() => {

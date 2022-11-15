@@ -41,17 +41,19 @@ const styles = StyleSheet.create({
 
 
 export const InvoiceProductsRow = ({ items }) => {
-
-    const rows = items?.map(item =>
-        <View key={item.id} style={styles.row}>
-            <Text style={styles.description} >{item.product.productCategory.value}     {item.product.productBrand.value}</Text>
-            <Text style={styles.price} >{item.product.sellPrice}</Text>
-            <Text style={styles.qty} >VAT</Text>
-            <Text style={styles.price} >{item.product.sellPrice} + VAT</Text>
-            <Text style={styles.qty} >{item.amount}</Text>
-            <Text style={styles.amount} >total*</Text>
-        </View>
-    )
+    const rows = items?.map(item => {
+        const vat = item.product.sellPrice * 0.25
+        return (
+            <View key={item.id} style={styles.row}>
+                <Text style={styles.description} >{item.product.productCategory.value}     {item.product.productBrand.value}</Text>
+                <Text style={styles.price} >{item.product.sellPrice}</Text>
+                <Text style={styles.qty} >{vat}</Text>
+                <Text style={styles.price} >{item.product.sellPrice + vat} </Text>
+                <Text style={styles.qty} >{item.amount}</Text>
+                <Text style={styles.amount} >{item.product.sellPrice + vat * item.amount} </Text>
+            </View>
+        )
+    })
     return (
         <Fragment>{rows}</Fragment>
     )
