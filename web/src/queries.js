@@ -706,7 +706,9 @@ export const NEW_CUSTOMER = gql`
 `;
 export const FINISH_REPAIR = gql`
   mutation ($id: String!, $status: String, $dateFinished: String) {
-    editRepair(input: { id: $id, status: $status, dateFinished: $dateFinished }) {
+    editRepair(
+      input: { id: $id, status: $status, dateFinished: $dateFinished }
+    ) {
       id
       status {
         value

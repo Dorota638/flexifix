@@ -41,14 +41,19 @@ const styles = StyleSheet.create({
 
 
 export const InvoiceTasksRow = ({ items }) => {
-  const rows = items?.map(item =>
-    <View key={item.id} style={styles.row}>
-      <Text style={styles.description} >{item.task.taskCategory.name}     {item.task.name}</Text>
-      <Text style={styles.time} >{item.time}</Text>
-      <Text style={styles.price} >{item.price}</Text>
-      <Text style={styles.price} >VAT*</Text>
-      <Text style={styles.amount} >total*</Text>
-    </View>
+  const rows = items?.map(item => {
+    const vat = item.price * 0.25
+    return (
+      <View key={item.id} style={styles.row}>
+        <Text style={styles.description} >{item.task.taskCategory.name}     {item.task.name}</Text>
+        <Text style={styles.time} >{item.time}</Text>
+        <Text style={styles.price} >{item.price}</Text>
+        <Text style={styles.price} >{vat}</Text>
+        <Text style={styles.amount} >{item.price + vat}</Text>
+      </View>
+
+    )
+  }
   )
   return (
     <Fragment>{rows}</Fragment>

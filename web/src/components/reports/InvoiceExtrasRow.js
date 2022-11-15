@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
 
 export const InvoiceExtrasRow = ({ items }) => {
 
-    const rows = items?.map(item =>
-        <View key={item.id} style={styles.row}>
+    // const rows = items?.map(item =>
+    //     <View key={item.id} style={styles.row}>
 
-        </View>
-    )
+    //     </View>
+    // )
     return (
-        <Fragment>{rows}</Fragment>
+        <div></div>
+        // <Fragment>{rows}</Fragment>
     )
 }

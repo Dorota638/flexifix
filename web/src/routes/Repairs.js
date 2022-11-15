@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Invoice from "../components/reports/Invoice";
 import { EditRepair } from "../components/repairCard/EditRepair";
 import { GET_ALL_REPAIRS } from "../queries";
+import { PDFViewer } from "@react-pdf/renderer";
 
 const HaveInvoice = ({ status, setRepair, setOpened, repair }) => {
   if (status === "337a9aaa-8839-45a5-8eff-37bad227846c" || status === "cbf710fd-870b-4219-876b-b236693f86f2") {
@@ -97,6 +98,10 @@ export const Repairs = () => {
       >
         <EditRepair repair={repair} />
       </Modal>
+      <PDFViewer width="1000" height="600"
+        title="Invoice">
+        <Invoice repair={repair} />
+      </PDFViewer>
 
     </div>
   );
