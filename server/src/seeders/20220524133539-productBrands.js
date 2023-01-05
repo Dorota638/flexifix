@@ -6,13 +6,13 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('ProductBrands', [
       {
-        id: UUIDV4(),
+        id: "3639b200-8ca3-4a8d-b240-0d2ac9a3f60a",
         value: 'Adidas',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: UUIDV4(),
+        id: "4ef0b68f-5e11-4419-9e14-3bdcfb30e0a9",
         value: 'Nike',
         createdAt: new Date(),
         updatedAt: new Date(),

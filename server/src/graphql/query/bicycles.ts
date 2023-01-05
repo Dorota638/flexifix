@@ -35,7 +35,7 @@ export const queryResolvers = {
       const rentalBicycles = await Bicycle.findAll({
         where: {
           fkOwnerId: 'c6389cef-b019-4b77-b0f7-44f68aebf155',
-          status: '951c7c29-4848-4220-ba30-07b9f42f3f88',
+          status: '9cec8e14-584d-4832-a6c7-1e26b927d782',
         },
       }).catch(errHandler);
       return rentalBicycles;
@@ -63,8 +63,6 @@ export const resolvers = {
     }
   },
   async color(parent: any) {
-    console.log('colorParent', parent);
-
     try {
       const color = await BicycleColor.findByPk(parent.color).catch(console.error);
       return color;

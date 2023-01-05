@@ -5,7 +5,7 @@ const { Bicycle } = require('../../models/Bicycle');
 const { Sale } = require('../../models/Sale');
 
 export const queryResolvers = {
-  async bicycleInvoiceLines(_: any, { saleId }) {
+  async bicycleInvoiceLines(_: any, { saleId }: { saleId: string }) {
     try {
       if (saleId) {
         const bicycleInvoiceLine = await BicycleInvoiceLine.findAll({

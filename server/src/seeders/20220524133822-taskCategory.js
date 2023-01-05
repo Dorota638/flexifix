@@ -6,31 +6,31 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.bulkInsert('TaskCategories', [
       {
-        id: UUIDV4(),
+        id: "04d677a7-fe92-4705-84ae-2ed9b2fb2b02",
         name: 'Bottom Bracket',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: UUIDV4(),
+        id: '338f7789-98c0-4b8e-aaae-df5e50535ac1',
         name: 'Front Wheel',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: UUIDV4(),
+        id: "47deb9c1-5b11-4bf4-ba59-429c6c6bf765",
         name: 'Rear Wheel',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: UUIDV4(),
+        id: "49dd7e05-a61c-4e62-b21c-f73f6f9ed11d",
         name: 'Drivetrain',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: UUIDV4(),
+        id: "5d620453-0605-406e-ace1-0fea8e2d8a83",
         name: 'Front Brake',
         createdAt: new Date(),
         updatedAt: new Date(),

@@ -8,7 +8,7 @@ const { TaskInvoiceLine } = require('../../models/InvoiceLines');
 const { ProductInvoiceLine } = require('../../models/InvoiceLines');
 
 export const queryResolvers = {
-  repairs: async (_: any, { customerId }) => {
+  repairs: async (_: any, { customerId }: { customerId: string }) => {
     try {
       if (customerId) {
         const repairs = await Repair.findAll({
@@ -27,7 +27,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: "94e02487-77d7-435d-be8b-99a2ed8cde07",
+          status: '329fbb74-50df-4b0d-ad2b-4cd4cf088964',
         },
       }).catch(errHandler);
       return repairs;
@@ -39,7 +39,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: "5597ef43-3989-4481-a6c5-d039bf70ef56",
+          status: '5597ef43-3989-4481-a6c5-d039bf70ef56',
         },
       }).catch(errHandler);
       return repairs;
@@ -51,7 +51,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: "337a9aaa-8839-45a5-8eff-37bad227846c",
+          status: '337a9aaa-8839-45a5-8eff-37bad227846c',
         },
       }).catch(errHandler);
       return repairs;
@@ -59,7 +59,7 @@ export const queryResolvers = {
       throw new Error(err);
     }
   },
-  getRepair: async (_: any, { id }) => {
+  getRepair: async (_: any, { id }: { id: string }) => {
     try {
       const repair = await Repair.findByPk(id).catch(errHandler);
       return repair;
@@ -117,8 +117,9 @@ export const resolvers = {
     }
   },
   status: async (parent: any) => {
-    
     try {
+      console.log('parent.status', parent.status);
+      
       const status = await RepairStatus.findByPk(parent.status).catch(errHandler);
       return status;
     } catch (err) {

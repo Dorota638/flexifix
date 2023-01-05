@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
       },
       number: { type: Sequelize.STRING(10), allowNull: false },
-      fkAccount: { type: Sequelize.SMALLINT(), allowNull: false },
+      fkAccount: { type: Sequelize.SMALLINT(), allowNull: true },
       fkPaymentMethod: { type: Sequelize.SMALLINT(), allowNull: true },
       fkSalesPersonId: { type: Sequelize.STRING(36), allowNull: false },
       fkCustomerId: { type: Sequelize.STRING(36), allowNull: false },

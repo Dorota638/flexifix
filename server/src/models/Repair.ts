@@ -23,8 +23,7 @@ export const Repair = sequelize.define('Repair', {
   comment: { type: Sequelize.STRING(50), allowNull: true },
 });
 
-export const RepairStatus = sequelize.define(
-  'RepairStatus',
+export const RepairStatus = sequelize.define( 'RepairStatus',
   {
     id: {
       type: Sequelize.STRING(36),

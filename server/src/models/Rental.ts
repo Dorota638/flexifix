@@ -11,7 +11,7 @@ export const Rental = sequelize.define('Rental', {
   number: { type: Sequelize.STRING(10), allowNull: false },
   fkSalesPersonId: { type: Sequelize.SMALLINT(), allowNull: false },
   fkCustomerId: { type: Sequelize.STRING(36), allowNull: false },
-  fkBicycleId: { type: Sequelize.STRING(36), allowNull: true },
+  fkBicycleId: { type: Sequelize.STRING(36), allowNull: false },
   periodStart: { type: Sequelize.DATE(), allowNull: false },
   periodEnd: { type: Sequelize.DATE(), allowNull: false },
   fkAccount: { type: Sequelize.SMALLINT(), allowNull: true },

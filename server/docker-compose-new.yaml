@@ -1,0 +1,38 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=flexidb
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - '3306:3306'
+    volumes:
+      - /var/lib/mysql
+  server:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - '4000:4000'
+  migration:
+    build:
+      context: .
+      dockerfile: ./Dockerfile2
+    command:
+      [
+        "./wait-for-it/wait-for-it.sh",
+        "db: 5432",
+        "--",
+        "run",
+        "migrate",
+      ]
+    links:
+      - db
+    depends_on:
+      - db

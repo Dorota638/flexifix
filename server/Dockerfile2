@@ -1,0 +1,8 @@
+FROM node:14
+WORKDIR /app
+COPY package*.json ./
+
+RUN npm install
+run npm install db-migrate-pg
+
+RUN git clone https://github.com/vishnubob/wait-for-it

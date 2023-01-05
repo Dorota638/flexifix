@@ -1,27 +1,18 @@
-FROM node:14.15.4-alpine3.10 AS base
+FROM node:16.19.0-alpine3.17 AS base
 
 WORKDIR /app
 
 RUN apk update && apk add bash
 
-
-COPY package*.json package-lock.json /app/
-
-# COPY .env.example /app/.env.example
-# COPY .env.test /app/.env.test
-
-COPY dist /app/dist
+COPY package.json /app/package.json
 COPY src /app/src
-
+COPY .sequelizerc /app/.sequelizerc
 COPY tsconfig.json /app/tsconfig.json
 
+RUN npm install
 
-COPY jest.config.js /app/jest.config.js
+RUN npm run make
 
-RUN npm ci 
+# RUN npm build
 
-RUN npm run migrate
-RUN npm run seed
-
-RUN npm build
 CMD [ "npm", "start" ]

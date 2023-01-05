@@ -4,7 +4,7 @@ const { TaskInvoiceLine } = require('../../models/InvoiceLines');
 const { Task } = require('../../models/Task');
 
 export const queryResolvers = {
-  async taskInvoiceLines(_: any, { repairId }) {
+  async taskInvoiceLines(_: any, { repairId }: { repairId: string }) {
     try {
       const taskInvoiceLines = await TaskInvoiceLine.findAll({
         where: {fkRepairId: repairId},

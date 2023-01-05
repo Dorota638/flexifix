@@ -1,22 +1,24 @@
+// @ts-nocheck
 import { ProductInvoiceLine } from '../../models/InvoiceLines';
 import { Sale } from '../../models/Sale';
 import { errHandler } from '../../helper';
 import { Customer } from '../../models/Customer';
-import easyinvoice from 'easyinvoice';
+// import easyinvoice from 'easyinvoice';
+import { SaleType } from '../../types';
 
 export const queryMutations = {
   createInvoice: async (_: any, { input }: any) => {
     try {
       await Sale.findByPk(input.id)
-        .then(async (repair) => {
-          const customer = await Customer.findByPk(repair.fkCustomerId).catch(errHandler);
-          await ProductInvoiceLine.findAll({
-            where: { fkSaleId: input.id },
-          })
-            .then((invoiceLines) => {
+      .then(async (sale: SaleType) => {
+        const customer = await Customer.findByPk(sale.fkCustomerId).catch(errHandler);
+        await ProductInvoiceLine.findAll({
+          where: { fkSaleId: input.id },
+        })
+        .then(() => {
               const d = new Date();
               const date = '3/5/2022';
-              
+
               const data = {
                 customize: {
                   //  "template": fs.readFileSync('template.html', 'base64') // Must be base64 encoded html
@@ -36,10 +38,10 @@ export const queryMutations = {
                   name: customer?.fullName,
                   email: customer?.email,
                 },
-                information: {
-                  number: repair.number,
-                  date,
-                },
+                // information: {
+                //   number: repair.number,
+                //   date,
+                // },
                 // labour: [{ quantity: 1, description: 'Product 1', 'tax-rate': 25, price: 10 }],
                 products: {
                   quantity: 1,
@@ -80,11 +82,11 @@ export const queryMutations = {
               };
 
               // return {pdf:'asd'};
-              return easyinvoice.createInvoice(data).then((result) => result.pdf);
+              // return easyinvoice.createInvoice(data).then((result) => result.pdf);
             })
             .catch(errHandler);
-          })
-          .catch(errHandler);
+        })
+        .catch(errHandler);
     } catch (err) {
       throw new Error(err);
     }

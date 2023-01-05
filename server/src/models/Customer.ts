@@ -10,11 +10,12 @@ export const Customer = sequelize.define('Customer', {
   },
   firstName: { type: Sequelize.STRING(20), allowNull: false },
   lastName: { type: Sequelize.STRING(20), allowNull: false },
-  fullName:{
+  fullName: {
     type: Sequelize.VIRTUAL,
-    get():string{
-      return`${this.firstName} ${this.lastName}`;
-    }
+    get(): string {
+      // @ts-ignore
+      return `${this.firstName} ${this.lastName}`;
+    },
   },
   company: { type: Sequelize.STRING(20), allowNull: true },
   cvr: { type: Sequelize.STRING(20), allowNull: true },

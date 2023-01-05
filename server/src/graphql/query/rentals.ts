@@ -3,9 +3,10 @@ const { Rental } = require('../../models/Rental');
 const { PaymentMethod } = require('../../models/PaymentMethod');
 const { Customer } = require('../../models/Customer');
 const { Employee } = require('../../models/Employee');
+const { Bicycle } = require('../../models/Bicycle');
 
 export const queryResolvers = {
-  rentals: async (_: any, { customerId }) => {
+  rentals: async (_: any, { customerId }:{ customerId: string }) => {
     try {
       if (customerId) {
         const rentals = await Rental.findAll({

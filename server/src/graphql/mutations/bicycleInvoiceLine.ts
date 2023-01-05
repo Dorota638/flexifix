@@ -11,12 +11,14 @@ export const queryMutations = {
         errHandler
       );
 
-      await Sale.findByPk(bicycleInvoiceLine.fkSaleId).then(async ({ fkCustomerId }) => {
-        await Bicycle.update(
-          { fkOwnerId: fkCustomerId, fkHolderId: fkCustomerId },
-          { where: { id: bicycleInvoiceLine.fkBicycleId } }
-        );
-      });
+      await Sale.findByPk(bicycleInvoiceLine.fkSaleId).then(
+        async ({ fkCustomerId }: { fkCustomerId: number }) => {
+          await Bicycle.update(
+            { fkOwnerId: fkCustomerId, fkHolderId: fkCustomerId },
+            { where: { id: bicycleInvoiceLine.fkBicycleId } }
+          );
+        }
+      );
       return bicycleInvoiceLine;
     } catch (err) {
       throw new Error(err);
