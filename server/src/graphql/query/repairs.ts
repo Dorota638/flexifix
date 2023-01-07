@@ -27,7 +27,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: '329fbb74-50df-4b0d-ad2b-4cd4cf088964',
+          status: 'be9e0fb7-1277-45c9-8fd1-3f5b8071f0d3',
         },
       }).catch(errHandler);
       return repairs;
@@ -39,7 +39,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: '5597ef43-3989-4481-a6c5-d039bf70ef56',
+          status: '7983b8b5-472d-4e07-946a-c157face13a6',
         },
       }).catch(errHandler);
       return repairs;
@@ -51,7 +51,7 @@ export const queryResolvers = {
     try {
       const repairs = await Repair.findAll({
         where: {
-          status: '337a9aaa-8839-45a5-8eff-37bad227846c',
+          status: '0c3abf0e-a548-445b-8323-e3f580d54a84',
         },
       }).catch(errHandler);
       return repairs;

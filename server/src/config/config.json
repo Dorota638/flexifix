@@ -3,21 +3,21 @@
     "username": "root",
     "password": "root",
     "database": "flexidb",
-    "host": "localhost",
+    "host": "185.139.228.227",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
     "password": "root",
     "database": "flexidb",
-    "host": "localhost",
+    "host": "185.139.228.227",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
     "password": "root",
     "database": "flexidb",
-    "host": "localhost",
+    "host": "185.139.228.227",
     "dialect": "mysql"
   }
 }
