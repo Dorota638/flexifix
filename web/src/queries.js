@@ -237,27 +237,6 @@ export const GET_ALL_REPAIRS = gql`
     }
   }
 `;
-export const GET_ALL_REPAIRS_LIST = gql`
-  query {
-    repairs {
-      id
-      number
-      customer {
-        fullName
-      }
-      bicycle {
-        brand {
-          name
-        }
-      }
-      status {
-        value
-        id
-      }
-      createdAt
-    }
-  }
-`;
 export const TAKE_REPAIR = gql`
   mutation ($id: String!, $status: String, $fkTechnicianId: String, $dateStarted: String) {
     editRepair(
@@ -277,6 +256,20 @@ export const TAKE_REPAIR = gql`
         value
       }
       dateStarted
+    }
+  }
+`;
+export const FINISH_REPAIR = gql`
+  mutation ($id: String!, $status: String, $dateFinished: String) {
+    editRepair(
+      input: { id: $id, status: $status, dateFinished: $dateFinished }
+    ) {
+      id
+      status {
+        value
+        id
+      }
+      dateFinished
     }
   }
 `;
@@ -694,20 +687,6 @@ export const NEW_CUSTOMER = gql`
     }
   }
 `;
-export const FINISH_REPAIR = gql`
-  mutation ($id: String!, $status: String, $dateFinished: String) {
-    editRepair(
-      input: { id: $id, status: $status, dateFinished: $dateFinished }
-    ) {
-      id
-      status {
-        value
-        id
-      }
-      dateFinished
-    }
-  }
-`;
 export const POST_NEW_SALE = gql`
   mutation ($fkPaymentMethod: Int!, $fkCustomerId: String!, $fkSalespersonId: String!) {
     createSale(
@@ -979,6 +958,7 @@ export const POST_NEW_RENTAL = gql`
     $fkCustomerId: String!
     $periodStart: String!
     $periodEnd: String!
+    $fkBicycleId: String!
   ) {
     createRental(
       input: {
@@ -986,6 +966,7 @@ export const POST_NEW_RENTAL = gql`
         fkCustomerId: $fkCustomerId
         periodStart: $periodStart
         periodEnd: $periodEnd
+        fkBicycleId: $fkBicycleId
       }
     ) {
       id
@@ -996,6 +977,9 @@ export const POST_NEW_RENTAL = gql`
       customer {
         id
         fullName
+      }
+      bicycle{
+        id
       }
       periodStart
       periodEnd
@@ -1043,6 +1027,9 @@ export const RETURN_RENTAL = gql`
       number
       returned
       active
+      bicycle{
+        id
+      }
     }
   }
 `;

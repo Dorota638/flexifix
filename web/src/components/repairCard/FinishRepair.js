@@ -16,7 +16,7 @@ export const FinishRepair = ({ setOpened, repair }) => {
         finishRepair({
           variables: {
             id: repair.id,
-            status: "337a9aaa-8839-45a5-8eff-37bad227846c",
+            status: "0c3abf0e-a548-445b-8323-e3f580d54a84",
             dateFinished: new Date(),
           },
         });

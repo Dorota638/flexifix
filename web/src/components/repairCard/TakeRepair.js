@@ -17,7 +17,7 @@ export const TakeRepair = ({ repair }) => {
         takeRepair({
           variables: {
             id: repair.id,
-            status: "5597ef43-3989-4481-a6c5-d039bf70ef56",
+            status: "7983b8b5-472d-4e07-946a-c157face13a6",
             dateStarted: new Date(),
             fkTechnicianId: technician,
           },

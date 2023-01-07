@@ -15,13 +15,11 @@ const SubmitTasks = ({ tasks, submitTasks }) => {
     return <Button onClick={() => submitTasks()}>Submit tasks</Button>;
   }
 };
-
 const SubmitProducts = ({ products, submitProducts }) => {
   if (products.length > 0) {
     return <Button onClick={() => submitProducts()}>Submit products</Button>;
   }
 };
-
 const Status = ({ repair }) => {
   const [changeRepairStatus] = useMutation(CHANGE_REPAIR_STATUS)
   const repairStatuses = useStore((state) => state.repairStatuses);
@@ -72,6 +70,7 @@ const Products = ({ repairId, products, submitProducts }) => {
     </>
   )
 }
+
 export const EditRepair = ({ repair }) => {
   const [createTaskInvoiceLine] = useMutation(ADD_TASK_INVOICE_LINE, {
     refetchQueries: [{ query: GET_TASK_INVOICE_LINES, variables: { repairId: repair?.id } }],
@@ -99,7 +98,7 @@ export const EditRepair = ({ repair }) => {
         });
         emptyStore();
       });
-    });
+    })
   };
   const submitProducts = () => {
     products?.map((item) => {

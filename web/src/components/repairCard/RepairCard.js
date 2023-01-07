@@ -16,15 +16,15 @@ export const RepairCard = ({ repair }) => {
 
   const Condition = ({ status }) => {
     switch (status) {
-      case "94e02487-77d7-435d-be8b-99a2ed8cde07":
+      case "be9e0fb7-1277-45c9-8fd1-3f5b8071f0d3": //waiting for repair
         return <TakeRepair repair={repair} />;
-      case '5597ef43-3989-4481-a6c5-d039bf70ef56':
+      case '7983b8b5-472d-4e07-946a-c157face13a6': //in progress
         return <FinishRepair repair={repair} setOpened={setOpened} />;
-      case "337a9aaa-8839-45a5-8eff-37bad227846c":
+      case "0c3abf0e-a548-445b-8323-e3f580d54a84": //waiting for pickup
         return <ReturnRepair repair={repair} setOpened={setOpened} />;
-      case "cbf710fd-870b-4219-876b-b236693f86f2":
+      case "e8f93e09-851a-4c24-adda-07867725ca81": //done
         return <Text size="lg">Returned</Text>;
-      case "418d6f62-0e10-4869-beb6-a9177fbf5cd5":
+      case "3e487a79-74d2-464c-b695-1d738ac58c48":
         return <Text size="lg"> Canceled </Text>;
       default:
         return <Text size="lg">ERR</Text>;
@@ -32,7 +32,7 @@ export const RepairCard = ({ repair }) => {
   };
 
   const CanEdit = ({ status }) => {
-    if (status === "418d6f62-0e10-4869-beb6-a9177fbf5cd5" || status === "cbf710fd-870b-4219-876b-b236693f86f2") {
+    if (status === "418d6f62-0e10-4869-beb6-a9177fbf5cd5" || status === "cbf710fd-870b-4219-876b-b236693f86f2" || status === "337a9aaa-8839-45a5-8eff-37bad227846c") {
       return;
     } else {
       return (
@@ -145,7 +145,7 @@ export const RepairCard = ({ repair }) => {
           onClose={() => setOpenEdit(false)}
           title="Edit Repair"
         >
-          <EditRepair repairId={repair.id} />
+          <EditRepair repair={repair} />
         </Modal>
       </>
     </Card>

@@ -3,7 +3,6 @@ import { Button } from "@mantine/core";
 import React from "react";
 import { TAKE_REPAIR } from "../../queries";
 
-
 export const ReturnRepair = ({ repair }) => {
   const [returnRepair] = useMutation(TAKE_REPAIR);
   return (
@@ -13,7 +12,7 @@ export const ReturnRepair = ({ repair }) => {
         returnRepair({
           variables: {
             id: repair.id,
-            status: "cbf710fd-870b-4219-876b-b236693f86f2",
+            status: "e8f93e09-851a-4c24-adda-07867725ca81",
             dateReturned: new Date(),
             fkPaymentMethod: 1,
           },

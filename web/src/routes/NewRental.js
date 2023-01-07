@@ -6,6 +6,7 @@ import { SelectedCustomer } from "../components/common/SelectedCustomer";
 import { useStore } from "../Store";
 import { SelectRentalBicycle } from "../components/rental/SelectRentalBicycle";
 import { SelectPeriod } from "../components/rental/SelectPeriod";
+import { SelectedBicycle } from "../components/common/SelectedBicycle";
 
 export const NewRental = () => {
     const [active, setActive] = useState(0);
@@ -40,6 +41,7 @@ export const NewRental = () => {
                 <Stepper.Step label="Bicycle" allowStepSelect={active > 1}>
                     <Box sx={{ maxWidth: 800 }} mx="auto">
                         <SelectRentalBicycle selectedBicycle={selectedBicycle} />
+                        <SelectedBicycle bicycle={selectedBicycle} />
                     </Box>
                     <Group position="center" mt="xl">
                         <Button variant="default" onClick={prevStep}>
