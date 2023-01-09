@@ -4,7 +4,7 @@
     "make": "tsc",
     "watch": "tsc -w",
     "test": "jest --config jest.config.ts ./src/__tests__",
-    "build": "tsc -p tsconfig.prod.json",
+    "build": "tsc -p tsconfig.json",
     "migrate": "npx sequelize-cli db:migrate",
     "seed": "npx sequelize-cli db:seed:all",
     "docker:up": "docker-compose up -d --build",

@@ -109,7 +109,7 @@ export const input = `
     fkBicycleId: String!
     price: Float!
   }
-    input saleInput {
+  input saleInput {
     fkPaymentMethod: Int!
     fkCustomerId: String
     fkSalespersonId: String!
