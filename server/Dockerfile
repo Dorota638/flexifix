@@ -11,8 +11,6 @@ COPY tsconfig.json /app/tsconfig.json
 
 RUN npm install
 
-RUN npm run make
+RUN npm run build
 
-# RUN npm build
-
-CMD [ "npm", "start" ]
+CMD [ "node", "/app/dist/index.js" ]
