@@ -60,7 +60,7 @@ export const SelectPeriod = () => {
 						editBicycle({
 							variables: {
 								id: data.createRental.bicycle.id,
-								status: "ca8fcfc3-f99b-4b99-893f-ad9a58815a26",
+								status: "9be32b4d-cb1c-4cbe-bb75-41569e2c488d", //rented out
 								holder: data.createRental.customer.id,
 							},
 						});

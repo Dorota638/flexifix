@@ -24,8 +24,8 @@ export const Rentals = () => {
 			editBicycle({
 				variables: {
 					id: data.returnRental.bicycle.id,
-					status: "9cec8e14-584d-4832-a6c7-1e26b927d782",
-					holder: "c6389cef-b019-4b77-b0f7-44f68aebf155",
+					status: "f05c346d-57f7-4d39-beb2-60c6fcf8f0ce", //for rent
+					holder: "c6389cef-b019-4b77-b0f7-44f68aebf155", //flexifix
 				},
 			});
 		});
