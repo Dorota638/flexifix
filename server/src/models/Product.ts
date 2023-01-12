@@ -11,7 +11,7 @@ export const Product = sequelize.define('Product', {
   fkSupplier: { type: Sequelize.UUIDV4() },
   fkBrand: { type: Sequelize.UUIDV4(), allowNull: false },
   fkCategory: { type: Sequelize.UUIDV4(), allowNull: false },
-  fkGroup: { type: Sequelize.SMALLINT(), allowNull: false },
+  fkGroup: { type: Sequelize.STRING(36), allowNull: false },
   description: { type: Sequelize.STRING(36) },
   ean: { type: Sequelize.STRING(20) },
   stock: { type: Sequelize.SMALLINT() },
