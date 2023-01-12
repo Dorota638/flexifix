@@ -29,6 +29,9 @@ export const NavbarLinks = () => {
         <Button variant="outline" component={Link} to="/newCustomer">
           Customer
         </Button>
+        <Button variant="outline" component={Link} to="/newInventory">
+          Inventory
+        </Button>
 
       </Stack>
 

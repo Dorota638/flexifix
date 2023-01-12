@@ -595,7 +595,7 @@ export const CREATE_EDIT_PRODUCT = gql`
     $id: ID
     $fkSupplier: String
     $fkBrand: String
-    $fkGroup: Int
+    $fkGroup: String
     $fkCategory: String
     $description: String
     $ean: String
@@ -605,7 +605,7 @@ export const CREATE_EDIT_PRODUCT = gql`
     $sellPrice: Float
     $expectedDurability: Int
   ) {
-    editProduct(
+    createEditProduct(
       input: {
         id: $id
         fkSupplier: $fkSupplier

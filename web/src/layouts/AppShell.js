@@ -27,6 +27,7 @@ import { QueryData } from "../components/QueryData";
 import { NewRental } from "../routes/NewRental";
 import { Rentals } from "../routes/Rentals";
 import { Sales } from "../routes/Sales";
+import { NewInventory } from "../routes/NewInventory";
 
 export const Shell = () => {
   const theme = useMantineTheme();
@@ -98,6 +99,7 @@ export const Shell = () => {
           <Route path="/newCustomer" element={<NewCustomer />} />
           <Route path="/finishRepair" element={<FinishRepair />} />
           <Route path="/invoice" element={<Invoice />} />
+          <Route path="/newInventory" element={<NewInventory />} />
 
         </Routes>
       </AppShell>

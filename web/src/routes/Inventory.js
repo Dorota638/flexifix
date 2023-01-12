@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { EditProductForm } from "../components/forms/EditProductForm";
 import { GET_ALL_PRODUCTS } from "../queries";
 
-
 export const Inventory = () => {
   const [opened, setOpened] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
