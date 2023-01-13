@@ -716,32 +716,24 @@ export const ADD_BICYCLE_INVOICE_LINE = gql`
     }
   }
 `;
-export const GET_PRODUCTS = gql`
-  query {
-    products {
+export const GET_PRODUCTS_BY_CATEGORY = gql`
+query GetProductsByCategory($categoryId: String!) {
+  productsByCategory(categoryId: $categoryId) {
+    id
+    productBrand {
+      value
       id
-      productBrand {
-        value
-        id
-      }
-      productCategory {
-        value
-        id
-      }
-      productGroup {
-        value
-        id
-      }
-      description
-      ean
-      stock
-      minStock
-      buyPrice
-      sellPrice
-      expectedDurability
     }
+    productCategory {
+      id
+      value
+    }
+    description
+    stock
+    sellPrice
   }
-`;
+}
+`
 export const GET_BICYCLE_PROPS = gql`
   query {
     bicycleProps {
@@ -808,6 +800,7 @@ export const GET_TASKS = gql`
         name
         id
       }
+      productCategoryId
       id
       name
       duration

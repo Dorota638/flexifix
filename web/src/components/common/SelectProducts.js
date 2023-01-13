@@ -14,7 +14,6 @@ export const SelectProducts = () => {
     }
   };
 
-
   const products = filteredProducts(categoryId)?.map((product) => {
     return (
       <tr

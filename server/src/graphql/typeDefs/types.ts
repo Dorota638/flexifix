@@ -153,6 +153,7 @@ export const types = `
     id: String!
     name: String!
     taskCategory: TaskCategory!
+    productCategoryId: String
     duration: Float!
   }
 

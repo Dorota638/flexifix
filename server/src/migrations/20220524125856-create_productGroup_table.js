@@ -4,9 +4,9 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     queryInterface.createTable('ProductGroups', {
       id: {
-        type: Sequelize.SMALLINT(),
+        type: Sequelize.STRING(36),
         allowNull: false,
-        autoIncrement: true,
+        autoIncrement: false,
         primaryKey: true,
       },
       value: { type: Sequelize.STRING(20), allowNull: false },

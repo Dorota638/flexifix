@@ -91,7 +91,7 @@ export const NewInventory = () => {
 					searchable
 					nothingFound="No options"
 					data={productProps?.group.map((s) => ({
-						value: parseInt(s.id),
+						value: s.id,
 						label: s.value,
 					}))}
 					{...form.getInputProps("productGroup")}

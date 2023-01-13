@@ -25,7 +25,6 @@ export const ProductBrand = sequelize.define('ProductBrand', {
   id: {
     type: Sequelize.UUIDV4(),
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
   },
   value: { type: Sequelize.STRING(20), allowNull: false },
@@ -35,7 +34,6 @@ export const ProductCategory = sequelize.define('ProductCategory', {
   id: {
     type: Sequelize.UUIDV4(),
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
   },
   value: { type: Sequelize.STRING(20), allowNull: false },
@@ -45,7 +43,6 @@ export const ProductGroup = sequelize.define('ProductGroup', {
   id: {
     type: Sequelize.UUIDV4(),
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
   },
   value: { type: Sequelize.STRING(20), allowNull: false },
@@ -55,7 +52,6 @@ export const ProductSupplier = sequelize.define('ProductSupplier', {
   id: {
     type: Sequelize.UUIDV4(),
     allowNull: false,
-    autoIncrement: true,
     primaryKey: true,
   },
   value: { type: Sequelize.STRING(20), allowNull: false },

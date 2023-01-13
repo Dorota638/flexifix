@@ -1,14 +1,14 @@
 import { useQuery } from "@apollo/client";
 import React from "react";
 import { useStore } from "../Store";
-import { GET_BICYCLE_PROPS, GET_PRODUCTS, GET_PRODUCT_PROPS, GET_REPAIR_STATUSES, GET_TASKS, GET_TASK_PROPS } from "../queries";
+import { GET_BICYCLE_PROPS, GET_ALL_PRODUCTS, GET_PRODUCT_PROPS, GET_REPAIR_STATUSES, GET_TASKS, GET_TASK_PROPS } from "../queries";
 
 export const QueryData = () => {
   const { data: bicycleProps } = useQuery(GET_BICYCLE_PROPS);
   const { data: productProps } = useQuery(GET_PRODUCT_PROPS);
   const { data: taskProps } = useQuery(GET_TASK_PROPS);
   const { data: tasks } = useQuery(GET_TASKS);
-  const { data: products } = useQuery(GET_PRODUCTS);
+  const { data: products } = useQuery(GET_ALL_PRODUCTS);
   const { data: statuses } = useQuery(GET_REPAIR_STATUSES);
 
   const storeBicycleProps = useStore((state) => state.storeBicycleProps);

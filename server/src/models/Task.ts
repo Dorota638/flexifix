@@ -10,6 +10,7 @@ export const Task = sequelize.define('Task', {
   },
   name: { type: Sequelize.STRING(25), allowNull: false },
   fkTaskCategory: { type: Sequelize.STRING(36), allowNull: false },
+  productCategoryId: { type : Sequelize.STRING(36), allowNull: true},
   duration: { type: Sequelize.DOUBLE, allowNull: false },
 });
 
@@ -24,4 +25,5 @@ export const TaskCategory = sequelize.define('TaskCategory', {
     type: Sequelize.STRING(20),
     allowNull: false,
   },
+
 });
