@@ -14,10 +14,10 @@ const app = express();
 const PORT = 3000;
 const configurations: any = {
 	// Note: You may need sudo to run on port 443
-	production: { ssl: true, port: 443, hostname: "localhost" },
-	development: { ssl: false, port: 4000, hostname: "localhost" },
+	production: { ssl: true, port: 443, hostname: "https://kalinovskyklin.xyz" },
+	development: { ssl: false, port: 3000, hostname: "localhost" },
 };
-const environment = process.env.NODE_ENV || "development";
+const environment = process.env.NODE_ENV || "production";
 const config = configurations[environment];
 
 const main = async () => {
@@ -40,7 +40,7 @@ const main = async () => {
 
 	app.use(
 		"/graphql",
-		cors({ origin: ["https://www.kalinovskyklin.xyz", "http://www.kalinovskyklin.xyz", "http://localhost:3001"] }),
+		cors({ origin: ["https://kalinovskyklin.xyz", "http://kalinovskyklin.xyz", "http://localhost:3001"] }),
 		json(),
 		expressMiddleware(server, {
 			context: async ({ req }) => ({ token: req.headers.token }),
@@ -68,7 +68,7 @@ const main = async () => {
 
 	console.log(
 		"🚀 Server ready at",
-		`http${config.ssl ? "s" : ""}://localhost:${PORT}/graphql`
+		`http${config.ssl ? "s" : ""}://${config.hostname}:${PORT}/graphql`
 	);
 };
 
