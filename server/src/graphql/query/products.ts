@@ -1,3 +1,4 @@
+import { Op } from 'sequelize';
 import { errHandler } from '../../helper';
 const {
   Product,
@@ -21,7 +22,7 @@ export const queryResolvers = {
       throw new Error(err);
     }
   },
-  async productsByCategory(_: any, input: any) {
+  async productsByCategory(_: any, input: { categoryId: string }) {
     try {
       const products = await Product.findAll({
         where: { fkCategory: input.categoryId },
@@ -31,7 +32,22 @@ export const queryResolvers = {
       throw new Error(err);
     }
   },
+  async productsByName(_: any,  input: { name: string }) {
+    try {
+      const products = await Product.findAll({
+        where: {
+          description: {
+            [Op.startsWith]: input.name[0],
+          },
+        },
+      }).catch(errHandler);
+      return products;
+    } catch (err) {
+      throw new Error(err);
+    }
+  },
 };
+
 export const resolvers = {
   productSupplier: async (parent: any) => {
     try {

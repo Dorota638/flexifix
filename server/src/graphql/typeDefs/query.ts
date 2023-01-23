@@ -18,10 +18,12 @@ export const query = `
     repairStatuses: [RepairStatus!]!
     taskProps: TaskProps!
     tasks: [Task!]!
+    taskByName(name: String!): [Task!]!
     taskInvoiceLines(repairId: String): [TaskInvoiceLine!]!
     products: [Product!]!
     productProps: ProductProps!
     productsByCategory(categoryId: String!): [Product!]!
+    productsByName(name: String!): [Product!]!
     productInvoiceLines(saleId: String, repairId: String): [ProductInvoiceLine!]!
     sales: [Sale!]!
     rentals(customerId: String): [Rental!]!

@@ -12,15 +12,12 @@
     "docker:test:run": "docker exec server ./bin/wait-for-it.sh db:3306 -- yarn test"
   },
   "dependencies": {
-    "@graphql-tools/utils": "^8.6.12",
-    "apollo-server-express": "^3.7.0",
+    "@apollo/server": "^4.3.1",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv-cli": "^5.1.0",
     "easyinvoice": "^2.3.0",
-    "express": "^4.18.1",
-    "express-graphql": "^0.12.0",
-    "graphql": "^15.3.0",
+    "graphql": "^16.6.0",
     "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.19.0",
@@ -29,12 +26,12 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
     "@types/express": "^4.17.13",
     "@types/jest": "^28.1.0",
     "@types/node": "^17.0.33",
     "@types/sequelize": "^4.28.14",
     "@types/uuid": "^8.3.4",
-    "graphql-tools": "^8.2.11",
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
     "ts-jest": "^28.0.4",

@@ -7,6 +7,7 @@ RUN apk update && apk add bash
 COPY package.json /app/package.json
 COPY src /app/src
 COPY .sequelizerc /app/.sequelizerc
+COPY .ssl /app/.ssl
 COPY tsconfig.json /app/tsconfig.json
 
 RUN npm install

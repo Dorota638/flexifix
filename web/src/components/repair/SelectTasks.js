@@ -1,28 +1,24 @@
 import { Select, Table } from "@mantine/core";
 import React, { useState } from "react";
 import { useStore } from "../../Store";
-import { SugestedProducts } from "./SugestedProducts";
 
-export const SelectTasks = () => {
+export const SelectTasks = ({ tasks }) => {
 	const addTaskToCart = useStore(({ addTaskToCart }) => addTaskToCart);
-	const tasksList = useStore(({ tasks }) => tasks);
-	const { category } = useStore(({ taskProps }) => taskProps);
 	const [categoryId, setCategoryId] = useState("");
-	const [task, setTask] = useState(null);
 
-	function filterData(filterId, data) {
-		if (filterId) {
-			return data.filter((d) => d.taskCategory.id === categoryId);
-		}
-	}
+	// function filterData(filterId, data) {
+	// 	if (filterId) {
+	// 		return data.filter((d) => d.taskCategory.id === categoryId);
+	// 	}
+	// }
 
-	const tasks = filterData(categoryId, tasksList)?.map((task) => {
+	const taskList = tasks?.map((task) => {
 		return (
 			<tr
 				key={`task${task.id}`}
 				onClick={() => {
 					addTaskToCart(task);
-					setTask(task);
+          //query products based on task !!!!
 				}}
 				className="odd:bg-gray-900">
 				<td>{task?.name}</td>
@@ -33,7 +29,7 @@ export const SelectTasks = () => {
 
 	return (
 		<div className="child:mx-auto">
-			<Select
+			{/* <Select
 				className="max-w-md"
 				label="Task Category"
 				placeholder="Task Categoy"
@@ -43,7 +39,7 @@ export const SelectTasks = () => {
 				data={category?.map((t) => ({
 					value: t.id,
 					label: t.name,
-				}))}></Select>
+				}))}></Select> */}
 			<Table className="mt-10 max-w-md">
 				<thead>
 					<tr>
@@ -51,9 +47,8 @@ export const SelectTasks = () => {
 						<th>Duration</th>
 					</tr>
 				</thead>
-				<tbody>{tasks}</tbody>
+				<tbody>{taskList}</tbody>
 			</Table>
-			{task ? <SugestedProducts productCategoryId={task.productCategoryId} /> : ""}
 		</div>
 	);
 };
