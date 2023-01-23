@@ -1,4 +1,3 @@
-
 import { ApolloServer } from "@apollo/server";
 import express from "express";
 const { typeDefs } = require("./graphql/typeDefs");
@@ -15,10 +14,10 @@ const app = express();
 const PORT = 3000;
 const configurations: any = {
 	// Note: You may need sudo to run on port 443
-	production: { ssl: true, port: 443, hostname: "example.com" },
+	production: { ssl: true, port: 443, hostname: "localhost" },
 	development: { ssl: false, port: 4000, hostname: "localhost" },
 };
-const environment = process.env.NODE_ENV || "production";
+const environment = process.env.NODE_ENV || "development";
 const config = configurations[environment];
 
 const main = async () => {
@@ -41,7 +40,7 @@ const main = async () => {
 
 	app.use(
 		"/graphql",
-		cors({ origin: ["https://www.kalinovskyklin.xyz:3000/graphql", "*"] }),
+		cors({ origin: ["https://www.kalinovskyklin.xyz", "http://www.kalinovskyklin.xyz", "http://localhost:3001"] }),
 		json(),
 		expressMiddleware(server, {
 			context: async ({ req }) => ({ token: req.headers.token }),
