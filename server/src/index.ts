@@ -41,7 +41,7 @@ const main = async () => {
 
 	app.use(
 		"/graphql",
-		cors({ origin: ["https://www.kalinovskyklin.xyz", "https://studio.apollographql.com"] }),
+		cors({ origin: ["https://www.kalinovskyklin.xyz:3000/graphql", "*"] }),
 		json(),
 		expressMiddleware(server, {
 			context: async ({ req }) => ({ token: req.headers.token }),
@@ -69,7 +69,7 @@ const main = async () => {
 
 	console.log(
 		"🚀 Server ready at",
-		`http${config.ssl ? "s" : ""}://${config.hostname}:${config.port}/graphql`
+		`http${config.ssl ? "s" : ""}://localhost:${PORT}/graphql`
 	);
 };
 
