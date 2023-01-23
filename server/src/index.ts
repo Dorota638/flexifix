@@ -1,3 +1,4 @@
+
 import { ApolloServer } from "@apollo/server";
 import express from "express";
 const { typeDefs } = require("./graphql/typeDefs");
@@ -47,6 +48,7 @@ const main = async () => {
 		})
 	);
 
+// @ts-ignore
 	let httpServer;
 
 	if (config.ssl) {
@@ -62,6 +64,7 @@ const main = async () => {
 	} else {
 		httpServer = http.createServer(app);
 	}
+// @ts-ignore
 	await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
 
 	console.log(
