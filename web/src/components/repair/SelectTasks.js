@@ -1,16 +1,14 @@
-import { Select, Table } from "@mantine/core";
-import React, { useState } from "react";
+import { Table } from "@mantine/core";
+import React from "react";
 import { useStore } from "../../Store";
+import { GET_PRODUCTS_BY_CATEGORY } from "../../queries";
+import { useLazyQuery } from "@apollo/client";
 
 export const SelectTasks = ({ tasks }) => {
 	const addTaskToCart = useStore(({ addTaskToCart }) => addTaskToCart);
-	const [categoryId, setCategoryId] = useState("");
+	const storeProducts = useStore((state) => state.storeProducts);
 
-	// function filterData(filterId, data) {
-	// 	if (filterId) {
-	// 		return data.filter((d) => d.taskCategory.id === categoryId);
-	// 	}
-	// }
+	const [productsByCategory] = useLazyQuery(GET_PRODUCTS_BY_CATEGORY);
 
 	const taskList = tasks?.map((task) => {
 		return (
@@ -18,7 +16,11 @@ export const SelectTasks = ({ tasks }) => {
 				key={`task${task.id}`}
 				onClick={() => {
 					addTaskToCart(task);
-          //query products based on task !!!!
+					productsByCategory({ variables: { categoryId: task.productCategoryId } }).then(
+						({ data }) => {
+							storeProducts(data.productsByCategory);
+						}
+					);
 				}}
 				className="odd:bg-gray-900">
 				<td>{task?.name}</td>

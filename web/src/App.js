@@ -13,8 +13,8 @@ const theme = {
 };
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
-  // uri: 'http://185.139.228.227:3000/graphql',
+  // uri: 'https://www.kalinovskyklin.xyz:3000/graphql',
+  uri: 'https://localhost:3000/graphql',
   cache: new InMemoryCache(),
 });
 
