@@ -286,7 +286,8 @@ export const GET_PRODUCT_INVOICE_LINES = gql`
 					value
 					id
 				}
-				description
+				name
+        type
 				sellPrice
 			}
 		}
@@ -444,7 +445,8 @@ export const ADD_PRODUCT_INVOICE_LINE = gql`
 					id
 					value
 				}
-				description
+				name
+        type
 				ean
 				sellPrice
 			}
@@ -595,7 +597,8 @@ export const CREATE_EDIT_PRODUCT = gql`
 		$fkBrand: String
 		$fkGroup: String
 		$fkCategory: String
-		$description: String
+		$name: String
+		$type: String
 		$ean: String
 		$stock: Int
 		$minStock: Int
@@ -610,7 +613,8 @@ export const CREATE_EDIT_PRODUCT = gql`
 				fkBrand: $fkBrand
 				fkGroup: $fkGroup
 				fkCategory: $fkCategory
-				description: $description
+				name: $name
+				type: $type
 				ean: $ean
 				stock: $stock
 				minStock: $minStock
@@ -636,7 +640,8 @@ export const CREATE_EDIT_PRODUCT = gql`
 				id
 				value
 			}
-			description
+			name
+      type
 			ean
 			stock
 			minStock
@@ -726,7 +731,8 @@ export const GET_PRODUCTS_BY_CATEGORY = gql`
 				id
 				value
 			}
-			description
+			name
+      type
 			stock
 			sellPrice
 		}
@@ -753,7 +759,8 @@ export const GET_PRODUCTS_BY_NAME = gql`
 				id
 				value
 			}
-			description
+			name
+      type
 			ean
 			stock
 			minStock
@@ -829,7 +836,7 @@ export const GET_TASKS = gql`
 				name
 				id
 			}
-			productCategoryId
+			fkProductCategoryId
 			id
 			name
 			duration
@@ -845,7 +852,7 @@ export const GET_TASKS_BY_NAME = gql`
 				name
 				id
 			}
-			productCategoryId
+			fkProductCategoryId
 			duration
 		}
 	}
@@ -924,7 +931,8 @@ export const GET_ALL_PRODUCTS = gql`
 				value
 				id
 			}
-			description
+			name
+      type
 			ean
 			stock
 			minStock
@@ -1085,7 +1093,8 @@ export const GET_ALL_SALES = gql`
 					productBrand {
 						value
 					}
-					description
+					name
+          type
 				}
 			}
 			salesperson {

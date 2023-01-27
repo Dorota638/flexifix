@@ -4,30 +4,33 @@ import { useStore } from "../../Store";
 import { GET_PRODUCTS_BY_CATEGORY } from "../../queries";
 import { useLazyQuery } from "@apollo/client";
 
-export const SelectTasks = ({ tasks }) => {
+export const SelectTasks = () => {
 	const addTaskToCart = useStore(({ addTaskToCart }) => addTaskToCart);
 	const storeProducts = useStore((state) => state.storeProducts);
-
 	const [productsByCategory] = useLazyQuery(GET_PRODUCTS_BY_CATEGORY);
+	const tasks = useStore((state) => state.tasks);
 
-	const taskList = tasks?.map((task) => {
-		return (
-			<tr
-				key={`task${task.id}`}
-				onClick={() => {
-					addTaskToCart(task);
-					productsByCategory({ variables: { categoryId: task.productCategoryId } }).then(
-						({ data }) => {
-							storeProducts(data.productsByCategory);
-						}
+	const taskList =
+		tasks.length > 0
+			? tasks.map((task) => {
+					return (
+						<tr
+							key={`task${task.id}`}
+							onClick={() => {
+								addTaskToCart(task);
+								productsByCategory({ variables: { categoryId: task.fkProductCategoryId } }).then(
+									({ data }) => {
+										storeProducts(data.productsByCategory);
+									}
+								);
+							}}
+							className="odd:bg-gray-900">
+							<td>{task?.name}</td>
+							<td>{task?.duration}</td>
+						</tr>
 					);
-				}}
-				className="odd:bg-gray-900">
-				<td>{task?.name}</td>
-				<td>{task?.duration}</td>
-			</tr>
-		);
-	});
+			  })
+			: "";
 
 	return (
 		<div className="child:mx-auto">

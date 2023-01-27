@@ -6,7 +6,6 @@ import {
   MediaQuery,
   Burger,
   useMantineTheme,
-  Footer,
 } from "@mantine/core";
 import { NavbarLinks } from "../components/NavbarLinks";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

@@ -13,7 +13,8 @@ export const SearchTasks = () => {
 			<TextInput
 				onChange={(e) => {
 					search({ variables: { name: e.target.value } }).then(({ data }) => {
-						storeTasks(data.tasksByName);
+            console.log('data.tasksByName', data.taskByName);
+						storeTasks(data.taskByName);
 					});
 				}}
 			/>

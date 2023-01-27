@@ -28,8 +28,6 @@ const CanEdit = ({ status, setOpenEdit, setRepair, repair }) => {
 		status === "be9e0fb7-1277-45c9-8fd1-3f5b8071f0d3" ||
 		status === "7983b8b5-472d-4e07-946a-c157face13a6"
 	) {
-		return;
-	} else {
 		return (
 			<Group position="center">
 				<Button
@@ -41,6 +39,8 @@ const CanEdit = ({ status, setOpenEdit, setRepair, repair }) => {
 				</Button>
 			</Group>
 		);
+	} else {
+		return;
 	}
 };
 

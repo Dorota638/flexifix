@@ -37,7 +37,6 @@ export const RepairCard = ({ repair }) => {
     } else {
       return (
         <Group position="center">
-
           <Button onClick={() => setOpenEdit(true)}>Edit Repair</Button>
         </Group>
       );

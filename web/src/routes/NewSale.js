@@ -9,6 +9,7 @@ import { SaleSummary } from "../components/sale/SaleSummary";
 import { useStore } from "../Store";
 import { ProductCart } from "../components/common/ProductCart";
 import { BicycleCart } from "../components/sale/BicycleCart";
+import { SearchProducts } from "../components/common/SearchProducts";
 
 export const NewSale = () => {
 	const [active, setActive] = useState(0);
@@ -16,16 +17,7 @@ export const NewSale = () => {
 	const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
 	const selectedCustomer = useStore(({ selectedCustomer }) => selectedCustomer);
 
-	const [bicycles, setBicycles] = useState(false);
-	const [products, setProducts] = useState(true);
-	const showBicycles = () => {
-		setBicycles(true);
-		setProducts(false);
-	};
-	const showProducts = () => {
-		setBicycles(false);
-		setProducts(true);
-	};
+	const [toggle, setToggle] = useState(false);
 
 	const [openCustomer, setOpenCustomer] = useState(false);
 
@@ -42,12 +34,17 @@ export const NewSale = () => {
 
 				<Stepper.Step label="Products" allowStepSelect={active > 1}>
 					<Box sx={{ maxWidth: 800 }} mx="auto">
-						<Button onClick={() => showProducts()}>Show Products</Button>
-						<Button onClick={() => showBicycles()} className="ml-5">
+						<Button onClick={() => setToggle(true)}>Show Products</Button>
+						<Button onClick={() => setToggle(false)} className="ml-5">
 							Show Bicycles
 						</Button>
-						<SelectProducts hidden={bicycles} />
-						<SelectBicycles hidden={products} />
+						<div style={{ display: `${toggle ? "" : "none"}` }}>
+							<SearchProducts />
+							<SelectProducts />
+						</div>
+						<div style={{ display: `${!toggle ? "" : "none"}` }}>
+							<SelectBicycles />
+						</div>
 						<ProductCart />
 						<BicycleCart />
 					</Box>

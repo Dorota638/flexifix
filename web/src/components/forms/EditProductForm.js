@@ -13,7 +13,8 @@ export const EditProductForm = ({ product, setOpened }) => {
       productSupplier: product?.productSupplier?.id,
       productCategory: product?.productCategory?.id,
       productGroup: product?.productGroup?.id,
-      description: product?.description,
+      name: product?.name,
+      type: product?.type,
       ean: product?.ean,
       stock: product?.stock,
       minStock: product?.minStock,
@@ -34,7 +35,8 @@ export const EditProductForm = ({ product, setOpened }) => {
               fkBrand: values.productBrand,
               fkGroup: values.productGroup,
               fkCategory: values.productCategory,
-              description: values.description,
+              name: values.name,
+              type: values.type,
               ean: values.ean,
               stock: values.stock,
               minStock: values.minStock,
@@ -69,9 +71,14 @@ export const EditProductForm = ({ product, setOpened }) => {
           {...form.getInputProps("productCategory")}
         />
         <TextInput
-          label="Description"
-          placeholder="Description"
-          {...form.getInputProps("description")}
+          label="Name"
+          placeholder="Name"
+          {...form.getInputProps("name")}
+        />
+        <TextInput
+          label="Type"
+          placeholder="Type"
+          {...form.getInputProps("type")}
         />
         <NumberInput
           label="Stock"

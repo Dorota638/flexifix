@@ -1,7 +1,7 @@
 import React from "react";
 import { ProductCart } from "../common/ProductCart";
-import { SearchProducts } from "./SearchProducts";
-import { SelectProducts } from "./SelectProducts";
+import { SearchProducts } from "../common/SearchProducts";
+import { SelectProducts } from "../common/SelectProducts";
 
 export const Products = () => {
 	return (

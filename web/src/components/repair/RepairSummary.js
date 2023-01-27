@@ -37,7 +37,8 @@ export const RepairSummary = ({ nextStep }) => {
 		return (
 			<tr key={item.product.id} className="odd:bg-gray-900">
 				<td>{item.amount}</td>
-				<td>{item.product.description}</td>
+				<td>{item.product.name}</td>
+				<td>{item.product.type}</td>
 			</tr>
 		);
 	});
@@ -133,7 +134,8 @@ export const RepairSummary = ({ nextStep }) => {
 					<thead>
 						<tr>
 							<th>Amount</th>
-							<th>Description</th>
+							<th>Name</th>
+							<th>Type</th>
 						</tr>
 					</thead>
 					<tbody>{selectedProducts}</tbody>

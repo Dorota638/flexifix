@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { SearchTasks } from "./SearchTasks";
 import { SelectTasks } from "./SelectTasks";
 import { TaskCart } from "./TaskCart";
 
 export const Tasks = () => {
-  const [tasks, setTasks] = useState([])
-	return (
+
+  return (
 		<div>
-			<SearchTasks setTasks={setTasks} />
-			<SelectTasks tasks={tasks}/>
+			<SearchTasks  />
+			<SelectTasks />
 			<TaskCart />
 		</div>
 	);

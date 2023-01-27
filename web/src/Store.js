@@ -140,7 +140,7 @@ const store = (set) => ({
 	storeProduceProps: (props) => set((state) => ({ ...state, productProps: props })),
 	storeRepairStatuses: (statuses) => set((state) => ({ ...state, repairStatuses: statuses })),
 	storeProducts: (products) => set((state) => ({ ...state, products: products })),
-	storeTasks: (props) => set((state) => ({ ...state, tasks: props })),
+	storeTasks: (tasks) => set((state) => ({ ...state, tasks: tasks })),
 	storeTaskCategories: (props) => set((state) => ({ ...state, taskCategories: props })),
 });
 
