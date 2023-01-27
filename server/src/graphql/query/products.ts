@@ -12,11 +12,6 @@ export const queryResolvers = {
 	async products() {
 		try {
 			const products = await Product.findAll().catch(errHandler);
-			// console.log(
-			//   'products',
-			//   products.map((product) => product.dataValues.fkGroup)
-			// );
-
 			return products;
 		} catch (err) {
 			throw new Error(err);
@@ -37,7 +32,8 @@ export const queryResolvers = {
 			const products = await Product.findAll({
 				where: {
 					[Op.or]: [
-						{ description: { [Op.substring]: input.name } },
+						{ type: { [Op.substring]: input.name } },
+						{ name: { [Op.substring]: input.name } },
 						{ ean: { [Op.substring]: input.name } },
 						{
 							fkBrand: {

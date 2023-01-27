@@ -142,7 +142,7 @@ export const input = `
   input taskInput{
     name: String!
     fkTaskCategory: String!
-    productCategoryId: String
+    fkProductCategoryId: String
     duration: Int!
   }
   input taskCategoryInput{

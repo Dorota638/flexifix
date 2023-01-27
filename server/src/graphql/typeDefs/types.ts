@@ -64,7 +64,8 @@ export const types = `
     productBrand: ProductBrand!
     productCategory: ProductCategory!
     productGroup: ProductGroup!
-    description: String
+    name: String
+    type: String
     ean: String
     stock: Int
     minStock: Int
@@ -153,7 +154,7 @@ export const types = `
     id: String!
     name: String!
     taskCategory: TaskCategory!
-    productCategoryId: String
+    fkProductCategoryId: String
     duration: Float!
   }
 

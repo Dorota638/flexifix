@@ -11,7 +11,7 @@ module.exports = {
 			},
 			name: { type: Sequelize.STRING(25), allowNull: false },
 			fkTaskCategory: { type: Sequelize.STRING(36), allowNull: false },
-			productCategoryId: { type: Sequelize.STRING(36), allowNull: true },
+			fkProductCategoryId: { type: Sequelize.STRING(36), allowNull: true },
 			duration: { type: Sequelize.SMALLINT, allowNull: false },
 			createdAt: { type: Sequelize.DATE() },
 			updatedAt: { type: Sequelize.DATE() },
