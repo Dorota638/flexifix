@@ -27,19 +27,19 @@ export const queryMutations = {
     }
   },
 
-  comparePassword: async (_: any, args: any) => {
-    try {
-      const employee = await Employee.findOne({ where: { id: args.id } });
-      const employeePassword = await EmployeePassword.findByPk(args.id).catch(errHandler);
-      const result = await bcrypt.compare(args.password, employeePassword.dataValues.password);
+  // comparePassword: async (_: any, args: any) => {
+  //   try {
+  //     const employee = await Employee.findOne({ where: { id: args.id } });
+  //     const employeePassword = await EmployeePassword.findByPk(args.id).catch(errHandler);
+  //     const result = await bcrypt.compare(args.password, employeePassword.dataValues.password);
 
-      if (result) {
-        return { employee: employee };
-      } else {
-        throw new Error('Wrong name - password combination');
-      }
-    } catch (err) {
-      throw new Error(err);
-    }
-  },
+  //     if (result) {
+  //       return { employee: employee };
+  //     } else {
+  //       throw new Error('Wrong name - password combination');
+  //     }
+  //   } catch (err) {
+  //     throw new Error(err);
+  //   }
+  // },
 };

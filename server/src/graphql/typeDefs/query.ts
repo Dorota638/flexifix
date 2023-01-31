@@ -1,6 +1,5 @@
 export const query = `
   type Query {
-    comparePassword(id: String!, password: String!): CheckedPassword
     employees: [Employees!]!
     comparePassword(id: String!, password: String!): CheckedPassword
     customers(customerId: String): [Customer!]!
