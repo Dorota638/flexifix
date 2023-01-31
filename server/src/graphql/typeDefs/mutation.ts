@@ -10,7 +10,6 @@ export const mutation = `
     createEditProduct(input: productInput): Product!
     addToAccount(input: accountInput): Account!
     changePassword(input: changePasswordInput): String
-    comparePassword(id: String!, password: String!): CheckedPassword
     createBicycleInvoiceLine(input: bicycleInvoiceLineInput): BicycleInvoiceLine!
     createSale(input: saleInput): Sale!
     createProductInvoiceLine(input: productInvoiceLineInput): ProductInvoiceLine!

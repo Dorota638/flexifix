@@ -13,7 +13,6 @@ import fs from "fs";
 const app = express();
 const PORT = 3000;
 const configurations: any = {
-	// Note: You may need sudo to run on port 443
 	production: { ssl: true, port: 443, hostname: "kalinovskyklin.xyz" },
 	development: { ssl: true, port: 3000, hostname: "localhost" },
 };
@@ -33,7 +32,6 @@ const main = async () => {
 	const server = new ApolloServer({
 		typeDefs,
 		resolvers,
-		// plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
 	});
 
 	await server.start();
@@ -47,15 +45,13 @@ const main = async () => {
 		})
 	);
 
-// @ts-ignore
+	// @ts-ignore
 	let httpServer;
 
 	if (config.ssl) {
-		// Assumes certificates are in a .ssl folder off of the package root.
-		// Make sure these files are secured.
 		httpServer = https.createServer(
 			{
-        cert: fs.readFileSync(`./.ssl/fullchain.pem`),
+				cert: fs.readFileSync(`./.ssl/fullchain.pem`),
 				key: fs.readFileSync(`./.ssl/privkey.pem`),
 			},
 			app
@@ -63,7 +59,8 @@ const main = async () => {
 	} else {
 		httpServer = http.createServer(app);
 	}
-// @ts-ignore
+	// @ts-ignore
+  
 	await new Promise((resolve) => httpServer.listen({ port: PORT }, resolve));
 
 	console.log(
