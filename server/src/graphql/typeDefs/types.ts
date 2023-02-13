@@ -1,9 +1,4 @@
 export const types = `
-  type Employees {
-    id: String!
-    name: String!
-  } 
-
   type Customer {
     id: ID!
     firstName: String!
@@ -220,9 +215,10 @@ export const types = `
     number: String!
     paymentMethod: PaymentMethod!
     customer: Customer
-    salesperson: Employee!
+    salesPerson: Employee!
     bicycleInvoiceLines: [BicycleInvoiceLine!]!
     productInvoiceLines: [ProductInvoiceLine!]!
+    createdAt: String
   }
 
   type RepairInvoice {
@@ -259,7 +255,7 @@ export const types = `
     role: Int
   }
   type Password {
-    employeeId: Int!
+    id: Int!
     password: String!
   }
   type Deleted{

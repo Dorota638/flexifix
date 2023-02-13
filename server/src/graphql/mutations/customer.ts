@@ -15,10 +15,8 @@ export const queryMutations = {
       }
     } else {
       try {
-        console.log('tuna', input);
         delete input.id
         const customer = await Customer.create({ id: UUIDV4(), ...input }).catch(errHandler);
-        console.log('err', customer);
         return customer;
       } catch (err) {
         throw new Error(err);

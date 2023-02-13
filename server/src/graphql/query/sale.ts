@@ -55,7 +55,7 @@ export const resolvers = {
       throw new Error(err);
     }
   },
-  salesperson: async (parent: any) => {
+  salesPerson: async (parent: any) => {
     try {
       const salesPerson = await Employee.findByPk(parent.fkSalespersonId).catch(
         errHandler

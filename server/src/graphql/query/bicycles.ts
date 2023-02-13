@@ -35,7 +35,7 @@ export const queryResolvers = {
       const rentalBicycles = await Bicycle.findAll({
         where: {
           fkOwnerId: 'c6389cef-b019-4b77-b0f7-44f68aebf155',
-          status: 'f05c346d-57f7-4d39-beb2-60c6fcf8f0ce',
+          status: 'bac53022-747e-47df-b7b7-445cc3d6696b',
         },
       }).catch(errHandler);
       return rentalBicycles;

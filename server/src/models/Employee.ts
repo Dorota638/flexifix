@@ -12,10 +12,10 @@ export const Employee = sequelize.define('Employee', {
   role: { type: Sequelize.SMALLINT() },
 });
 export const EmployeePassword = sequelize.define('EmployeePassword', {
-  employeeId: {
-    type: Sequelize.SMALLINT(),
+  id: {
+    type: Sequelize.UUIDV4(),
     allowNull: false,
-    autoIncrement: true,
+    autoIncrement: false,
     primaryKey: true,
   },
   password: {

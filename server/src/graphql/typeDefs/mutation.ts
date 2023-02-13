@@ -9,7 +9,7 @@ export const mutation = `
     deleteTaskInvoiceLine(id: String!): Deleted!
     createEditProduct(input: productInput): Product!
     addToAccount(input: accountInput): Account!
-    changePassword(input: changePasswordInput): String
+    createEmployee(input: createEmployeeInput): Employee
     createBicycleInvoiceLine(input: bicycleInvoiceLineInput): BicycleInvoiceLine!
     createSale(input: saleInput): Sale!
     createProductInvoiceLine(input: productInvoiceLineInput): ProductInvoiceLine!

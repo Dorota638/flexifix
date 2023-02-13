@@ -96,13 +96,12 @@ export const input = `
     amount: Int!
   }
   input passwordInput {
-    employeeId: String!
+    id: String!
     password: String!
   }
-  input changePasswordInput{
+  input createEmployeeInput{
     name: String!
-    oldPassword: String
-    newPassword: String!
+    password: String!
   }
   input bicycleInvoiceLineInput {
     fkSaleId: String!
