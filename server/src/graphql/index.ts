@@ -45,6 +45,7 @@ const {
 	resolvers: rentalInvoiceLineResolvers,
 } = require("./query/rentalInvoiceLines");
 const { queryResolvers: employeeQueryResolvers } = require("./query/employees");
+const { queryResolvers: invoiceQueryResolvers } = require("./query/invoice");
 
 // -------------------------------------------------------
 
@@ -92,6 +93,7 @@ export const resolvers: IResolvers = {
 		...saleQueryResolvers,
 		...rentalQueryResolvers,
 		...rentalInvoiceLineQueryResolvers,
+		...invoiceQueryResolvers,
 	},
 
 	Customer: customerResolvers,

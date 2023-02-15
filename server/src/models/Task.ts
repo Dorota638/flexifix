@@ -24,5 +24,6 @@ export const TaskCategory = sequelize.define("TaskCategory", {
 	name: {
 		type: Sequelize.STRING(20),
 		allowNull: false,
+		unique: true,
 	},
 });

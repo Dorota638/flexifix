@@ -33,7 +33,7 @@ export const queryMutations = {
 
       for (const line of rentalInvoiceLines) {
         const rentedBike = await Bicycle.findByPk(line.fkBicycleId).catch(errHandler);
-        rentedBike.set({ status: '951c7c29-4848-4220-ba30-07b9f42f3f88' });
+        rentedBike.set({ status: 'b5af50f7-aaaa-47c1-b0c4-04eea873e9b4' });
         rentedBike.save().catch(errHandler);
       }
 

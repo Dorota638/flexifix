@@ -43,13 +43,13 @@ module.exports = {
         updatedAt: new Date(),
       },
       {
-        id: UUIDV4(),
+        id: 'b5af50f7-aaaa-47c1-b0c4-04eea873e9b4',
         value: 'For Rent',
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        id: UUIDV4(),
+        id: 'c90f571b-0cb2-4d93-99ed-8ae748ef834e',
         value: 'Rented Out',
         createdAt: new Date(),
         updatedAt: new Date(),

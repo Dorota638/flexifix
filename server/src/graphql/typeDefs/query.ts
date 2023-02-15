@@ -19,6 +19,8 @@ export const query = `
     taskProps: TaskProps!
     tasks: [Task!]!
     taskByName(name: String!): [Task!]!
+    taskByCategory(categoryId: String!): [Task!]!
+    taskCategory: [TaskCategory!]!
     taskInvoiceLines(repairId: String): [TaskInvoiceLine!]!
     products: [Product!]!
     productProps: ProductProps!
@@ -28,5 +30,6 @@ export const query = `
     sales: [Sale!]!
     rentals(customerId: String): [Rental!]!
     rentalInvoiceLines: [RentalInvoiceLine!]!
+    sendEmail(email: String!, name: String!, message: String!, time: String!): String
   }
 `;
